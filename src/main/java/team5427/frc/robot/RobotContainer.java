@@ -131,8 +131,6 @@ public class RobotContainer {
         "FieldSimulation/RobotPosition",
         SwerveSubsystem.getInstance().getKDriveSimulation().getSimulatedDriveTrainPose());
     Logger.recordOutput(
-        "FieldSimulation/Coral", SimulatedArena.getInstance().getGamePiecesArrayByType("Coral"));
-    Logger.recordOutput(
-        "FieldSimulation/Algae", SimulatedArena.getInstance().getGamePiecesArrayByType("Algae"));
+        "FieldSimulation/Coral", SimulatedArena.getInstance().getGamePiecesArrayByType("Fuel"));
   }
 }
