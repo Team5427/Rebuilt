@@ -1,4 +1,4 @@
-package team5427.frc.robot.subsystems.intake.io;
+package team5427.frc.robot.subsystems.intake.io.sim;
 
 import static edu.wpi.first.units.Units.Grams;
 import static edu.wpi.first.units.Units.Inches;

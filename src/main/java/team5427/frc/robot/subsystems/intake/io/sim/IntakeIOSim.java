@@ -1,4 +1,4 @@
-package team5427.frc.robot.subsystems.intake.io;
+package team5427.frc.robot.subsystems.intake.io.sim;
 
 import static edu.wpi.first.units.Units.Amps;
 import static edu.wpi.first.units.Units.Celsius;
@@ -29,6 +29,7 @@ import org.ironmaple.simulation.IntakeSimulation;
 import org.ironmaple.simulation.drivesims.SwerveDriveSimulation;
 import team5427.frc.robot.Constants;
 import team5427.frc.robot.subsystems.intake.IntakeConstants;
+import team5427.frc.robot.subsystems.intake.io.IntakeIO;
 
 public class IntakeIOSim implements IntakeIO {
 
