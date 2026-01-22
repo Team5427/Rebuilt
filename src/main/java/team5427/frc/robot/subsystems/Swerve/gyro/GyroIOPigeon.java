@@ -46,7 +46,7 @@ public class GyroIOPigeon implements GyroIO {
     inputs.yawPosition =
         Rotation2d.fromDegrees(
             BaseStatusSignal.getLatencyCompensatedValueAsDouble(yaw, yawVelocity));
-    inputs.yawVelocityRadPerSec = yawVelocity.getValue();
+    inputs.yawVelocity = yawVelocity.getValue();
 
     inputs.odometryYawTimestamps =
         yawTimestampQueue.stream().mapToDouble((Double value) -> value).toArray();
