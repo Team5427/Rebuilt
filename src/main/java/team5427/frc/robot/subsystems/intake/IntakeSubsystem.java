@@ -17,7 +17,7 @@ import team5427.frc.robot.Constants.Mode;
 import team5427.frc.robot.subsystems.intake.io.IntakeIO;
 import team5427.frc.robot.subsystems.intake.io.IntakeIOInputsAutoLogged;
 import team5427.frc.robot.subsystems.intake.io.IntakeIOMagicTalonFX;
-import team5427.frc.robot.subsystems.intake.io.sim.IntakeIOSim;
+import team5427.frc.robot.subsystems.intake.io.IntakeIOSim;
 
 public class IntakeSubsystem extends SubsystemBase {
   private LinearVelocity intakingSpeed;
