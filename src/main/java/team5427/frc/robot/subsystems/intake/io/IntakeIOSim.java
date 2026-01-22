@@ -47,7 +47,7 @@ public class IntakeIOSim implements IntakeIO {
     intakeSimulation =
         IntakeSimulation.OverTheBumperIntake(
             // Specify the type of game pieces that the intake can collect
-            InfiniteRechargeBall.INFINITE_RECHARGE_BALL_INFO.type(),
+            Fuel.kFuelInfo.type(),
             // Specify the drivetrain to which this intake is attached
             driveTrainSimulationSupplier.get(),
             // Width of the intake
