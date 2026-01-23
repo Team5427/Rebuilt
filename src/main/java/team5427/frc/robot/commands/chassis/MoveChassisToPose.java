@@ -11,7 +11,6 @@ import org.team4206.battleaid.common.TunedJoystick.ResponseCurve;
 import team5427.frc.robot.Constants.DriverConstants;
 import team5427.frc.robot.RobotPose;
 import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
-import team5427.frc.robot.subsystems.Swerve.SwerveConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
 
 public class MoveChassisToPose extends Command {
@@ -46,7 +45,7 @@ public class MoveChassisToPose extends Command {
   @Override
   public void execute() {
 
-    double dampener = (joy.getRightTriggerAxis() * SwerveConstants.kDampenerDampeningAmount);
+    double dampener = (joy.getRightTriggerAxis() * DrivingConstants.kDampenerDampeningAmount);
 
     Logger.recordOutput("Target Pose", targetPose);
 

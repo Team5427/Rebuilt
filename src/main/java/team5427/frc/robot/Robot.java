@@ -23,7 +23,6 @@ import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveConstants;
 import team5427.frc.robot.subsystems.intake.IntakeConstants;
-import team5427.frc.robot.subsystems.vision.io.QuestNav;
 import team5427.lib.drivers.JoystickLogger;
 import team5427.lib.drivers.VirtualSubsystem;
 import team5427.lib.kinematics.shooter.projectiles.parabolic.AdjustedParabolicThread;
@@ -83,8 +82,6 @@ public class Robot extends LoggedRobot {
     JoystickLogger.logJoystickData();
     m_robotContainer = new RobotContainer();
     CommandScheduler.getInstance().schedule(FollowPathCommand.warmupCommand());
-    AdjustedParabolicThread.getInstance().setShouldCompute(false);
-    AdjustedParabolicThread.getInstance().start();
   }
 
   private void loadConstants() {
@@ -110,8 +107,8 @@ public class Robot extends LoggedRobot {
     VirtualSubsystem.periodicAll();
     RobotPose.getInstance().log();
     Superstructure.logStates();
-    QuestNav.getInstance().processHeartbeat();
-    QuestNav.getInstance().cleanupResponses();
+    // QuestNav.getInstance().processHeartbeat();
+    // QuestNav.getInstance().cleanupResponses();
 
     if (Constants.ModeTriggers.kSim.getAsBoolean()) {
       Translation3d target =

@@ -7,6 +7,7 @@ import team5427.lib.tunableControls.TunableControls.TunableControlConstants;
 import team5427.lib.tunableControls.TunableControls.TunableProfiledController;
 
 public final class DrivingConstants {
+  public static final double kDampenerDampeningAmount = 0.95;
   public static LoggedTunableNumber kRotationKp = new LoggedTunableNumber("Rotation P", 1.0);
   public static LoggedTunableNumber kRotationKd = new LoggedTunableNumber("Rotation D", 0.1);
 
