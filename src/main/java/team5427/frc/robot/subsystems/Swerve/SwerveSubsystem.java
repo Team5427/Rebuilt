@@ -202,6 +202,7 @@ public class SwerveSubsystem extends SubsystemBase
       gyro.updateInputs(gyroInputs);
       Logger.processInputs("Swerve/Gyro", gyroInputs);
     }
+   
 
     for (int i = 0; i < swerveModules.length; i++) {
 

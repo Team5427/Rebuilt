@@ -145,7 +145,7 @@ public class RobotPose {
     this.poseEstimator.resetRotation(heading);
   }
 
-  public Tuple2Plus<Double, Rotation2d> getGyroHeading() {
+  public Tuple2Plus<Double, Rotation2d> getGyroHeading() { 
     return new Tuple2Plus<Double, Rotation2d>(
         Timer.getTimestamp(), SwerveSubsystem.getInstance().getGyroRotation());
   }
@@ -153,6 +153,7 @@ public class RobotPose {
   public void log() {
     Logger.recordOutput(
         "Localization/Estimation/Robot", RobotPose.getInstance().getEstimatedPose());
+    Logger.recordOutput("Localization/Estimation/Robot", RobotPose.getInstance().getGyroHeading().toString());
     Logger.recordOutput("Localization/Odometry/Robot", RobotPose.getInstance().getOdometryPose());
     Logger.recordOutput("Quest Pose", QuestNav.getInstance().getPose3d());
   }
