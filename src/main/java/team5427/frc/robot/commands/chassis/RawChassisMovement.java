@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import org.team4206.battleaid.common.TunedJoystick;
 import org.team4206.battleaid.common.TunedJoystick.ResponseCurve;
 import team5427.frc.robot.Constants.DriverConstants;
-import team5427.frc.robot.subsystems.Swerve.SwerveConstants;
+import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
 
 public class RawChassisMovement extends Command {
@@ -50,7 +50,7 @@ public class RawChassisMovement extends Command {
         vy *= -1;
       }
 
-      double dampener = (joy.getRightTriggerAxis() * SwerveConstants.kDampenerDampeningAmount);
+      double dampener = (joy.getRightTriggerAxis() * DrivingConstants.kDampenerDampeningAmount);
 
       ChassisSpeeds driverSpeeds = swerveSubsystem.getDriveSpeeds(vx, vy, omegaRadians, dampener);
 

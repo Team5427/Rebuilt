@@ -7,7 +7,6 @@ import com.ctre.phoenix6.configs.MountPoseConfigs;
 import com.ctre.phoenix6.configs.Pigeon2Configuration;
 import com.ctre.phoenix6.hardware.Pigeon2;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.util.Units;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
 import java.util.Queue;
@@ -47,7 +46,7 @@ public class GyroIOPigeon implements GyroIO {
     inputs.yawPosition =
         Rotation2d.fromDegrees(
             BaseStatusSignal.getLatencyCompensatedValueAsDouble(yaw, yawVelocity));
-    inputs.yawVelocityRadPerSec = Units.degreesToRadians(yawVelocity.getValueAsDouble());
+    inputs.yawVelocity = yawVelocity.getValue();
 
     inputs.odometryYawTimestamps =
         yawTimestampQueue.stream().mapToDouble((Double value) -> value).toArray();

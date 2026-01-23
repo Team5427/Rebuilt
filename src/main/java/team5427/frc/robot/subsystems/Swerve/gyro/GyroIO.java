@@ -1,6 +1,9 @@
 package team5427.frc.robot.subsystems.Swerve.gyro;
 
+import static edu.wpi.first.units.Units.*;
+
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.units.measure.AngularVelocity;
 import org.littletonrobotics.junction.AutoLog;
 
 public interface GyroIO {
@@ -10,7 +13,7 @@ public interface GyroIO {
     public Rotation2d yawPosition = new Rotation2d();
     public double[] odometryYawTimestamps = new double[0];
     public Rotation2d[] odometryYawPositions = new Rotation2d[] {};
-    public double yawVelocityRadPerSec = 0.0;
+    public AngularVelocity yawVelocity = RadiansPerSecond.of(0);
   }
 
   public default void updateInputs(GyroIOInputs inputs) {}

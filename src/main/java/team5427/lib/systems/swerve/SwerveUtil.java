@@ -21,6 +21,7 @@ public class SwerveUtil {
   // STILL NEEDS TO BE UPDATED AND NEEDS FULL GEAR RATIO
   public static final ComplexGearRatio kSDSSteerGearRatioMK5n =
       new ComplexGearRatio((287.0 / 11.0));
+  public static final ComplexGearRatio kSDSSteerGearRatioMK5i = new ComplexGearRatio((26.0 / 1.0));
   // public static final ComplexGearRatio kSDSSteerGearRatioMK4n =
   //     new ComplexGearRatio(1.0 / 18.75);L
   public static final ComplexGearRatio kSDSL1GearRatio =

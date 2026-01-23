@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj.simulation.FlywheelSim;
 import java.util.function.Supplier;
 import org.ironmaple.simulation.IntakeSimulation;
 import org.ironmaple.simulation.drivesims.SwerveDriveSimulation;
+import org.ironmaple.simulation.seasonspecific.rebuilt2026.RebuiltFuelOnField;
 import team5427.frc.robot.Constants;
 import team5427.frc.robot.subsystems.intake.IntakeConstants;
 
@@ -47,7 +48,7 @@ public class IntakeIOSim implements IntakeIO {
     intakeSimulation =
         IntakeSimulation.OverTheBumperIntake(
             // Specify the type of game pieces that the intake can collect
-            InfiniteRechargeBall.INFINITE_RECHARGE_BALL_INFO.type(),
+            RebuiltFuelOnField.REBUILT_FUEL_INFO.type(),
             // Specify the drivetrain to which this intake is attached
             driveTrainSimulationSupplier.get(),
             // Width of the intake

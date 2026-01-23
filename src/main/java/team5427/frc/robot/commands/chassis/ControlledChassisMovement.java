@@ -10,7 +10,7 @@ import org.team4206.battleaid.common.TunedJoystick;
 import org.team4206.battleaid.common.TunedJoystick.ResponseCurve;
 import team5427.frc.robot.Constants;
 import team5427.frc.robot.Constants.DriverConstants;
-import team5427.frc.robot.subsystems.Swerve.SwerveConstants;
+import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
 
 public class ControlledChassisMovement extends Command {
@@ -52,7 +52,7 @@ public class ControlledChassisMovement extends Command {
       double vy = -translationJoystick.getRightX();
       double omegaRadians = -rotationJoystick.getLeftX();
 
-      double dampener = (joy.getRightTriggerAxis() * SwerveConstants.kDampenerDampeningAmount);
+      double dampener = (joy.getRightTriggerAxis() * DrivingConstants.kDampenerDampeningAmount);
 
       controlledAngle =
           controlledAngle.plus(
