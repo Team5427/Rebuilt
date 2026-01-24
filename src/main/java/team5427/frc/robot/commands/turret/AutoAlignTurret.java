@@ -7,6 +7,7 @@ import com.revrobotics.RelativeEncoder;
 
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.Odometry;
 import edu.wpi.first.units.measure.Distance;
@@ -23,6 +24,7 @@ public class AutoAlignTurret extends Command {
   private VisionSubsystem visionSubsystem;
 
   private Pose2d targetPose;
+  private Pose3d aprilTagPose;
 
   public AutoAlignTurret() {
     turretSubsystem = TurretSubsystem.getInstance();
@@ -33,7 +35,8 @@ public class AutoAlignTurret extends Command {
   @Override
   public void initialize() {
     turretSubsystem.setPivotRotation(null, targetPose);
-
+    Distance distanceToPose = turretSubsystem.getDiagonalDistance(targetPose);
+    turretSubsystem.setTurretRotation(distanceToPose, aprilTagPose);
   }
 
   @Override
