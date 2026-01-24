@@ -128,6 +128,8 @@ public class Robot extends LoggedRobot {
               AdjustedParabolicThread.getInstance().getOutputState().a.in(MetersPerSecond)));
       Logger.recordOutput("Target", target);
       Logger.recordOutput("Thread Interupted", AdjustedParabolicThread.interrupted());
+
+      Logger.recordOutput("PathPlanner/Trajectory", m_autonomousCommand.getName());
     }
   }
 
