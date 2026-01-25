@@ -1,22 +1,14 @@
 package team5427.frc.robot.subsystems.turret;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Pose3d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.units.measure.AngularVelocity;
-import edu.wpi.first.units.measure.Distance;
-import edu.wpi.first.wpilibj.RobotState;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import static edu.wpi.first.units.Units.Meters;
-import static edu.wpi.first.units.Units.Rotations;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.units.measure.Distance;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import org.littletonrobotics.junction.Logger;
 import team5427.frc.robot.Constants;
-import team5427.frc.robot.FieldConstants;
-import team5427.frc.robot.Robot;
 import team5427.frc.robot.RobotPose;
-import team5427.frc.robot.subsystems.vision.VisionSubsystem;
 
 public class TurretSubsystem extends SubsystemBase {
   private Rotation2d currentAngle;
@@ -53,20 +45,9 @@ public class TurretSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
 
-
     io.updateInputs(inputsAutoLogged);
     Logger.processInputs("Turret/Inputs", inputsAutoLogged);
     log();
-  }
-  
-  public void setPivotRotation(Rotation2d rotation, Pose2d targetPose) {
-    Rotation2d turretRelativeRotation = Rotation2d.fromRotations(TurretConstants.kTurretEncoder.getPosition());
-    
-    Rotation2d turretAbsoluteRotation = io.wrapAngle(RobotPose.getInstance().getAdaptivePose().getRotation().plus(turretRelativeRotation));
-
-    Rotation2d pivotAngle = io.wrapAngle(turretAbsoluteRotation.minus(targetPose.getRotation()));
-    
-    io.setPivotRotation(pivotAngle);
   }
 
   public Distance getDiagonalDistance(Pose2d targetPose) {
@@ -76,24 +57,11 @@ public class TurretSubsystem extends SubsystemBase {
     double x2 = targetPose.getMeasureX().magnitude();
     double y2 = targetPose.getMeasureY().magnitude();
 
-    return Meters.of(Math.sqrt(Math.pow(x2-x1, 2.0) + Math.pow(y2-y1, 2.0)));
+    return Meters.of(Math.sqrt(Math.pow(x2 - x1, 2.0) + Math.pow(y2 - y1, 2.0)));
   }
 
-  public void resetPivot(Rotation2d resetAngle) {
-    io.resetPivot(resetAngle);
-  }
-
-  public void disablePivot() {
-    io.disablePivot();
-  }
-
-  public void setTurretRotation(Distance diagonalDistanceToTarget, Pose3d targetPose) {
-    io.setTurretRotation(Rotation2d.fromRadians(Math.atan(FieldConstants.Tower.height / diagonalDistanceToTarget.magnitude())));
-  }
-
-
-  public void setTurretVelocity(AngularVelocity velocity){
-    io.setTurretVelocity(velocity);
+  public void setTurretRotation(Rotation2d setpoint) {
+    io.setTurretRotation(setpoint);
   }
 
   public void resetTurret(Rotation2d resetAngle) {
@@ -104,7 +72,5 @@ public class TurretSubsystem extends SubsystemBase {
     io.disableTurret();
   }
 
-  public void log() {
-    Logger.recordOutput("Turret/TurretAngle", currentAngle);
-  }
+  public void log() {}
 }
