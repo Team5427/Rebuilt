@@ -31,9 +31,6 @@ public interface ModuleIO {
     public Current driveMotorCurrent = Amps.of(0.0);
     public Current steerMotorCurrent = Amps.of(0.0);
 
-    public Current driveTorqueCurrent = Amps.of(0.0);
-    public Current steerTorqueCurrent = Amps.of(0.0);
-
     public boolean driveMotorConnected = false;
     public boolean steerMotorConnected = false;
 

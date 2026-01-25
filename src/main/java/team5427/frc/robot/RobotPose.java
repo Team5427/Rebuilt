@@ -15,7 +15,6 @@ import org.littletonrobotics.junction.Logger;
 import team5427.frc.robot.Constants.Mode;
 import team5427.frc.robot.subsystems.Swerve.SwerveConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
-import team5427.frc.robot.subsystems.vision.io.QuestNav;
 import team5427.lib.detection.tuples.Tuple2Plus;
 
 public class RobotPose {
@@ -154,6 +153,6 @@ public class RobotPose {
     Logger.recordOutput(
         "Localization/Estimation/Robot", RobotPose.getInstance().getEstimatedPose());
     Logger.recordOutput("Localization/Odometry/Robot", RobotPose.getInstance().getOdometryPose());
-    Logger.recordOutput("Quest Pose", QuestNav.getInstance().getPose3d());
+    // Logger.recordOutput("Quest Pose", QuestNav.getInstance().getPose3d());
   }
 }

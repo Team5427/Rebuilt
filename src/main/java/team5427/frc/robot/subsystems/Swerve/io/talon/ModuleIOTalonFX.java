@@ -52,8 +52,6 @@ public abstract class ModuleIOTalonFX implements ModuleIO {
   protected StatusSignal<Angle> absolutePosition;
   protected StatusSignal<Current> steerMotorCurrent;
   protected StatusSignal<Current> driveMotorCurrent;
-  protected StatusSignal<Current> driveTorqueCurrent;
-  protected StatusSignal<Current> steerTorqueCurrent;
   protected StatusSignal<Angle> driveMotorPosition;
   protected StatusSignal<Angle> steerMotorPosition;
   protected StatusSignal<AngularVelocity> driveMotorVelocity;
@@ -144,8 +142,6 @@ public abstract class ModuleIOTalonFX implements ModuleIO {
     steerMotorVoltage = steerMotor.getTalonFX().getMotorVoltage();
     driveMotorCurrent = driveMotor.getTalonFX().getStatorCurrent();
     steerMotorCurrent = steerMotor.getTalonFX().getStatorCurrent();
-    driveTorqueCurrent = driveMotor.getTalonFX().getTorqueCurrent();
-    steerTorqueCurrent = steerMotor.getTalonFX().getTorqueCurrent();
 
     BaseStatusSignal.setUpdateFrequencyForAll(
         Constants.kOdometryFrequency, driveMotorPosition, steerMotorPosition);
@@ -219,8 +215,6 @@ public abstract class ModuleIOTalonFX implements ModuleIO {
     steerMotorVoltage = steerMotor.getTalonFX().getMotorVoltage();
     driveMotorCurrent = driveMotor.getTalonFX().getStatorCurrent();
     steerMotorCurrent = steerMotor.getTalonFX().getStatorCurrent();
-    driveTorqueCurrent = driveMotor.getTalonFX().getTorqueCurrent();
-    steerTorqueCurrent = steerMotor.getTalonFX().getTorqueCurrent();
 
     BaseStatusSignal.setUpdateFrequencyForAll(
         Constants.kOdometryFrequency, driveMotorPosition, steerMotorPosition);
@@ -280,9 +274,6 @@ public abstract class ModuleIOTalonFX implements ModuleIO {
 
     inputs.driveMotorCurrent = driveMotorCurrent.getValue();
     inputs.steerMotorCurrent = steerMotorCurrent.getValue();
-
-    inputs.driveTorqueCurrent = driveTorqueCurrent.getValue();
-    inputs.steerTorqueCurrent = steerTorqueCurrent.getValue();
   }
 
   @Override
