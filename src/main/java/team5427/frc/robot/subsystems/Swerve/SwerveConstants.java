@@ -12,6 +12,7 @@ import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.units.measure.MomentOfInertia;
 import edu.wpi.first.units.measure.Voltage;
+import team5427.frc.robot.Constants;
 import team5427.lib.drivers.CANDeviceId;
 import team5427.lib.motors.MotorConfiguration;
 import team5427.lib.motors.MotorConfiguration.IdleState;
@@ -22,14 +23,14 @@ import team5427.lib.systems.swerve.SwerveUtil;
 public final class SwerveConstants {
   public static final double kWheelDiameterMeters = Units.inchesToMeters(3.98);
   public static final double kWheelRadiusMeters = kWheelDiameterMeters / 2.0;
-  public static final double kTrackWidth = Units.inchesToMeters(22.75);
-  public static final double kWheelBase = Units.inchesToMeters(22.75);
-  public static final Distance kBumperXSize = Inches.of(30.0);
-  public static final Distance kBumperYSize = Inches.of(30.0);
+  public static final double kTrackWidth = Units.inchesToMeters(20.75);
+  public static final double kWheelBase = Units.inchesToMeters(20.75);
+  public static final Distance kBumperXSize = Inches.of(32.0);
+  public static final Distance kBumperYSize = Inches.of(32.0);
 
   public static final AngularVelocity kMaxAngularVelocity = RotationsPerSecond.of(4.0);
 
-  public static final double kCoupleRatio = 3.125;
+  public static final double kCoupleRatio = 3.857142857142857;
 
   public static final MomentOfInertia kSteerInertia = KilogramSquareMeters.of(0.05);
   public static final MomentOfInertia kDriveInertia = KilogramSquareMeters.of(0.01);
@@ -55,10 +56,12 @@ public final class SwerveConstants {
 
   public static final SwerveUtil kSwerveUtilInstance = new SwerveUtil();
 
+  public static final CANDeviceId kPigeonCANId = new CANDeviceId(11, Constants.kCanivoreBusName);
+
   public static MotorConfiguration kDriveMotorConfiguration = new MotorConfiguration();
 
   static {
-    kDriveMotorConfiguration.gearRatio = SwerveUtil.kSDSL3GearRatio;
+    kDriveMotorConfiguration.gearRatio = SwerveUtil.kSDSR2GearRatio;
     kDriveMotorConfiguration.idleState = IdleState.kBrake;
     kDriveMotorConfiguration.mode = MotorMode.kFlywheel;
     kDriveMotorConfiguration.withFOC = true;
@@ -66,11 +69,10 @@ public final class SwerveConstants {
     kDriveMotorConfiguration.currentLimit = 80;
     kDriveMotorConfiguration.finalDiameterMeters = kWheelDiameterMeters;
 
-    kDriveMotorConfiguration.maxVelocity =
-        kDriveMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM);
+    kDriveMotorConfiguration.maxVelocity = 10.19; // mps
     kDriveMotorConfiguration.maxAcceleration = kDriveMotorConfiguration.maxVelocity * 2.0;
 
-    kDriveMotorConfiguration.kP = 2.64;
+    kDriveMotorConfiguration.kP = 0.0;
     kDriveMotorConfiguration.kA = 0.1;
     kDriveMotorConfiguration.kS = 0.5;
     kDriveMotorConfiguration.altV = kDriveMotorConfiguration.maxVelocity;
@@ -91,15 +93,14 @@ public final class SwerveConstants {
     kSteerMotorConfiguration.maxAcceleration = kSteerMotorConfiguration.maxVelocity * 100.0;
 
     // Tunable values
-    kSteerMotorConfiguration.kP = 4.613; // 7.0
-    kSteerMotorConfiguration.kD = 0.0004;
-    kSteerMotorConfiguration.kS = 0.5;
+    kSteerMotorConfiguration.kP = 1.0; // 7.0
+    kSteerMotorConfiguration.kD = 2.0;
+    // kSteerMotorConfiguration.kS = 0.5;
     kSteerMotorConfiguration.kA = 0.2;
+    kSteerMotorConfiguration.kV = 0.5;
     kSteerMotorConfiguration.altV = kSteerMotorConfiguration.maxVelocity;
     kSteerMotorConfiguration.altA = kSteerMotorConfiguration.maxAcceleration;
   }
-
-  public static final CANDeviceId kPigeonCANId = new CANDeviceId(11, "*");
 
   static {
     kSwerveUtilInstance.kDriveMotorIds[SwerveUtil.kFrontLeftModuleIdx] = new CANDeviceId(3, "*");
@@ -117,9 +118,9 @@ public final class SwerveConstants {
     kSwerveUtilInstance.kCancoderIds[SwerveUtil.kRearLeftModuleIdx] = new CANDeviceId(14, "*");
     kSwerveUtilInstance.kCancoderIds[SwerveUtil.kRearRightModuleIdx] = new CANDeviceId(15, "*");
 
-    kSwerveUtilInstance.kDriveInversion[SwerveUtil.kFrontLeftModuleIdx] = true;
+    kSwerveUtilInstance.kDriveInversion[SwerveUtil.kFrontLeftModuleIdx] = false;
     kSwerveUtilInstance.kDriveInversion[SwerveUtil.kFrontRightModuleIdx] = true;
-    kSwerveUtilInstance.kDriveInversion[SwerveUtil.kRearLeftModuleIdx] = true;
+    kSwerveUtilInstance.kDriveInversion[SwerveUtil.kRearLeftModuleIdx] = false;
     kSwerveUtilInstance.kDriveInversion[SwerveUtil.kRearRightModuleIdx] = true;
 
     kSwerveUtilInstance.kSteerInversion[SwerveUtil.kFrontLeftModuleIdx] = false;
@@ -127,13 +128,13 @@ public final class SwerveConstants {
     kSwerveUtilInstance.kSteerInversion[SwerveUtil.kRearLeftModuleIdx] = false;
     kSwerveUtilInstance.kSteerInversion[SwerveUtil.kRearRightModuleIdx] = false;
 
-    kSwerveUtilInstance.kModuleOffsets[SwerveUtil.kFrontLeftModuleIdx] = 0.20752;
+    kSwerveUtilInstance.kModuleOffsets[SwerveUtil.kFrontLeftModuleIdx] = -0.178955078125;
 
-    kSwerveUtilInstance.kModuleOffsets[SwerveUtil.kFrontRightModuleIdx] = -0.407;
+    kSwerveUtilInstance.kModuleOffsets[SwerveUtil.kFrontRightModuleIdx] = -0.320556640625;
 
-    kSwerveUtilInstance.kModuleOffsets[SwerveUtil.kRearRightModuleIdx] = -0.2105;
+    kSwerveUtilInstance.kModuleOffsets[SwerveUtil.kRearRightModuleIdx] = 0.16455078125;
 
-    kSwerveUtilInstance.kModuleOffsets[SwerveUtil.kRearLeftModuleIdx] = -0.1358;
+    kSwerveUtilInstance.kModuleOffsets[SwerveUtil.kRearLeftModuleIdx] = 0.16552734375;
   }
 
   public static class SimulationConstants {

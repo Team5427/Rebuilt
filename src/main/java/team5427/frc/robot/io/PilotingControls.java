@@ -56,7 +56,7 @@ public class PilotingControls {
     // Auto mode state management
     autonTrigger
         .onTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTON))
-        .onFalse(Superstructure.setSwerveStateCommand(SwerveStates.CONTROLLED_DRIVING));
+        .onFalse(Superstructure.setSwerveStateCommand(SwerveStates.RAW_DRIVING));
 
     // Disabled mode state management
     disabledTrigger.onTrue(Superstructure.setSwerveStateCommand(SwerveStates.DISABLED));
@@ -96,8 +96,7 @@ public class PilotingControls {
                             .setPose(new Pose2d(10 * Math.random(), 4, Rotation2d.kZero)))
                 .ignoringDisable(true));
 
-    DriverProfiles.DriverTriggers.kIsState(DriverState.A_E)
-        .and(joy.y())
+    joy.y()
         .and(Constants.ModeTriggers.kSim)
         .onTrue(
             new InstantCommand(
@@ -118,8 +117,7 @@ public class PilotingControls {
                   SwerveSubsystem.getInstance().getKDriveSimulation().setSimulationWorldPose(pose);
                 }));
 
-    DriverProfiles.DriverTriggers.kIsState(DriverState.TEST_DUAL)
-        .and(joy.y())
+    joy.y()
         .and(Constants.ModeTriggers.kReal)
         .onTrue(
             new InstantCommand(

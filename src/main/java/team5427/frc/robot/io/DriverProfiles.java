@@ -3,6 +3,9 @@ package team5427.frc.robot.io;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public final class DriverProfiles {
+
+  public static DriverState kSelectedDriverState = DriverState.A_E;
+
   public static enum DriverModeType {
     SINGLE,
     DUAL
@@ -22,8 +25,6 @@ public final class DriverProfiles {
       this.modeType = modeType;
     }
   }
-
-  public static DriverState kSelectedDriverState = DriverState.A_E;
 
   public static class DriverTriggers {
     public static final Trigger kIsMode(DriverModeType mode) {
