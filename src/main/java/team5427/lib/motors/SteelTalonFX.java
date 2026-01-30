@@ -69,6 +69,12 @@ public class SteelTalonFX implements IMotorController {
     withFOC = false;
   }
 
+  /**
+   * Applies the given motor configuration to the TalonFX
+   *
+   * @param configuration The motor configuration to apply Note: Continues Wrapping is enabled by
+   *     default for servos, disable manually if not needed.
+   */
   @Override
   public void apply(MotorConfiguration configuration) {
     this.configuration = configuration;

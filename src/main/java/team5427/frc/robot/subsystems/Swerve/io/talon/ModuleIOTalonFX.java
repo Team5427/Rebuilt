@@ -182,6 +182,7 @@ public abstract class ModuleIOTalonFX implements ModuleIO {
 
     driveMotor.getTalonFX().clearStickyFaults();
     steerMotor.getTalonFX().clearStickyFaults();
+    cancoder.clearStickyFaults();
 
     CANcoderConfiguration configuration = new CANcoderConfiguration();
     configuration.MagnetSensor.withAbsoluteSensorDiscontinuityPoint(Rotations.of(0.5));
@@ -189,8 +190,6 @@ public abstract class ModuleIOTalonFX implements ModuleIO {
         SwerveConstants.kSwerveUtilInstance.kModuleOffsets[moduleIdx];
     configuration.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive;
     cancoder.getConfigurator().apply(configuration);
-
-    cancoder.clearStickyFaults();
     absolutePosition = cancoder.getAbsolutePosition();
 
     steerMotor.talonConfig.Feedback.FeedbackRemoteSensorID = cancoder.getDeviceID();
@@ -202,9 +201,8 @@ public abstract class ModuleIOTalonFX implements ModuleIO {
 
     steerMotor.setEncoderPosition(absolutePosition.refresh().getValue().in(Rotations));
     driveMotor.setEncoderPosition(0.0);
-    driveMotor.useTorqueCurrentFOC(true);
-    steerMotor.useTorqueCurrentFOC(true);
-
+    driveMotor.useTorqueCurrentFOC(false);
+    steerMotor.useTorqueCurrentFOC(false);
     driveMotorPosition = driveMotor.getTalonFX().getPosition();
     steerMotorPosition = steerMotor.getTalonFX().getPosition();
 
