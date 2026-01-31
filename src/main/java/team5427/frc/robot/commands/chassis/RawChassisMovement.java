@@ -45,8 +45,6 @@ public class RawChassisMovement extends Command {
       double vy = -translationJoystick.getRightX();
       double omegaRadians = -rotationJoystick.getLeftX();
 
-      System.out.println(
-          "Raw Chassis Movement: Vx: " + vx + " Vy: " + vy + " Omega: " + omegaRadians);
       if (isRed) {
         vx *= -1;
         vy *= -1;

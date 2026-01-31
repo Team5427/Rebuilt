@@ -69,6 +69,12 @@ public class SteelTalonFX implements IMotorController {
     withFOC = false;
   }
 
+  /**
+   * Applies the given motor configuration to the TalonFX
+   *
+   * @param configuration The motor configuration to apply Note: Continues Wrapping is enabled by
+   *     default for servos, disable manually if not needed.
+   */
   @Override
   public void apply(MotorConfiguration configuration) {
     this.configuration = configuration;
@@ -313,7 +319,7 @@ public class SteelTalonFX implements IMotorController {
         talonFX.setControl(
             isUsingTorqueCurrentFOC()
                 ? positionTorqueCurrentFOCRequest.withPosition(this.setpoint)
-                : positionDutyCycleRequest.withPosition(setpoint).withEnableFOC(withFOC));
+                : positionVoltageRequest.withPosition(setpoint).withEnableFOC(withFOC));
         break;
       default:
         DriverStation.reportWarning(
@@ -336,7 +342,7 @@ public class SteelTalonFX implements IMotorController {
         talonFX.setControl(
             isUsingTorqueCurrentFOC()
                 ? positionTorqueCurrentFOCRequest.withPosition(this.setpoint)
-                : positionDutyCycleRequest.withPosition(setpoint).withEnableFOC(withFOC));
+                : positionVoltageRequest.withPosition(setpoint).withEnableFOC(withFOC));
         break;
       default:
         DriverStation.reportWarning(

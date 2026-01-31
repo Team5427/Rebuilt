@@ -262,14 +262,16 @@ public class SwerveSubsystem extends SubsystemBase
 
   @Override
   public void runDriveCharacterization(double output) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'runDriveCharacterization'");
+    for (SwerveModule module : swerveModules) {
+      module.runDriveCharacterization(output);
+    }
   }
 
   @Override
   public void runTurnCharacterization(double output) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'runTurnCharacterization'");
+    for (SwerveModule module : swerveModules) {
+      module.runSteerCharacterization(output);
+    }
   }
 
   @Override
