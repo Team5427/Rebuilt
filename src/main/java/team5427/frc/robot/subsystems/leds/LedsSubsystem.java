@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import org.littletonrobotics.junction.Logger;
 import team5427.frc.robot.subsystems.leds.io.LedsIO;
 import team5427.frc.robot.subsystems.leds.io.LedsIOCandle;
-import team5427.frc.robot.subsystems.leds.io.LedsIOHal;
 import team5427.frc.robot.subsystems.leds.io.LightsIOInputsAutoLogged;
 
 public class LedsSubsystem extends SubsystemBase {
