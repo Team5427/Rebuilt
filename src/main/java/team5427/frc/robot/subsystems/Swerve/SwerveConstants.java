@@ -72,7 +72,7 @@ public final class SwerveConstants {
     kDriveMotorConfiguration.maxVelocity = 10.19; // mps
     kDriveMotorConfiguration.maxAcceleration = kDriveMotorConfiguration.maxVelocity * 2.0;
 
-    kDriveMotorConfiguration.kP = 0.0;
+    kDriveMotorConfiguration.kP = 1.0;
     kDriveMotorConfiguration.kA = 0.1;
     kDriveMotorConfiguration.kS = 0.5;
     kDriveMotorConfiguration.altV = kDriveMotorConfiguration.maxVelocity;
@@ -93,11 +93,11 @@ public final class SwerveConstants {
     kSteerMotorConfiguration.maxAcceleration = kSteerMotorConfiguration.maxVelocity * 100.0;
 
     // Tunable values
-    kSteerMotorConfiguration.kP = 100; // 7.0
-    kSteerMotorConfiguration.kD = 0.7;
-    // kSteerMotorConfiguration.kS = 0.5;
-    kSteerMotorConfiguration.kA = 0.2;
-    kSteerMotorConfiguration.kV = 0.5;
+    kSteerMotorConfiguration.kP = 75; // 7.0
+    kSteerMotorConfiguration.kD = 2;
+    kSteerMotorConfiguration.kS = 0.5;
+    // kSteerMotorConfiguration.kA = 0.2;
+    // kSteerMotorConfiguration.kV = 0.5;
     kSteerMotorConfiguration.altV = kSteerMotorConfiguration.maxVelocity;
     kSteerMotorConfiguration.altA = kSteerMotorConfiguration.maxAcceleration;
   }
@@ -123,10 +123,10 @@ public final class SwerveConstants {
     kSwerveUtilInstance.kDriveInversion[SwerveUtil.kRearLeftModuleIdx] = false;
     kSwerveUtilInstance.kDriveInversion[SwerveUtil.kRearRightModuleIdx] = true;
 
-    kSwerveUtilInstance.kSteerInversion[SwerveUtil.kFrontLeftModuleIdx] = false;
-    kSwerveUtilInstance.kSteerInversion[SwerveUtil.kFrontRightModuleIdx] = false;
-    kSwerveUtilInstance.kSteerInversion[SwerveUtil.kRearLeftModuleIdx] = false;
-    kSwerveUtilInstance.kSteerInversion[SwerveUtil.kRearRightModuleIdx] = false;
+    kSwerveUtilInstance.kSteerInversion[SwerveUtil.kFrontLeftModuleIdx] = true;
+    kSwerveUtilInstance.kSteerInversion[SwerveUtil.kFrontRightModuleIdx] = true;
+    kSwerveUtilInstance.kSteerInversion[SwerveUtil.kRearLeftModuleIdx] = true;
+    kSwerveUtilInstance.kSteerInversion[SwerveUtil.kRearRightModuleIdx] = true;
 
     kSwerveUtilInstance.kModuleOffsets[SwerveUtil.kFrontLeftModuleIdx] = -0.178955078125;
 

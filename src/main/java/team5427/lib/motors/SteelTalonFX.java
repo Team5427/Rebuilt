@@ -319,7 +319,7 @@ public class SteelTalonFX implements IMotorController {
         talonFX.setControl(
             isUsingTorqueCurrentFOC()
                 ? positionTorqueCurrentFOCRequest.withPosition(this.setpoint)
-                : positionDutyCycleRequest.withPosition(setpoint).withEnableFOC(withFOC));
+                : positionVoltageRequest.withPosition(setpoint).withEnableFOC(withFOC));
         break;
       default:
         DriverStation.reportWarning(
@@ -342,7 +342,7 @@ public class SteelTalonFX implements IMotorController {
         talonFX.setControl(
             isUsingTorqueCurrentFOC()
                 ? positionTorqueCurrentFOCRequest.withPosition(this.setpoint)
-                : positionDutyCycleRequest.withPosition(setpoint).withEnableFOC(withFOC));
+                : positionVoltageRequest.withPosition(setpoint).withEnableFOC(withFOC));
         break;
       default:
         DriverStation.reportWarning(
