@@ -193,7 +193,8 @@ public abstract class ModuleIOTalonFX implements ModuleIO {
     absolutePosition = cancoder.getAbsolutePosition();
 
     steerMotor.talonConfig.Feedback.FeedbackRemoteSensorID = cancoder.getDeviceID();
-    steerMotor.talonConfig.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.FusedCANcoder;
+    steerMotor.talonConfig.Feedback.FeedbackSensorSource =
+        FeedbackSensorSourceValue.FusedCANcoder; // RemoteCancoder if not working
     steerMotor.talonConfig.Feedback.SensorToMechanismRatio = 1.0;
     steerMotor.talonConfig.Feedback.RotorToSensorRatio =
         SwerveConstants.kSteerMotorConfiguration.gearRatio.getSensorToMechanismRatio();

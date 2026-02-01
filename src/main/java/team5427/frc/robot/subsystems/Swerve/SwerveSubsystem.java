@@ -244,11 +244,11 @@ public class SwerveSubsystem extends SubsystemBase
     }
 
     gyroDisconnectAlert.set(!gyroInputs.connected);
-
     Logger.recordOutput("SwerveOutput/InputSpeeds", inputChassisSpeeds);
-    Logger.recordOutput("SwerveOutput/ModulePositions", getModulePositions());
+    // Logger.recordOutput("SwerveOutput/ModulePositions", getModulePositions());
     Logger.recordOutput("SwerveOutput/ModuleStates", actualModuleStates);
     Logger.recordOutput("SwerveOutput/TargetModuleStates", targetModuleStates);
+    inputChassisSpeeds = new ChassisSpeeds(); // Reset input speeds, for safety
   }
 
   @Override

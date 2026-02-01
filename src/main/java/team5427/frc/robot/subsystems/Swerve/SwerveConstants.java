@@ -93,7 +93,7 @@ public final class SwerveConstants {
     kSteerMotorConfiguration.maxAcceleration = kSteerMotorConfiguration.maxVelocity * 100.0;
 
     // Tunable values
-    kSteerMotorConfiguration.kP = 75; // 7.0
+    kSteerMotorConfiguration.kP = 100; // 7.0
     kSteerMotorConfiguration.kD = 2;
     kSteerMotorConfiguration.kS = 0.5;
     // kSteerMotorConfiguration.kA = 0.2;
