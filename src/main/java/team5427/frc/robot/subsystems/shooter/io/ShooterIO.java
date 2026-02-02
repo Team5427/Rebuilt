@@ -1,12 +1,15 @@
 package team5427.frc.robot.subsystems.shooter.io;
 
-import static edu.wpi.first.units.Units.MetersPerSecond;
-import static edu.wpi.first.units.Units.RotationsPerSecond;
-
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
+import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.LinearVelocity;
+import edu.wpi.first.units.measure.Temperature;
+import edu.wpi.first.units.measure.Voltage;
+
+import static edu.wpi.first.units.Units.*;
+
 import org.littletonrobotics.junction.AutoLog;
 
 public interface ShooterIO {
@@ -22,6 +25,15 @@ public interface ShooterIO {
     public AngularVelocity leftFlywheelMotorAngularSpeed = RotationsPerSecond.of(0.0);
     public LinearVelocity leftFlywheelMotorLinearSpeed = MetersPerSecond.of(0.0);
 
+    public Current leftFlywheelLeaderMotorCurrent = Amps.of(0);
+    public Current leftFlywheelFollowerMotorCurrent = Amps.of(0);
+
+    public Voltage leftFlywheelLeaderMotorVoltage = Volts.of(0);
+    public Voltage leftFlywheelFollowerMotorVoltage = Volts.of(0);
+
+    public Temperature leftFlywheelLeaderMotorTemperature = Celsius.of(0.0);
+    public Temperature leftFlywheelFollowerMotorTemperature = Celsius.of(0.0);
+
     // Shooter Right
     public boolean rightHoodMotorConnected = false;
     public boolean rightFlywheelMotorLeaderConnected = false;
@@ -31,6 +43,15 @@ public interface ShooterIO {
     public double rightHoodMotorAngularVelocityRadiansPerSecond = 0.0;
     public AngularVelocity rightFlywheelMotorAngularSpeed = RotationsPerSecond.of(0.0);
     public LinearVelocity rightFlywheelMotorLinearSpeed = MetersPerSecond.of(0.0);
+    
+    public Current rightFlywheelLeaderMotorCurrent = Amps.of(0);
+    public Current rightFlywheelFollowerMotorCurrent = Amps.of(0);
+
+    public Voltage rightFlywheelLeaderMotorVoltage = Volts.of(0);
+    public Voltage rightFlywheelFollowerMotorVoltage = Volts.of(0);
+
+    public Temperature rightFlywheelLeaderMotorTemperature = Celsius.of(0.0);
+    public Temperature rightFlywheelFollowerMotorTemperature = Celsius.of(0.0);
   }
 
   public void updateInputs(ShooterIOInputs inputs);

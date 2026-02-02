@@ -17,11 +17,10 @@ public final class ShooterConstants {
     public static final CANDeviceId kRightFlywheelFollowerMotorCanId = new CANDeviceId(35);
     
     public static final MotorConfiguration kHoodMotorConfiguration = new MotorConfiguration();
-    public static final MotorConfiguration kFlywheelConfiguration = new MotorConfiguration();
+    public static final MotorConfiguration kFlywheelMotorConfiguration = new MotorConfiguration();
 
     public static final ComplexGearRatio kHoodMotorGearRatio = new ComplexGearRatio((30.0/12.0));
-    public static final ComplexGearRatio kFlywheelLeaderGearRatio = new ComplexGearRatio((36.0/30.0));
-    public static final ComplexGearRatio kFlywheelFollowerGearRatio = new ComplexGearRatio((18.0/14.0));
+    public static final ComplexGearRatio kFlywheelMotorGearRatio = new ComplexGearRatio((36.0/30.0));
 
     static {
         kHoodMotorConfiguration.gearRatio = kHoodMotorGearRatio;
@@ -50,5 +49,34 @@ public final class ShooterConstants {
         kHoodMotorConfiguration.kFF = 0.0;
 
         kHoodMotorConfiguration.currentLimit = 40;
+    }
+
+    static {
+        kFlywheelMotorConfiguration.gearRatio = kFlywheelMotorGearRatio;
+        kFlywheelMotorConfiguration.isArm = false;
+        kFlywheelMotorConfiguration.idleState = IdleState.kCoast;
+        kFlywheelMotorConfiguration.isInverted = false;
+        kFlywheelMotorConfiguration.mode = MotorMode.kFlywheel;
+        kFlywheelMotorConfiguration.withFOC = false;
+
+        kFlywheelMotorConfiguration.maxVelocity =
+            kFlywheelMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM);
+        kFlywheelMotorConfiguration.maxAcceleration = kFlywheelMotorConfiguration.maxVelocity * 2.0;
+
+        kFlywheelMotorConfiguration.altV = kFlywheelMotorConfiguration.maxVelocity / 2.0;
+        kFlywheelMotorConfiguration.altA = kFlywheelMotorConfiguration.maxAcceleration;
+        kFlywheelMotorConfiguration.altJ = 1000.0;
+
+        kFlywheelMotorConfiguration.kP = 1.0;
+        kFlywheelMotorConfiguration.kI = 0.0;
+        kFlywheelMotorConfiguration.kD = 0.0;
+
+        kFlywheelMotorConfiguration.kV = 0.0;
+        kFlywheelMotorConfiguration.kA = 0.0;
+        kFlywheelMotorConfiguration.kS = 0.0;
+        kFlywheelMotorConfiguration.kG = 1.0;
+        kFlywheelMotorConfiguration.kFF = 0.0;
+
+        kFlywheelMotorConfiguration.currentLimit = 40;
     }
 }
