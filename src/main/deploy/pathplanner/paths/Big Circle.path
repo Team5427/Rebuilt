@@ -1,0 +1,182 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 1.0464955357142856,
+        "y": 5.92733630952381
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.1302962844162057,
+        "y": 6.410103344092198
+      },
+      "isLocked": false,
+      "linkedName": "DepotFrontFacing"
+    },
+    {
+      "anchor": {
+        "x": 4.354821428571428,
+        "y": 7.4673065476190486
+      },
+      "prevControl": {
+        "x": 4.090831419062708,
+        "y": 7.4647000792498925
+      },
+      "nextControl": {
+        "x": 5.116876117092051,
+        "y": 7.474830587808647
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 6.234107142857142,
+        "y": 7.206294642857143
+      },
+      "prevControl": {
+        "x": 5.8229439011607065,
+        "y": 7.6124908025121005
+      },
+      "nextControl": {
+        "x": 6.632580327209784,
+        "y": 6.81263523755207
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 6.429866071428571,
+        "y": 5.92733630952381
+      },
+      "prevControl": {
+        "x": 6.4341294204101835,
+        "y": 6.270623334067928
+      },
+      "nextControl": {
+        "x": 6.403495367514465,
+        "y": 3.8039538416913796
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 6.429866071428571,
+        "y": 1.9991071428571434
+      },
+      "prevControl": {
+        "x": 6.468323562832655,
+        "y": 3.9665220326903725
+      },
+      "nextControl": {
+        "x": 6.423798720194381,
+        "y": 1.6887125558944316
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 6.064449404761905,
+        "y": 0.9550595238095241
+      },
+      "prevControl": {
+        "x": 6.3941224683701545,
+        "y": 1.2279996670557218
+      },
+      "nextControl": {
+        "x": 5.633527346062623,
+        "y": 0.5982941662093906
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 4.178638392857143,
+        "y": 0.680997023809524
+      },
+      "prevControl": {
+        "x": 5.113948202426282,
+        "y": 0.7421464077426781
+      },
+      "nextControl": {
+        "x": 3.7313102528236373,
+        "y": 0.6517512702643822
+      },
+      "isLocked": false,
+      "linkedName": "UnderRightTrench"
+    },
+    {
+      "anchor": {
+        "x": 3.0236607142857146,
+        "y": 0.8376041666666674
+      },
+      "prevControl": {
+        "x": 3.30179726623959,
+        "y": 0.6338538476576998
+      },
+      "nextControl": {
+        "x": 2.732695479591573,
+        "y": 1.0507522012309332
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 2.3580803571428572,
+        "y": 2.2079166666666676
+      },
+      "prevControl": {
+        "x": 2.668951536452459,
+        "y": 1.2937383321374472
+      },
+      "nextControl": {
+        "x": 2.2343009958512763,
+        "y": 2.571914418423301
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.0464955357142856,
+        "y": 5.92733630952381
+      },
+      "prevControl": {
+        "x": 1.7829145092431855,
+        "y": 3.9018664315698
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "DepotFrontFacing"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.5,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 1272.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.6,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "reversed": false,
+  "folder": null,
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "useDefaultConstraints": true
+}

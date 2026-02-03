@@ -3,6 +3,7 @@ package team5427.frc.robot.io;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -122,7 +123,12 @@ public class PilotingControls {
         .onTrue(
             new InstantCommand(
                 () -> {
-                  SwerveSubsystem.getInstance().resetGyro(Rotation2d.kZero);
+                  SwerveSubsystem.getInstance()
+                      .resetGyro(
+                          DriverStation.getAlliance().isPresent()
+                                  && DriverStation.getAlliance().get() == Alliance.Red
+                              ? Rotation2d.k180deg
+                              : Rotation2d.kZero);
                   RobotPose.getInstance()
                       .resetHeading(SwerveSubsystem.getInstance().getGyroRotation());
                 }));

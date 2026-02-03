@@ -157,8 +157,8 @@ public abstract class ModuleIOTalonFX implements ModuleIO {
     ParentDevice.optimizeBusUtilizationForAll(
         driveMotor.getTalonFX(), steerMotor.getTalonFX(), cancoder);
 
-    BaseStatusSignal.waitForAll(
-        0.02, absolutePosition, driveMotorPosition, steerMotorPosition, driveMotorVelocity);
+    // BaseStatusSignal.waitForAll(
+    //     0.02, absolutePosition, driveMotorPosition, steerMotorPosition, driveMotorVelocity);
 
     System.out.println("New Module with idx: " + moduleIdx);
   }
@@ -230,8 +230,8 @@ public abstract class ModuleIOTalonFX implements ModuleIO {
     ParentDevice.optimizeBusUtilizationForAll(
         driveMotor.getTalonFX(), steerMotor.getTalonFX(), cancoder);
 
-    BaseStatusSignal.waitForAll(
-        0.02, absolutePosition, driveMotorPosition, steerMotorPosition, driveMotorVelocity);
+    // BaseStatusSignal.waitForAll(
+    //     0.02, absolutePosition, driveMotorPosition, steerMotorPosition, driveMotorVelocity);
   }
 
   @Override
