@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.6353028787143933,
-        "y": 6.063369880653425
+        "x": 2.5594021587379787,
+        "y": 5.946264289234152
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.0349245785270624,
-        "y": 5.898092280390418
+        "x": 1.0464955357142856,
+        "y": 5.92733630952381
       },
       "prevControl": {
-        "x": 3.771215616681455,
-        "y": 5.7210381543921915
+        "x": 2.6074749145084644,
+        "y": 6.709475849893204
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "DepotFrontFacing"
     }
   ],
   "rotationTargets": [],
@@ -37,14 +37,14 @@
         "y": 4.04
       },
       "rotationOffset": 180.0,
-      "minWaypointRelativePos": 0.2592592592592589,
-      "maxWaypointRelativePos": 0.5522875816993459,
+      "minWaypointRelativePos": 0.2363834422657955,
+      "maxWaypointRelativePos": 0.7233115468409572,
       "name": "Point Towards Hub"
     }
   ],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 5.584,
+    "maxVelocity": 4.0,
     "maxAcceleration": 3.0,
     "maxAngularVelocity": 1272.0,
     "maxAngularAcceleration": 720.0,
@@ -52,8 +52,8 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0.5,
-    "rotation": 180.0
+    "velocity": 0.0,
+    "rotation": 0.0
   },
   "reversed": false,
   "folder": null,

@@ -105,6 +105,10 @@ public class RobotPose {
     SwerveSubsystem.getInstance().resetGyro(resetPose.getRotation());
     resetOdometryPose(resetPose);
     resetEstimatedPose(resetPose);
+
+    if (Constants.currentMode == Constants.Mode.SIM) {
+      SwerveSubsystem.getInstance().getKDriveSimulation().setSimulationWorldPose(resetPose);
+    }
   }
 
   public void resetAllPose(
