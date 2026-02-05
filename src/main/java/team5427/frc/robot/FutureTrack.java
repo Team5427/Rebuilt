@@ -44,11 +44,11 @@ public class FutureTrack {
     double omegaAccel = omegaAccelerationFilter.calculate(averagedAccel.omegaRadiansPerSecond);
     ChassisSpeeds estimatedSpeeds =
         new ChassisSpeeds(
-            currentRobotSpeed.vxMetersPerSecond + xAccel * Constants.kLoopSpeed,
-            currentRobotSpeed.vyMetersPerSecond + yAccel * Constants.kLoopSpeed,
-            currentRobotSpeed.omegaRadiansPerSecond + omegaAccel * Constants.kLoopSpeed);
+            currentRobotSpeed.vxMetersPerSecond + xAccel * Constants.kLoopSpeed * timeStep,
+            currentRobotSpeed.vyMetersPerSecond + yAccel * Constants.kLoopSpeed * timeStep,
+            currentRobotSpeed.omegaRadiansPerSecond + omegaAccel * Constants.kLoopSpeed * timeStep);
 
-    return robotPose.exp(estimatedSpeeds.toTwist2d(Constants.kLoopSpeed));
+    return robotPose.exp(estimatedSpeeds.toTwist2d(Constants.kLoopSpeed * timeStep));
   }
 
   /**

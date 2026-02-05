@@ -9,11 +9,13 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import team5427.frc.robot.Constants;
 import team5427.frc.robot.Constants.DriverConstants;
+import team5427.frc.robot.Constants.ModeTriggers;
 import team5427.frc.robot.RobotPose;
 import team5427.frc.robot.Superstructure;
 import team5427.frc.robot.Superstructure.SwerveStates;
 import team5427.frc.robot.commands.chassis.ControlledChassisMovement;
 import team5427.frc.robot.commands.chassis.MoveChassisToPose;
+import team5427.frc.robot.commands.chassis.PathFindToPose;
 import team5427.frc.robot.commands.chassis.RawChassisMovement;
 import team5427.frc.robot.io.DriverProfiles.DriverState;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
@@ -83,8 +85,14 @@ public class PilotingControls {
 
     // Auto align mode
     Superstructure.swerveStateIs(SwerveStates.AUTO_ALIGN)
+        .and(ModeTriggers.kSim)
         .and(disabledTrigger.negate())
         .whileTrue(new MoveChassisToPose(joy, new Pose2d(5, 5.5, Rotation2d.k180deg)));
+
+    Superstructure.swerveStateIs(SwerveStates.AUTO_ALIGN)
+        .and(ModeTriggers.kSim)
+        .and(disabledTrigger.negate())
+        .whileTrue(new PathFindToPose(Pose2d.kZero));
 
     // Utility Bindings
 
