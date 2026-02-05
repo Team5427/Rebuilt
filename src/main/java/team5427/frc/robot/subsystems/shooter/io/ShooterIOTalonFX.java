@@ -1,8 +1,11 @@
 package team5427.frc.robot.subsystems.shooter.io;
 
+import com.ctre.phoenix6.BaseStatusSignal;
 import com.ctre.phoenix6.StatusSignal;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.AngularAcceleration;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.Temperature;
@@ -24,7 +27,8 @@ public class ShooterIOTalonFX implements ShooterIO {
 
   private StatusSignal<Angle> leftHoodMotorPosition;
   private StatusSignal<AngularVelocity> leftHoodMotorAngularVelocity;
-  private StatusSignal<AngularVelocity> leftFlywheelMotorAngularSpeed;
+  private StatusSignal<AngularVelocity> leftFlywheelMotorAngularVelocity;
+  private StatusSignal<AngularAcceleration> leftFlyWheelMotorAngularAcceleration;
 
   private StatusSignal<Current> leftFlywheelLeaderMotorCurrent;
   private StatusSignal<Current> leftFlywheelFollowerMotorCurrent;
@@ -37,7 +41,9 @@ public class ShooterIOTalonFX implements ShooterIO {
 
   private StatusSignal<Angle> rightHoodMotorPosition;
   private StatusSignal<AngularVelocity> rightHoodMotorAngularVelocity;
-  private StatusSignal<AngularVelocity> rightFlywheelMotorAngularSpeed;
+  private StatusSignal<AngularVelocity> rightFlywheelMotorAngularVelocity;
+    private StatusSignal<AngularAcceleration> rightFlyWheelMotorAngularAcceleration;
+
   
   private StatusSignal<Current> rightFlywheelLeaderMotorCurrent;
   private StatusSignal<Current> rightFlywheelFollowerMotorCurrent;
@@ -47,6 +53,13 @@ public class ShooterIOTalonFX implements ShooterIO {
 
   private StatusSignal<Temperature> rightFlywheelLeaderMotorTemperature;
   private StatusSignal<Temperature> rightFlywheelFollowerMotorTemperature;
+
+  private boolean isLeftFlyWheelLeaderMotorDisabled = false;
+  private boolean isLeftFlyWheelFollowerMotorDisabled = false;
+  private boolean isRightFlyWheelLeaderMotorDisabled = false;
+  private boolean isRightFlyWheelFollowerMotorDisabled = false;
+  private boolean isLeftHoodMotorDisabled = false;
+  private boolean isRightHoodMotorDisabled = false;
 
   public ShooterIOTalonFX() {
     leftHoodMotor = new SteelTalonFX(ShooterConstants.kLeftHoodMotorCanId);
@@ -75,7 +88,7 @@ public class ShooterIOTalonFX implements ShooterIO {
   
     leftHoodMotorPosition = leftHoodMotor.getTalonFX().getPosition();
     leftHoodMotorAngularVelocity = leftHoodMotor.getTalonFX().getVelocity();
-    leftFlywheelMotorAngularSpeed = leftFlywheelLeaderMotor.getTalonFX().getVelocity();
+    leftFlywheelMotorAngularVelocity = leftFlywheelLeaderMotor.getTalonFX().getVelocity();
 
     leftFlywheelLeaderMotorCurrent = leftFlywheelLeaderMotor.getTalonFX().getStatorCurrent();
     leftFlywheelFollowerMotorCurrent = leftFlywheelFollowerMotor.getTalonFX().getStatorCurrent();
@@ -88,7 +101,7 @@ public class ShooterIOTalonFX implements ShooterIO {
   
     rightHoodMotorPosition = rightHoodMotor.getTalonFX().getPosition();
     rightHoodMotorAngularVelocity = rightHoodMotor.getTalonFX().getVelocity();
-    rightFlywheelMotorAngularSpeed = rightFlywheelLeaderMotor.getTalonFX().getVelocity();
+    rightFlywheelMotorAngularVelocity = rightFlywheelLeaderMotor.getTalonFX().getVelocity();
 
     rightFlywheelLeaderMotorCurrent = rightFlywheelLeaderMotor.getTalonFX().getStatorCurrent();
     rightFlywheelFollowerMotorCurrent = rightFlywheelFollowerMotor.getTalonFX().getStatorCurrent();
@@ -103,6 +116,53 @@ public class ShooterIOTalonFX implements ShooterIO {
   @Override
   public void updateInputs(ShooterIOInputs inputs) {
     // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'updateInputs'");
+    inputs.leftFlywheelMotorFollowerConnected = leftFlywheelFollowerMotor.getTalonFX().isConnected();
+    inputs.leftFlywheelMotorLeaderConnected = leftFlywheelLeaderMotor.getTalonFX().isConnected();
+    inputs.leftHoodMotorConnected = leftHoodMotor.getTalonFX().isConnected();
+    inputs.rightFlywheelMotorFollowerConnected = rightFlywheelFollowerMotor.getTalonFX().isConnected();
+    inputs.rightFlywheelMotorFollowerConnected = rightFlywheelLeaderMotor.getTalonFX().isConnected();
+    inputs.rightHoodMotorConnected = rightHoodMotor.getTalonFX().isConnected();
+
+
+    inputs.leftFlywheelMotorFollowerDisabled = isLeftFlyWheelFollowerMotorDisabled;
+    inputs.leftFlywheelMotorLeaderDisabled = isLeftFlyWheelLeaderMotorDisabled;
+    inputs.leftHoodMotorDisabled = isLeftHoodMotorDisabled;
+    inputs.rightFlywheelMotorFollowerDisabled = isLeftFlyWheelFollowerMotorDisabled;
+    inputs.rightFlywheelMotorLeaderDisabled = isLeftFlyWheelLeaderMotorDisabled;
+    inputs.rightHoodMotorDisabled = isLeftHoodMotorDisabled;
+    BaseStatusSignal.refreshAll(leftFlyWheelMotorAngularAcceleration, rightFlyWheelMotorAngularAcceleration, leftHoodMotorPosition, rightHoodMotorPosition);
+
+    BaseStatusSignal.refreshAll(
+        leftFlywheelMotorAngularVelocity,
+        rightFlywheelMotorAngularVelocity,
+        leftFlywheelFollowerMotorCurrent,
+        leftFlywheelLeaderMotorCurrent,
+        leftHoodMotorAngularVelocity,
+        rightHoodMotorAngularVelocity,
+        );
+
+    BaseStatusSignal.refreshAll(
+        leftFlywheelFollowerMotorTemperature, leftFlywheelLeaderMotorTemperature, rightFlywheelFollowerMotorTemperature, rightFlywheelLeaderMotorTemperature, leftFlywheelFollowerMotorVoltage, leftFlywheelLeaderMotorVoltage, rightFlywheelFollowerMotorVoltage, rightFlywheelLeaderMotorVoltage);
+
+//     inputs.leftHoodMotorPositionRadians =
+//         Rotation2d.fromRotations(pivotMotorPosition.getValue().in(Rotation));
+//     inputs.pivotMotorAngularVelocity = pivotMotorAngularVelocity.getValue();
+//     inputs.pivotMotorAngularAcceleration = pivotMotorAngularAcceleration.getValue();
+//     inputs.pivotMotorCurrent = pivotMotorCurrent.getValue();
+//     inputs.pivotMotorVoltage = pivotMotorVoltage.getValue();
+//     inputs.pivotMotorTemperature = pivotMotorTemperature.getValue();
+
+//     inputs.rollerMotorAngularVelocity = rollerMotorAngularVelocity.getValue();
+//     inputs.rollerMotorAngularAcceleration = rollerMotorAngularAcceleration.getValue();
+//     inputs.rollerMotorCurrent = rollerMotorCurrent.getValue();
+//     inputs.rollerMotorLinearVelocity =
+//         MetersPerSecond.of(rollerMotor.getEncoderVelocity(rollerMotorAngularVelocity));
+//     inputs.rollerMotorLinearAcceleration =
+//         MetersPerSecondPerSecond.of(
+//             rollerMotor.getEncoderAcceleration(rollerMotorAngularAcceleration));
+//     inputs.rollerMotorTemperature = rollerMotorTemperature.getValue();
+//     inputs.rollerMotorVoltage = rollerMotorVoltage.getValue();
+
+
   }
 }
