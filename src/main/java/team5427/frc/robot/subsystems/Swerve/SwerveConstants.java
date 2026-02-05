@@ -104,20 +104,32 @@ public final class SwerveConstants {
   }
 
   static {
-    kSwerveUtilInstance.kDriveMotorIds[SwerveUtil.kFrontLeftModuleIdx] = new CANDeviceId(3, "*");
-    kSwerveUtilInstance.kDriveMotorIds[SwerveUtil.kFrontRightModuleIdx] = new CANDeviceId(5, "*");
-    kSwerveUtilInstance.kDriveMotorIds[SwerveUtil.kRearLeftModuleIdx] = new CANDeviceId(7, "*");
-    kSwerveUtilInstance.kDriveMotorIds[SwerveUtil.kRearRightModuleIdx] = new CANDeviceId(9, "*");
+    kSwerveUtilInstance.kDriveMotorIds[SwerveUtil.kFrontLeftModuleIdx] =
+        new CANDeviceId(3, Constants.kCanivoreBusName);
+    kSwerveUtilInstance.kDriveMotorIds[SwerveUtil.kFrontRightModuleIdx] =
+        new CANDeviceId(5, Constants.kCanivoreBusName);
+    kSwerveUtilInstance.kDriveMotorIds[SwerveUtil.kRearLeftModuleIdx] =
+        new CANDeviceId(7, Constants.kCanivoreBusName);
+    kSwerveUtilInstance.kDriveMotorIds[SwerveUtil.kRearRightModuleIdx] =
+        new CANDeviceId(9, Constants.kCanivoreBusName);
 
-    kSwerveUtilInstance.kSteerMotorIds[SwerveUtil.kFrontLeftModuleIdx] = new CANDeviceId(4, "*");
-    kSwerveUtilInstance.kSteerMotorIds[SwerveUtil.kFrontRightModuleIdx] = new CANDeviceId(6, "*");
-    kSwerveUtilInstance.kSteerMotorIds[SwerveUtil.kRearLeftModuleIdx] = new CANDeviceId(8, "*");
-    kSwerveUtilInstance.kSteerMotorIds[SwerveUtil.kRearRightModuleIdx] = new CANDeviceId(10, "*");
+    kSwerveUtilInstance.kSteerMotorIds[SwerveUtil.kFrontLeftModuleIdx] =
+        new CANDeviceId(4, Constants.kCanivoreBusName);
+    kSwerveUtilInstance.kSteerMotorIds[SwerveUtil.kFrontRightModuleIdx] =
+        new CANDeviceId(6, Constants.kCanivoreBusName);
+    kSwerveUtilInstance.kSteerMotorIds[SwerveUtil.kRearLeftModuleIdx] =
+        new CANDeviceId(8, Constants.kCanivoreBusName);
+    kSwerveUtilInstance.kSteerMotorIds[SwerveUtil.kRearRightModuleIdx] =
+        new CANDeviceId(10, Constants.kCanivoreBusName);
 
-    kSwerveUtilInstance.kCancoderIds[SwerveUtil.kFrontLeftModuleIdx] = new CANDeviceId(12, "*");
-    kSwerveUtilInstance.kCancoderIds[SwerveUtil.kFrontRightModuleIdx] = new CANDeviceId(13, "*");
-    kSwerveUtilInstance.kCancoderIds[SwerveUtil.kRearLeftModuleIdx] = new CANDeviceId(14, "*");
-    kSwerveUtilInstance.kCancoderIds[SwerveUtil.kRearRightModuleIdx] = new CANDeviceId(15, "*");
+    kSwerveUtilInstance.kCancoderIds[SwerveUtil.kFrontLeftModuleIdx] =
+        new CANDeviceId(12, Constants.kCanivoreBusName);
+    kSwerveUtilInstance.kCancoderIds[SwerveUtil.kFrontRightModuleIdx] =
+        new CANDeviceId(13, Constants.kCanivoreBusName);
+    kSwerveUtilInstance.kCancoderIds[SwerveUtil.kRearLeftModuleIdx] =
+        new CANDeviceId(14, Constants.kCanivoreBusName);
+    kSwerveUtilInstance.kCancoderIds[SwerveUtil.kRearRightModuleIdx] =
+        new CANDeviceId(15, Constants.kCanivoreBusName);
 
     kSwerveUtilInstance.kDriveInversion[SwerveUtil.kFrontLeftModuleIdx] = true;
     kSwerveUtilInstance.kDriveInversion[SwerveUtil.kFrontRightModuleIdx] = false;

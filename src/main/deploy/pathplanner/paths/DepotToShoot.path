@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.5780656610470274,
-        "y": 6.2200088731144625
-      },
-      "prevControl": null,
-      "nextControl": {
-        "x": 3.3155968845626465,
-        "y": 6.293855293183075
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
         "x": 1.0464955357142856,
         "y": 5.92733630952381
       },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.6364070397350723,
+        "y": 5.915914053352179
+      },
+      "isLocked": false,
+      "linkedName": "DepotFrontFacing"
+    },
+    {
+      "anchor": {
+        "x": 1.3648890860692098,
+        "y": 5.92733630952381
+      },
       "prevControl": {
-        "x": 3.7350908284263737,
-        "y": 5.82708742221351
+        "x": 0.3347150128698191,
+        "y": 6.228823227524198
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "DepotShoot"
     }
   ],
   "rotationTargets": [],
@@ -33,32 +33,32 @@
   "pointTowardsZones": [
     {
       "fieldPosition": {
-        "x": 4.625,
-        "y": 4.04
+        "x": 4.631,
+        "y": 4.02
       },
       "rotationOffset": 180.0,
-      "minWaypointRelativePos": 0.5973741794310719,
-      "maxWaypointRelativePos": 0.822757111597374,
+      "minWaypointRelativePos": 0.8456464379947223,
+      "maxWaypointRelativePos": 1.0,
       "name": "Point Towards Hub"
     }
   ],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.5,
-    "maxAcceleration": 3.0,
+    "maxVelocity": 5.0,
+    "maxAcceleration": 4.0,
     "maxAngularVelocity": 1272.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.6,
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0.0,
-    "rotation": 180.0
+    "velocity": 0,
+    "rotation": 141.1
   },
   "reversed": false,
   "folder": null,
   "idealStartingState": {
-    "velocity": 0,
+    "velocity": 1.0,
     "rotation": 180.0
   },
   "useDefaultConstraints": true

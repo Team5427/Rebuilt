@@ -1,0 +1,55 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "StartAndShootToDepot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ThrustInDepot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "PullOutDepot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "DepotToShoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "DepotShootToCenter"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CenterToShootLeft"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}
