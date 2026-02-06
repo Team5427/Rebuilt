@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.5780656610470274,
-        "y": 6.2200088731144625
+        "x": 0.4,
+        "y": 0.674995563442768
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.3155968845626465,
-        "y": 6.293855293183075
+        "x": 1.2289977568655668,
+        "y": 0.33463222804647547
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "StationIntake"
     },
     {
       "anchor": {
-        "x": 1.0464955357142856,
-        "y": 5.92733630952381
+        "x": 2.09,
+        "y": 1.76
       },
       "prevControl": {
-        "x": 3.735090828426374,
-        "y": 5.82708742221351
+        "x": 1.8514584130599503,
+        "y": 1.6811908505846231
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "StationShoot"
     }
   ],
   "rotationTargets": [],
@@ -37,9 +37,9 @@
         "y": 4.02
       },
       "rotationOffset": 180.0,
-      "minWaypointRelativePos": 0.5973741794310719,
-      "maxWaypointRelativePos": 0.822757111597374,
-      "name": "Point Towards Hub"
+      "minWaypointRelativePos": 0.33377308707124015,
+      "maxWaypointRelativePos": 1.0,
+      "name": "Point Towards Zone"
     }
   ],
   "eventMarkers": [],
@@ -52,8 +52,8 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0.75,
-    "rotation": 180.0
+    "velocity": 0.1,
+    "rotation": -137.0
   },
   "reversed": false,
   "folder": null,

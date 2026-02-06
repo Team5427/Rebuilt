@@ -3,45 +3,34 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.5780656610470274,
-        "y": 6.2200088731144625
+        "x": 2.789370008873114,
+        "y": 1.4073558118899723
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.3155968845626465,
-        "y": 6.293855293183075
+        "x": 3.0418662697144607,
+        "y": 1.483793986694254
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "RightShoot"
     },
     {
       "anchor": {
-        "x": 1.0464955357142856,
-        "y": 5.92733630952381
+        "x": 1.5499911268855362,
+        "y": 3.34
       },
       "prevControl": {
-        "x": 3.735090828426374,
-        "y": 5.82708742221351
+        "x": 1.3379428208972555,
+        "y": 2.76428606655185
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "RightClimb"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
-  "pointTowardsZones": [
-    {
-      "fieldPosition": {
-        "x": 4.631,
-        "y": 4.02
-      },
-      "rotationOffset": 180.0,
-      "minWaypointRelativePos": 0.5973741794310719,
-      "maxWaypointRelativePos": 0.822757111597374,
-      "name": "Point Towards Hub"
-    }
-  ],
+  "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
@@ -52,14 +41,14 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0.75,
-    "rotation": 180.0
+    "velocity": 0,
+    "rotation": 0.0
   },
   "reversed": false,
   "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -125.00000000000001
   },
   "useDefaultConstraints": true
 }
