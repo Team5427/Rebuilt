@@ -7,19 +7,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "LeftToDepot"
+            "pathName": "BumpToDepot"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "LeftSideToCenter"
+            "pathName": "DepotToCenter"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "CenterToMiddle"
+            "pathName": "CenterToClimb"
           }
         }
       ]

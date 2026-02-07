@@ -20,12 +20,12 @@
         "y": 5.92733630952381
       },
       "prevControl": {
-        "x": 3.7350908284263737,
+        "x": 3.735090828426374,
         "y": 5.82708742221351
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "DepotFrontFacing"
     }
   ],
   "rotationTargets": [],
@@ -53,10 +53,10 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": 180.0
+    "rotation": 0.0
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Test Auton",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0
