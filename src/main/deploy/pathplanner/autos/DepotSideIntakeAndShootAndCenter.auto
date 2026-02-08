@@ -45,6 +45,24 @@
           "data": {
             "pathName": "CenterToShootLeft"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ShootLeftToCenter"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CenterToShootLeft"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ShootLeftToClimb"
+          }
         }
       ]
     }

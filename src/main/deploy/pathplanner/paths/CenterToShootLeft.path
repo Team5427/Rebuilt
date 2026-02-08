@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.694093907954367,
-        "y": 5.037223376233648
+        "x": 7.7165166396141105,
+        "y": 5.040014636980867
       },
       "isLocked": false,
       "linkedName": "CenterLeft"
@@ -20,44 +20,44 @@
         "y": 7.507675244010647
       },
       "prevControl": {
-        "x": 7.69411136332137,
-        "y": 7.255632373096769
+        "x": 7.81214347058448,
+        "y": 7.324403400841559
       },
       "nextControl": {
-        "x": 6.614100978897939,
-        "y": 7.579480735180923
+        "x": 6.60260213488451,
+        "y": 7.555657635572587
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.1515261756876662,
-        "y": 7.507675244010647
+        "x": 2.5604389815627746,
+        "y": 7.303863037752414
       },
       "prevControl": {
-        "x": 5.767098491570541,
-        "y": 7.459387755102041
+        "x": 5.195504574660889,
+        "y": 7.546888831860205
       },
       "nextControl": {
-        "x": 2.4535769833446,
-        "y": 7.520560459869288
+        "x": 1.9822921891234446,
+        "y": 7.25054194255408
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.7088908606921023,
-        "y": 6.364871339840283
+        "x": 2.839148375768218,
+        "y": 5.910316066725198
       },
       "prevControl": {
-        "x": 2.376822844570548,
-        "y": 6.73660861064953
+        "x": 2.2518676489113556,
+        "y": 6.577269245954195
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "ShootLeft"
     }
   ],
   "rotationTargets": [
@@ -66,7 +66,7 @@
       "rotationDegrees": 0.0
     },
     {
-      "waypointRelativePos": 1.925764192139738,
+      "waypointRelativePos": 1.9500000000000002,
       "rotationDegrees": 0.0
     }
   ],
@@ -78,15 +78,15 @@
         "y": 4.02
       },
       "rotationOffset": 180.0,
-      "minWaypointRelativePos": 2.2559366754617427,
-      "maxWaypointRelativePos": 3.0,
+      "minWaypointRelativePos": 2.8960843373493983,
+      "maxWaypointRelativePos": 5.0,
       "name": "Point Towards Hub"
     }
   ],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.0,
-    "maxAcceleration": 2.0,
+    "maxVelocity": 4.0,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 1272.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.6,
@@ -94,7 +94,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 129.1
+    "rotation": 129.07908037006862
   },
   "reversed": false,
   "folder": null,
