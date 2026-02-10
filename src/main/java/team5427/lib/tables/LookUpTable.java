@@ -16,27 +16,39 @@ public class LookUpTable {
         new InterpolatingTreeMap<>(new TableInverseInterpolator(), new TableInterpolator());
   }
 
-  public void addpivotAngle(Double distance, Double pivotAngle) {
+  /**
+   * @param distance - in Meters
+   * @param pivotAngle - in Degrees
+   */
+  public void addPivotAngle(Double distance, Double pivotAngle) {
     pivotAngleLookup.put(distance, pivotAngle);
   }
 
-  public void addflyWheelSpeed(Double distance, Double speed) {
+  /**
+   * @param distance - in Meters
+   * @param speed - in Meters per Second
+   */
+  public void addFlyWheelSpeed(Double distance, Double speed) {
     flywheelLookup.put(distance, speed);
   }
 
-  public void addtimeOfFlight(Double distance, Double time) {
+  /**
+   * @param distance - in Meters
+   * @param time - in Seconds
+   */
+  public void addTimeOfFlight(Double distance, Double time) {
     timeOfFlightLookup.put(distance, time);
   }
 
-  public Double getpivotAngle(Double distance) {
+  public Double getPivotAngle(Double distance) {
     return pivotAngleLookup.get(distance);
   }
 
-  public Double getflyWheelSpeed(Double distance) {
+  public Double getFlyWheelSpeed(Double distance) {
     return flywheelLookup.get(distance);
   }
 
-  public Double gettimeOfFlight(Double distance) {
+  public Double getTimeOfFlight(Double distance) {
     return timeOfFlightLookup.get(distance);
   }
 }
