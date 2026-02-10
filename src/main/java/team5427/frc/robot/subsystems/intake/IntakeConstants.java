@@ -16,8 +16,9 @@ public final class IntakeConstants {
   public static MotorConfiguration kPivotMotorConfiguration = new MotorConfiguration();
   public static MotorConfiguration kRollerMotorConfiguration = new MotorConfiguration();
 
-  public static final ComplexGearRatio kPivotMotorGearRatio = new ComplexGearRatio((14.0/48.0),(18.0/48.0),(18.0/48.0),(16.0/36.0));
-  public static final ComplexGearRatio kRollerMotorGearRatio = new ComplexGearRatio((14.0/24.0));
+  public static final ComplexGearRatio kPivotMotorGearRatio =
+      new ComplexGearRatio((14.0 / 48.0), (18.0 / 48.0), (18.0 / 48.0), (16.0 / 36.0));
+  public static final ComplexGearRatio kRollerMotorGearRatio = new ComplexGearRatio((14.0 / 24.0));
 
   public static final CANDeviceId kPivotMotorCanId = new CANDeviceId(16);
   public static final CANDeviceId kRollerMotorCanId = new CANDeviceId(17);

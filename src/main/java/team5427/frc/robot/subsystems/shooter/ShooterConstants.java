@@ -64,6 +64,8 @@ public final class ShooterConstants {
     kFlywheelMotorConfiguration.isInverted = false;
     kFlywheelMotorConfiguration.mode = MotorMode.kFlywheel;
     kFlywheelMotorConfiguration.withFOC = false;
+    kFlywheelMotorConfiguration.finalDiameterMeters =
+        kTopFlywheelRadiusMeters + kBottomFlywheelRadiusMeters;
 
     kFlywheelMotorConfiguration.maxVelocity =
         kFlywheelMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM);
