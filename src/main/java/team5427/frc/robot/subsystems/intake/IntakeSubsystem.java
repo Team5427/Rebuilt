@@ -16,8 +16,8 @@ import team5427.frc.robot.Constants;
 import team5427.frc.robot.Constants.Mode;
 import team5427.frc.robot.subsystems.intake.io.IntakeIO;
 import team5427.frc.robot.subsystems.intake.io.IntakeIOInputsAutoLogged;
-import team5427.frc.robot.subsystems.intake.io.IntakeIOMagicTalonFX;
 import team5427.frc.robot.subsystems.intake.io.IntakeIOSim;
+import team5427.frc.robot.subsystems.intake.io.IntakeIOTalonFX;
 
 public class IntakeSubsystem extends SubsystemBase {
   private LinearVelocity intakingSpeed;
@@ -52,7 +52,7 @@ public class IntakeSubsystem extends SubsystemBase {
     inputsAutoLogged = new IntakeIOInputsAutoLogged();
     switch (Constants.currentMode) {
       case REAL:
-        io = new IntakeIOMagicTalonFX();
+        io = new IntakeIOTalonFX();
         break;
       case SIM:
         if (swerveDriveSimulationSupplier.isEmpty()) {
@@ -73,12 +73,13 @@ public class IntakeSubsystem extends SubsystemBase {
   public void periodic() {
     io.updateInputs(inputsAutoLogged);
 
-    if (Math.abs(intakingSpeed.in(MetersPerSecond)) > 10.0) {
-      kIntakingSpeedOutOfBounds.set(true);
-    } else {
-      kIntakingSpeedOutOfBounds.set(false);
-      io.setRollerSpeed(intakingSpeed);
-    }
+    // if (Math.abs(intakingSpeed.in(MetersPerSecond)) > 10.0) {
+    //   kIntakingSpeedOutOfBounds.set(true);
+    // } else {
+    //   kIntakingSpeedOutOfBounds.set(false);
+    //   io.setRollerSpeed(intakingSpeed);
+    // }
+    io.setRollerSpeed(intakingSpeed);
     if (intakingAngle.getDegrees() > IntakeConstants.kPivotMaximumRotation.getDegrees()
         || intakingAngle.getDegrees() < IntakeConstants.kPivotMinimumRotation.getDegrees()) {
       kIntakingRotationOutOfBounds.set(true);
@@ -86,6 +87,7 @@ public class IntakeSubsystem extends SubsystemBase {
       kIntakingRotationOutOfBounds.set(false);
       io.setPivotRotation(intakingAngle);
     }
+
     Logger.processInputs("Intake/Inputs", inputsAutoLogged);
     log();
   }
