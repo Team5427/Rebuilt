@@ -28,7 +28,7 @@ public class RawChassisMovement extends Command {
     translationJoystick.useResponseCurve(ResponseCurve.LINEAR);
 
     rotationJoystick = new TunedJoystick(joy.getHID());
-    rotationJoystick.useResponseCurve(ResponseCurve.LINEAR);
+    rotationJoystick.useResponseCurve(ResponseCurve.QUADRATIC);
 
     translationJoystick.setDeadzone(DriverConstants.kDriverControllerJoystickDeadzone);
     rotationJoystick.setDeadzone(DriverConstants.kDriverControllerJoystickDeadzone);

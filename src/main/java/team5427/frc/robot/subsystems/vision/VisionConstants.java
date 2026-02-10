@@ -18,7 +18,7 @@ public class VisionConstants {
 
   public static final double kMaxAmbiguity = 0.20;
 
-  public static final Distance kMaxZHeight = Meters.of(0.6);
+  public static final Distance kMaxZHeight = Meters.of(1);
 
   public static final AprilTagFieldLayout kAprilTagLayout =
       AprilTagFieldLayout.loadField(AprilTagFields.k2026RebuiltAndymark);
@@ -36,9 +36,9 @@ public class VisionConstants {
   // Robot to camera
   public static final Transform3d kSwerveCamTransform =
       new Transform3d(
-          Units.inchesToMeters(-18.435), // 9.375
-          Units.inchesToMeters(0), // -11.048439965
-          Units.inchesToMeters(13.293), // 13.293
+          Units.inchesToMeters(3), // 9.375
+          Units.inchesToMeters(11), // -11.048439965
+          Units.inchesToMeters(11.293), // 13.293
           new Rotation3d(0, Units.degreesToRadians(30), Units.degreesToRadians(180.0)));
 
   public static final Transform3d kQuestCameraTransform =
@@ -57,10 +57,10 @@ public class VisionConstants {
   // Standard deviation baselines, for 1 meter distance and 1 tag
   // (Adjusted automatically based on distance and # of tags)
   /** Larger stddev equals more doubt in Meters */
-  public static double kLinearStdDevBaseline = Units.inchesToMeters(5);
+  public static double kLinearStdDevBaseline = Units.inchesToMeters(1); // 5
 
   /** Larger stddev equals more doubt in Radians */
-  public static double kAngularStdDevBaseline = Units.degreesToRadians(30);
+  public static double kAngularStdDevBaseline = Units.degreesToRadians(15); // 30
 
   public static double[] kCameraStdDevFactors =
       new double[] {
