@@ -3,11 +3,13 @@ package team5427.frc.robot.io;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import team5427.frc.robot.Constants;
 import team5427.frc.robot.Constants.DriverConstants;
+import team5427.frc.robot.Constants.ModeTriggers;
 import team5427.frc.robot.RobotPose;
 import team5427.frc.robot.Superstructure;
 import team5427.frc.robot.Superstructure.SwerveStates;
@@ -53,6 +55,12 @@ public class PilotingControls {
         .toggleOnTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN))
         .toggleOnFalse(Superstructure.setSwerveStateCommand(SwerveStates.CONTROLLED_DRIVING));
 
+    joy.a()
+        .and(autonTrigger.negate())
+        .and(disabledTrigger.negate())
+        .whileTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN))
+        .toggleOnFalse(Superstructure.setSwerveStateCommand(SwerveStates.RAW_DRIVING));
+
     // Auto mode state management
     autonTrigger
         .onTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTON))
@@ -82,11 +90,11 @@ public class PilotingControls {
 
     // Auto align mode
     Superstructure.swerveStateIs(SwerveStates.AUTO_ALIGN)
+        .and(ModeTriggers.kSim)
         .and(disabledTrigger.negate())
         .whileTrue(new MoveChassisToPose(joy, new Pose2d(5, 5.5, Rotation2d.k180deg)));
 
     // Utility Bindings
-
     joy.a()
         .and(Constants.ModeTriggers.kSim)
         .onTrue(
@@ -122,7 +130,12 @@ public class PilotingControls {
         .onTrue(
             new InstantCommand(
                 () -> {
-                  SwerveSubsystem.getInstance().resetGyro(Rotation2d.kZero);
+                  SwerveSubsystem.getInstance()
+                      .resetGyro(
+                          DriverStation.getAlliance().isPresent()
+                                  && DriverStation.getAlliance().get() == Alliance.Red
+                              ? Rotation2d.k180deg
+                              : Rotation2d.kZero);
                   RobotPose.getInstance()
                       .resetHeading(SwerveSubsystem.getInstance().getGyroRotation());
                 }));

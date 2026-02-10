@@ -11,14 +11,14 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.units.measure.Distance;
 
 public class VisionConstants {
-  public static final String kSwerveCamName = "swerveCam";
+  public static final String kSwerveCamName = "rightCamA";
   public static final String kIntakeCamName = "intakeCam";
 
-  public static final int kCameraCount = 2;
+  public static final int kCameraCount = 1;
 
   public static final double kMaxAmbiguity = 0.20;
 
-  public static final Distance kMaxZHeight = Meters.of(0.6);
+  public static final Distance kMaxZHeight = Meters.of(1);
 
   public static final AprilTagFieldLayout kAprilTagLayout =
       AprilTagFieldLayout.loadField(AprilTagFields.k2026RebuiltAndymark);
@@ -36,10 +36,10 @@ public class VisionConstants {
   // Robot to camera
   public static final Transform3d kSwerveCamTransform =
       new Transform3d(
-          Units.inchesToMeters(0.5), // 9.375
-          Units.inchesToMeters(-6.048439965), // -11.048439965
-          Units.inchesToMeters(8.540489626),
-          new Rotation3d(0, Units.degreesToRadians(-30), 0.0));
+          Units.inchesToMeters(3), // 9.375
+          Units.inchesToMeters(11), // -11.048439965
+          Units.inchesToMeters(11.293), // 13.293
+          new Rotation3d(0, Units.degreesToRadians(30), Units.degreesToRadians(180.0)));
 
   public static final Transform3d kQuestCameraTransform =
       new Transform3d(
@@ -48,7 +48,7 @@ public class VisionConstants {
   public static Transform3d[] kCameraTransforms = new Transform3d[kCameraCount];
 
   static {
-    kCameraTransforms[1] = kIntakeCamTransform;
+    // kCameraTransforms[1] = kIntakeCamTransform;
     kCameraTransforms[0] = kSwerveCamTransform;
   }
 
@@ -57,10 +57,10 @@ public class VisionConstants {
   // Standard deviation baselines, for 1 meter distance and 1 tag
   // (Adjusted automatically based on distance and # of tags)
   /** Larger stddev equals more doubt in Meters */
-  public static double kLinearStdDevBaseline = Units.inchesToMeters(5);
+  public static double kLinearStdDevBaseline = Units.inchesToMeters(1); // 5
 
   /** Larger stddev equals more doubt in Radians */
-  public static double kAngularStdDevBaseline = Units.degreesToRadians(30);
+  public static double kAngularStdDevBaseline = Units.degreesToRadians(15); // 30
 
   public static double[] kCameraStdDevFactors =
       new double[] {

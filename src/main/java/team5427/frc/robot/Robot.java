@@ -3,6 +3,7 @@ package team5427.frc.robot;
 import static edu.wpi.first.units.Units.MetersPerSecond;
 
 import com.pathplanner.lib.commands.FollowPathCommand;
+import com.pathplanner.lib.pathfinding.Pathfinding;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation3d;
@@ -23,6 +24,7 @@ import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveConstants;
 import team5427.frc.robot.subsystems.intake.IntakeConstants;
+import team5427.lib.auton.LocalADStarAK;
 import team5427.lib.drivers.JoystickLogger;
 import team5427.lib.drivers.VirtualSubsystem;
 import team5427.lib.kinematics.shooter.projectiles.parabolic.AdjustedParabolicThread;
@@ -81,6 +83,8 @@ public class Robot extends LoggedRobot {
     loadConstants();
     JoystickLogger.logJoystickData();
     m_robotContainer = new RobotContainer();
+    Pathfinding.setPathfinder(new LocalADStarAK());
+    Pathfinding.ensureInitialized();
     CommandScheduler.getInstance().schedule(FollowPathCommand.warmupCommand());
   }
 

@@ -79,11 +79,15 @@ public class RobotContainer {
         SwerveSubsystem.getInstance()::getCurrentChassisSpeeds,
         (speeds, driveFF) -> SwerveSubsystem.getInstance().setInputSpeeds(speeds, driveFF),
         new PPHolonomicDriveController(
-            new PIDConstants(DrivingConstants.kTranslationalKp.get(), 0.0, 0.0),
-            new PIDConstants(DrivingConstants.kRotationKp.get(), 0.0, 0.0)),
+            new PIDConstants(
+                DrivingConstants.kTranslationalKp.get(),
+                0.0,
+                DrivingConstants.kTranslationalKd.get()),
+            new PIDConstants(
+                DrivingConstants.kRotationKp.get(), 0.0, DrivingConstants.kRotationKd.get())),
         Constants.config,
         () -> {
-          return DriverStation.getAlliance().isEmpty()
+          return DriverStation.getAlliance().isPresent()
               && DriverStation.getAlliance().get() == Alliance.Red;
         },
         SwerveSubsystem.getInstance());

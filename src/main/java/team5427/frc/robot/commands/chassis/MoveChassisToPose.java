@@ -1,6 +1,7 @@
 package team5427.frc.robot.commands.chassis;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -83,7 +84,11 @@ public class MoveChassisToPose extends Command {
 
   @Override
   public boolean isFinished() {
-    return false;
+    Transform2d diff = RobotPose.getInstance().getAdaptivePose().minus(targetPose);
+    return diff.getTranslation().getNorm()
+            <= DrivingConstants.kTranslationalPositionTolerance.getAsDouble()
+        && diff.getRotation().getRadians()
+            <= DrivingConstants.kRotationAngleTolerance.getAsDouble();
   }
 
   @Override
