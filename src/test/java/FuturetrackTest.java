@@ -3,16 +3,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import org.junit.jupiter.api.Test;
-import team5427.frc.robot.Futuretrack;
+import team5427.frc.robot.FutureTrack;
 
 public class FuturetrackTest {
 
   @Test
   public void trackPose() {
-    Futuretrack.getInstance().setCurrentRobotSpeed(new ChassisSpeeds(0, 0, 0));
-    Futuretrack.getInstance().setRobotPose(Pose2d.kZero);
-    Futuretrack.getInstance().setWantedRobotSpeed(new ChassisSpeeds(1, 1, 1));
-    Pose2d pose = Futuretrack.getInstance().getFuturetrackPose();
+    FutureTrack.getInstance().setCurrentRobotSpeed(new ChassisSpeeds(0, 0, 0));
+    FutureTrack.getInstance().setRobotPose(Pose2d.kZero);
+    FutureTrack.getInstance().setWantedRobotSpeed(new ChassisSpeeds(1, 1, 1));
+    Pose2d pose = FutureTrack.getInstance().getFutureTrackPose();
     System.out.println(pose);
     assertEquals(Pose2d.kZero, pose);
   }

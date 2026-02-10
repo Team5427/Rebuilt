@@ -13,6 +13,7 @@ import team5427.frc.robot.Constants.ModeTriggers;
 import team5427.frc.robot.RobotPose;
 import team5427.frc.robot.Superstructure;
 import team5427.frc.robot.Superstructure.SwerveStates;
+import team5427.frc.robot.commands.AutoAlignAngle;
 import team5427.frc.robot.commands.chassis.ControlledChassisMovement;
 import team5427.frc.robot.commands.chassis.MoveChassisToPose;
 import team5427.frc.robot.commands.chassis.PathFindToPose;
@@ -140,5 +141,7 @@ public class PilotingControls {
                   RobotPose.getInstance()
                       .resetHeading(SwerveSubsystem.getInstance().getGyroRotation());
                 }));
+
+    joy.b().and(Constants.ModeTriggers.kReal).onTrue(new AutoAlignAngle());
   }
 }
