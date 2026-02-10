@@ -10,20 +10,20 @@ import team5427.lib.motors.MotorConfiguration.MotorMode;
 import team5427.lib.motors.MotorUtil;
 
 public final class ShooterConstants {
-  public static final CANDeviceId kLeftHoodMotorCanId = new CANDeviceId(30);
-  public static final CANDeviceId kLeftFlywheelLeaderMotorCanId = new CANDeviceId(31);
-  public static final CANDeviceId kLeftFlywheelFollowerMotorCanId = new CANDeviceId(32);
+  public static final CANDeviceId kLeftHoodMotorCanId = new CANDeviceId(20);
+  public static final CANDeviceId kLeftFlywheelLeaderMotorCanId = new CANDeviceId(21);
+  public static final CANDeviceId kLeftFlywheelFollowerMotorCanId = new CANDeviceId(22);
 
-  public static final CANDeviceId kRightHoodMotorCanId = new CANDeviceId(33);
-  public static final CANDeviceId kRightFlywheelLeaderMotorCanId = new CANDeviceId(34);
-  public static final CANDeviceId kRightFlywheelFollowerMotorCanId = new CANDeviceId(35);
+  public static final CANDeviceId kRightHoodMotorCanId = new CANDeviceId(23);
+  public static final CANDeviceId kRightFlywheelLeaderMotorCanId = new CANDeviceId(24);
+  public static final CANDeviceId kRightFlywheelFollowerMotorCanId = new CANDeviceId(25);
 
   public static final MotorConfiguration kHoodMotorConfiguration = new MotorConfiguration();
   public static final MotorConfiguration kFlywheelMotorConfiguration = new MotorConfiguration();
 
-  public static final ComplexGearRatio kHoodMotorGearRatio = new ComplexGearRatio((30.0 / 12.0));
+  public static final ComplexGearRatio kHoodMotorGearRatio = new ComplexGearRatio((12.0 / 30.0));
   public static final ComplexGearRatio kFlywheelMotorGearRatio =
-      new ComplexGearRatio((36.0 / 30.0));
+      new ComplexGearRatio((30.0 / 36.0));
 
   public static final double kTopFlywheelRadiusMeters = Inches.of(1.0).in(Meters);
   public static final double kBottomFlywheelRadiusMeters = Inches.of(2.0).in(Meters);
