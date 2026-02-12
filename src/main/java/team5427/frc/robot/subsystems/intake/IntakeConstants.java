@@ -43,10 +43,10 @@ public final class IntakeConstants {
     kPivotMotorConfiguration.kI = 0.0;
     kPivotMotorConfiguration.kD = 0.0;
 
-    kPivotMotorConfiguration.kV = 0.0;
-    kPivotMotorConfiguration.kA = 0.0;
+    kPivotMotorConfiguration.kV = 0.12;
+    kPivotMotorConfiguration.kA = 2.75;
     kPivotMotorConfiguration.kS = 0.0;
-    kPivotMotorConfiguration.kG = 1.0;
+    kPivotMotorConfiguration.kG = 6.77;
     kPivotMotorConfiguration.kFF = 0.0;
 
     kPivotMotorConfiguration.currentLimit = 40;
@@ -72,7 +72,7 @@ public final class IntakeConstants {
     kRollerMotorConfiguration.kV = 0.0;
     kRollerMotorConfiguration.kA = 0.0;
     kRollerMotorConfiguration.kS = 0.0;
-    kRollerMotorConfiguration.kG = 1.0;
+    kRollerMotorConfiguration.kG = 0.0;
     kRollerMotorConfiguration.kFF = 0.0;
 
     kRollerMotorConfiguration.currentLimit = 60;
@@ -84,10 +84,10 @@ public final class IntakeConstants {
   public static final LinearVelocity kRollerStowedVelocity = MetersPerSecond.of(0.1);
   public static final LinearVelocity kRollerIntakeVelocity = MetersPerSecond.of(15.0);
 
-  public static final Rotation2d kPivotMaximumRotation = Rotation2d.fromDegrees(170);
+  public static final Rotation2d kPivotMaximumRotation = Rotation2d.fromDegrees(180);
   public static final Rotation2d kPivotMinimumRotation = Rotation2d.kZero;
 
   public static final Rotation2d kPivotStartingRotation = Rotation2d.kZero;
 
-  public static final Rotation2d kPivotIntakeRotation = Rotation2d.fromDegrees(160);
+  public static final Rotation2d kPivotIntakeRotation = Rotation2d.fromDegrees(170);
 }
