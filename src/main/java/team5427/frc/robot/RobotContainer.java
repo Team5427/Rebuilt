@@ -51,7 +51,7 @@ public class RobotContainer {
     switch (Constants.currentMode) {
       case REAL:
         SwerveSubsystem.getInstance(RobotPose.getInstance()::addOdometryMeasurement);
-        // IntakeSubsystem.getInstance();
+        IntakeSubsystem.getInstance();
         break;
       case REPLAY:
         SwerveSubsystem.getInstance(RobotPose.getInstance()::addOdometryMeasurement);
