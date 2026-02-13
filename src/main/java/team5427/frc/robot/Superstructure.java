@@ -37,6 +37,7 @@ public final class Superstructure {
   // Intake States Enum
   public static enum IntakeStates {
     INTAKING,
+    HOMING,
     DISABLED,
     STOWED,
     OUTAKING
@@ -415,6 +416,7 @@ public final class Superstructure {
 
   public static final class IntakeTriggers {
     public static final Trigger kIntaking = intakeStateIs(IntakeStates.INTAKING);
+    public static final Trigger kHoming = intakeStateIs(IntakeStates.HOMING);
     public static final Trigger kDisabled = intakeStateIs(IntakeStates.DISABLED);
     public static final Trigger kStowed = intakeStateIs(IntakeStates.STOWED);
     public static final Trigger kOutaking = intakeStateIs(IntakeStates.OUTAKING);

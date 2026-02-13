@@ -19,7 +19,7 @@ public class IntakeIntaking extends Command {
   public void execute() {
     subsystem.setIntakingRotation(IntakeConstants.kPivotIntakeRotation);
     subsystem.setIntakingSpeed(IntakeConstants.kRollerIntakeVelocity);
-    subsystem.simulateIntaking(true);
+    // subsystem.simulateIntaking(true);
   }
 
   @Override

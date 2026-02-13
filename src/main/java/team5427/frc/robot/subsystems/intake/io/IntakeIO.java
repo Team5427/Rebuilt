@@ -53,6 +53,10 @@ public interface IntakeIO {
 
   public default void setPivotRotation(Angle rotation) {}
 
+  public default void setPivotSpeed(Voltage volts) {}
+
+  public default void resetPivotMotorPosition(Rotation2d rotation) {}
+
   public default void setRollerSpeed(LinearVelocity velocity) {}
 
   public default void setRollerSpeed(AngularVelocity velocity) {}
