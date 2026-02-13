@@ -379,7 +379,6 @@ public class SwerveSubsystem extends SubsystemBase
   @Override
   public void setInputSpeeds(ChassisSpeeds robotRelativeSpeeds, DriveFeedforwards feedforwards) {
     this.inputChassisSpeeds = robotRelativeSpeeds;
-    System.out.println(driveFeedforwards.robotRelativeForcesXNewtons());
     this.driveFeedforwards = feedforwards;
   }
 

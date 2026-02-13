@@ -21,7 +21,6 @@ import org.ironmaple.simulation.SimulatedArena;
 import org.littletonrobotics.junction.Logger;
 import team5427.frc.robot.Constants.DriverConstants;
 import team5427.frc.robot.io.DriverProfiles;
-import team5427.frc.robot.io.OperatorControls;
 import team5427.frc.robot.io.PilotingControls;
 import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
@@ -52,7 +51,7 @@ public class RobotContainer {
     switch (Constants.currentMode) {
       case REAL:
         SwerveSubsystem.getInstance(RobotPose.getInstance()::addOdometryMeasurement);
-        IntakeSubsystem.getInstance();
+        // IntakeSubsystem.getInstance();
         break;
       case REPLAY:
         SwerveSubsystem.getInstance(RobotPose.getInstance()::addOdometryMeasurement);
@@ -107,10 +106,10 @@ public class RobotContainer {
         DriverProfiles.kSelectedDriverState.modeType.equals(DriverProfiles.DriverModeType.SINGLE)
             ? new CommandXboxController(DriverConstants.kDriverJoystickPort)
             : new CommandXboxController(DriverConstants.kDriverJoystickPort));
-    new OperatorControls(
-        DriverProfiles.kSelectedDriverState.modeType.equals(DriverProfiles.DriverModeType.SINGLE)
-            ? new CommandXboxController(DriverConstants.kDriverJoystickPort)
-            : new CommandXboxController(DriverConstants.kOperatorJoystickPort));
+    // new OperatorControls(
+    //     DriverProfiles.kSelectedDriverState.modeType.equals(DriverProfiles.DriverModeType.SINGLE)
+    //         ? new CommandXboxController(DriverConstants.kDriverJoystickPort)
+    //         : new CommandXboxController(DriverConstants.kOperatorJoystickPort));
   }
 
   /**
