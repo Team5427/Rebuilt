@@ -106,6 +106,7 @@ public class Robot extends LoggedRobot {
    */
   @Override
   public void robotPeriodic() {
+    FutureTrack.getInstance().update();
 
     CommandScheduler.getInstance().run();
     VirtualSubsystem.periodicAll();
