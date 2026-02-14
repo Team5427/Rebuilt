@@ -5,6 +5,7 @@ import static edu.wpi.first.units.Units.MetersPerSecond;
 
 import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.wpilibj.Alert;
@@ -114,6 +115,10 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void setIntakingVoltage(Voltage volts) {
     io.setPivotSpeed(volts);
+  }
+
+  public void setPivotMotorCurrentLimit(Current limit){
+    io.setPivotCurrentLimit(limit);
   }
 
   public void disableRollerMotor(boolean shouldDisable) {

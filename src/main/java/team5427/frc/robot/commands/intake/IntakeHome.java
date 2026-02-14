@@ -16,7 +16,7 @@ public class IntakeHome extends Command {
 
   @Override
   public void execute() {
-    intakeSubsystem.setIntakingVoltage(Volt.of(-0.3));
+    intakeSubsystem.setIntakingVoltage(Volt.of(-2.5));
   }
 
   @Override
@@ -26,6 +26,6 @@ public class IntakeHome extends Command {
 
   @Override
   public void end(boolean interrupted) {
-    if (!interrupted) intakeSubsystem.resetPivotMotorPosition(Rotation2d.kZero);
+    intakeSubsystem.resetPivotMotorPosition(Rotation2d.kZero);
   }
 }

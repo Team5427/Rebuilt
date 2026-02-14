@@ -20,7 +20,7 @@ import team5427.lib.motors.MagicSteelTalonFX;
 import team5427.lib.motors.SteelTalonFX;
 
 public class IntakeIOMagicTalonFX implements IntakeIO {
-  private SteelTalonFX rollerMotor;
+  private MagicSteelTalonFX rollerMotor;
   private MagicSteelTalonFX pivotMotor;
 
   private StatusSignal<Angle> pivotMotorPosition;
@@ -43,11 +43,14 @@ public class IntakeIOMagicTalonFX implements IntakeIO {
   private boolean isPivotMotorDisabled = false;
 
   public IntakeIOMagicTalonFX() {
-    rollerMotor = new SteelTalonFX(IntakeConstants.kRollerMotorCanId);
+    rollerMotor = new MagicSteelTalonFX(IntakeConstants.kRollerMotorCanId);
     pivotMotor = new MagicSteelTalonFX(IntakeConstants.kPivotMotorCanId);
 
     rollerMotor.apply(IntakeConstants.kRollerMotorConfiguration);
     pivotMotor.apply(IntakeConstants.kPivotMotorConfiguration);
+
+    pivotMotor.talonConfig.ClosedLoopGeneral.ContinuousWrap = false;
+    pivotMotor.applyTalonConfig();
 
     pivotMotor.setEncoderPosition(IntakeConstants.kPivotStartingRotation);
     rollerMotor.setEncoderPosition(0.0);
@@ -135,6 +138,18 @@ public class IntakeIOMagicTalonFX implements IntakeIO {
   public void setPivotRotation(Angle rotation) {
     if (!isPivotMotorDisabled) {
       pivotMotor.setSetpoint(rotation);
+    }
+  }
+
+  public void resetPivotMotorPosition(Rotation2d rotation) {
+    if (!isPivotMotorDisabled) {
+      pivotMotor.setEncoderPosition(rotation);
+    }
+  }
+
+  public void setPivotSpeed(Voltage volts) {
+    if (!isPivotMotorDisabled) {
+      pivotMotor.setRawVoltage(volts);
     }
   }
 
