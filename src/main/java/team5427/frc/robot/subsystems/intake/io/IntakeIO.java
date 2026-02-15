@@ -55,7 +55,7 @@ public interface IntakeIO {
 
   public default void setPivotSpeed(Voltage volts) {}
 
-  public default void setPivotCurrentLimit(Current limit){}
+  public default void setPivotCurrentLimit(Current limit) {}
 
   public default void resetPivotMotorPosition(Rotation2d rotation) {}
 

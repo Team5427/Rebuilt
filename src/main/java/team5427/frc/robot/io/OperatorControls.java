@@ -31,9 +31,7 @@ public class OperatorControls {
         .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.STOWED));
     joy.leftBumper()
         .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.HOMING))
-        .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.DISABLED
-          
-        ));
+        .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.DISABLED));
 
     // Use class-level trigger factory methods instead of nested class references
     Superstructure.intakeStateIs(IntakeStates.INTAKING)

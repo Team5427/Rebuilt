@@ -17,7 +17,6 @@ import edu.wpi.first.units.measure.Voltage;
 import team5427.frc.robot.Constants;
 import team5427.frc.robot.subsystems.intake.IntakeConstants;
 import team5427.lib.motors.MagicSteelTalonFX;
-import team5427.lib.motors.SteelTalonFX;
 
 public class IntakeIOMagicTalonFX implements IntakeIO {
   private MagicSteelTalonFX rollerMotor;

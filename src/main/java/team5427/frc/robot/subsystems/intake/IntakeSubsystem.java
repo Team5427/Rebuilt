@@ -117,7 +117,7 @@ public class IntakeSubsystem extends SubsystemBase {
     io.setPivotSpeed(volts);
   }
 
-  public void setPivotMotorCurrentLimit(Current limit){
+  public void setPivotMotorCurrentLimit(Current limit) {
     io.setPivotCurrentLimit(limit);
   }
 
