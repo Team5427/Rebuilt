@@ -137,6 +137,10 @@ public class MagicSteelTalonFX implements IMotorController {
     talonFX.setPosition(position.getRotations());
   }
 
+  public void applyTalonConfig() {
+    talonFX.getConfigurator().apply(this.talonConfig);
+  }
+
   /**
    * @return rotations if a servo, or meters if a flywheel or linear
    */
