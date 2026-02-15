@@ -2,14 +2,21 @@ package team5427.frc.robot.subsystems.shooter;
 
 import static edu.wpi.first.units.Units.*;
 
+import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.util.Units;
 import team5427.lib.drivers.CANDeviceId;
 import team5427.lib.drivers.ComplexGearRatio;
 import team5427.lib.motors.MotorConfiguration;
 import team5427.lib.motors.MotorConfiguration.IdleState;
 import team5427.lib.motors.MotorConfiguration.MotorMode;
+import team5427.lib.tables.LookUpTable;
 import team5427.lib.motors.MotorUtil;
 
 public final class ShooterConstants {
+
+  public static final Transform3d kRobotToShooterTransform = new Transform3d(Units.inchesToMeters(5.547244), 0, Units.inchesToMeters(14.75), new Rotation3d(0, 0, Math.PI/2.0)).inverse();
+
   public static final CANDeviceId kLeftHoodMotorCanId = new CANDeviceId(20);
   public static final CANDeviceId kLeftFlywheelLeaderMotorCanId = new CANDeviceId(21);
   public static final CANDeviceId kLeftFlywheelFollowerMotorCanId = new CANDeviceId(22);
