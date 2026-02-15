@@ -89,5 +89,5 @@ public final class IntakeConstants {
 
   public static final Rotation2d kPivotStartingRotation = Rotation2d.kZero;
 
-  public static final Rotation2d kPivotIntakeRotation = Rotation2d.fromDegrees(155);
+  public static final Rotation2d kPivotIntakeRotation = Rotation2d.fromDegrees(150);
 }
