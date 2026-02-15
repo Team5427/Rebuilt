@@ -48,6 +48,9 @@ public class IntakeIOTalonFX implements IntakeIO {
     rollerMotor.apply(IntakeConstants.kRollerMotorConfiguration);
     pivotMotor.apply(IntakeConstants.kPivotMotorConfiguration);
 
+    pivotMotor.talonConfig.ClosedLoopGeneral.ContinuousWrap = false;
+    pivotMotor.applyTalonConfig();
+
     pivotMotor.setEncoderPosition(IntakeConstants.kPivotStartingRotation);
     rollerMotor.setEncoderPosition(0.0);
 
@@ -134,6 +137,18 @@ public class IntakeIOTalonFX implements IntakeIO {
   public void setPivotRotation(Angle rotation) {
     if (!isPivotMotorDisabled) {
       pivotMotor.setSetpoint(rotation);
+    }
+  }
+
+  public void resetPivotMotorPosition(Rotation2d rotation) {
+    if (!isPivotMotorDisabled) {
+      pivotMotor.setEncoderPosition(rotation);
+    }
+  }
+
+  public void setPivotSpeed(Voltage volts) {
+    if (!isPivotMotorDisabled) {
+      pivotMotor.setRawVoltage(volts);
     }
   }
 

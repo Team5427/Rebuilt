@@ -19,7 +19,7 @@ public class IntakeStowed extends Command {
   public void execute() {
     subsystem.setIntakingRotation(IntakeConstants.kPivotStartingRotation);
     subsystem.setIntakingSpeed(IntakeConstants.kRollerStowedVelocity);
-    subsystem.simulateIntaking(false);
+    // subsystem.simulateIntaking(false);
   }
 
   @Override

@@ -12,11 +12,12 @@ public final class DriverProfiles {
   }
 
   public static enum DriverState {
+    /** Just Eric */
     ERIC(DriverModeType.SINGLE),
+    /** Single Person Testing */
     TEST_SINGLE(DriverModeType.SINGLE),
+    /** Eric and Anoushka */
     A_E(DriverModeType.DUAL),
-    S_S(DriverModeType.DUAL),
-    K_A(DriverModeType.DUAL),
     TEST_DUAL(DriverModeType.DUAL);
 
     public final DriverModeType modeType;

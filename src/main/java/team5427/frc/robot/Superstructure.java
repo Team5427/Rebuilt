@@ -17,11 +17,18 @@ public final class Superstructure {
   private static IntakeStates kSelectedIntakeState = IntakeStates.STOWED;
   private static IntakeStates kPreviousIntakeState = IntakeStates.STOWED;
 
+  private static ShooterStates kSelectedShooterState = ShooterStates.DISABLED;
+  private static ShooterStates kPreviousShooterState = ShooterStates.DISABLED;
+
+  private static IndexerStates kSelectedIndexerState = IndexerStates.DISABLED;
+  private static IndexerStates kPreviousIndexerState = IndexerStates.DISABLED;
+
   // Swerve States Enum
   public static enum SwerveStates {
     RAW_DRIVING,
     CONTROLLED_DRIVING,
     AUTO_ALIGN,
+    AUTO_TARGETING,
     INTAKE_ASSISTANCE,
     AUTON,
     DISABLED
@@ -30,9 +37,24 @@ public final class Superstructure {
   // Intake States Enum
   public static enum IntakeStates {
     INTAKING,
+    HOMING,
     DISABLED,
     STOWED,
     OUTAKING
+  }
+
+  // Shooter States Enum
+  public static enum ShooterStates {
+    RAW_SHOOTING,
+    FERRY_SHOOTING,
+    AUTO_ALIGN_SHOOTING,
+    DISABLED
+  }
+
+  public static enum IndexerStates {
+    INDEXING,
+    STOWED,
+    DISABLED
   }
 
   // Getter Methods
@@ -51,6 +73,22 @@ public final class Superstructure {
 
   public static synchronized IntakeStates getPreviousIntakeState() {
     return kPreviousIntakeState;
+  }
+
+  public static synchronized ShooterStates getSelectedShooterState() {
+    return kSelectedShooterState;
+  }
+
+  public static synchronized ShooterStates getPreviousShooterState() {
+    return kPreviousShooterState;
+  }
+
+  public static synchronized IndexerStates getSelectedIndexerState() {
+    return kSelectedIndexerState;
+  }
+
+  public static synchronized IndexerStates getPreviousIndexerState() {
+    return kPreviousIndexerState;
   }
 
   // State Request Methods
@@ -85,6 +123,36 @@ public final class Superstructure {
     }
   }
 
+  /**
+   * Allows you to request a new Shooter State and if it is different than the current one, the
+   * current and previous state will be replaced accordingly.
+   *
+   * @param newState The ShooterState that you are requesting
+   */
+  public static synchronized void requestShooterState(ShooterStates newState) {
+    if (kSelectedShooterState != newState) {
+      kPreviousShooterState = kSelectedShooterState;
+      kSelectedShooterState = newState;
+      Logger.recordOutput(dashboardKey + "/ShooterState", newState.toString());
+      Logger.recordOutput(dashboardKey + "/PreviousShooterState", kPreviousShooterState.toString());
+    }
+  }
+
+  /**
+   * Allows you to request a new Indexer State and if it is different than the current one, the
+   * current and previous state will be replaced accordingly.
+   *
+   * @param newState The IndexerState that you are requesting
+   */
+  public static synchronized void requestIndexerState(IndexerStates newState) {
+    if (kSelectedIndexerState != newState) {
+      kPreviousIndexerState = kSelectedIndexerState;
+      kSelectedIndexerState = newState;
+      Logger.recordOutput(dashboardKey + "/IndexerState", newState.toString());
+      Logger.recordOutput(dashboardKey + "/PreviousIndexerState", kPreviousIndexerState.toString());
+    }
+  }
+
   // Command factories return command that change state
   /**
    * Builds a {@link Command} that switches the swerve subsystem to the supplied state.
@@ -106,6 +174,28 @@ public final class Superstructure {
   public static synchronized Command setIntakeStateCommand(IntakeStates state) {
     return Commands.runOnce(() -> requestIntakeState(state))
         .withName("SetIntakeState(" + state.toString() + ")");
+  }
+
+  /**
+   * Builds a {@link Command} that switches the shooter subsystem to the supplied state.
+   *
+   * @param state Desired {@link ShooterStates} target.
+   * @return One-shot command that applies the new state.
+   */
+  public static synchronized Command setShooterStateCommand(ShooterStates state) {
+    return Commands.runOnce(() -> requestShooterState(state))
+        .withName("SetShooterState(" + state.toString() + ")");
+  }
+
+  /**
+   * Builds a {@link Command} that switches the indexer subsystem to the supplied state.
+   *
+   * @param state Desired {@link IndexerStates} target.
+   * @return One-shot command that applies the new state.
+   */
+  public static synchronized Command setIndexerStateCommand(IndexerStates state) {
+    return Commands.runOnce(() -> requestIndexerState(state))
+        .withName("SetIndexerState(" + state.toString() + ")");
   }
 
   // Trigger factory creates trigger for any state condition
@@ -163,6 +253,34 @@ public final class Superstructure {
         });
   }
 
+  public static synchronized Trigger shooterStateIs(ShooterStates state) {
+    return new Trigger(() -> kSelectedShooterState == state);
+  }
+
+  public static synchronized Trigger shooterStateIsAnyOf(ShooterStates... states) {
+    return new Trigger(
+        () -> {
+          for (ShooterStates state : states) {
+            if (kSelectedShooterState == state) return true;
+          }
+          return false;
+        });
+  }
+
+  public static synchronized Trigger indexerStateIs(IndexerStates state) {
+    return new Trigger(() -> kSelectedIndexerState == state);
+  }
+
+  public static synchronized Trigger indexerStateIsAnyOf(IndexerStates... states) {
+    return new Trigger(
+        () -> {
+          for (IndexerStates state : states) {
+            if (kSelectedIndexerState == state) return true;
+          }
+          return false;
+        });
+  }
+
   // Transition Triggers detect state changes
 
   /**
@@ -205,6 +323,26 @@ public final class Superstructure {
     return new Trigger(() -> kPreviousIntakeState == state && kSelectedIntakeState != state);
   }
 
+  /**
+   * Trigger that becomes active the first cycle a new shooter state is selected.
+   *
+   * @param state Destination state to monitor.
+   * @return Trigger that detects the transition into the supplied state.
+   */
+  public static synchronized Trigger shooterStateChangedTo(ShooterStates state) {
+    return new Trigger(() -> kSelectedShooterState == state && kPreviousShooterState != state);
+  }
+
+  /**
+   * Trigger that becomes active when a previously selected shooter state is exited.
+   *
+   * @param state Source state to monitor.
+   * @return Trigger that detects the transition away from the supplied state.
+   */
+  public static synchronized Trigger shooterStateChangedFrom(ShooterStates state) {
+    return new Trigger(() -> kPreviousShooterState == state && kSelectedShooterState != state);
+  }
+
   // Compound - Combine multiple conditions
 
   /**
@@ -227,7 +365,8 @@ public final class Superstructure {
    * @return {@code true} if the transition is allowed, {@code false} otherwise.
    */
   public static synchronized boolean canTransitionSwerve(SwerveStates from, SwerveStates to) {
-    if (from == SwerveStates.DISABLED && to == SwerveStates.AUTO_ALIGN) {
+    if (from == SwerveStates.DISABLED
+        && (to == SwerveStates.AUTO_ALIGN || to == SwerveStates.AUTO_TARGETING)) {
       return false;
     }
     return true;
@@ -257,6 +396,10 @@ public final class Superstructure {
     Logger.recordOutput(dashboardKey + "/IntakeState", kSelectedIntakeState.toString());
     Logger.recordOutput(dashboardKey + "/PreviousSwerveState", kPreviousSwerveState.toString());
     Logger.recordOutput(dashboardKey + "/PreviousIntakeState", kPreviousIntakeState.toString());
+    Logger.recordOutput(dashboardKey + "/ShooterState", kSelectedShooterState.toString());
+    Logger.recordOutput(dashboardKey + "/PreviousShooterState", kPreviousShooterState.toString());
+    Logger.recordOutput(dashboardKey + "/IndexerState", kSelectedIndexerState.toString());
+    Logger.recordOutput(dashboardKey + "/PreviousIndexerState", kPreviousIndexerState.toString());
   }
 
   // Static Trigger Constants
@@ -265,6 +408,7 @@ public final class Superstructure {
     public static final Trigger kRawDriving = swerveStateIs(SwerveStates.RAW_DRIVING);
     public static final Trigger kControlledDriving = swerveStateIs(SwerveStates.CONTROLLED_DRIVING);
     public static final Trigger kAutoAlign = swerveStateIs(SwerveStates.AUTO_ALIGN);
+    public static final Trigger kAutoTargeting = swerveStateIs(SwerveStates.AUTO_TARGETING);
     public static final Trigger kIntakeAssistance = swerveStateIs(SwerveStates.INTAKE_ASSISTANCE);
     public static final Trigger kAuton = swerveStateIs(SwerveStates.AUTON);
     public static final Trigger kDisabled = swerveStateIs(SwerveStates.DISABLED);
@@ -272,8 +416,23 @@ public final class Superstructure {
 
   public static final class IntakeTriggers {
     public static final Trigger kIntaking = intakeStateIs(IntakeStates.INTAKING);
+    public static final Trigger kHoming = intakeStateIs(IntakeStates.HOMING);
     public static final Trigger kDisabled = intakeStateIs(IntakeStates.DISABLED);
     public static final Trigger kStowed = intakeStateIs(IntakeStates.STOWED);
     public static final Trigger kOutaking = intakeStateIs(IntakeStates.OUTAKING);
+  }
+
+  public static final class ShooterTriggers {
+    public static final Trigger kRawShooting = shooterStateIs(ShooterStates.RAW_SHOOTING);
+    public static final Trigger kFerryShooting = shooterStateIs(ShooterStates.FERRY_SHOOTING);
+    public static final Trigger kAutoAlignShooting =
+        shooterStateIs(ShooterStates.AUTO_ALIGN_SHOOTING);
+    public static final Trigger kDisabled = shooterStateIs(ShooterStates.DISABLED);
+  }
+
+  public static final class IndexerTriggers {
+    public static final Trigger kIndexing = indexerStateIs(IndexerStates.INDEXING);
+    public static final Trigger kStowed = indexerStateIs(IndexerStates.STOWED);
+    public static final Trigger kDisabled = indexerStateIs(IndexerStates.DISABLED);
   }
 }

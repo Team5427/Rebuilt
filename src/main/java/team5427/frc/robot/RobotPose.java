@@ -27,7 +27,7 @@ public class RobotPose {
   @Getter private Pose2d questPose = new Pose2d();
 
   private static final Matrix<N3, N1> odometryStateStdDevs =
-      new Matrix<>(VecBuilder.fill(0.008, 0.008, 0.01));
+      new Matrix<>(VecBuilder.fill(0.008, 0.008, 0.001));
 
   private static RobotPose instance;
 

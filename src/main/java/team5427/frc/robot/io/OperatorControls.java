@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import team5427.frc.robot.Constants.DriverConstants;
 import team5427.frc.robot.Superstructure;
 import team5427.frc.robot.Superstructure.IntakeStates;
+import team5427.frc.robot.commands.intake.IntakeHome;
 import team5427.frc.robot.commands.intake.IntakeIntaking;
 import team5427.frc.robot.commands.intake.IntakeStowed;
 import team5427.frc.robot.subsystems.intake.IntakeSubsystem;
@@ -28,6 +29,9 @@ public class OperatorControls {
     joy.leftTrigger()
         .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKING))
         .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.STOWED));
+    joy.leftBumper()
+        .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.HOMING))
+        .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.STOWED));
 
     // Use class-level trigger factory methods instead of nested class references
     Superstructure.intakeStateIs(IntakeStates.INTAKING)
@@ -35,6 +39,8 @@ public class OperatorControls {
         .whileTrue(new IntakeIntaking());
 
     Superstructure.intakeStateIs(IntakeStates.STOWED).whileTrue(new IntakeStowed());
+
+    Superstructure.intakeStateIs(IntakeStates.HOMING).whileTrue(new IntakeHome());
 
     Superstructure.intakeStateIs(IntakeStates.DISABLED)
         .whileTrue(

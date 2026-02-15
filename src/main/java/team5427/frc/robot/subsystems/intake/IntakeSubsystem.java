@@ -1,9 +1,12 @@
 package team5427.frc.robot.subsystems.intake;
 
+import static edu.wpi.first.units.Units.DegreesPerSecond;
 import static edu.wpi.first.units.Units.MetersPerSecond;
 
+import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.units.measure.LinearVelocity;
+import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -25,6 +28,8 @@ public class IntakeSubsystem extends SubsystemBase {
 
   private IntakeIO io;
   private IntakeIOInputsAutoLogged inputsAutoLogged;
+
+  private Debouncer speedBouncer = new Debouncer(0.1);
 
   public static IntakeSubsystem m_instance;
 
@@ -80,14 +85,14 @@ public class IntakeSubsystem extends SubsystemBase {
     //   io.setRollerSpeed(intakingSpeed);
     // }
     io.setRollerSpeed(intakingSpeed);
-    if (intakingAngle.getDegrees() > IntakeConstants.kPivotMaximumRotation.getDegrees()
-        || intakingAngle.getDegrees() < IntakeConstants.kPivotMinimumRotation.getDegrees()) {
-      kIntakingRotationOutOfBounds.set(true);
-    } else {
-      kIntakingRotationOutOfBounds.set(false);
-      io.setPivotRotation(intakingAngle);
-    }
-
+    io.setPivotRotation(intakingAngle);
+    // if (intakingAngle.getDegrees() > IntakeConstants.kPivotMaximumRotation.getDegrees()
+    //     || intakingAngle.getDegrees() < IntakeConstants.kPivotMinimumRotation.getDegrees()) {
+    //   kIntakingRotationOutOfBounds.set(true);
+    // } else {
+    //   kIntakingRotationOutOfBounds.set(false);
+    //   io.setPivotRotation(intakingAngle);
+    // }
     Logger.processInputs("Intake/Inputs", inputsAutoLogged);
     log();
   }
@@ -107,6 +112,10 @@ public class IntakeSubsystem extends SubsystemBase {
     intakingAngle = angle;
   }
 
+  public void setIntakingVoltage(Voltage volts) {
+    io.setPivotSpeed(volts);
+  }
+
   public void disableRollerMotor(boolean shouldDisable) {
     io.disableRollerMotor(shouldDisable);
   }
@@ -121,6 +130,15 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public boolean isPivotMotorDisabled() {
     return inputsAutoLogged.pivotMotorDisabled;
+  }
+
+  public boolean isPivotSpeedZero() {
+    return speedBouncer.calculate(
+        Math.abs(inputsAutoLogged.pivotMotorAngularVelocity.in(DegreesPerSecond)) <= 0.1);
+  }
+
+  public void resetPivotMotorPosition(Rotation2d rotation) {
+    io.resetPivotMotorPosition(rotation);
   }
 
   public void log() {
