@@ -19,7 +19,7 @@ public final class ShooterConstants {
               Units.inchesToMeters(5.547244),
               0,
               Units.inchesToMeters(14.75),
-              new Rotation3d(0, 0, Math.PI / 2.0))
+              new Rotation3d(0, 0, Math.PI))
           .inverse();
 
   public static final CANDeviceId kLeftHoodMotorCanId = new CANDeviceId(20);

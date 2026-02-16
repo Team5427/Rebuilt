@@ -403,6 +403,10 @@ public class SwerveSubsystem extends SubsystemBase
     return Constants.config.toChassisSpeeds(actualModuleStates);
   }
 
+  public ChassisSpeeds getTargetChassisSpeeds() {
+    return Constants.config.toChassisSpeeds(targetModuleStates);
+  }
+
   @Override
   public SwerveModuleState[] getCurrentSwerveModuleStates() {
     return actualModuleStates;

@@ -1,13 +1,5 @@
 package team5427.frc.robot;
 
-import static edu.wpi.first.units.Units.MetersPerSecond;
-
-import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.math.geometry.Pose3d;
-import edu.wpi.first.math.geometry.Rotation3d;
-import edu.wpi.first.math.geometry.Transform3d;
-import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -24,7 +16,6 @@ import team5427.frc.robot.subsystems.Swerve.SwerveConstants;
 import team5427.frc.robot.subsystems.intake.IntakeConstants;
 import team5427.lib.drivers.JoystickLogger;
 import team5427.lib.drivers.VirtualSubsystem;
-import team5427.lib.kinematics.shooter.projectiles.parabolic.AdjustedParabolicThread;
 
 /**
  * The methods in this class are called automatically corresponding to each mode, as described in
@@ -103,34 +94,34 @@ public class Robot extends LoggedRobot {
    */
   @Override
   public void robotPeriodic() {
-    FutureTrack.getInstance().update();
-
     CommandScheduler.getInstance().run();
     VirtualSubsystem.periodicAll();
     RobotPose.getInstance().log();
     Superstructure.logStates();
+    FutureTrack.getInstance().update();
+    FutureTrack.getInstance().log();
     // QuestNav.getInstance().processHeartbeat();
     // QuestNav.getInstance().cleanupResponses();
 
-    if (Constants.ModeTriggers.kSim.getAsBoolean()) {
-      Translation3d target =
-          new Pose3d(RobotPose.getInstance().getAdaptivePose())
-              .plus(new Transform3d(0, 0, 4, Rotation3d.kZero))
-              .getTranslation();
-      AdjustedParabolicThread.getInstance().setTarget(target);
+    // if (Constants.ModeTriggers.kSim.getAsBoolean()) {
+    //   Translation3d target =
+    //       new Pose3d(RobotPose.getInstance().getAdaptivePose())
+    //           .plus(new Transform3d(0, 0, 4, Rotation3d.kZero))
+    //           .getTranslation();
+    //   AdjustedParabolicThread.getInstance().setTarget(target);
 
-      Logger.recordOutput(
-          "Rotation Output: ",
-          MathUtil.inputModulus(
-              AdjustedParabolicThread.getInstance().getOutputState().r.getDegrees(), 0, 360));
-      Logger.recordOutput(
-          "Velocity Output: ",
-          new Translation2d(
-              AdjustedParabolicThread.getInstance().getOutputState().t.in(MetersPerSecond),
-              AdjustedParabolicThread.getInstance().getOutputState().a.in(MetersPerSecond)));
-      Logger.recordOutput("Target", target);
-      Logger.recordOutput("Thread Interupted", AdjustedParabolicThread.interrupted());
-    }
+    //   Logger.recordOutput(
+    //       "Rotation Output: ",
+    //       MathUtil.inputModulus(
+    //           AdjustedParabolicThread.getInstance().getOutputState().r.getDegrees(), 0, 360));
+    //   Logger.recordOutput(
+    //       "Velocity Output: ",
+    //       new Translation2d(
+    //           AdjustedParabolicThread.getInstance().getOutputState().t.in(MetersPerSecond),
+    //           AdjustedParabolicThread.getInstance().getOutputState().a.in(MetersPerSecond)));
+    //   Logger.recordOutput("Target", target);
+    //   Logger.recordOutput("Thread Interupted", AdjustedParabolicThread.interrupted());
+    // }
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

@@ -74,6 +74,9 @@ public class RobotContainer {
         () -> RobotPose.getInstance().getGyroHeading());
     QuestNav.getInstance().setPose(new Pose2d(10 * Math.random(), 4, Rotation2d.kZero));
 
+    FutureTrack.getInstance(
+        SwerveSubsystem.getInstance()::getCurrentChassisSpeeds,
+        SwerveSubsystem.getInstance()::getTargetChassisSpeeds);
     AutoBuilder.configure(
         RobotPose.getInstance()::getAdaptivePose,
         RobotPose.getInstance()::resetAllPose,
