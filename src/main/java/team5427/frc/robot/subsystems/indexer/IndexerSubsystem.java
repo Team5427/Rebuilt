@@ -1,10 +1,12 @@
 package team5427.frc.robot.subsystems.indexer;
 
+import static edu.wpi.first.units.Units.MetersPerSecond;
 import static edu.wpi.first.units.Units.RadiansPerSecond;
 
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.units.measure.AngularVelocity;
+import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import lombok.Getter;
+import lombok.Setter;
 import org.littletonrobotics.junction.Logger;
 import team5427.frc.robot.Constants;
 import team5427.frc.robot.subsystems.indexer.io.IndexerIO;
@@ -12,7 +14,8 @@ import team5427.frc.robot.subsystems.indexer.io.IndexerIOInputsAutoLogged;
 import team5427.frc.robot.subsystems.indexer.io.IndexerIOTalonFX;
 
 public class IndexerSubsystem extends SubsystemBase {
-  private AngularVelocity desiredVelocity;
+  @Getter @Setter private LinearVelocity leftIndexerVelocitySetpoint;
+  @Getter @Setter private LinearVelocity rightIndexerVelocitySetpoint;
 
   private IndexerIO io;
   private IndexerIOInputsAutoLogged inputsAutoLogged;
@@ -38,34 +41,31 @@ public class IndexerSubsystem extends SubsystemBase {
       default:
         break;
     }
-    desiredVelocity = RadiansPerSecond.of(0.0);
+    rightIndexerVelocitySetpoint = MetersPerSecond.of(0.0);
+    leftIndexerVelocitySetpoint = MetersPerSecond.of(0.0);
   }
 
   @Override
   public void periodic() {
     io.updateInputs(inputsAutoLogged);
 
-    // Set desired motor velocity
-    io.setIndexerMotorVelocity(desiredVelocity);
+    io.setLeftIndexerMotorVelocity(leftIndexerVelocitySetpoint);
+    io.setRightIndexerMotorVelocity(rightIndexerVelocitySetpoint);
 
     Logger.processInputs("Indexer/Inputs", inputsAutoLogged);
     log();
   }
 
-  public void setIndexerVelocity(AngularVelocity velocity) {
-    desiredVelocity = velocity;
+  public LinearVelocity getLeftIndexerVelocity() {
+    return inputsAutoLogged.leftIndexerMotorLinearVelocity;
   }
 
-  public void resetIndexerRotation() {
-    io.setIndexerMotorRotation(Rotation2d.kZero);
-  }
-
-  public AngularVelocity getIndexerVelocity() {
-    return inputsAutoLogged.indexerMotorAngularVelocity;
+  public LinearVelocity getRightIndexerVelocity() {
+    return inputsAutoLogged.rightIndexerMotorLinearVelocity;
   }
 
   public void log() {
-    Logger.recordOutput("Indexer/DesiredAngularVelocity", desiredVelocity.in(RadiansPerSecond));
+    Logger.recordOutput("Indexer/AngularVelocitySetpoint", setpointVelocity.in(RadiansPerSecond));
     Logger.recordOutput(
         "Indexer/ActualAngularVelocity",
         inputsAutoLogged.indexerMotorAngularVelocity.in(RadiansPerSecond));

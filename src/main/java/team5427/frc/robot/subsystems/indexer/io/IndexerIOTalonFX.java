@@ -1,81 +1,81 @@
 package team5427.frc.robot.subsystems.indexer.io;
 
 import static edu.wpi.first.units.Units.MetersPerSecond;
+import static edu.wpi.first.units.Units.RotationsPerSecond;
 
 import com.ctre.phoenix6.BaseStatusSignal;
 import com.ctre.phoenix6.StatusSignal;
-import com.ctre.phoenix6.controls.Follower;
-import com.ctre.phoenix6.signals.MotorAlignmentValue;
-import edu.wpi.first.math.util.Units;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Current;
-import team5427.frc.robot.Constants;
+import edu.wpi.first.units.measure.Voltage;
 import team5427.frc.robot.subsystems.indexer.IndexerConstants;
 import team5427.frc.robot.subsystems.indexer.io.IndexerIO.IndexerIOInputs;
-import team5427.lib.motors.MotorConfiguration;
 import team5427.lib.motors.SteelTalonFX;
 
 public class IndexerIOTalonFX implements IndexerIO {
-  private SteelTalonFX indexerMotorLeader;
-  private SteelTalonFX indexerMotorFollower;
+  private SteelTalonFX rightIndexerMotor;
+  private SteelTalonFX leftIndexerMotor;
 
-  private StatusSignal<AngularVelocity> indexerMotorAngularVelocity;
+  private StatusSignal<AngularVelocity> leftIndexerMotorAngularVelocity;
+  private StatusSignal<AngularVelocity> rightIndexerMotorAngularVelocity;
 
-  private StatusSignal<Current> indexerMotorCurrent;
+  private StatusSignal<Current> leftIndexerMotorCurrent;
+  private StatusSignal<Current> rightIndexerMotorCurrent;
 
-  private boolean indexerMotorLeaderConnected = false;
-  private boolean indexerMotorFollowerConnected = false;
+  private StatusSignal<Voltage> leftIndexerMotorVoltage;
+  private StatusSignal<Voltage> rightIndexerMotorVoltage;
 
   public IndexerIOTalonFX() {
-    indexerMotorLeader = new SteelTalonFX(IndexerConstants.kIndexerMasterMotorCanId);
-    indexerMotorFollower = new SteelTalonFX(IndexerConstants.kIndexerSlaveMotorCanId);
+    rightIndexerMotor = new SteelTalonFX(IndexerConstants.kIndexerLeftMotorCanId);
+    leftIndexerMotor = new SteelTalonFX(IndexerConstants.kIndexerRightMotorCanId);
 
-    indexerMotorFollower
-        .getTalonFX()
-        .setControl(
-            new Follower(
-                indexerMotorLeader.getTalonFX().getDeviceID(), MotorAlignmentValue.Aligned));
+    rightIndexerMotor.apply(IndexerConstants.kIndexerMotorConfiguration);
+    leftIndexerMotor.apply(IndexerConstants.kIndexerMotorConfiguration);
 
-    indexerMotorLeader.apply(IndexerConstants.kIndexerMotorConfiguration);
-    indexerMotorFollower.apply(new MotorConfiguration(IndexerConstants.kIndexerMotorConfiguration));
+    rightIndexerMotor.setEncoderPosition(0);
+    leftIndexerMotor.setEncoderPosition(0);
+    leftIndexerMotorAngularVelocity = leftIndexerMotor.getTalonFX().getVelocity();
+    rightIndexerMotorAngularVelocity = rightIndexerMotor.getTalonFX().getVelocity();
 
-    indexerMotorLeader.setEncoderPosition(IndexerConstants.kIndexerStartingRotation);
-    indexerMotorFollower.setEncoderPosition(IndexerConstants.kIndexerStartingRotation);
+    leftIndexerMotorCurrent = leftIndexerMotor.getTalonFX().getStatorCurrent();
+    leftIndexerMotorVoltage = leftIndexerMotor.getTalonFX().getMotorVoltage();
 
-    indexerMotorAngularVelocity = indexerMotorLeader.getTalonFX().getVelocity();
-
-    indexerMotorCurrent = indexerMotorLeader.getTalonFX().getStatorCurrent();
-
-    BaseStatusSignal.setUpdateFrequencyForAll(
-        Constants.kMediumPriorityUpdateFrequency, indexerMotorCurrent, indexerMotorAngularVelocity);
-
-    indexerMotorLeaderConnected = indexerMotorLeader.getTalonFX().isConnected();
-    indexerMotorFollowerConnected = indexerMotorFollower.getTalonFX().isConnected();
+    rightIndexerMotorCurrent = rightIndexerMotor.getTalonFX().getStatorCurrent();
+    rightIndexerMotorVoltage = rightIndexerMotor.getTalonFX().getMotorVoltage();
+    BaseStatusSignal.refreshAll(
+        leftIndexerMotorAngularVelocity,
+        rightIndexerMotorAngularVelocity,
+        leftIndexerMotorCurrent,
+        rightIndexerMotorCurrent,
+        leftIndexerMotorVoltage,
+        rightIndexerMotorVoltage);
   }
 
   public void updateInputs(IndexerIOInputs inputs) {
-    BaseStatusSignal.refreshAll(indexerMotorCurrent, indexerMotorAngularVelocity);
-    inputs.indexerMotorAngularVelocity = indexerMotorAngularVelocity.getValue();
-    inputs.indexerMotorCurrent = indexerMotorCurrent.getValue();
-    inputs.indexerFlywheelLinearVelocity =
+    BaseStatusSignal.refreshAll(
+        leftIndexerMotorAngularVelocity,
+        rightIndexerMotorAngularVelocity,
+        leftIndexerMotorCurrent,
+        rightIndexerMotorCurrent,
+        leftIndexerMotorVoltage,
+        rightIndexerMotorVoltage);
+    inputs.leftIndexerMotorConnected = leftIndexerMotor.getTalonFX().isConnected();
+    inputs.rightIndexerMotorConnected = rightIndexerMotor.getTalonFX().isConnected();
+
+    inputs.leftIndexerMotorAngularVelocity = leftIndexerMotorAngularVelocity.getValue();
+    inputs.leftIndexerMotorLinearVelocity =
         MetersPerSecond.of(
-            Units.inchesToMeters(indexerMotorAngularVelocity.getValueAsDouble() / 2.0 * Math.PI));
+            leftIndexerMotor.getConversionFactorFromRotations()
+                * leftIndexerMotorAngularVelocity.getValue().in(RotationsPerSecond));
+    inputs.leftIndexerMotorCurrent = leftIndexerMotorCurrent.getValue();
+    inputs.leftIndexerMotorVoltage = leftIndexerMotorVoltage.getValue();
 
-    inputs.indexerMotorLeaderConnected = indexerMotorLeader.getTalonFX().isConnected();
-    inputs.indexerMotorFollowerConnected = indexerMotorFollower.getTalonFX().isConnected();
-  }
-
-  public void setIndexerMotorVelocity(AngularVelocity velocity) {
-    indexerMotorLeader.setSetpoint(velocity);
-  }
-
-  @Override
-  public boolean isLeaderConnected() {
-    return indexerMotorLeaderConnected;
-  }
-
-  @Override
-  public boolean isFollowerConnected() {
-    return indexerMotorFollowerConnected;
+    inputs.rightIndexerMotorAngularVelocity = rightIndexerMotorAngularVelocity.getValue();
+    inputs.rightIndexerMotorLinearVelocity =
+        MetersPerSecond.of(
+            rightIndexerMotor.getConversionFactorFromRotations()
+                * rightIndexerMotorAngularVelocity.getValue().in(RotationsPerSecond));
+    inputs.rightIndexerMotorCurrent = rightIndexerMotorCurrent.getValue();
+    inputs.rightIndexerMotorVoltage = rightIndexerMotorVoltage.getValue();
   }
 }
