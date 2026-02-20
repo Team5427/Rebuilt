@@ -5,9 +5,22 @@
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "parallel",
           "data": {
-            "pathName": "StartAndShootToDepot"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "DepotStartToDepotNoShoot"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "AutoAlignMoveWhileShoot"
+                }
+              }
+            ]
           }
         },
         {
@@ -23,15 +36,22 @@
           }
         },
         {
-          "type": "path",
+          "type": "parallel",
           "data": {
-            "pathName": "DepotToShoot"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.0
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "DepotToShoot"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "AutoAlignMoveWhileShoot"
+                }
+              }
+            ]
           }
         },
         {
@@ -47,6 +67,12 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "AutoAlignMoveWhileShoot"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "ShootLeftToCenter"
@@ -56,6 +82,12 @@
           "type": "path",
           "data": {
             "pathName": "CenterToShootLeft"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoAlignMoveWhileShoot"
           }
         },
         {

@@ -20,7 +20,7 @@ public class FutureTrack {
       new Tuple2Plus<>(Pose2d.kZero, new ChassisSpeeds());
   private Supplier<ChassisSpeeds> currentSpeedSupplier;
   private Supplier<ChassisSpeeds> wantedSpeedSupplier;
-  private static int kSampleCounts = 5;
+  private static int kSampleCounts = 3;
 
   private static FutureTrack m_instance = null;
 

@@ -5,6 +5,7 @@
 package team5427.frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
@@ -20,12 +21,17 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import org.ironmaple.simulation.SimulatedArena;
 import org.littletonrobotics.junction.Logger;
 import team5427.frc.robot.Constants.DriverConstants;
+import team5427.frc.robot.Superstructure.IndexerStates;
+import team5427.frc.robot.Superstructure.IntakeStates;
+import team5427.frc.robot.Superstructure.ShooterStates;
+import team5427.frc.robot.Superstructure.SwerveStates;
 import team5427.frc.robot.io.DriverProfiles;
 import team5427.frc.robot.io.OperatorControls;
 import team5427.frc.robot.io.PilotingControls;
 import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
 import team5427.frc.robot.subsystems.intake.IntakeSubsystem;
+import team5427.frc.robot.subsystems.shooter.ShooterSubsystem;
 import team5427.frc.robot.subsystems.vision.VisionSubsystem;
 import team5427.frc.robot.subsystems.vision.io.QuestNav;
 
@@ -53,6 +59,7 @@ public class RobotContainer {
       case REAL:
         SwerveSubsystem.getInstance(RobotPose.getInstance()::addOdometryMeasurement);
         IntakeSubsystem.getInstance();
+        ShooterSubsystem.getInstance();
         break;
       case REPLAY:
         SwerveSubsystem.getInstance(RobotPose.getInstance()::addOdometryMeasurement);
@@ -103,6 +110,7 @@ public class RobotContainer {
         });
     SmartDashboard.putData(autoChooser);
     buttonBindings();
+    createNamedCommands();
   }
 
   private void buttonBindings() {
@@ -114,6 +122,23 @@ public class RobotContainer {
         DriverProfiles.kSelectedDriverState.modeType.equals(DriverProfiles.DriverModeType.SINGLE)
             ? new CommandXboxController(DriverConstants.kDriverJoystickPort)
             : new CommandXboxController(DriverConstants.kOperatorJoystickPort));
+  }
+
+  public void createNamedCommands() {
+    NamedCommands.registerCommand(
+        "AutoAlignMoveWhileShoot",
+        Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING)
+            .alongWith(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING))
+            .withTimeout(2.5));
+    NamedCommands.registerCommand(
+        "AutoAlignClimbLeft", Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN));
+    NamedCommands.registerCommand(
+        "Intake", Superstructure.setIntakeStateCommand(IntakeStates.INTAKING));
+    NamedCommands.registerCommand(
+        "ResetAll",
+        Superstructure.setIndexerStateCommand(IndexerStates.STOWED)
+            .alongWith(Superstructure.setIntakeStateCommand(IntakeStates.STOWED))
+            .alongWith(Superstructure.setShooterStateCommand(ShooterStates.STOW)));
   }
 
   /**

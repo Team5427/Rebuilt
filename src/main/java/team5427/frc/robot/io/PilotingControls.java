@@ -12,6 +12,7 @@ import team5427.frc.robot.Constants.DriverConstants;
 import team5427.frc.robot.Constants.ModeTriggers;
 import team5427.frc.robot.RobotPose;
 import team5427.frc.robot.Superstructure;
+import team5427.frc.robot.Superstructure.ShooterStates;
 import team5427.frc.robot.Superstructure.SwerveStates;
 import team5427.frc.robot.commands.chassis.ControlledChassisMovement;
 import team5427.frc.robot.commands.chassis.MoveChassisToPose;
@@ -64,7 +65,9 @@ public class PilotingControls {
 
     joy.rightBumper()
         .whileTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING))
-        .toggleOnFalse(Superstructure.setSwerveStateCommand(SwerveStates.RAW_DRIVING));
+        .whileTrue(Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING))
+        .onFalse(Superstructure.setSwerveStateCommand(SwerveStates.RAW_DRIVING))
+        .onFalse(Superstructure.setShooterStateCommand(ShooterStates.STOW));
     // Auto mode state management
     autonTrigger
         .onTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTON))

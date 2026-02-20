@@ -2,10 +2,13 @@ package team5427.frc.robot.commands.shooting;
 
 import static edu.wpi.first.units.Units.MetersPerSecond;
 
+import edu.wpi.first.math.filter.Debouncer;
+import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -20,6 +23,7 @@ import org.team4206.battleaid.common.TunedJoystick.ResponseCurve;
 import team5427.frc.robot.Constants.DriverConstants;
 import team5427.frc.robot.FieldConstants;
 import team5427.frc.robot.FutureTrack;
+import team5427.frc.robot.RobotPose;
 import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
 import team5427.frc.robot.subsystems.shooter.AimingConstants;
@@ -33,6 +37,7 @@ public class MoveWhileShoot extends Command {
   private CommandXboxController joy;
 
   private TunedJoystick translationJoystick;
+  private Debouncer debouncer = new Debouncer(0.1);
 
   private FutureTrack futureTrack;
 
@@ -85,7 +90,11 @@ public class MoveWhileShoot extends Command {
 
       double dampener = (joy.getRightTriggerAxis() * DrivingConstants.kDampenerDampeningAmount);
 
-      futureTrackResult = futureTrack.getFutureTrackResult();
+      // futureTrackResult = futureTrack.getFutureTrackResult();
+      futureTrackResult =
+          new Tuple2Plus<Pose2d, ChassisSpeeds>(
+              RobotPose.getInstance().getAdaptivePose(),
+              SwerveSubsystem.getInstance().getCurrentChassisSpeeds());
 
       Pose2d futurePose = futureTrackResult.r;
       ChassisSpeeds currentSpeeds =
@@ -124,8 +133,8 @@ public class MoveWhileShoot extends Command {
       LinearVelocity shooterVelocity =
           MetersPerSecond.of(AimingConstants.kShootingTable.getFlyWheelSpeed(finalDistance));
 
-      shooter.setShooterAngle(shooterAngle);
-      shooter.setShooterSpeed(shooterVelocity);
+      shooter.setLeftShooterAngle(shooterAngle);
+      shooter.setLeftShooterSpeed(shooterVelocity);
 
       Translation2d shooterFieldPos2d = shooterFieldPos.toTranslation2d();
       Translation2d virtualTarget2d = virtualTarget.toTranslation2d();
@@ -153,9 +162,13 @@ public class MoveWhileShoot extends Command {
     }
   }
 
-  @Override
-  public boolean isFinished() {
-    return false;
+  public boolean isFinished(Pose2d targetPose) {
+    debouncer.setDebounceType(DebounceType.kBoth);
+    Transform2d diff = RobotPose.getInstance().getAdaptivePose().minus(targetPose);
+    return debouncer.calculate(
+        DriverStation.isAutonomous()
+            && diff.getRotation().getRadians()
+                <= DrivingConstants.kRotationAngleTolerance.getAsDouble());
   }
 
   @Override

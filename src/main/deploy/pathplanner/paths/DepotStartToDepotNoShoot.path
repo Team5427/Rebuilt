@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.3155968845626465,
-        "y": 6.293855293183075
+        "x": 1.0670098190924961,
+        "y": 5.9226213157097085
       },
       "isLocked": false,
       "linkedName": "DepotSideStart"
@@ -20,8 +20,8 @@
         "y": 5.92733630952381
       },
       "prevControl": {
-        "x": 3.735090828426374,
-        "y": 5.82708742221351
+        "x": 3.568944379592966,
+        "y": 6.21818210515692
       },
       "nextControl": null,
       "isLocked": false,
@@ -30,18 +30,7 @@
   ],
   "rotationTargets": [],
   "constraintZones": [],
-  "pointTowardsZones": [
-    {
-      "fieldPosition": {
-        "x": 4.631,
-        "y": 4.02
-      },
-      "rotationOffset": 180.0,
-      "minWaypointRelativePos": 0.5973741794310719,
-      "maxWaypointRelativePos": 0.822757111597374,
-      "name": "Point Towards Hub"
-    }
-  ],
+  "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 4.0,
@@ -52,13 +41,13 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0.75,
+    "velocity": 0,
     "rotation": 180.0
   },
   "reversed": false,
   "folder": null,
   "idealStartingState": {
-    "velocity": 0,
+    "velocity": 0.0,
     "rotation": 180.0
   },
   "useDefaultConstraints": true
