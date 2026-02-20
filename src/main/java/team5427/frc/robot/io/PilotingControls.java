@@ -1,5 +1,14 @@
 package team5427.frc.robot.io;
 
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.commands.FollowPathCommand;
+import com.pathplanner.lib.commands.PathPlannerAuto;
+import com.pathplanner.lib.controllers.PathFollowingController;
+import com.pathplanner.lib.path.PathPlannerPath;
+import com.pathplanner.lib.trajectory.PathPlannerTrajectory;
+import com.pathplanner.lib.trajectory.PathPlannerTrajectoryState;
+import com.pathplanner.lib.util.PathPlannerLogging;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -67,7 +76,7 @@ public class PilotingControls {
         .whileTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING))
         .whileTrue(Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING))
         .onFalse(Superstructure.setSwerveStateCommand(SwerveStates.RAW_DRIVING))
-        .onFalse(Superstructure.setShooterStateCommand(ShooterStates.STOW));
+        .onFalse(Superstructure.setShooterStateCommand(ShooterStates.STOWED));
     // Auto mode state management
     autonTrigger
         .onTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTON))
@@ -96,10 +105,9 @@ public class PilotingControls {
         .whileTrue(new ControlledChassisMovement(joy));
 
     // Auto align mode
-    Superstructure.swerveStateIs(SwerveStates.AUTO_ALIGN)
-        .and(ModeTriggers.kSim)
-        .and(disabledTrigger.negate())
-        .whileTrue(new MoveChassisToPose(joy, new Pose2d(5, 5.5, Rotation2d.k180deg)));
+    // Superstructure.swerveStateIs(SwerveStates.AUTO_ALIGN)
+    //     .and(disabledTrigger.negate()).and(autonTrigger)
+    //     .whileTrue(new MoveChassisToPose(joy, ));
 
     // Auto Targetting Mode
 

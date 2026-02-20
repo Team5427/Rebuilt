@@ -11,6 +11,9 @@ import org.littletonrobotics.junction.Logger;
 import org.littletonrobotics.junction.networktables.NT4Publisher;
 import org.littletonrobotics.junction.wpilog.WPILOGReader;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
+
+import com.pathplanner.lib.commands.FollowPathCommand;
+
 import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveConstants;
 import team5427.frc.robot.subsystems.intake.IntakeConstants;
@@ -73,7 +76,7 @@ public class Robot extends LoggedRobot {
     m_robotContainer = new RobotContainer();
     // Pathfinding.setPathfinder(new LocalADStarAK());
     // Pathfinding.ensureInitialized();
-    // CommandScheduler.getInstance().schedule(FollowPathCommand.warmupCommand());
+    CommandScheduler.getInstance().schedule(FollowPathCommand.warmupCommand());
   }
 
   private void loadConstants() {

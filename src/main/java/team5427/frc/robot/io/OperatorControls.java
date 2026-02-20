@@ -4,8 +4,11 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import team5427.frc.robot.Constants.DriverConstants;
 import team5427.frc.robot.Superstructure;
+import team5427.frc.robot.Superstructure.IndexerStates;
 import team5427.frc.robot.Superstructure.IntakeStates;
 import team5427.frc.robot.Superstructure.ShooterStates;
+import team5427.frc.robot.commands.indexer.IndexShoot;
+import team5427.frc.robot.commands.indexer.IndexStow;
 import team5427.frc.robot.subsystems.shooter.ShooterConstants;
 import team5427.frc.robot.subsystems.shooter.ShooterSubsystem;
 
@@ -31,8 +34,11 @@ public class OperatorControls {
     joy.leftBumper()
         .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.HOMING))
         .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.DISABLED));
+    joy.rightTrigger()
+        .whileTrue(Superstructure.setIndexerStateCommand(IndexerStates.INDEXING))
+        .onFalse(Superstructure.setIndexerStateCommand(IndexerStates.STOWED));
 
-    Superstructure.shooterStateIs(ShooterStates.STOW)
+    Superstructure.shooterStateIs(ShooterStates.STOWED)
         .whileTrue(
             new InstantCommand(
                 () -> {
@@ -45,6 +51,8 @@ public class OperatorControls {
                   ShooterSubsystem.getInstance()
                       .setRightShooterSpeed(ShooterConstants.kShooterStowVelocity);
                 }));
+    Superstructure.indexerStateIs(IndexerStates.STOWED).whileTrue(new IndexStow());
+    Superstructure.indexerStateIs(IndexerStates.INDEXING).whileTrue(new IndexShoot());
     // Use class-level trigger factory methods instead of nested class references
     // Superstructure.intakeStateIs(IntakeStates.INTAKING)
     //

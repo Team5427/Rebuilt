@@ -109,8 +109,8 @@ public class RobotContainer {
           Logger.recordOutput("PathPlanner/Current Path", targetPose);
         });
     SmartDashboard.putData(autoChooser);
-    buttonBindings();
     createNamedCommands();
+    buttonBindings();
   }
 
   private void buttonBindings() {
@@ -138,7 +138,7 @@ public class RobotContainer {
         "ResetAll",
         Superstructure.setIndexerStateCommand(IndexerStates.STOWED)
             .alongWith(Superstructure.setIntakeStateCommand(IntakeStates.STOWED))
-            .alongWith(Superstructure.setShooterStateCommand(ShooterStates.STOW)));
+            .alongWith(Superstructure.setShooterStateCommand(ShooterStates.STOWED)));
   }
 
   /**
