@@ -135,7 +135,7 @@ public class PilotingControls {
                           .getKDriveSimulation()
                           .getSimulatedDriveTrainPose();
 
-                  SwerveSubsystem.getInstance().resetGyro(Rotation2d.kZero);
+                  SwerveSubsystem.getInstance().resetGyro(Rotation2d.k180deg);
 
                   pose =
                       new Pose2d(
@@ -155,8 +155,8 @@ public class PilotingControls {
                       .resetGyro(
                           DriverStation.getAlliance().isPresent()
                                   && DriverStation.getAlliance().get() == Alliance.Red
-                              ? Rotation2d.k180deg
-                              : Rotation2d.kZero);
+                              ? Rotation2d.kZero
+                              : Rotation2d.k180deg);
                   RobotPose.getInstance()
                       .resetHeading(SwerveSubsystem.getInstance().getGyroRotation());
                 }));
