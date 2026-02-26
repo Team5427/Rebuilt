@@ -16,7 +16,7 @@ public class VisionConstants {
 
   public static final int kCameraCount = 1;
 
-  public static final double kMaxAmbiguity = 0.20;
+  public static final double kMaxAmbiguity = 0.15; //previous 0.2
 
   public static final Distance kMaxZHeight = Meters.of(1);
 

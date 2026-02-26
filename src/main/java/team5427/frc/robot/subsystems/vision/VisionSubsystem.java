@@ -163,10 +163,23 @@ public class VisionSubsystem extends VirtualSubsystem {
         }
 
         // Calculate standard deviations
+        // double stdDevFactor =
+        //     observation.type().equals(PoseObservationType.PHOTONVISION_SINGLE_TAG)
+        //         ? observation.averageTagDistance() * 2.0
+        //         : Math.pow(observation.averageTagDistance(), 2.0) / observation.tagCount();
+        // double linearStdDev = VisionConstants.kLinearStdDevBaseline * stdDevFactor;
+        // double angularStdDev = VisionConstants.kAngularStdDevBaseline * stdDevFactor;
+
         double stdDevFactor =
             observation.type().equals(PoseObservationType.PHOTONVISION_SINGLE_TAG)
-                ? observation.averageTagDistance() * 2.0
-                : Math.pow(observation.averageTagDistance(), 2.0) / observation.tagCount();
+                ? Math.pow(observation.averageTagDistance(), 1.5) // squared for single tag (was linear * 2)
+                : Math.pow(observation.averageTagDistance(), 1.5) / observation.tagCount();
+
+        // Reject observations from tags that are too far away (single camera limitation)
+        if (observation.averageTagDistance() > 5.25) { // 5.25 meters max useful range for one camera
+          continue;
+        }
+
         double linearStdDev = VisionConstants.kLinearStdDevBaseline * stdDevFactor;
         double angularStdDev = VisionConstants.kAngularStdDevBaseline * stdDevFactor;
         if (cameraIndex < VisionConstants.kCameraStdDevFactors.length) {
