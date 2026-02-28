@@ -17,7 +17,7 @@ public final class IntakeConstants {
   public static MotorConfiguration kRollerMotorConfiguration = new MotorConfiguration();
 
   public static final ComplexGearRatio kPivotMotorGearRatio =
-      new ComplexGearRatio((14.0 / 48.0), (18.0 / 48.0), (18.0 / 48.0), (16.0 / 36.0));
+      new ComplexGearRatio((8.0 / 54.0), (18.0 / 54.0));
   public static final ComplexGearRatio kRollerMotorGearRatio = new ComplexGearRatio((14.0 / 24.0));
 
   public static final CANDeviceId kPivotMotorCanId = new CANDeviceId(16);
@@ -32,7 +32,7 @@ public final class IntakeConstants {
     kPivotMotorConfiguration.withFOC = true;
 
     kPivotMotorConfiguration.maxVelocity =
-        kPivotMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM);
+        kPivotMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM/5.0);
     kPivotMotorConfiguration.maxAcceleration = kPivotMotorConfiguration.maxVelocity * 2.0;
 
     kPivotMotorConfiguration.altV = kPivotMotorConfiguration.maxVelocity / 2.0;
@@ -62,7 +62,7 @@ public final class IntakeConstants {
     kRollerMotorConfiguration.withFOC = true;
 
     kRollerMotorConfiguration.maxVelocity =
-        kRollerMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM);
+        kRollerMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM/1.5);
     kRollerMotorConfiguration.maxAcceleration = kRollerMotorConfiguration.maxVelocity * 2.0;
 
     kRollerMotorConfiguration.kP = 1.0;
@@ -85,9 +85,10 @@ public final class IntakeConstants {
   public static final LinearVelocity kRollerIntakeVelocity = MetersPerSecond.of(10.0);
 
   public static final Rotation2d kPivotMaximumRotation = Rotation2d.fromDegrees(200);
-  public static final Rotation2d kPivotMinimumRotation = Rotation2d.kZero;
+  public static final Rotation2d kPivotMinimumRotation = Rotation2d.fromDegrees(5);
 
-  public static final Rotation2d kPivotStartingRotation = Rotation2d.fromDegrees(0);
+  public static final Rotation2d kPivotStartingRotation = Rotation2d.fromDegrees(15);
+
 
   public static final Rotation2d kPivotIntakeRotation = Rotation2d.fromDegrees(150);
 }

@@ -16,7 +16,7 @@ public class VisionConstants {
 
   public static final int kCameraCount = 1;
 
-  public static final double kMaxAmbiguity = 0.20;
+  public static final double kMaxAmbiguity = 0.15; //previous 0.2
 
   public static final Distance kMaxZHeight = Meters.of(1);
 
@@ -36,10 +36,10 @@ public class VisionConstants {
   // Robot to camera
   public static final Transform3d kSwerveCamTransform =
       new Transform3d(
-          Units.inchesToMeters(3), // 9.375
-          Units.inchesToMeters(-11), // -11.048439965
-          Units.inchesToMeters(11.293), // 13.293
-          new Rotation3d(0, Units.degreesToRadians(30), Units.degreesToRadians(180.0)));
+          Units.inchesToMeters(13.273), // 9.375  3 ; This might be negative
+          Units.inchesToMeters(8.684), // -11.048439965  -11
+          Units.inchesToMeters(11.540), // 13.293  11.293
+          new Rotation3d(0, Units.degreesToRadians(20), Units.degreesToRadians(180.0))); //0 20 180
 
   public static final Transform3d kQuestCameraTransform =
       new Transform3d(
