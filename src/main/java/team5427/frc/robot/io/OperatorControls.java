@@ -59,27 +59,26 @@ public class OperatorControls {
     Superstructure.indexerStateIs(IndexerStates.INDEXING).whileTrue(new IndexShoot());
     // Use class-level trigger factory methods instead of nested class references
     Superstructure.intakeStateIs(IntakeStates.INTAKING)
-    
-    .and(Superstructure.swerveStateIs(Superstructure.SwerveStates.INTAKE_ASSISTANCE).negate())
+        .and(Superstructure.swerveStateIs(Superstructure.SwerveStates.INTAKE_ASSISTANCE).negate())
         .whileTrue(new IntakeIntaking());
 
     Superstructure.intakeStateIs(IntakeStates.STOWED).whileTrue(new IntakeStowed());
 
     Superstructure.intakeStateIs(IntakeStates.HOMING).whileTrue(new IntakeHome());
 
-      Superstructure.intakeStateIs(IntakeStates.DISABLED)
-          .whileTrue(
-              new InstantCommand(
-                  () -> {
-                    IntakeSubsystem.getInstance().disablePivotMotor(true);
-                    IntakeSubsystem.getInstance().disableRollerMotor(true);
-                  },
-                  IntakeSubsystem.getInstance()))
-          .onFalse(
-              new InstantCommand(
-                  () -> {
-                    IntakeSubsystem.getInstance().disablePivotMotor(false);
-                    IntakeSubsystem.getInstance().disableRollerMotor(false);
-                  }));
+    Superstructure.intakeStateIs(IntakeStates.DISABLED)
+        .whileTrue(
+            new InstantCommand(
+                () -> {
+                  IntakeSubsystem.getInstance().disablePivotMotor(true);
+                  IntakeSubsystem.getInstance().disableRollerMotor(true);
+                },
+                IntakeSubsystem.getInstance()))
+        .onFalse(
+            new InstantCommand(
+                () -> {
+                  IntakeSubsystem.getInstance().disablePivotMotor(false);
+                  IntakeSubsystem.getInstance().disableRollerMotor(false);
+                }));
   }
 }

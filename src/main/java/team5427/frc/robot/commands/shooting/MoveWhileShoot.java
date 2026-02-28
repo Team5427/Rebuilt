@@ -144,8 +144,7 @@ public class MoveWhileShoot extends Command {
       ChassisSpeeds driveSpeeds = swerveSubsystem.getDriveSpeeds(vx, vy, targetHeading, dampener);
 
       if (joy.getLeftTriggerAxis() >= 0.1) {
-        driveSpeeds = new ChassisSpeeds(0
-        , 0, 0);
+        driveSpeeds = new ChassisSpeeds(0, 0, 0);
       }
       swerveSubsystem.setInputSpeeds(driveSpeeds);
 

@@ -32,7 +32,7 @@ public final class IntakeConstants {
     kPivotMotorConfiguration.withFOC = true;
 
     kPivotMotorConfiguration.maxVelocity =
-        kPivotMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM/5.0);
+        kPivotMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM / 5.0);
     kPivotMotorConfiguration.maxAcceleration = kPivotMotorConfiguration.maxVelocity * 2.0;
 
     kPivotMotorConfiguration.altV = kPivotMotorConfiguration.maxVelocity / 2.0;
@@ -62,7 +62,7 @@ public final class IntakeConstants {
     kRollerMotorConfiguration.withFOC = true;
 
     kRollerMotorConfiguration.maxVelocity =
-        kRollerMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM/1.5);
+        kRollerMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM / 1.5);
     kRollerMotorConfiguration.maxAcceleration = kRollerMotorConfiguration.maxVelocity * 2.0;
 
     kRollerMotorConfiguration.kP = 1.0;
@@ -88,7 +88,6 @@ public final class IntakeConstants {
   public static final Rotation2d kPivotMinimumRotation = Rotation2d.fromDegrees(5);
 
   public static final Rotation2d kPivotStartingRotation = Rotation2d.fromDegrees(15);
-
 
   public static final Rotation2d kPivotIntakeRotation = Rotation2d.fromDegrees(150);
 }

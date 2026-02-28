@@ -1,4 +1,5 @@
 package team5427.frc.robot.commands.indexer;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import team5427.frc.robot.subsystems.indexer.IndexerConstants;
 import team5427.frc.robot.subsystems.indexer.IndexerSubsystem;
@@ -13,8 +14,10 @@ public class IndexShoot extends Command {
 
   @Override
   public void execute() {
-    indexerSubsystem.setLeftIndexerVelocitySetpoint(ShooterSubsystem.getInstance().getCurrentLeftShooterSpeed());
-    indexerSubsystem.setRightIndexerVelocitySetpoint(ShooterSubsystem.getInstance().getCurrentLeftShooterSpeed());
+    indexerSubsystem.setLeftIndexerVelocitySetpoint(
+        ShooterSubsystem.getInstance().getCurrentLeftShooterSpeed());
+    indexerSubsystem.setRightIndexerVelocitySetpoint(
+        ShooterSubsystem.getInstance().getCurrentLeftShooterSpeed());
   }
 
   @Override
