@@ -109,12 +109,10 @@ public class MoveWhileShoot extends Command {
       Translation3d virtualTarget = target;
       double tof = 0.0;
       double prevTof = Double.MAX_VALUE;
-        Translation2d distance2d = virtualTarget.minus(shooterFieldPos).toTranslation2d();
-
+      Translation2d distance2d = virtualTarget.minus(shooterFieldPos).toTranslation2d();
 
       for (int i = 0; i < kMaxConvergenceIterations; i++) {
         double distance = virtualTarget.minus(shooterFieldPos).getNorm();
-
 
         tof = AimingConstants.kShootingTable.getTimeOfFlight(distance2d.getNorm());
 
@@ -209,5 +207,4 @@ public class MoveWhileShoot extends Command {
             tangentialSpeed + futureTrackResult.t.vyMetersPerSecond,
             0));
   }
-
 }
