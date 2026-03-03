@@ -1,7 +1,6 @@
 package team5427.frc.robot.subsystems.indexer;
 
 import static edu.wpi.first.units.Units.MetersPerSecond;
-import static edu.wpi.first.units.Units.RadiansPerSecond;
 
 import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -65,11 +64,13 @@ public class IndexerSubsystem extends SubsystemBase {
   }
 
   public void log() {
-    // Logger.recordOutput("Indexer/AngularVelocitySetpoint", setpointVelocity.in(RadiansPerSecond));
+    // Logger.recordOutput("Indexer/AngularVelocitySetpoint",
+    // setpointVelocity.in(RadiansPerSecond));
     // Logger.recordOutput(
     //     "Indexer/ActualAngularVelocity",
     //     inputsAutoLogged.indexerMotorAngularVelocity.in(RadiansPerSecond));
-    // Logger.recordOutput("Indexer/FlywheelVelocity", inputsAutoLogged.indexerFlywheelLinearVelocity);
+    // Logger.recordOutput("Indexer/FlywheelVelocity",
+    // inputsAutoLogged.indexerFlywheelLinearVelocity);
     // Logger.recordOutput("Indexer/Current", inputsAutoLogged.indexerMotorCurrent);
   }
 }

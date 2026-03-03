@@ -21,6 +21,7 @@ public final class IndexerConstants {
   public static final Distance kIndexerFlywheelRadius = Inches.of(1.0);
 
   public static final LinearVelocity kIndexerStowedVelocity = MetersPerSecond.of(0.0);
+
   // public static final LinearVelocity kIndexerIndexingVelocity = MetersPerSecond.of(2.0);
 
   static {

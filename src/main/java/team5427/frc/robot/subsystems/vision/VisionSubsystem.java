@@ -172,11 +172,14 @@ public class VisionSubsystem extends VirtualSubsystem {
 
         double stdDevFactor =
             observation.type().equals(PoseObservationType.PHOTONVISION_SINGLE_TAG)
-                ? Math.pow(observation.averageTagDistance(), 1.5) // squared for single tag (was linear * 2)
+                ? Math.pow(
+                    observation.averageTagDistance(),
+                    1.5) // squared for single tag (was linear * 2)
                 : Math.pow(observation.averageTagDistance(), 1.5) / observation.tagCount();
 
         // Reject observations from tags that are too far away (single camera limitation)
-        if (observation.averageTagDistance() > 5.25) { // 5.25 meters max useful range for one camera
+        if (observation.averageTagDistance()
+            > 5.25) { // 5.25 meters max useful range for one camera
           continue;
         }
 
