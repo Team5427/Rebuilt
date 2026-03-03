@@ -109,11 +109,14 @@ public class MoveWhileShoot extends Command {
       Translation3d virtualTarget = target;
       double tof = 0.0;
       double prevTof = Double.MAX_VALUE;
+        Translation2d distance2d = virtualTarget.minus(shooterFieldPos).toTranslation2d();
+
 
       for (int i = 0; i < kMaxConvergenceIterations; i++) {
         double distance = virtualTarget.minus(shooterFieldPos).getNorm();
 
-        tof = AimingConstants.kShootingTable.getTimeOfFlight(distance);
+
+        tof = AimingConstants.kShootingTable.getTimeOfFlight(distance2d.getNorm());
 
         if (Math.abs(tof - prevTof) < kTofConvergenceThreshold) {
           break;
@@ -154,6 +157,7 @@ public class MoveWhileShoot extends Command {
       Logger.recordOutput(
           "MoveWhileShoot/ShooterFieldPos", new Pose2d(shooterFieldPos2d, targetHeading));
       Logger.recordOutput("MoveWhileShoot/Distance", finalDistance);
+      Logger.recordOutput("MoveWhileShoot/Distance2d", distance2d);
       Logger.recordOutput("MoveWhileShoot/TOF", tof);
       Logger.recordOutput("MoveWhileShoot/PivotAngleDeg", shooterAngle.getDegrees());
       Logger.recordOutput("MoveWhileShoot/FlywheelSpeedMps", shooterVelocity.in(MetersPerSecond));
@@ -206,4 +210,5 @@ public class MoveWhileShoot extends Command {
             tangentialSpeed + futureTrackResult.t.vyMetersPerSecond,
             0));
   }
+
 }

@@ -33,6 +33,7 @@ public class OperatorControls {
   private void initalizeTriggers() {
     // Use command factories instead of inline InstantCommands
     joy.leftTrigger()
+    
         .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKING))
         .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.STOWED));
     joy.leftBumper()
