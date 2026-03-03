@@ -7,8 +7,6 @@ import team5427.frc.robot.Superstructure;
 import team5427.frc.robot.Superstructure.IndexerStates;
 import team5427.frc.robot.Superstructure.IntakeStates;
 import team5427.frc.robot.Superstructure.ShooterStates;
-import team5427.frc.robot.commands.indexer.IndexShoot;
-import team5427.frc.robot.commands.indexer.IndexStow;
 import team5427.frc.robot.commands.intake.IntakeHome;
 import team5427.frc.robot.commands.intake.IntakeIntaking;
 import team5427.frc.robot.commands.intake.IntakeStowed;
@@ -55,8 +53,8 @@ public class OperatorControls {
                   ShooterSubsystem.getInstance()
                       .setRightShooterSpeed(ShooterConstants.kShooterStowVelocity);
                 }));
-    Superstructure.indexerStateIs(IndexerStates.STOWED).whileTrue(new IndexStow());
-    Superstructure.indexerStateIs(IndexerStates.INDEXING).whileTrue(new IndexShoot());
+    // Superstructure.indexerStateIs(IndexerStates.STOWED).whileTrue(new IndexStow());
+    // Superstructure.indexerStateIs(IndexerStates.INDEXING).whileTrue(new IndexShoot());
     // Use class-level trigger factory methods instead of nested class references
     Superstructure.intakeStateIs(IntakeStates.INTAKING)
         .and(Superstructure.swerveStateIs(Superstructure.SwerveStates.INTAKE_ASSISTANCE).negate())
