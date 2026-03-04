@@ -51,6 +51,8 @@ public class IndexerSubsystem extends SubsystemBase {
     io.setLeftIndexerMotorVelocity(leftIndexerVelocitySetpoint);
     io.setRightIndexerMotorVelocity(rightIndexerVelocitySetpoint);
 
+    Logger.recordOutput("Indexer/LeftIndexerLinearVelocity", leftIndexerVelocitySetpoint);
+
     Logger.processInputs("Indexer/Inputs", inputsAutoLogged);
     log();
   }

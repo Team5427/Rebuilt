@@ -30,6 +30,7 @@ import team5427.frc.robot.io.OperatorControls;
 import team5427.frc.robot.io.PilotingControls;
 import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
+import team5427.frc.robot.subsystems.indexer.IndexerSubsystem;
 import team5427.frc.robot.subsystems.intake.IntakeSubsystem;
 import team5427.frc.robot.subsystems.shooter.ShooterSubsystem;
 import team5427.frc.robot.subsystems.vision.VisionSubsystem;
@@ -60,6 +61,7 @@ public class RobotContainer {
         SwerveSubsystem.getInstance(RobotPose.getInstance()::addOdometryMeasurement);
         IntakeSubsystem.getInstance();
         ShooterSubsystem.getInstance();
+        IndexerSubsystem.getInstance();
         break;
       case REPLAY:
         SwerveSubsystem.getInstance(RobotPose.getInstance()::addOdometryMeasurement);

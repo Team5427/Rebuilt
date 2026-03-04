@@ -14,8 +14,8 @@ import team5427.lib.motors.MotorConfiguration.MotorMode;
 import team5427.lib.motors.MotorUtil;
 
 public final class IndexerConstants {
-  public static final CANDeviceId kIndexerLeftMotorCanId = new CANDeviceId(12);
-  public static final CANDeviceId kIndexerRightMotorCanId = new CANDeviceId(13);
+  public static final CANDeviceId kIndexerLeftMotorCanId = new CANDeviceId(26);
+  // public static final CANDeviceId kIndexerRightMotorCanId = new CANDeviceId(13);
 
   public static MotorConfiguration kIndexerMotorConfiguration = new MotorConfiguration();
   public static final Distance kIndexerFlywheelRadius = Inches.of(1.0);
@@ -32,7 +32,7 @@ public final class IndexerConstants {
     kIndexerMotorConfiguration.mode = MotorMode.kFlywheel;
     kIndexerMotorConfiguration.idleState = IdleState.kBrake;
     kIndexerMotorConfiguration.isArm = false;
-    kIndexerMotorConfiguration.isInverted = false;
+    kIndexerMotorConfiguration.isInverted = true;
     kIndexerMotorConfiguration.currentLimit = 40;
     kIndexerMotorConfiguration.finalDiameterMeters = kIndexerFlywheelRadius.times(2.0).in(Meters);
     kIndexerMotorConfiguration.withFOC = false;

@@ -79,7 +79,7 @@ public final class ShooterConstants {
     kFlywheelMotorConfiguration.gearRatio = kFlywheelMotorGearRatio;
     kFlywheelMotorConfiguration.isArm = false;
     kFlywheelMotorConfiguration.idleState = IdleState.kCoast;
-    kFlywheelMotorConfiguration.isInverted = true;
+    kFlywheelMotorConfiguration.isInverted = false;
     kFlywheelMotorConfiguration.mode = MotorMode.kFlywheel;
     kFlywheelMotorConfiguration.withFOC = false;
     kFlywheelMotorConfiguration.finalDiameterMeters =

@@ -16,8 +16,8 @@ public class IndexShoot extends Command {
   public void execute() {
     indexerSubsystem.setLeftIndexerVelocitySetpoint(
         ShooterSubsystem.getInstance().getCurrentLeftShooterSpeed());
-    indexerSubsystem.setRightIndexerVelocitySetpoint(
-        ShooterSubsystem.getInstance().getCurrentLeftShooterSpeed());
+    // indexerSubsystem.setRightIndexerVelocitySetpoint(
+    //     ShooterSubsystem.getInstance().getCurrentLeftShooterSpeed());
   }
 
   @Override

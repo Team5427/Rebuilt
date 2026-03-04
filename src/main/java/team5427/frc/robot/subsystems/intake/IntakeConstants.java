@@ -52,6 +52,10 @@ public final class IntakeConstants {
     kPivotMotorConfiguration.currentLimit = 60;
   }
 
+  // lt changes roller velocity to intaking brings out intake
+  // a resets everything
+  // lb oscillates between out to stow, reverts to out
+
   static {
     kRollerMotorConfiguration.gearRatio = kRollerMotorGearRatio;
     kRollerMotorConfiguration.finalDiameterMeters = Units.inchesToMeters(2.0);
@@ -75,14 +79,15 @@ public final class IntakeConstants {
     kRollerMotorConfiguration.kG = 0.0;
     kRollerMotorConfiguration.kFF = 0.0;
 
-    kRollerMotorConfiguration.currentLimit = 30;
+    kRollerMotorConfiguration.currentLimit = 60;
   }
 
   public static final double kPivotMotorSimulatedkP = 0.5;
   public static final double kRollerMotorSimulatedkP = 0.2;
 
   public static final LinearVelocity kRollerStowedVelocity = MetersPerSecond.of(0.1);
-  public static final LinearVelocity kRollerIntakeVelocity = MetersPerSecond.of(5);
+  public static final LinearVelocity kRollerNeutralVelocity = MetersPerSecond.of(2.5);
+  public static final LinearVelocity kRollerIntakeVelocity = MetersPerSecond.of(10);
 
   public static final Rotation2d kPivotMaximumRotation = Rotation2d.fromDegrees(200);
   public static final Rotation2d kPivotMinimumRotation = Rotation2d.fromDegrees(5);
