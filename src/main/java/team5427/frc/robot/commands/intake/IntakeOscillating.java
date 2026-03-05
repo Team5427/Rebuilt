@@ -2,8 +2,6 @@ package team5427.frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import team5427.frc.robot.Superstructure;
-import team5427.frc.robot.Superstructure.IntakeStates;
 import team5427.frc.robot.subsystems.intake.IntakeConstants;
 import team5427.frc.robot.subsystems.intake.IntakeSubsystem;
 
@@ -33,7 +31,6 @@ public class IntakeOscillating extends Command {
     new WaitCommand(0.3);
     subsystem.setIntakingRotation(IntakeConstants.kPivotIntakeRotation.div(2.0));
     new WaitCommand(0.3);
-
   }
 
   @Override

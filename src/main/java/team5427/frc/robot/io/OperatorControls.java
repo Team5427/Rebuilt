@@ -1,7 +1,5 @@
 package team5427.frc.robot.io;
 
-import org.ironmaple.simulation.IntakeSimulation.IntakeSide;
-
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import team5427.frc.robot.Constants.DriverConstants;
