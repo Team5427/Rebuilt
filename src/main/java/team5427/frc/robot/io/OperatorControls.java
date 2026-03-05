@@ -1,5 +1,7 @@
 package team5427.frc.robot.io;
 
+import org.ironmaple.simulation.IntakeSimulation.IntakeSide;
+
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import team5427.frc.robot.Constants.DriverConstants;
@@ -11,6 +13,7 @@ import team5427.frc.robot.commands.indexer.IndexShoot;
 import team5427.frc.robot.commands.indexer.IndexStow;
 import team5427.frc.robot.commands.intake.IntakeHome;
 import team5427.frc.robot.commands.intake.IntakeIntaking;
+import team5427.frc.robot.commands.intake.IntakeNeutral;
 import team5427.frc.robot.commands.intake.IntakeOscillating;
 import team5427.frc.robot.commands.intake.IntakeStowed;
 import team5427.frc.robot.subsystems.shooter.ShooterConstants;
@@ -40,7 +43,8 @@ public class OperatorControls {
         .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKING))
         .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
     joy.leftBumper()
-        .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKEOSCILLATING));
+        .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKEOSCILLATING))
+        .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
     // joy.leftBumper()
     //     .whileTrue(
     //         Superstructure.intakeStateIs(IntakeStates.STOWED).getAsBoolean()
@@ -79,9 +83,10 @@ public class OperatorControls {
     Superstructure.intakeStateIs(IntakeStates.INTAKING)
         .and(Superstructure.swerveStateIs(Superstructure.SwerveStates.INTAKE_ASSISTANCE).negate())
         .whileTrue(new IntakeIntaking());
+    Superstructure.intakeStateIs(IntakeStates.INTAKEOSCILLATING).whileTrue(new IntakeOscillating());
 
     Superstructure.intakeStateIs(IntakeStates.STOWED).whileTrue(new IntakeStowed());
-    Superstructure.intakeStateIs(IntakeStates.INTAKEOSCILLATING).whileTrue(new IntakeOscillating());
+    Superstructure.intakeStateIs(IntakeStates.INTAKENEUTRAL).whileTrue(new IntakeNeutral());
     Superstructure.intakeStateIs(IntakeStates.HOMING).whileTrue(new IntakeHome());
   }
 }

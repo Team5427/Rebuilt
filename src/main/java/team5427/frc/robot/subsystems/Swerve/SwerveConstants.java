@@ -6,7 +6,6 @@ import static edu.wpi.first.units.Units.RotationsPerSecond;
 import static edu.wpi.first.units.Units.Volts;
 
 import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
@@ -15,7 +14,6 @@ import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.units.measure.MomentOfInertia;
 import edu.wpi.first.units.measure.Voltage;
 import team5427.frc.robot.Constants;
-import team5427.frc.robot.FieldConstants;
 import team5427.lib.drivers.CANDeviceId;
 import team5427.lib.motors.MotorConfiguration;
 import team5427.lib.motors.MotorConfiguration.IdleState;
@@ -32,7 +30,7 @@ public final class SwerveConstants {
   public static final Distance kBumperYSize = Inches.of(32.0);
 
   public static final Pose2d kLeftClimbPose = Pose2d.kZero;
-  public static final Pose2d kMiddleClimbPose = Pose2d.kZero;   
+  public static final Pose2d kMiddleClimbPose = Pose2d.kZero;
   public static final Pose2d kRightClimbPose = Pose2d.kZero;
 
   public static final AngularVelocity kMaxAngularVelocity = RotationsPerSecond.of(4.0);

@@ -26,20 +26,20 @@ public final class AimingConstants {
     kShootingTable.addPivotAngle(4.830, 29.0); // 5.0m 3D
 
     // ---------------- Flywheel Speed ----------------
-    kShootingTable.addFlyWheelSpeed(2.707, 3.5);
-    kShootingTable.addFlyWheelSpeed(2.982, 3.6);
-    kShootingTable.addFlyWheelSpeed(3.253, 3.7);
-    kShootingTable.addFlyWheelSpeed(3.519, 3.75);
-    kShootingTable.addFlyWheelSpeed(3.785, 3.9);
-    kShootingTable.addFlyWheelSpeed(4.048, 4.1);
-    kShootingTable.addFlyWheelSpeed(4.310, 4.3);
-    kShootingTable.addFlyWheelSpeed(4.571, 4.35);
-    kShootingTable.addFlyWheelSpeed(4.830, 4.6);
+    kShootingTable.addFlyWheelSpeed(2.707, 2.85);
+    kShootingTable.addFlyWheelSpeed(2.982, 2.95);
+    kShootingTable.addFlyWheelSpeed(3.253, 3.05);
+    kShootingTable.addFlyWheelSpeed(3.519, 3.1);
+    kShootingTable.addFlyWheelSpeed(3.785, 3.25);
+    kShootingTable.addFlyWheelSpeed(4.048, 3.45);
+    kShootingTable.addFlyWheelSpeed(4.310, 3.65);
+    kShootingTable.addFlyWheelSpeed(4.571, 3.7);
+    kShootingTable.addFlyWheelSpeed(4.830, 3.95);
 
     // ---------------- Time Of Flight ----------------
-    kShootingTable.addTimeOfFlight(2.707, 0.75);
-    kShootingTable.addTimeOfFlight(2.982, 0.75);
-    kShootingTable.addTimeOfFlight(3.253, 0.75);
+    kShootingTable.addTimeOfFlight(2.707, 0.3);
+    kShootingTable.addTimeOfFlight(2.982, 0.4);
+    kShootingTable.addTimeOfFlight(3.253, 0.6);
     kShootingTable.addTimeOfFlight(3.519, 0.58);
     kShootingTable.addTimeOfFlight(3.785, 0.65);
     kShootingTable.addTimeOfFlight(4.048, 0.68);

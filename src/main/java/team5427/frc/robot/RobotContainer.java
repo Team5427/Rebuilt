@@ -135,23 +135,38 @@ public class RobotContainer {
             .alongWith(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING))
             .withTimeout(2.5));
     NamedCommands.registerCommand(
-        "AutoAlignClimbLeft", Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)
-      .alongWith(new MoveChassisToPose(DriverProfiles.kSelectedDriverState.modeType.equals(DriverProfiles.DriverModeType.SINGLE)
-            ? new CommandXboxController(DriverConstants.kDriverJoystickPort)
-            : new CommandXboxController(DriverConstants.kDriverJoystickPort), SwerveConstants.kLeftClimbPose))
-          .withTimeout(2.5));
+        "AutoAlignClimbLeft",
+        Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)
+            .alongWith(
+                new MoveChassisToPose(
+                    DriverProfiles.kSelectedDriverState.modeType.equals(
+                            DriverProfiles.DriverModeType.SINGLE)
+                        ? new CommandXboxController(DriverConstants.kDriverJoystickPort)
+                        : new CommandXboxController(DriverConstants.kDriverJoystickPort),
+                    SwerveConstants.kLeftClimbPose))
+            .withTimeout(2.5));
     NamedCommands.registerCommand(
-        "AutoAlignClimbMiddle", Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)
-      .alongWith(new MoveChassisToPose(DriverProfiles.kSelectedDriverState.modeType.equals(DriverProfiles.DriverModeType.SINGLE)
-            ? new CommandXboxController(DriverConstants.kDriverJoystickPort)
-            : new CommandXboxController(DriverConstants.kDriverJoystickPort), SwerveConstants.kMiddleClimbPose))
-          .withTimeout(2.5));
+        "AutoAlignClimbMiddle",
+        Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)
+            .alongWith(
+                new MoveChassisToPose(
+                    DriverProfiles.kSelectedDriverState.modeType.equals(
+                            DriverProfiles.DriverModeType.SINGLE)
+                        ? new CommandXboxController(DriverConstants.kDriverJoystickPort)
+                        : new CommandXboxController(DriverConstants.kDriverJoystickPort),
+                    SwerveConstants.kMiddleClimbPose))
+            .withTimeout(2.5));
     NamedCommands.registerCommand(
-        "AutoAlignClimbRight", Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)
-      .alongWith(new MoveChassisToPose(DriverProfiles.kSelectedDriverState.modeType.equals(DriverProfiles.DriverModeType.SINGLE)
-            ? new CommandXboxController(DriverConstants.kDriverJoystickPort)
-            : new CommandXboxController(DriverConstants.kDriverJoystickPort), SwerveConstants.kRightClimbPose))
-          .withTimeout(2.5));
+        "AutoAlignClimbRight",
+        Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)
+            .alongWith(
+                new MoveChassisToPose(
+                    DriverProfiles.kSelectedDriverState.modeType.equals(
+                            DriverProfiles.DriverModeType.SINGLE)
+                        ? new CommandXboxController(DriverConstants.kDriverJoystickPort)
+                        : new CommandXboxController(DriverConstants.kDriverJoystickPort),
+                    SwerveConstants.kRightClimbPose))
+            .withTimeout(2.5));
     NamedCommands.registerCommand(
         "Intake", Superstructure.setIntakeStateCommand(IntakeStates.INTAKING));
     NamedCommands.registerCommand(
