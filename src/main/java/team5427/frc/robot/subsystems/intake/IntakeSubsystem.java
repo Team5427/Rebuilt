@@ -146,6 +146,10 @@ public class IntakeSubsystem extends SubsystemBase {
     io.resetPivotMotorPosition(rotation);
   }
 
+  public Rotation2d getIntakingRotation2d() {
+    return intakingAngle;
+  }
+
   public void log() {
     Logger.recordOutput("Intake/IntakingSpeed", intakingSpeed.in(MetersPerSecond));
     Logger.recordOutput("Intake/IntakingAngle", intakingAngle);

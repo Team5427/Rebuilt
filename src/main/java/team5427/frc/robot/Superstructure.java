@@ -41,7 +41,8 @@ public final class Superstructure {
     DISABLED,
     STOWED,
     OUTAKING,
-    INTAKENEUTRAL
+    INTAKENEUTRAL,
+    INTAKEOSCILLATING
   }
 
   // Shooter States Enum

@@ -11,9 +11,8 @@ import team5427.frc.robot.commands.indexer.IndexShoot;
 import team5427.frc.robot.commands.indexer.IndexStow;
 import team5427.frc.robot.commands.intake.IntakeHome;
 import team5427.frc.robot.commands.intake.IntakeIntaking;
-import team5427.frc.robot.commands.intake.IntakeNeutral;
+import team5427.frc.robot.commands.intake.IntakeOscillating;
 import team5427.frc.robot.commands.intake.IntakeStowed;
-import team5427.frc.robot.subsystems.intake.IntakeSubsystem;
 import team5427.frc.robot.subsystems.shooter.ShooterConstants;
 import team5427.frc.robot.subsystems.shooter.ShooterSubsystem;
 
@@ -41,11 +40,13 @@ public class OperatorControls {
         .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKING))
         .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
     joy.leftBumper()
-        .whileTrue(
-            Superstructure.intakeStateIs(IntakeStates.STOWED).getAsBoolean()
-                ? Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL)
-                : Superstructure.setIntakeStateCommand(IntakeStates.STOWED))
-        .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
+        .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKEOSCILLATING));
+    // joy.leftBumper()
+    //     .whileTrue(
+    //         Superstructure.intakeStateIs(IntakeStates.STOWED).getAsBoolean()
+    //             ? Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL)
+    //             : Superstructure.setIntakeStateCommand(IntakeStates.STOWED))
+    //     .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
     // joy.rightBumper()
     //     .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.HOMING))
     //     .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.DISABLED));
@@ -80,24 +81,7 @@ public class OperatorControls {
         .whileTrue(new IntakeIntaking());
 
     Superstructure.intakeStateIs(IntakeStates.STOWED).whileTrue(new IntakeStowed());
-
+    Superstructure.intakeStateIs(IntakeStates.INTAKEOSCILLATING).whileTrue(new IntakeOscillating());
     Superstructure.intakeStateIs(IntakeStates.HOMING).whileTrue(new IntakeHome());
-
-    Superstructure.intakeStateIs(IntakeStates.INTAKENEUTRAL).whileTrue(new IntakeNeutral());
-
-    Superstructure.intakeStateIs(IntakeStates.DISABLED)
-        .whileTrue(
-            new InstantCommand(
-                () -> {
-                  IntakeSubsystem.getInstance().disablePivotMotor(true);
-                  IntakeSubsystem.getInstance().disableRollerMotor(true);
-                },
-                IntakeSubsystem.getInstance()))
-        .onFalse(
-            new InstantCommand(
-                () -> {
-                  IntakeSubsystem.getInstance().disablePivotMotor(false);
-                  IntakeSubsystem.getInstance().disableRollerMotor(false);
-                }));
   }
 }
