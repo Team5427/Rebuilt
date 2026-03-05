@@ -7,60 +7,62 @@ import com.ctre.phoenix6.BaseStatusSignal;
 import com.ctre.phoenix6.StatusSignal;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Current;
+import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.units.measure.Voltage;
 import team5427.frc.robot.subsystems.indexer.IndexerConstants;
 import team5427.frc.robot.subsystems.indexer.io.IndexerIO.IndexerIOInputs;
 import team5427.lib.motors.SteelTalonFX;
 
 public class IndexerIOTalonFX implements IndexerIO {
-  private SteelTalonFX rightIndexerMotor;
+  // private SteelTalonFX rightIndexerMotor;
   private SteelTalonFX leftIndexerMotor;
 
   private StatusSignal<AngularVelocity> leftIndexerMotorAngularVelocity;
-  private StatusSignal<AngularVelocity> rightIndexerMotorAngularVelocity;
+  // private StatusSignal<AngularVelocity> rightIndexerMotorAngularVelocity;
 
   private StatusSignal<Current> leftIndexerMotorCurrent;
-  private StatusSignal<Current> rightIndexerMotorCurrent;
+  // private StatusSignal<Current> rightIndexerMotorCurrent;
 
   private StatusSignal<Voltage> leftIndexerMotorVoltage;
-  private StatusSignal<Voltage> rightIndexerMotorVoltage;
+
+  // private StatusSignal<Voltage> rightIndexerMotorVoltage;
 
   public IndexerIOTalonFX() {
-    rightIndexerMotor = new SteelTalonFX(IndexerConstants.kIndexerLeftMotorCanId);
-    leftIndexerMotor = new SteelTalonFX(IndexerConstants.kIndexerRightMotorCanId);
+    // rightIndexerMotor = new SteelTalonFX(IndexerConstants.kIndexerRightMotorCanId);
+    leftIndexerMotor = new SteelTalonFX(IndexerConstants.kIndexerLeftMotorCanId);
 
-    rightIndexerMotor.apply(IndexerConstants.kIndexerMotorConfiguration);
+    // rightIndexerMotor.apply(IndexerConstants.kIndexerMotorConfiguration);
     leftIndexerMotor.apply(IndexerConstants.kIndexerMotorConfiguration);
 
-    rightIndexerMotor.setEncoderPosition(0);
+    // rightIndexerMotor.setEncoderPosition(0);
     leftIndexerMotor.setEncoderPosition(0);
     leftIndexerMotorAngularVelocity = leftIndexerMotor.getTalonFX().getVelocity();
-    rightIndexerMotorAngularVelocity = rightIndexerMotor.getTalonFX().getVelocity();
+    // rightIndexerMotorAngularVelocity = rightIndexerMotor.getTalonFX().getVelocity();
 
     leftIndexerMotorCurrent = leftIndexerMotor.getTalonFX().getStatorCurrent();
     leftIndexerMotorVoltage = leftIndexerMotor.getTalonFX().getMotorVoltage();
 
-    rightIndexerMotorCurrent = rightIndexerMotor.getTalonFX().getStatorCurrent();
-    rightIndexerMotorVoltage = rightIndexerMotor.getTalonFX().getMotorVoltage();
+    // rightIndexerMotorCurrent = rightIndexerMotor.getTalonFX().getStatorCurrent();
+    // rightIndexerMotorVoltage = rightIndexerMotor.getTalonFX().getMotorVoltage();
     BaseStatusSignal.refreshAll(
         leftIndexerMotorAngularVelocity,
-        rightIndexerMotorAngularVelocity,
+        // rightIndexerMotorAngularVelocity,
         leftIndexerMotorCurrent,
-        rightIndexerMotorCurrent,
-        leftIndexerMotorVoltage,
-        rightIndexerMotorVoltage);
+        // rightIndexerMotorCurrent,
+        leftIndexerMotorVoltage);
+    // rightIndexerMotorVoltage);
   }
 
   public void updateInputs(IndexerIOInputs inputs) {
     BaseStatusSignal.refreshAll(
         leftIndexerMotorAngularVelocity,
-        rightIndexerMotorAngularVelocity,
+        // rightIndexerMotorAngularVelocity,
         leftIndexerMotorCurrent,
-        rightIndexerMotorCurrent,
-        leftIndexerMotorVoltage,
-        rightIndexerMotorVoltage);
+        // rightIndexerMotorCurrent,
+        leftIndexerMotorVoltage);
+    // rightIndexerMotorVoltage);
     inputs.leftIndexerMotorConnected = leftIndexerMotor.getTalonFX().isConnected();
-    inputs.rightIndexerMotorConnected = rightIndexerMotor.getTalonFX().isConnected();
+    // inputs.rightIndexerMotorConnected = rightIndexerMotor.getTalonFX().isConnected();
 
     inputs.leftIndexerMotorAngularVelocity = leftIndexerMotorAngularVelocity.getValue();
     inputs.leftIndexerMotorLinearVelocity =
@@ -70,12 +72,20 @@ public class IndexerIOTalonFX implements IndexerIO {
     inputs.leftIndexerMotorCurrent = leftIndexerMotorCurrent.getValue();
     inputs.leftIndexerMotorVoltage = leftIndexerMotorVoltage.getValue();
 
-    inputs.rightIndexerMotorAngularVelocity = rightIndexerMotorAngularVelocity.getValue();
-    inputs.rightIndexerMotorLinearVelocity =
-        MetersPerSecond.of(
-            rightIndexerMotor.getConversionFactorFromRotations()
-                * rightIndexerMotorAngularVelocity.getValue().in(RotationsPerSecond));
-    inputs.rightIndexerMotorCurrent = rightIndexerMotorCurrent.getValue();
-    inputs.rightIndexerMotorVoltage = rightIndexerMotorVoltage.getValue();
+    // inputs.rightIndexerMotorAngularVelocity = rightIndexerMotorAngularVelocity.getValue();
+    // inputs.rightIndexerMotorLinearVelocity =
+    //     MetersPerSecond.of(
+    //         rightIndexerMotor.getConversionFactorFromRotations()
+    //             * rightIndexerMotorAngularVelocity.getValue().in(RotationsPerSecond));
+    // inputs.rightIndexerMotorCurrent = rightIndexerMotorCurrent.getValue();
+    // inputs.rightIndexerMotorVoltage = rightIndexerMotorVoltage.getValue();
+  }
+
+  @Override
+  public void setRightIndexerMotorVelocity(LinearVelocity velocity) {}
+
+  @Override
+  public void setLeftIndexerMotorVelocity(LinearVelocity velocity) {
+    leftIndexerMotor.setSetpoint(velocity);
   }
 }

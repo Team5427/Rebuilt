@@ -1,7 +1,6 @@
 package team5427.frc.robot.subsystems.indexer;
 
 import static edu.wpi.first.units.Units.MetersPerSecond;
-import static edu.wpi.first.units.Units.RadiansPerSecond;
 
 import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -52,6 +51,8 @@ public class IndexerSubsystem extends SubsystemBase {
     io.setLeftIndexerMotorVelocity(leftIndexerVelocitySetpoint);
     io.setRightIndexerMotorVelocity(rightIndexerVelocitySetpoint);
 
+    Logger.recordOutput("Indexer/LeftIndexerLinearVelocity", leftIndexerVelocitySetpoint);
+
     Logger.processInputs("Indexer/Inputs", inputsAutoLogged);
     log();
   }
@@ -65,10 +66,20 @@ public class IndexerSubsystem extends SubsystemBase {
   }
 
   public void log() {
+<<<<<<< HEAD
     // Logger.recordOutput("Indexer/AngularVelocitySetpoint", setpointVelocity.in(RadiansPerSecond));
     // Logger.recordOutput(
     //     "Indexer/ActualAngularVelocity",
     //     inputsAutoLogged.indexerMotorAngularVelocity.in(RadiansPerSecond));
+=======
+    // Logger.recordOutput("Indexer/AngularVelocitySetpoint",
+    // setpointVelocity.in(RadiansPerSecond));
+    // Logger.recordOutput(
+    //     "Indexer/ActualAngularVelocity",
+    //     inputsAutoLogged.indexerMotorAngularVelocity.in(RadiansPerSecond));
+    // Logger.recordOutput("Indexer/FlywheelVelocity",
+    // inputsAutoLogged.indexerFlywheelLinearVelocity);
+>>>>>>> 079206a607ae0932c7b35aebb1d2b5693f46a974
     // Logger.recordOutput("Indexer/Current", inputsAutoLogged.indexerMotorCurrent);
   }
 }

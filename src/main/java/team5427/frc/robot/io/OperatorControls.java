@@ -11,6 +11,10 @@ import team5427.frc.robot.commands.indexer.IndexShoot;
 import team5427.frc.robot.commands.indexer.IndexStow;
 import team5427.frc.robot.commands.intake.IntakeHome;
 import team5427.frc.robot.commands.intake.IntakeIntaking;
+<<<<<<< HEAD
+=======
+import team5427.frc.robot.commands.intake.IntakeNeutral;
+>>>>>>> 079206a607ae0932c7b35aebb1d2b5693f46a974
 import team5427.frc.robot.commands.intake.IntakeStowed;
 import team5427.frc.robot.subsystems.intake.IntakeSubsystem;
 import team5427.frc.robot.subsystems.shooter.ShooterConstants;
@@ -29,18 +33,34 @@ public class OperatorControls {
     initalizeTriggers();
   }
 
+  // lt changes roller velocity to intaking brings out intake
+  // a resets everything
+  // lb oscillates between out to stow, reverts to out
+
   /** Made private to prevent multiple calls to this method */
   private void initalizeTriggers() {
     // Use command factories instead of inline InstantCommands
     joy.leftTrigger()
         .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKING))
-        .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.STOWED));
+        .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
     joy.leftBumper()
-        .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.HOMING))
-        .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.DISABLED));
+        .whileTrue(
+            Superstructure.intakeStateIs(IntakeStates.STOWED).getAsBoolean()
+                ? Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL)
+                : Superstructure.setIntakeStateCommand(IntakeStates.STOWED))
+        .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
+    // joy.rightBumper()
+    //     .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.HOMING))
+    //     .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.DISABLED));
     joy.rightTrigger()
         .whileTrue(Superstructure.setIndexerStateCommand(IndexerStates.INDEXING))
         .onFalse(Superstructure.setIndexerStateCommand(IndexerStates.STOWED));
+
+    joy.a()
+        .onTrue(
+            Superstructure.setIntakeStateCommand(IntakeStates.STOWED)
+                .alongWith(Superstructure.setIndexerStateCommand(IndexerStates.STOWED)));
+    // to-do add disable climb
 
     Superstructure.shooterStateIs(ShooterStates.STOWED)
         .whileTrue(
@@ -59,14 +79,19 @@ public class OperatorControls {
     Superstructure.indexerStateIs(IndexerStates.INDEXING).whileTrue(new IndexShoot());
     // Use class-level trigger factory methods instead of nested class references
     Superstructure.intakeStateIs(IntakeStates.INTAKING)
+<<<<<<< HEAD
     
     .and(Superstructure.swerveStateIs(Superstructure.SwerveStates.INTAKE_ASSISTANCE).negate())
+=======
+        .and(Superstructure.swerveStateIs(Superstructure.SwerveStates.INTAKE_ASSISTANCE).negate())
+>>>>>>> 079206a607ae0932c7b35aebb1d2b5693f46a974
         .whileTrue(new IntakeIntaking());
 
     Superstructure.intakeStateIs(IntakeStates.STOWED).whileTrue(new IntakeStowed());
 
     Superstructure.intakeStateIs(IntakeStates.HOMING).whileTrue(new IntakeHome());
 
+<<<<<<< HEAD
       Superstructure.intakeStateIs(IntakeStates.DISABLED)
           .whileTrue(
               new InstantCommand(
@@ -81,5 +106,23 @@ public class OperatorControls {
                     IntakeSubsystem.getInstance().disablePivotMotor(false);
                     IntakeSubsystem.getInstance().disableRollerMotor(false);
                   }));
+=======
+    Superstructure.intakeStateIs(IntakeStates.INTAKENEUTRAL).whileTrue(new IntakeNeutral());
+
+    Superstructure.intakeStateIs(IntakeStates.DISABLED)
+        .whileTrue(
+            new InstantCommand(
+                () -> {
+                  IntakeSubsystem.getInstance().disablePivotMotor(true);
+                  IntakeSubsystem.getInstance().disableRollerMotor(true);
+                },
+                IntakeSubsystem.getInstance()))
+        .onFalse(
+            new InstantCommand(
+                () -> {
+                  IntakeSubsystem.getInstance().disablePivotMotor(false);
+                  IntakeSubsystem.getInstance().disableRollerMotor(false);
+                }));
+>>>>>>> 079206a607ae0932c7b35aebb1d2b5693f46a974
   }
 }

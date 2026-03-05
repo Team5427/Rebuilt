@@ -42,7 +42,7 @@ public final class ShooterConstants {
   public static final double kTopFlywheelRadiusMeters = Units.inchesToMeters(1.0);
   public static final double kBottomFlywheelRadiusMeters = Units.inchesToMeters(2.0);
 
-  public static final Rotation2d kHoodHardstopPosition = Rotation2d.fromDegrees(180.0 - 162.2820);
+  public static final Rotation2d kHoodHardstopPosition = Rotation2d.fromDegrees(28.01);
   public static final Rotation2d kHoodMaximumRotation = Rotation2d.fromDegrees(62.227);
 
   public static final LinearVelocity kShooterStowVelocity = MetersPerSecond.of(1.0);
@@ -79,7 +79,7 @@ public final class ShooterConstants {
     kFlywheelMotorConfiguration.gearRatio = kFlywheelMotorGearRatio;
     kFlywheelMotorConfiguration.isArm = false;
     kFlywheelMotorConfiguration.idleState = IdleState.kCoast;
-    kFlywheelMotorConfiguration.isInverted = true;
+    kFlywheelMotorConfiguration.isInverted = false;
     kFlywheelMotorConfiguration.mode = MotorMode.kFlywheel;
     kFlywheelMotorConfiguration.withFOC = false;
     kFlywheelMotorConfiguration.finalDiameterMeters =
