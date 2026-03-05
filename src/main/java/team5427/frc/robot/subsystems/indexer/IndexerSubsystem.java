@@ -66,12 +66,6 @@ public class IndexerSubsystem extends SubsystemBase {
   }
 
   public void log() {
-<<<<<<< HEAD
-    // Logger.recordOutput("Indexer/AngularVelocitySetpoint", setpointVelocity.in(RadiansPerSecond));
-    // Logger.recordOutput(
-    //     "Indexer/ActualAngularVelocity",
-    //     inputsAutoLogged.indexerMotorAngularVelocity.in(RadiansPerSecond));
-=======
     // Logger.recordOutput("Indexer/AngularVelocitySetpoint",
     // setpointVelocity.in(RadiansPerSecond));
     // Logger.recordOutput(
@@ -79,7 +73,6 @@ public class IndexerSubsystem extends SubsystemBase {
     //     inputsAutoLogged.indexerMotorAngularVelocity.in(RadiansPerSecond));
     // Logger.recordOutput("Indexer/FlywheelVelocity",
     // inputsAutoLogged.indexerFlywheelLinearVelocity);
->>>>>>> 079206a607ae0932c7b35aebb1d2b5693f46a974
     // Logger.recordOutput("Indexer/Current", inputsAutoLogged.indexerMotorCurrent);
   }
 }
