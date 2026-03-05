@@ -10,6 +10,7 @@ import org.littletonrobotics.junction.Logger;
 import team5427.frc.robot.Constants;
 import team5427.frc.robot.subsystems.shooter.io.ShooterIO;
 import team5427.frc.robot.subsystems.shooter.io.ShooterIOInputsAutoLogged;
+import team5427.frc.robot.subsystems.shooter.io.ShooterIOSim;
 import team5427.frc.robot.subsystems.shooter.io.ShooterIOTalonFX;
 
 public class ShooterSubsystem extends SubsystemBase {
@@ -36,7 +37,9 @@ public class ShooterSubsystem extends SubsystemBase {
     switch (Constants.currentMode) {
       case REAL:
         io = new ShooterIOTalonFX();
+        break;
       case SIM:
+        io = new ShooterIOSim();
         break;
       case REPLAY:
         break;

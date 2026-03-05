@@ -10,6 +10,7 @@ import org.littletonrobotics.junction.Logger;
 import team5427.frc.robot.Constants;
 import team5427.frc.robot.subsystems.indexer.io.IndexerIO;
 import team5427.frc.robot.subsystems.indexer.io.IndexerIOInputsAutoLogged;
+import team5427.frc.robot.subsystems.indexer.io.IndexerIOSim;
 import team5427.frc.robot.subsystems.indexer.io.IndexerIOTalonFX;
 
 public class IndexerSubsystem extends SubsystemBase {
@@ -35,7 +36,7 @@ public class IndexerSubsystem extends SubsystemBase {
         io = new IndexerIOTalonFX();
         break;
       case SIM:
-        // TODO: Implement IndexerIOSim if needed
+        io = new IndexerIOSim();
         break;
       default:
         break;
