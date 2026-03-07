@@ -16,17 +16,12 @@ public final class IntakeConstants {
   public static MotorConfiguration kPivotMotorConfiguration = new MotorConfiguration();
   public static MotorConfiguration kRollerMotorConfiguration = new MotorConfiguration();
 
-
   public static final ComplexGearRatio kPivotMotorGearRatio =
       new ComplexGearRatio((8.0 / 54.0), (18.0 / 54.0));
   public static final ComplexGearRatio kRollerMotorGearRatio = new ComplexGearRatio((14.0 / 24.0));
 
   public static final CANDeviceId kPivotMotorCanId = new CANDeviceId(17);
   public static final CANDeviceId kRollerMotorCanId = new CANDeviceId(16);
-
-  public static final double kPivotMotorMaxVelocity = kPivotMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM / 5.0);
-  public static final double kPivotMotorMaxAcceleration = kPivotMotorMaxVelocity * 2.0;
-
 
   static {
     kPivotMotorConfiguration.gearRatio = kPivotMotorGearRatio;
@@ -37,8 +32,8 @@ public final class IntakeConstants {
     kPivotMotorConfiguration.withFOC = true;
 
     kPivotMotorConfiguration.maxVelocity =
-        kPivotMotorMaxVelocity;
-    kPivotMotorConfiguration.maxAcceleration = kPivotMotorMaxAcceleration;
+        kPivotMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM / 5.0);
+    kPivotMotorConfiguration.maxAcceleration = kPivotMotorConfiguration.maxVelocity * 2.0;
 
     kPivotMotorConfiguration.altV = kPivotMotorConfiguration.maxVelocity / 5.0;
     kPivotMotorConfiguration.altA = kPivotMotorConfiguration.maxAcceleration / 10.0;

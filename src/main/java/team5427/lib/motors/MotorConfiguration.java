@@ -141,12 +141,12 @@ public class MotorConfiguration {
   }
 
   public void useAltProfile() {
-  if (altV > 0) maxVelocity = altV;
-  if (altA > 0) maxAcceleration = altA;
-}
+    if (altV > 0) maxVelocity = altV;
+    if (altA > 0) maxAcceleration = altA;
+  }
 
-public void useDefaultProfile(double defaultV, double defaultA) {
-  maxVelocity = defaultV;
-  maxAcceleration = defaultA;
-}
+  public void useDefaultProfile(double defaultV, double defaultA) {
+    maxVelocity = defaultV;
+    maxAcceleration = defaultA;
+  }
 }

@@ -8,8 +8,6 @@ import static edu.wpi.first.units.Units.RotationsPerSecond;
 import static edu.wpi.first.units.Units.RotationsPerSecondPerSecond;
 import static edu.wpi.first.units.Units.Volts;
 
-import java.io.LineNumberInputStream;
-
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularAcceleration;
@@ -19,8 +17,6 @@ import edu.wpi.first.units.measure.LinearAcceleration;
 import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.units.measure.Temperature;
 import edu.wpi.first.units.measure.Voltage;
-import team5427.lib.tunableControls.TunableControls.ControlConstants;
-
 import org.littletonrobotics.junction.AutoLog;
 
 public interface IntakeIO {
@@ -70,5 +66,4 @@ public interface IntakeIO {
   public default void disableRollerMotor(boolean shouldDisable) {}
 
   public default void disablePivotMotor(boolean shouldDisable) {}
-  
 }
