@@ -1,6 +1,7 @@
 package team5427.frc.robot.io;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import team5427.frc.robot.Constants.DriverConstants;
 import team5427.frc.robot.Superstructure;
@@ -12,7 +13,6 @@ import team5427.frc.robot.commands.indexer.IndexStow;
 import team5427.frc.robot.commands.intake.IntakeHome;
 import team5427.frc.robot.commands.intake.IntakeIntaking;
 import team5427.frc.robot.commands.intake.IntakeNeutral;
-import team5427.frc.robot.commands.intake.IntakeOscillating;
 import team5427.frc.robot.commands.intake.IntakeStowed;
 import team5427.frc.robot.subsystems.shooter.ShooterConstants;
 import team5427.frc.robot.subsystems.shooter.ShooterSubsystem;
@@ -41,8 +41,14 @@ public class OperatorControls {
         .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKING))
         .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
     joy.leftBumper()
-        .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKEOSCILLATING))
-        .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
+        .whileTrue(
+            (Superstructure.setIntakeStateCommand(IntakeStates.STOWED)
+                .withDeadline(new WaitCommand(1))
+                .andThen(
+                    Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL)
+                        .withDeadline(new WaitCommand(1)))
+                .repeatedly()));
+    // .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
     // joy.leftBumper()
     //     .whileTrue(
     //         Superstructure.intakeStateIs(IntakeStates.STOWED).getAsBoolean()
@@ -81,7 +87,6 @@ public class OperatorControls {
     Superstructure.intakeStateIs(IntakeStates.INTAKING)
         .and(Superstructure.swerveStateIs(Superstructure.SwerveStates.INTAKE_ASSISTANCE).negate())
         .whileTrue(new IntakeIntaking());
-    Superstructure.intakeStateIs(IntakeStates.INTAKEOSCILLATING).whileTrue(new IntakeOscillating());
 
     Superstructure.intakeStateIs(IntakeStates.STOWED).whileTrue(new IntakeStowed());
     Superstructure.intakeStateIs(IntakeStates.INTAKENEUTRAL).whileTrue(new IntakeNeutral());
