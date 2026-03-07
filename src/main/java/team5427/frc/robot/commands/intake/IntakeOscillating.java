@@ -14,7 +14,9 @@ public class IntakeOscillating extends Command {
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+    IntakeConstants.kPivotMotorConfiguration.useAltProfile();
+  }
 
   @Override
   public void execute() {
@@ -28,9 +30,9 @@ public class IntakeOscillating extends Command {
     // }
     // subsystem.simulateIntaking(true);
     subsystem.setIntakingRotation(IntakeConstants.kPivotStartingRotation);
-    new WaitCommand(0.3);
+    new WaitCommand(0.1);
     subsystem.setIntakingRotation(IntakeConstants.kPivotIntakeRotation.div(2.0));
-    new WaitCommand(0.3);
+    new WaitCommand(0.1);
   }
 
   @Override
@@ -42,5 +44,6 @@ public class IntakeOscillating extends Command {
   @Override
   public void end(boolean interrupted) {
     subsystem.setIntakingRotation(IntakeConstants.kPivotStartingRotation);
+    IntakeConstants.kPivotMotorConfiguration.useDefaultProfile(IntakeConstants.kPivotMotorMaxVelocity, IntakeConstants.kPivotMotorMaxAcceleration);
   }
 }

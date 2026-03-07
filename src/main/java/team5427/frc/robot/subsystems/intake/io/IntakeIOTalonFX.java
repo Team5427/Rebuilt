@@ -17,6 +17,7 @@ import edu.wpi.first.units.measure.Voltage;
 import team5427.frc.robot.Constants;
 import team5427.frc.robot.subsystems.intake.IntakeConstants;
 import team5427.lib.motors.SteelTalonFX;
+import team5427.lib.tunableControls.TunableControls.ControlConstants;
 
 public class IntakeIOTalonFX implements IntakeIO {
   private SteelTalonFX rollerMotor;
@@ -152,6 +153,7 @@ public class IntakeIOTalonFX implements IntakeIO {
     }
   }
 
+
   public void setRollerSpeed(LinearVelocity velocity) {
     if (!isRollerMotorDisabled) {
       rollerMotor.setSetpoint(velocity);
@@ -173,4 +175,6 @@ public class IntakeIOTalonFX implements IntakeIO {
     isPivotMotorDisabled = shouldDisable;
     if (shouldDisable) pivotMotor.setRawPercentage(0);
   }
+
+
 }

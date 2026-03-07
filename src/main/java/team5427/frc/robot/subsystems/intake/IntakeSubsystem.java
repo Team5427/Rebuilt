@@ -105,6 +105,8 @@ public class IntakeSubsystem extends SubsystemBase {
     }
   }
 
+
+
   public void setIntakingSpeed(LinearVelocity speed) {
     intakingSpeed = speed;
   }
