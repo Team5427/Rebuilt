@@ -5,6 +5,12 @@
     "data": {
       "commands": [
         {
+          "type": "named",
+          "data": {
+            "name": "ResetAll"
+          }
+        },
+        {
           "type": "parallel",
           "data": {
             "commands": [
@@ -44,8 +50,26 @@
                 "data": {
                   "name": "AutoAlignMoveWhileShoot"
                 }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "ResetAll"
+                }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ResetAll"
           }
         },
         {
@@ -67,6 +91,12 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "ResetAll"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "ShootLeftToCenter"
@@ -85,6 +115,12 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "ResetAll"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "ShootLeftToClimb"
@@ -94,6 +130,12 @@
           "type": "named",
           "data": {
             "name": "AutoAlignClimbLeft"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ResetAll"
           }
         }
       ]

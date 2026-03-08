@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import org.ironmaple.simulation.SimulatedArena;
 import org.littletonrobotics.junction.Logger;
@@ -83,11 +84,14 @@ public class RobotContainer {
         RobotPose.getInstance()::addVisionMeasurement,
         () -> RobotPose.getInstance().getAdaptivePose(),
         () -> RobotPose.getInstance().getGyroHeading());
+    createNamedCommands();
+
     QuestNav.getInstance().setPose(new Pose2d(10 * Math.random(), 4, Rotation2d.kZero));
 
     FutureTrack.getInstance(
         SwerveSubsystem.getInstance()::getCurrentChassisSpeeds,
         SwerveSubsystem.getInstance()::getTargetChassisSpeeds);
+        
     AutoBuilder.configure(
         RobotPose.getInstance()::getAdaptivePose,
         RobotPose.getInstance()::resetAllPose,
@@ -113,7 +117,6 @@ public class RobotContainer {
           Logger.recordOutput("PathPlanner/Current Path", targetPose);
         });
     SmartDashboard.putData(autoChooser);
-    createNamedCommands();
     buttonBindings();
   }
 
@@ -132,8 +135,9 @@ public class RobotContainer {
     NamedCommands.registerCommand(
         "AutoAlignMoveWhileShoot",
         Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING)
-            .alongWith(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING))
-            .withTimeout(2.5));
+            .andThen(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING))
+            // .andThen(new WaitCommand(2.5))
+            );
     NamedCommands.registerCommand(
         "AutoAlignClimbLeft",
         Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)
@@ -171,9 +175,9 @@ public class RobotContainer {
         "Intake", Superstructure.setIntakeStateCommand(IntakeStates.INTAKING));
     NamedCommands.registerCommand(
         "ResetAll",
-        Superstructure.setIndexerStateCommand(IndexerStates.STOWED)
-            .alongWith(Superstructure.setIntakeStateCommand(IntakeStates.STOWED))
-            .alongWith(Superstructure.setShooterStateCommand(ShooterStates.STOWED)));
+        Superstructure.resetAllStates()
+        // Superstructure.setSwerveStateCommand(SwerveStates.AUTON)
+        );
   }
 
   /**
