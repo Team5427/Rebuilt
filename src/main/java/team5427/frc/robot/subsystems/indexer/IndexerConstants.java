@@ -15,7 +15,7 @@ import team5427.lib.motors.MotorUtil;
 
 public final class IndexerConstants {
   public static final CANDeviceId kIndexerLeftMotorCanId = new CANDeviceId(26);
-  public static final CANDeviceId kIndexerRightMotorCanId = new CANDeviceId(13);
+  public static final CANDeviceId kIndexerRightMotorCanId = new CANDeviceId(27);
 
   public static MotorConfiguration kIndexerMotorConfiguration = new MotorConfiguration();
   public static final Distance kIndexerFlywheelRadius = Inches.of(1.0);

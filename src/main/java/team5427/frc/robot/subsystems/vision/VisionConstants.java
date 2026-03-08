@@ -11,8 +11,8 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.units.measure.Distance;
 
 public class VisionConstants {
-  public static final String kSwerveCamName = "rightCamA";
-  public static final String kIntakeCamName = "intakeCam";
+  public static final String kSwerveCamName = "rightCamB";
+  public static final String kIntakeCamName = "leftCamA";
 
   public static final int kCameraCount = 1;
 
