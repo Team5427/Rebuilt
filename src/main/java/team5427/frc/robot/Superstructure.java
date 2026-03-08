@@ -2,6 +2,7 @@ package team5427.frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import java.util.function.BooleanSupplier;
 import org.littletonrobotics.junction.Logger;
@@ -156,6 +157,14 @@ public final class Superstructure {
   }
 
   // Command factories return command that change state
+
+  public static synchronized Command resetAllStates() {
+    return setSwerveStateCommand(SwerveStates.AUTON)
+        .alongWith(setShooterStateCommand(ShooterStates.STOWED))
+        .alongWith(setIntakeStateCommand(IntakeStates.STOWED))
+        .alongWith(setIndexerStateCommand(IndexerStates.STOWED));
+  }
+
   /**
    * Builds a {@link Command} that switches the swerve subsystem to the supplied state.
    *
