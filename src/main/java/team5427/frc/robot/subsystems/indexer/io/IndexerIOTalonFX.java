@@ -5,12 +5,16 @@ import static edu.wpi.first.units.Units.RotationsPerSecond;
 
 import com.ctre.phoenix6.BaseStatusSignal;
 import com.ctre.phoenix6.StatusSignal;
+import com.ctre.phoenix6.controls.Follower;
+import com.ctre.phoenix6.signals.MotorAlignmentValue;
+
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.units.measure.Voltage;
 import team5427.frc.robot.subsystems.indexer.IndexerConstants;
 import team5427.frc.robot.subsystems.indexer.io.IndexerIO.IndexerIOInputs;
+import team5427.lib.motors.MotorConfiguration;
 import team5427.lib.motors.SteelTalonFX;
 
 public class IndexerIOTalonFX implements IndexerIO {
@@ -32,7 +36,10 @@ public class IndexerIOTalonFX implements IndexerIO {
     leftIndexerMotor = new SteelTalonFX(IndexerConstants.kIndexerLeftMotorCanId);
 
     rightIndexerMotor.apply(IndexerConstants.kIndexerMotorConfiguration);
-    leftIndexerMotor.apply(IndexerConstants.kIndexerMotorConfiguration);
+    // MotorConfiguration leftConfig = new MotorConfiguration(IndexerConstants.kIndexerMotorConfiguration);
+    // leftConfig.isInverted = false;
+    // leftIndexerMotor.apply(leftConfig);
+    leftIndexerMotor.getTalonFX().setControl(new Follower(IndexerConstants.kIndexerRightMotorCanId.getDeviceNumber(), MotorAlignmentValue.Opposed));
 
     rightIndexerMotor.setEncoderPosition(0);
     leftIndexerMotor.setEncoderPosition(0);
