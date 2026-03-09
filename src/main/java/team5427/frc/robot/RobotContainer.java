@@ -135,8 +135,8 @@ public class RobotContainer {
     NamedCommands.registerCommand(
         "AutoAlignMoveWhileShoot",
         Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING)
-            .andThen(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING))
-            // .andThen(new WaitCommand(2.5))
+            .alongWith(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING))
+            .andThen(new WaitCommand(2.5)).andThen(Superstructure.setShooterStateCommand(ShooterStates.STOWED)).alongWith(Superstructure.setSwerveStateCommand(SwerveStates.AUTON))
             );
     NamedCommands.registerCommand(
         "AutoAlignClimbLeft",
