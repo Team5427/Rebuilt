@@ -14,8 +14,7 @@ import team5427.frc.robot.subsystems.indexer.io.IndexerIOSim;
 import team5427.frc.robot.subsystems.indexer.io.IndexerIOTalonFX;
 
 public class IndexerSubsystem extends SubsystemBase {
-  @Getter @Setter private LinearVelocity leftIndexerVelocitySetpoint;
-  @Getter @Setter private LinearVelocity rightIndexerVelocitySetpoint;
+  @Getter @Setter private LinearVelocity indexerVelocitySetpoint;
 
   private IndexerIO io;
   private IndexerIOInputsAutoLogged inputsAutoLogged;
@@ -41,18 +40,16 @@ public class IndexerSubsystem extends SubsystemBase {
       default:
         break;
     }
-    rightIndexerVelocitySetpoint = MetersPerSecond.of(0.0);
-    leftIndexerVelocitySetpoint = MetersPerSecond.of(0.0);
-  }
+    indexerVelocitySetpoint = MetersPerSecond.of(0.0);
+    }
 
   @Override
   public void periodic() {
     io.updateInputs(inputsAutoLogged);
 
-    io.setLeftIndexerMotorVelocity(leftIndexerVelocitySetpoint);
-    io.setRightIndexerMotorVelocity(rightIndexerVelocitySetpoint);
+    io.setIndexerMotorVelocity(indexerVelocitySetpoint);
 
-    Logger.recordOutput("Indexer/LeftIndexerLinearVelocity", leftIndexerVelocitySetpoint);
+    Logger.recordOutput("Indexer/IndexerLinearVelocity", indexerVelocitySetpoint);
 
     Logger.processInputs("Indexer/Inputs", inputsAutoLogged);
     log();

@@ -81,8 +81,8 @@ public class OperatorControls {
                   ShooterSubsystem.getInstance()
                       .setRightShooterSpeed(ShooterConstants.kShooterStowVelocity);
                 }));
-    // Superstructure.indexerStateIs(IndexerStates.STOWED).whileTrue(new IndexStow());
-    // Superstructure.indexerStateIs(IndexerStates.INDEXING).whileTrue(new IndexShoot());
+    Superstructure.indexerStateIs(IndexerStates.STOWED).whileTrue(new IndexStow());
+    Superstructure.indexerStateIs(IndexerStates.INDEXING).whileTrue(new IndexShoot());
     // Use class-level trigger factory methods instead of nested class references
     Superstructure.intakeStateIs(IntakeStates.INTAKING)
         .and(Superstructure.swerveStateIs(Superstructure.SwerveStates.INTAKE_ASSISTANCE).negate())

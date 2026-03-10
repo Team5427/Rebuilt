@@ -32,14 +32,14 @@ public final class IndexerConstants {
     kIndexerMotorConfiguration.mode = MotorMode.kFlywheel;
     kIndexerMotorConfiguration.idleState = IdleState.kBrake;
     kIndexerMotorConfiguration.isArm = false;
-    kIndexerMotorConfiguration.isInverted = true;
+    kIndexerMotorConfiguration.isInverted = false;
     kIndexerMotorConfiguration.currentLimit = 80;
     kIndexerMotorConfiguration.finalDiameterMeters = kIndexerFlywheelRadius.times(2.0).in(Meters);
     kIndexerMotorConfiguration.withFOC = false;
     kIndexerMotorConfiguration.maxVelocity =
-        kIndexerMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX44_MaxRPM);
+        kIndexerMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX44_MaxRPM)/5.0;
     kIndexerMotorConfiguration.maxAcceleration = kIndexerMotorConfiguration.maxVelocity * 3.0;
-    kIndexerMotorConfiguration.kP = .9;
+    kIndexerMotorConfiguration.kP = .4;
     kIndexerMotorConfiguration.kV = .1;
     kIndexerMotorConfiguration.kA = .1;
     kIndexerMotorConfiguration.kS = .1;

@@ -36,9 +36,7 @@ public class IndexerIOTalonFX implements IndexerIO {
     leftIndexerMotor = new SteelTalonFX(IndexerConstants.kIndexerLeftMotorCanId);
 
     rightIndexerMotor.apply(IndexerConstants.kIndexerMotorConfiguration);
-    // MotorConfiguration leftConfig = new MotorConfiguration(IndexerConstants.kIndexerMotorConfiguration);
-    // leftConfig.isInverted = false;
-    // leftIndexerMotor.apply(leftConfig);
+    leftIndexerMotor.apply(new MotorConfiguration(IndexerConstants.kIndexerMotorConfiguration));
     leftIndexerMotor.getTalonFX().setControl(new Follower(IndexerConstants.kIndexerRightMotorCanId.getDeviceNumber(), MotorAlignmentValue.Opposed));
 
     rightIndexerMotor.setEncoderPosition(0);
@@ -89,12 +87,7 @@ public class IndexerIOTalonFX implements IndexerIO {
   }
 
   @Override
-  public void setRightIndexerMotorVelocity(LinearVelocity velocity) {
+  public void setIndexerMotorVelocity(LinearVelocity velocity) {
     rightIndexerMotor.setSetpoint(velocity);
-  }
-
-  @Override
-  public void setLeftIndexerMotorVelocity(LinearVelocity velocity) {
-    leftIndexerMotor.setSetpoint(velocity);
   }
 }

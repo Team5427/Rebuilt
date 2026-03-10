@@ -13,8 +13,7 @@ public class IndexStow extends Command {
 
   @Override
   public void execute() {
-    indexerSubsystem.setLeftIndexerVelocitySetpoint(IndexerConstants.kIndexerStowedVelocity);
-    indexerSubsystem.setRightIndexerVelocitySetpoint(IndexerConstants.kIndexerStowedVelocity);
+    indexerSubsystem.setIndexerVelocitySetpoint(IndexerConstants.kIndexerStowedVelocity);
   }
 
   @Override

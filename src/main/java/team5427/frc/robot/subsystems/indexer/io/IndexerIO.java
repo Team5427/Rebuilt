@@ -33,7 +33,5 @@ public interface IndexerIO {
 
   public default void updateInputs(IndexerIOInputs inputs) {}
 
-  public default void setRightIndexerMotorVelocity(LinearVelocity velocity) {}
-
-  public default void setLeftIndexerMotorVelocity(LinearVelocity velocity) {}
+  public default void setIndexerMotorVelocity(LinearVelocity velocity) {}
 }
