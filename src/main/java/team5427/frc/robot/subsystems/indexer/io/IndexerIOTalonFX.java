@@ -13,6 +13,7 @@ import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.units.measure.Voltage;
 import team5427.frc.robot.subsystems.indexer.IndexerConstants;
 import team5427.frc.robot.subsystems.indexer.io.IndexerIO.IndexerIOInputs;
+import team5427.lib.motors.MotorConfiguration;
 import team5427.lib.motors.SteelTalonFX;
 
 public class IndexerIOTalonFX implements IndexerIO {
@@ -35,7 +36,12 @@ public class IndexerIOTalonFX implements IndexerIO {
 
     rightIndexerMotor.apply(IndexerConstants.kIndexerMotorConfiguration);
     leftIndexerMotor.apply(new MotorConfiguration(IndexerConstants.kIndexerMotorConfiguration));
-    leftIndexerMotor.getTalonFX().setControl(new Follower(IndexerConstants.kIndexerRightMotorCanId.getDeviceNumber(), MotorAlignmentValue.Opposed));
+    leftIndexerMotor
+        .getTalonFX()
+        .setControl(
+            new Follower(
+                IndexerConstants.kIndexerRightMotorCanId.getDeviceNumber(),
+                MotorAlignmentValue.Opposed));
 
     rightIndexerMotor.setEncoderPosition(0);
     leftIndexerMotor.setEncoderPosition(0);

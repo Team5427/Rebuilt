@@ -1,10 +1,8 @@
 package team5427.frc.robot.commands.indexer;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import team5427.frc.robot.FutureTrack;
 import team5427.frc.robot.subsystems.indexer.IndexerConstants;
 import team5427.frc.robot.subsystems.indexer.IndexerSubsystem;
-import team5427.frc.robot.subsystems.shooter.AimingConstants;
 import team5427.frc.robot.subsystems.shooter.ShooterSubsystem;
 
 public class IndexShoot extends Command {

@@ -37,7 +37,7 @@ public final class IndexerConstants {
     kIndexerMotorConfiguration.finalDiameterMeters = kIndexerFlywheelRadius.times(2.0).in(Meters);
     kIndexerMotorConfiguration.withFOC = false;
     kIndexerMotorConfiguration.maxVelocity =
-        kIndexerMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX44_MaxRPM)/5.0;
+        kIndexerMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX44_MaxRPM) / 5.0;
     kIndexerMotorConfiguration.maxAcceleration = kIndexerMotorConfiguration.maxVelocity * 3.0;
     kIndexerMotorConfiguration.kP = .4;
     kIndexerMotorConfiguration.kV = .1;

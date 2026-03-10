@@ -8,6 +8,8 @@ import team5427.frc.robot.Superstructure;
 import team5427.frc.robot.Superstructure.IndexerStates;
 import team5427.frc.robot.Superstructure.IntakeStates;
 import team5427.frc.robot.Superstructure.ShooterStates;
+import team5427.frc.robot.commands.indexer.IndexShoot;
+import team5427.frc.robot.commands.indexer.IndexStow;
 import team5427.frc.robot.commands.intake.IntakeHome;
 import team5427.frc.robot.commands.intake.IntakeIntaking;
 import team5427.frc.robot.commands.intake.IntakeNeutral;

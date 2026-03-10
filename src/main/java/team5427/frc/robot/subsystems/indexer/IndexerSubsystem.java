@@ -41,7 +41,7 @@ public class IndexerSubsystem extends SubsystemBase {
         break;
     }
     indexerVelocitySetpoint = MetersPerSecond.of(0.0);
-    }
+  }
 
   @Override
   public void periodic() {

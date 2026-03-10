@@ -32,7 +32,6 @@ public class VisionConstants {
           Units.inchesToMeters(11.540), // 13.293  11.293
           new Rotation3d(0, Units.degreesToRadians(20), Units.degreesToRadians(180.0))); // 0 20 180
 
-
   // Right side of bot (Intake as Front)
   // Robot to camera
   public static final Transform3d kRightCamTransform =
