@@ -33,7 +33,9 @@ public final class ShooterConstants {
   public static final CANDeviceId kRightFlywheelFollowerMotorCanId = new CANDeviceId(25);
 
   public static final MotorConfiguration kHoodMotorConfiguration = new MotorConfiguration();
-  public static final MotorConfiguration kFlywheelMotorConfiguration = new MotorConfiguration();
+  public static final MotorConfiguration kRightFlywheelMotorConfiguration = new MotorConfiguration();
+  public static final MotorConfiguration kLeftFlywheelMotorConfiguration = new MotorConfiguration();
+
 
   public static final ComplexGearRatio kHoodMotorGearRatio = new ComplexGearRatio((28.0 / 324.0));
   public static final ComplexGearRatio kFlywheelMotorGearRatio =
@@ -76,33 +78,63 @@ public final class ShooterConstants {
   }
 
   static {
-    kFlywheelMotorConfiguration.gearRatio = kFlywheelMotorGearRatio;
-    kFlywheelMotorConfiguration.isArm = false;
-    kFlywheelMotorConfiguration.idleState = IdleState.kCoast;
-    kFlywheelMotorConfiguration.isInverted = false;
-    kFlywheelMotorConfiguration.mode = MotorMode.kFlywheel;
-    kFlywheelMotorConfiguration.withFOC = false;
-    kFlywheelMotorConfiguration.finalDiameterMeters =
+    kRightFlywheelMotorConfiguration.gearRatio = kFlywheelMotorGearRatio;
+    kRightFlywheelMotorConfiguration.isArm = false;
+    kRightFlywheelMotorConfiguration.idleState = IdleState.kCoast;
+    kRightFlywheelMotorConfiguration.isInverted = false;
+    kRightFlywheelMotorConfiguration.mode = MotorMode.kFlywheel;
+    kRightFlywheelMotorConfiguration.withFOC = false;
+    kRightFlywheelMotorConfiguration.finalDiameterMeters =
         kTopFlywheelRadiusMeters + kBottomFlywheelRadiusMeters;
 
-    kFlywheelMotorConfiguration.maxVelocity =
-        kFlywheelMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM);
-    kFlywheelMotorConfiguration.maxAcceleration = kFlywheelMotorConfiguration.maxVelocity * 2.0;
+    kRightFlywheelMotorConfiguration.maxVelocity =
+        kRightFlywheelMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM);
+    kRightFlywheelMotorConfiguration.maxAcceleration = kRightFlywheelMotorConfiguration.maxVelocity * 2.0;
 
-    kFlywheelMotorConfiguration.altV = kFlywheelMotorConfiguration.maxVelocity / 2.0;
-    kFlywheelMotorConfiguration.altA = kFlywheelMotorConfiguration.maxAcceleration;
-    kFlywheelMotorConfiguration.altJ = 1000.0;
+    kRightFlywheelMotorConfiguration.altV = kRightFlywheelMotorConfiguration.maxVelocity / 2.0;
+    kRightFlywheelMotorConfiguration.altA = kRightFlywheelMotorConfiguration.maxAcceleration;
+    kRightFlywheelMotorConfiguration.altJ = 1000.0;
 
-    kFlywheelMotorConfiguration.kP = 0.08;
-    kFlywheelMotorConfiguration.kI = 0.0;
-    kFlywheelMotorConfiguration.kD = 0.0;
+    kRightFlywheelMotorConfiguration.kP = 0.08;
+    kRightFlywheelMotorConfiguration.kI = 0.0;
+    kRightFlywheelMotorConfiguration.kD = 0.0;
 
-    kFlywheelMotorConfiguration.kV = 0.37;
-    kFlywheelMotorConfiguration.kA = 0.33;
-    kFlywheelMotorConfiguration.kS = 0.0;
-    kFlywheelMotorConfiguration.kG = 0.0;
-    kFlywheelMotorConfiguration.kFF = 0.0;
+    kRightFlywheelMotorConfiguration.kV = 0.37;
+    kRightFlywheelMotorConfiguration.kA = 0.33;
+    kRightFlywheelMotorConfiguration.kS = 0.0;
+    kRightFlywheelMotorConfiguration.kG = 0.0;
+    kRightFlywheelMotorConfiguration.kFF = 0.0;
 
-    kFlywheelMotorConfiguration.currentLimit = 40;
+    kRightFlywheelMotorConfiguration.currentLimit = 40;
+  }
+  static {
+    kLeftFlywheelMotorConfiguration.gearRatio = kFlywheelMotorGearRatio;
+    kLeftFlywheelMotorConfiguration.isArm = false;
+    kLeftFlywheelMotorConfiguration.idleState = IdleState.kCoast;
+    kLeftFlywheelMotorConfiguration.isInverted = true;
+    kLeftFlywheelMotorConfiguration.mode = MotorMode.kFlywheel;
+    kLeftFlywheelMotorConfiguration.withFOC = false;
+    kLeftFlywheelMotorConfiguration.finalDiameterMeters =
+        kTopFlywheelRadiusMeters + kBottomFlywheelRadiusMeters;
+
+    kLeftFlywheelMotorConfiguration.maxVelocity =
+        kLeftFlywheelMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM);
+    kLeftFlywheelMotorConfiguration.maxAcceleration = kLeftFlywheelMotorConfiguration.maxVelocity * 2.0;
+
+    kLeftFlywheelMotorConfiguration.altV = kLeftFlywheelMotorConfiguration.maxVelocity / 2.0;
+    kLeftFlywheelMotorConfiguration.altA = kLeftFlywheelMotorConfiguration.maxAcceleration;
+    kLeftFlywheelMotorConfiguration.altJ = 1000.0;
+
+    kLeftFlywheelMotorConfiguration.kP = 0.08;
+    kLeftFlywheelMotorConfiguration.kI = 0.0;
+    kLeftFlywheelMotorConfiguration.kD = 0.0;
+
+    kLeftFlywheelMotorConfiguration.kV = 0.37;
+    kLeftFlywheelMotorConfiguration.kA = 0.33;
+    kLeftFlywheelMotorConfiguration.kS = 0.0;
+    kLeftFlywheelMotorConfiguration.kG = 0.0;
+    kLeftFlywheelMotorConfiguration.kFF = 0.0;
+
+    kLeftFlywheelMotorConfiguration.currentLimit = 40;
   }
 }
