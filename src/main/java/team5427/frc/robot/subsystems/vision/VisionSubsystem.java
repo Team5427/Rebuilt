@@ -70,8 +70,8 @@ public class VisionSubsystem extends VirtualSubsystem {
       case REAL:
         io[0] =
             new VisionIOPhoton(
-                VisionConstants.kSwerveCamName,
-                VisionConstants.kSwerveCamTransform,
+                VisionConstants.kRightCamName,
+                VisionConstants.kRightCamTransform,
                 referencePoseSupplier,
                 referenceHeadingSupplier);
 
@@ -83,8 +83,8 @@ public class VisionSubsystem extends VirtualSubsystem {
       case SIM:
         io[0] =
             new VisionIOPhotonSim(
-                VisionConstants.kSwerveCamName,
-                VisionConstants.kSwerveCamTransform,
+                VisionConstants.kLeftCamName,
+                VisionConstants.kLeftCamTransform,
                 referencePoseSupplier,
                 referenceHeadingSupplier);
         for (int i = 0; i < inputsAutoLogged.length; i++) {

@@ -11,8 +11,8 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.units.measure.Distance;
 
 public class VisionConstants {
-  public static final String kSwerveCamName = "rightCamB";
-  public static final String kIntakeCamName = "leftCamA";
+  public static final String kRightCamName = "rightCamB";
+  public static final String kLeftCamName = "leftCamA";
 
   public static final int kCameraCount = 1;
 
@@ -23,23 +23,24 @@ public class VisionConstants {
   public static final AprilTagFieldLayout kAprilTagLayout =
       AprilTagFieldLayout.loadField(AprilTagFields.k2026RebuiltAndymark);
 
-  // Left side of bot
+  // Left side of bot (Intake as Front)
   // Robot to camera
-  public static final Transform3d kIntakeCamTransform =
-      new Transform3d(
-          Units.inchesToMeters(0.5), // 9.375
-          Units.inchesToMeters(6.048439965), // 11.048439965
-          Units.inchesToMeters(8.540489626),
-          new Rotation3d(0, Units.degreesToRadians(-30), 0.0)); // 0.47976945625357
-
-  // Right side of bot
-  // Robot to camera
-  public static final Transform3d kSwerveCamTransform =
+  public static final Transform3d kLeftCamTransform =
       new Transform3d(
           Units.inchesToMeters(13.273), // 9.375  3 ; This might be negative
           Units.inchesToMeters(8.684), // -11.048439965  -11
           Units.inchesToMeters(11.540), // 13.293  11.293
           new Rotation3d(0, Units.degreesToRadians(20), Units.degreesToRadians(180.0))); // 0 20 180
+
+
+  // Right side of bot (Intake as Front)
+  // Robot to camera
+  public static final Transform3d kRightCamTransform =
+      new Transform3d(
+          Units.inchesToMeters(0.5), // 9.375
+          Units.inchesToMeters(6.048439965), // 11.048439965
+          Units.inchesToMeters(8.540489626),
+          new Rotation3d(0, Units.degreesToRadians(-30), 0.0)); // 0.47976945625357
 
   public static final Transform3d kQuestCameraTransform =
       new Transform3d(
@@ -48,8 +49,8 @@ public class VisionConstants {
   public static Transform3d[] kCameraTransforms = new Transform3d[kCameraCount];
 
   static {
-    // kCameraTransforms[1] = kIntakeCamTransform;
-    kCameraTransforms[0] = kSwerveCamTransform;
+    kCameraTransforms[1] = kRightCamTransform;
+    kCameraTransforms[0] = kLeftCamTransform;
   }
 
   public static final Distance kCameraMaxRange = Meters.of(4.0);

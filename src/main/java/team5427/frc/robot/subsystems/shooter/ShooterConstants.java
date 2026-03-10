@@ -36,6 +36,9 @@ public final class ShooterConstants {
   public static final MotorConfiguration kRightFlywheelMotorConfiguration = new MotorConfiguration();
   public static final MotorConfiguration kLeftFlywheelMotorConfiguration = new MotorConfiguration();
 
+  public static final MotorConfiguration kRightFlywheelMotorConfiguration = new MotorConfiguration();
+  public static final MotorConfiguration kLeftFlywheelMotorConfiguration = new MotorConfiguration();
+
 
   public static final ComplexGearRatio kHoodMotorGearRatio = new ComplexGearRatio((28.0 / 324.0));
   public static final ComplexGearRatio kFlywheelMotorGearRatio =
@@ -121,11 +124,20 @@ public final class ShooterConstants {
     kLeftFlywheelMotorConfiguration.maxVelocity =
         kLeftFlywheelMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM);
     kLeftFlywheelMotorConfiguration.maxAcceleration = kLeftFlywheelMotorConfiguration.maxVelocity * 2.0;
+    kLeftFlywheelMotorConfiguration.maxVelocity =
+        kLeftFlywheelMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM);
+    kLeftFlywheelMotorConfiguration.maxAcceleration = kLeftFlywheelMotorConfiguration.maxVelocity * 2.0;
 
     kLeftFlywheelMotorConfiguration.altV = kLeftFlywheelMotorConfiguration.maxVelocity / 2.0;
     kLeftFlywheelMotorConfiguration.altA = kLeftFlywheelMotorConfiguration.maxAcceleration;
     kLeftFlywheelMotorConfiguration.altJ = 1000.0;
+    kLeftFlywheelMotorConfiguration.altV = kLeftFlywheelMotorConfiguration.maxVelocity / 2.0;
+    kLeftFlywheelMotorConfiguration.altA = kLeftFlywheelMotorConfiguration.maxAcceleration;
+    kLeftFlywheelMotorConfiguration.altJ = 1000.0;
 
+    kLeftFlywheelMotorConfiguration.kP = 0.08;
+    kLeftFlywheelMotorConfiguration.kI = 0.0;
+    kLeftFlywheelMotorConfiguration.kD = 0.0;
     kLeftFlywheelMotorConfiguration.kP = 0.08;
     kLeftFlywheelMotorConfiguration.kI = 0.0;
     kLeftFlywheelMotorConfiguration.kD = 0.0;
@@ -135,7 +147,13 @@ public final class ShooterConstants {
     kLeftFlywheelMotorConfiguration.kS = 0.0;
     kLeftFlywheelMotorConfiguration.kG = 0.0;
     kLeftFlywheelMotorConfiguration.kFF = 0.0;
+    kLeftFlywheelMotorConfiguration.kV = 0.37;
+    kLeftFlywheelMotorConfiguration.kA = 0.33;
+    kLeftFlywheelMotorConfiguration.kS = 0.0;
+    kLeftFlywheelMotorConfiguration.kG = 0.0;
+    kLeftFlywheelMotorConfiguration.kFF = 0.0;
 
+    kLeftFlywheelMotorConfiguration.currentLimit = 40;
     kLeftFlywheelMotorConfiguration.currentLimit = 40;
   }
 }

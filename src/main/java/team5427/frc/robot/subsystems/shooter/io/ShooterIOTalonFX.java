@@ -40,7 +40,13 @@ public class ShooterIOTalonFX implements ShooterIO {
   private StatusSignal<AngularVelocity> rightHoodMotorAngularVelocity;
   private StatusSignal<AngularVelocity> rightFlywheelMotorAngularVelocity;
   private StatusSignal<AngularAcceleration> rightFlyWheelMotorAngularAcceleration;
+  private StatusSignal<Angle> rightHoodMotorPosition;
+  private StatusSignal<AngularVelocity> rightHoodMotorAngularVelocity;
+  private StatusSignal<AngularVelocity> rightFlywheelMotorAngularVelocity;
+  private StatusSignal<AngularAcceleration> rightFlyWheelMotorAngularAcceleration;
 
+  private StatusSignal<Voltage> rightFlywheelLeaderMotorVoltage;
+  private StatusSignal<Voltage> rightFlywheelFollowerMotorVoltage;
   private StatusSignal<Voltage> rightFlywheelLeaderMotorVoltage;
   private StatusSignal<Voltage> rightFlywheelFollowerMotorVoltage;
 
@@ -54,7 +60,9 @@ public class ShooterIOTalonFX implements ShooterIO {
         ShooterConstants.kHoodMotorConfiguration.currentLimit;
     leftHoodMotor.applyTalonConfig();
     leftFlywheelLeaderMotor.apply(ShooterConstants.kLeftFlywheelMotorConfiguration);
+    leftFlywheelLeaderMotor.apply(ShooterConstants.kLeftFlywheelMotorConfiguration);
     leftFlywheelFollowerMotor.apply(
+        new MotorConfiguration(ShooterConstants.kLeftFlywheelMotorConfiguration));
         new MotorConfiguration(ShooterConstants.kLeftFlywheelMotorConfiguration));
 
     leftHoodMotor.setEncoderPosition(ShooterConstants.kHoodHardstopPosition);
@@ -98,6 +106,12 @@ public class ShooterIOTalonFX implements ShooterIO {
             new Follower(
                 rightFlywheelLeaderMotor.getTalonFX().getDeviceID(),
     MotorAlignmentValue.Aligned));
+    rightFlywheelFollowerMotor
+        .getTalonFX()
+        .setControl(
+            new Follower(
+                rightFlywheelLeaderMotor.getTalonFX().getDeviceID(),
+    MotorAlignmentValue.Aligned));
 
     leftHoodMotorPosition = leftHoodMotor.getTalonFX().getPosition();
     leftHoodMotorAngularVelocity = leftHoodMotor.getTalonFX().getVelocity();
@@ -107,13 +121,13 @@ public class ShooterIOTalonFX implements ShooterIO {
     leftFlywheelLeaderMotorVoltage = leftFlywheelLeaderMotor.getTalonFX().getMotorVoltage();
     leftFlywheelFollowerMotorVoltage = leftFlywheelFollowerMotor.getTalonFX().getMotorVoltage();
 
-    rightHoodMotorPosition = rightHoodMotor.getTalonFX().getPosition();
-    rightHoodMotorAngularVelocity = rightHoodMotor.getTalonFX().getVelocity();
-    rightFlywheelMotorAngularVelocity = rightFlywheelLeaderMotor.getTalonFX().getVelocity();
-    rightFlyWheelMotorAngularAcceleration = rightFlywheelLeaderMotor.getTalonFX().getAcceleration();
+    // rightHoodMotorPosition = rightHoodMotor.getTalonFX().getPosition();
+    // rightHoodMotorAngularVelocity = rightHoodMotor.getTalonFX().getVelocity();
+    // rightFlywheelMotorAngularVelocity = rightFlywheelLeaderMotor.getTalonFX().getVelocity();
 
-    rightFlywheelLeaderMotorVoltage = rightFlywheelLeaderMotor.getTalonFX().getMotorVoltage();
-    rightFlywheelFollowerMotorVoltage = rightFlywheelFollowerMotor.getTalonFX().getMotorVoltage();
+    // rightFlywheelLeaderMotorVoltage = rightFlywheelLeaderMotor.getTalonFX().getMotorVoltage();
+    // rightFlywheelFollowerMotorVoltage =
+    // rightFlywheelFollowerMotor.getTalonFX().getMotorVoltage();
   }
 
   @Override
@@ -121,13 +135,20 @@ public class ShooterIOTalonFX implements ShooterIO {
     BaseStatusSignal.refreshAll(
         leftFlyWheelMotorAngularAcceleration,
         rightFlyWheelMotorAngularAcceleration,
+        rightFlyWheelMotorAngularAcceleration,
         leftHoodMotorPosition,
+        rightHoodMotorPosition,
         rightHoodMotorPosition,
         leftFlywheelMotorAngularVelocity,
         rightFlywheelMotorAngularVelocity,
+        rightFlywheelMotorAngularVelocity,
         leftHoodMotorAngularVelocity,
         rightHoodMotorAngularVelocity,
+        rightHoodMotorAngularVelocity,
         leftFlywheelFollowerMotorVoltage,
+        leftFlywheelLeaderMotorVoltage,
+    rightFlywheelFollowerMotorVoltage,
+    rightFlywheelLeaderMotorVoltage);
         leftFlywheelLeaderMotorVoltage,
     rightFlywheelFollowerMotorVoltage,
     rightFlywheelLeaderMotorVoltage);
@@ -145,6 +166,18 @@ public class ShooterIOTalonFX implements ShooterIO {
     inputs.leftFlywheelLeaderMotorVoltage = leftFlywheelLeaderMotorVoltage.getValue();
     inputs.leftFlywheelFollowerMotorVoltage = leftFlywheelFollowerMotorVoltage.getValue();
 
+    inputs.rightHoodMotorPositionRadians = rightHoodMotorPosition.getValue().in(Radians);
+    inputs.rightHoodMotorAngularVelocityRadiansPerSecond =
+        rightHoodMotorAngularVelocity.getValue().in(RadiansPerSecond);
+    inputs.rightFlywheelAngularAcceleration = rightFlyWheelMotorAngularAcceleration.getValue();
+    inputs.rightFlywheelMotorAngularVelocity = rightFlywheelMotorAngularVelocity.getValue();
+    inputs.rightFlywheelMotorLinearVelocity =
+        MetersPerSecond.of(
+            (ShooterConstants.kTopFlywheelRadiusMeters
+                    + ShooterConstants.kBottomFlywheelRadiusMeters)
+                * rightFlywheelMotorAngularVelocity.getValue().in(RadiansPerSecond));
+    inputs.rightFlywheelLeaderMotorVoltage = rightFlywheelLeaderMotorVoltage.getValue();
+    inputs.rightFlywheelFollowerMotorVoltage = rightFlywheelFollowerMotorVoltage.getValue();
     inputs.rightHoodMotorPositionRadians = rightHoodMotorPosition.getValue().in(Radians);
     inputs.rightHoodMotorAngularVelocityRadiansPerSecond =
         rightHoodMotorAngularVelocity.getValue().in(RadiansPerSecond);
@@ -197,35 +230,42 @@ public class ShooterIOTalonFX implements ShooterIO {
   @Override
   public void setRightHoodAngle(Rotation2d angle) {
     rightHoodMotor.setSetpoint(angle);
+    rightHoodMotor.setSetpoint(angle);
   }
 
   @Override
   public void setRightHoodAngle(Angle angle) {
+    rightHoodMotor.setSetpoint(angle);
     rightHoodMotor.setSetpoint(angle);
   }
 
   @Override
   public void setRightHoodAngle(double radians) {
     rightHoodMotor.setSetpoint(Radians.of(radians));
+    rightHoodMotor.setSetpoint(Radians.of(radians));
   }
 
   @Override
   public void setRightFlywheelSpeed(LinearVelocity velocity) {
+    rightFlywheelLeaderMotor.setSetpoint(velocity);
     rightFlywheelLeaderMotor.setSetpoint(velocity);
   }
 
   @Override
   public void setRightFlywheelSpeed(AngularVelocity velocity) {
     rightFlywheelLeaderMotor.setSetpoint(velocity);
+    rightFlywheelLeaderMotor.setSetpoint(velocity);
   }
 
   @Override
   public void setRightFlywheelSpeed(double rotationsPerSecond) {
     rightFlywheelLeaderMotor.setSetpoint(RotationsPerSecond.of(rotationsPerSecond));
+    rightFlywheelLeaderMotor.setSetpoint(RotationsPerSecond.of(rotationsPerSecond));
   }
 
   @Override
   public void resetRightHoodAngle(Rotation2d angle) {
+    rightHoodMotor.setEncoderPosition(angle);
     rightHoodMotor.setEncoderPosition(angle);
   }
 }

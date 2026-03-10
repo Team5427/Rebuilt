@@ -11,47 +11,22 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "DepotStartToDepotNoShoot"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "ThrustInDepot"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "PullOutDepot"
-          }
-        },
-        {
-          "type": "sequential",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "DepotToShoot"
+                  "pathName": "DepotFarSideStartToCenter"
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "AutoAlignMoveWhileShoot"
+                  "name": "Intake"
                 }
               }
             ]
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "DepotShootToCenter"
+            "name": "ResetAll"
           }
         },
         {
@@ -67,9 +42,28 @@
           }
         },
         {
-          "type": "path",
+          "type": "parallel",
           "data": {
-            "pathName": "ShootLeftToCenter"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "ShootLeftToCenter"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ResetAll"
           }
         },
         {
