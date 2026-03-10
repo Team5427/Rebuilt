@@ -88,7 +88,7 @@ public final class IntakeConstants {
 
   public static final LinearVelocity kRollerStowedVelocity = MetersPerSecond.of(0.1);
   public static final LinearVelocity kRollerNeutralVelocity = MetersPerSecond.of(2.5);
-  public static final LinearVelocity kRollerIntakeVelocity = MetersPerSecond.of(10);
+  public static final LinearVelocity kRollerIntakeVelocity = MetersPerSecond.of(8.0);
 
   public static final Rotation2d kPivotMaximumRotation = Rotation2d.fromDegrees(200);
   public static final Rotation2d kPivotMinimumRotation = Rotation2d.fromDegrees(5);

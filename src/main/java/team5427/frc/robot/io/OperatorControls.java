@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import team5427.frc.robot.Constants.DriverConstants;
 import team5427.frc.robot.Superstructure;
+import team5427.frc.robot.Superstructure.ClimbStates;
 import team5427.frc.robot.Superstructure.IndexerStates;
 import team5427.frc.robot.Superstructure.IntakeStates;
 import team5427.frc.robot.Superstructure.ShooterStates;
@@ -48,6 +49,7 @@ public class OperatorControls {
                     Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL)
                         .withDeadline(new WaitCommand(1)))
                 .repeatedly()));
+    joy.povLeft().onTrue(Superstructure.setClimbStateCommand(ClimbStates.L1));
     // .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
     // joy.leftBumper()
     //     .whileTrue(

@@ -55,7 +55,7 @@ public final class ShooterConstants {
     kRightHoodMotorConfiguration.gearRatio = kHoodMotorGearRatio;
     kRightHoodMotorConfiguration.isArm = true;
     kRightHoodMotorConfiguration.idleState = IdleState.kBrake;
-    kRightHoodMotorConfiguration.isInverted = true;
+    kRightHoodMotorConfiguration.isInverted = false;
     kRightHoodMotorConfiguration.mode = MotorMode.kServo;
     kRightHoodMotorConfiguration.withFOC = true;
 

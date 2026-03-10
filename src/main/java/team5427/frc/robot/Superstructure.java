@@ -3,6 +3,8 @@ package team5427.frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import team5427.frc.robot.subsystems.climb.ClimbSubsystem.ClimbStates;
+
 import java.util.function.BooleanSupplier;
 import org.littletonrobotics.junction.Logger;
 
@@ -14,7 +16,7 @@ public final class Superstructure {
   private static SwerveStates kSelectedSwerveState = SwerveStates.DISABLED;
   private static SwerveStates kPreviousSwerveState = SwerveStates.DISABLED;
 
-  private static IntakeStates kSelectedIntakeState = IntakeStates.STOWED;
+  private static IntakeStates kSelectedIntakeState = IntakeStates.INTAKENEUTRAL;
   private static IntakeStates kPreviousIntakeState = IntakeStates.STOWED;
 
   private static ShooterStates kSelectedShooterState = ShooterStates.DISABLED;
@@ -22,6 +24,12 @@ public final class Superstructure {
 
   private static IndexerStates kSelectedIndexerState = IndexerStates.DISABLED;
   private static IndexerStates kPreviousIndexerState = IndexerStates.DISABLED;
+
+  private static ClimbStates kSelectedClimbState = ClimbStates.DISABLED;
+  private static ClimbStates kPreviousClimbState = ClimbStates.DISABLED;
+
+
+  public static Command setClimbCommand;
 
   // Swerve States Enum
   public static enum SwerveStates {
@@ -57,6 +65,13 @@ public final class Superstructure {
     INDEXING,
     STOWED,
     DISABLED
+  }
+  public static enum ClimbStates{
+    DISABLED,
+    STOWED,
+    L1,
+    L2,
+    L3
   }
 
   // Getter Methods
@@ -124,6 +139,14 @@ public final class Superstructure {
       Logger.recordOutput(dashboardKey + "/PreviousIntakeState", kPreviousIntakeState.toString());
     }
   }
+  public static synchronized void requestClimbState(ClimbStates newState) {
+    if (kSelectedClimbState != newState) {
+      kPreviousClimbState = kSelectedClimbState;
+      kSelectedClimbState = newState;
+      Logger.recordOutput(dashboardKey + "/IntakeState", newState.toString());
+      Logger.recordOutput(dashboardKey + "/PreviousIntakeState", kPreviousIntakeState.toString());
+    }
+  }
 
   /**
    * Allows you to request a new Shooter State and if it is different than the current one, the
@@ -183,6 +206,10 @@ public final class Superstructure {
    */
   public static synchronized Command setIntakeStateCommand(IntakeStates state) {
     return Commands.runOnce(() -> requestIntakeState(state))
+        .withName("SetIntakeState(" + state.toString() + ")");
+  }
+  public static synchronized Command setClimbStateCommand(ClimbStates state) {
+    return Commands.runOnce(() -> requestClimbState(state))
         .withName("SetIntakeState(" + state.toString() + ")");
   }
 

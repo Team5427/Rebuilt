@@ -1,27 +1,32 @@
 package team5427.frc.robot.subsystems.climb.io;
 
-import static edu.wpi.first.units.Units.*;
+import static edu.wpi.first.units.Units.Amps;
+import static edu.wpi.first.units.Units.RotationsPerSecond;
+import static edu.wpi.first.units.Units.RotationsPerSecondPerSecond;
+import static edu.wpi.first.units.Units.Volts;
 
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.units.measure.AngularAcceleration;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Current;
-import edu.wpi.first.units.measure.Distance;
-import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.units.measure.Voltage;
 import org.littletonrobotics.junction.AutoLog;
 
 public interface ClimbIO {
+
   @AutoLog
   public static class ClimbIOInputs {
-    public double climbPositionMeters = 0.0;
-    public AngularVelocity climbAngularVelocity = RadiansPerSecond.of(0.0);
-    public LinearVelocity climbLinearVelocity = MetersPerSecond.of(0.0);
-    public Current climbCurrent = Amps.of(0.0);
-    public Voltage climbVoltage = Volts.of(0.0);
+    public Rotation2d hookPosition = Rotation2d.kZero;
+    public AngularVelocity hookVelocity = RotationsPerSecond.of(0.0);
+    public AngularAcceleration hookAcceleration = RotationsPerSecondPerSecond.of(0.0);
+
+    public Current hookServoCurrent = Amps.of(0.0);
+    public Voltage hookServoVoltage = Volts.of(0.0);
   }
 
-  public default void updateInputs(ClimbIOInputs inputs) {}
+  public void updateInputs(ClimbIOInputs inputs);
 
-  public default void setClimbPosition(Distance position) {}
+  public void setHookSetpoint(Rotation2d setpoint);
 
-  public default void resetClimbPosition() {}
+  public void setHookPosition(Rotation2d angle);
 }

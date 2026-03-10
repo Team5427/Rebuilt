@@ -137,7 +137,7 @@ public class MoveWhileShoot extends Command {
       shooter.setLeftShooterAngle(shooterAngle);
       shooter.setLeftShooterSpeed(shooterVelocity);
       shooter.setRightShooterAngle(shooterAngle);
-      shooter.setRightShooterSpeed(shooterVelocity.times(-1.0));
+      shooter.setRightShooterSpeed(shooterVelocity);
 
       Translation2d shooterFieldPos2d = shooterFieldPos.toTranslation2d();
       Translation2d virtualTarget2d = virtualTarget.toTranslation2d();
