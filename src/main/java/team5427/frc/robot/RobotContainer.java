@@ -22,7 +22,6 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import org.ironmaple.simulation.SimulatedArena;
 import org.littletonrobotics.junction.Logger;
 import team5427.frc.robot.Constants.DriverConstants;
-import team5427.frc.robot.Superstructure.IndexerStates;
 import team5427.frc.robot.Superstructure.IntakeStates;
 import team5427.frc.robot.Superstructure.ShooterStates;
 import team5427.frc.robot.Superstructure.SwerveStates;
@@ -91,7 +90,7 @@ public class RobotContainer {
     FutureTrack.getInstance(
         SwerveSubsystem.getInstance()::getCurrentChassisSpeeds,
         SwerveSubsystem.getInstance()::getTargetChassisSpeeds);
-        
+
     AutoBuilder.configure(
         RobotPose.getInstance()::getAdaptivePose,
         RobotPose.getInstance()::resetAllPose,
@@ -136,8 +135,9 @@ public class RobotContainer {
         "AutoAlignMoveWhileShoot",
         Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING)
             .alongWith(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING))
-            .andThen(new WaitCommand(2.5)).andThen(Superstructure.setShooterStateCommand(ShooterStates.STOWED)).alongWith(Superstructure.setSwerveStateCommand(SwerveStates.AUTON))
-            );
+            .andThen(new WaitCommand(2.5))
+            .andThen(Superstructure.setShooterStateCommand(ShooterStates.STOWED))
+            .alongWith(Superstructure.setSwerveStateCommand(SwerveStates.AUTON)));
     NamedCommands.registerCommand(
         "AutoAlignClimbLeft",
         Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)
@@ -174,8 +174,7 @@ public class RobotContainer {
     NamedCommands.registerCommand(
         "Intake", Superstructure.setIntakeStateCommand(IntakeStates.INTAKING));
     NamedCommands.registerCommand(
-        "ResetAll",
-        Superstructure.resetAllStates()
+        "ResetAll", Superstructure.resetAllStates()
         // Superstructure.setSwerveStateCommand(SwerveStates.AUTON)
         );
   }
