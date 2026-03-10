@@ -74,6 +74,12 @@ public class VisionSubsystem extends VirtualSubsystem {
                 VisionConstants.kRightCamTransform,
                 referencePoseSupplier,
                 referenceHeadingSupplier);
+        io[1] =
+            new VisionIOPhoton(
+                VisionConstants.kLeftCamName,
+                VisionConstants.kLeftCamTransform,
+                referencePoseSupplier,
+                referenceHeadingSupplier);
 
         for (int i = 0; i < inputsAutoLogged.length; i++) {
           inputsAutoLogged[i] = new VisionIOInputsAutoLogged();
@@ -85,6 +91,12 @@ public class VisionSubsystem extends VirtualSubsystem {
             new VisionIOPhotonSim(
                 VisionConstants.kLeftCamName,
                 VisionConstants.kLeftCamTransform,
+                referencePoseSupplier,
+                referenceHeadingSupplier);
+        io[1] =
+            new VisionIOPhotonSim(
+                VisionConstants.kRightCamName,
+                VisionConstants.kRightCamTransform,
                 referencePoseSupplier,
                 referenceHeadingSupplier);
         for (int i = 0; i < inputsAutoLogged.length; i++) {

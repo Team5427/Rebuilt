@@ -14,7 +14,7 @@ public class VisionConstants {
   public static final String kRightCamName = "rightCamB";
   public static final String kLeftCamName = "leftCamA";
 
-  public static final int kCameraCount = 1;
+  public static final int kCameraCount = 2;
 
   public static final double kMaxAmbiguity = 0.15; // previous 0.2
 
