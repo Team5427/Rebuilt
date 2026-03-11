@@ -6,6 +6,7 @@ import static edu.wpi.first.units.Units.RotationsPerSecond;
 import static edu.wpi.first.units.Units.Volts;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
@@ -29,9 +30,11 @@ public final class SwerveConstants {
   public static final Distance kBumperXSize = Inches.of(32.0);
   public static final Distance kBumperYSize = Inches.of(32.0);
 
-  public static final Pose2d kLeftClimbPose = Pose2d.kZero;
+  public static final Pose2d kLeftClimbPose = new Pose2d(1.573, 3.912, new Rotation2d(0.0));
+  public static final Pose2d kRightClimbPose = new Pose2d(1.550, 3.340, new Rotation2d(0.0));
+  public static final Pose2d kCenterClimbPose = new Pose2d(1.550, 3.626, new Rotation2d(0.0));
+
   public static final Pose2d kMiddleClimbPose = Pose2d.kZero;
-  public static final Pose2d kRightClimbPose = Pose2d.kZero;
 
   public static final AngularVelocity kMaxAngularVelocity = RotationsPerSecond.of(4.0);
 
@@ -79,7 +82,7 @@ public final class SwerveConstants {
 
     kDriveMotorConfiguration.kP = 1.7;
     kDriveMotorConfiguration.kA = 0.05;
-    kDriveMotorConfiguration.kV = 0.9;
+    kDriveMotorConfiguration.kV = 1.0;
     kDriveMotorConfiguration.kS = 0.05;
     kDriveMotorConfiguration.altV = kDriveMotorConfiguration.maxVelocity;
     kDriveMotorConfiguration.altA = kDriveMotorConfiguration.maxAcceleration;

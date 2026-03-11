@@ -3,10 +3,9 @@ package team5427.frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import team5427.frc.robot.subsystems.climb.ClimbSubsystem.ClimbStates;
-
 import java.util.function.BooleanSupplier;
 import org.littletonrobotics.junction.Logger;
+import team5427.frc.robot.subsystems.climb.ClimbSubsystem.ClimbStates;
 
 public final class Superstructure {
   public static final String dashboardKey = "/Superstructure";
@@ -17,7 +16,7 @@ public final class Superstructure {
   private static SwerveStates kPreviousSwerveState = SwerveStates.DISABLED;
 
   private static IntakeStates kSelectedIntakeState = IntakeStates.INTAKENEUTRAL;
-  private static IntakeStates kPreviousIntakeState = IntakeStates.STOWED;
+  private static IntakeStates kPreviousIntakeState = IntakeStates.INTAKENEUTRAL;
 
   private static ShooterStates kSelectedShooterState = ShooterStates.DISABLED;
   private static ShooterStates kPreviousShooterState = ShooterStates.DISABLED;
@@ -27,7 +26,6 @@ public final class Superstructure {
 
   private static ClimbStates kSelectedClimbState = ClimbStates.DISABLED;
   private static ClimbStates kPreviousClimbState = ClimbStates.DISABLED;
-
 
   public static Command setClimbCommand;
 
@@ -66,7 +64,8 @@ public final class Superstructure {
     STOWED,
     DISABLED
   }
-  public static enum ClimbStates{
+
+  public static enum ClimbStates {
     DISABLED,
     STOWED,
     L1,
@@ -139,6 +138,7 @@ public final class Superstructure {
       Logger.recordOutput(dashboardKey + "/PreviousIntakeState", kPreviousIntakeState.toString());
     }
   }
+
   public static synchronized void requestClimbState(ClimbStates newState) {
     if (kSelectedClimbState != newState) {
       kPreviousClimbState = kSelectedClimbState;
@@ -183,7 +183,7 @@ public final class Superstructure {
   public static synchronized Command resetAllStates() {
     return setSwerveStateCommand(SwerveStates.AUTON)
         .alongWith(setShooterStateCommand(ShooterStates.STOWED))
-        .alongWith(setIntakeStateCommand(IntakeStates.STOWED))
+        .alongWith(setIntakeStateCommand(IntakeStates.INTAKENEUTRAL))
         .alongWith(setIndexerStateCommand(IndexerStates.STOWED));
   }
 
@@ -208,6 +208,7 @@ public final class Superstructure {
     return Commands.runOnce(() -> requestIntakeState(state))
         .withName("SetIntakeState(" + state.toString() + ")");
   }
+
   public static synchronized Command setClimbStateCommand(ClimbStates state) {
     return Commands.runOnce(() -> requestClimbState(state))
         .withName("SetIntakeState(" + state.toString() + ")");
@@ -472,5 +473,13 @@ public final class Superstructure {
     public static final Trigger kIndexing = indexerStateIs(IndexerStates.INDEXING);
     public static final Trigger kStowed = indexerStateIs(IndexerStates.STOWED);
     public static final Trigger kDisabled = indexerStateIs(IndexerStates.DISABLED);
+  }
+
+  public static final class ClimbTriggers {
+    public static final Trigger kL1 = climbStateIs(ClimbStates.L1);
+  }
+
+  public static synchronized Trigger climbStateIs(ClimbStates state) {
+    return new Trigger(() -> kSelectedClimbState == state);
   }
 }

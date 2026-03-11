@@ -1,7 +1,6 @@
 package team5427.frc.robot.subsystems.climb.io;
 
 import static edu.wpi.first.units.Units.Rotations;
-import static edu.wpi.first.units.Units.Volt;
 
 import com.ctre.phoenix6.BaseStatusSignal;
 import com.ctre.phoenix6.StatusSignal;

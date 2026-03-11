@@ -11,8 +11,8 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.units.measure.Distance;
 
 public class VisionConstants {
-  public static final String kRightCamName = "rightCamB";
-  public static final String kLeftCamName = "leftCamA";
+  public static final String kRightCamName = "rightCamA";
+  public static final String kLeftCamName = "leftCamC";
 
   public static final int kCameraCount = 2;
 
@@ -25,21 +25,21 @@ public class VisionConstants {
 
   // Left side of bot (Intake as Front)
   // Robot to camera
-  public static final Transform3d kLeftCamTransform =
+  public static final Transform3d kRightCamTransform =
       new Transform3d(
-          Units.inchesToMeters(13.273), // 9.375  3 ; This might be negative
-          Units.inchesToMeters(8.684), // -11.048439965  -11
-          Units.inchesToMeters(11.540), // 13.293  11.293
+          Units.inchesToMeters(-13.315),
+          Units.inchesToMeters(-8.813),
+          Units.inchesToMeters(11.655),
           new Rotation3d(0, Units.degreesToRadians(20), Units.degreesToRadians(180.0))); // 0 20 180
 
   // Right side of bot (Intake as Front)
   // Robot to camera
-  public static final Transform3d kRightCamTransform =
+  public static final Transform3d kLeftCamTransform =
       new Transform3d(
-          Units.inchesToMeters(0.5), // 9.375
-          Units.inchesToMeters(6.048439965), // 11.048439965
-          Units.inchesToMeters(8.540489626),
-          new Rotation3d(0, Units.degreesToRadians(-30), 0.0)); // 0.47976945625357
+          Units.inchesToMeters(-13.315),
+          Units.inchesToMeters(8.813),
+          Units.inchesToMeters(11.655),
+          new Rotation3d(0, Units.degreesToRadians(20), Units.degreesToRadians(180.0))); // 0 20 180
 
   public static final Transform3d kQuestCameraTransform =
       new Transform3d(

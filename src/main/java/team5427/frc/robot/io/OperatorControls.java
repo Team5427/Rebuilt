@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import team5427.frc.robot.Constants.DriverConstants;
 import team5427.frc.robot.Superstructure;
-import team5427.frc.robot.Superstructure.ClimbStates;
 import team5427.frc.robot.Superstructure.IndexerStates;
 import team5427.frc.robot.Superstructure.IntakeStates;
 import team5427.frc.robot.Superstructure.ShooterStates;
@@ -44,12 +43,12 @@ public class OperatorControls {
     joy.leftBumper()
         .whileTrue(
             (Superstructure.setIntakeStateCommand(IntakeStates.STOWED)
-                .withDeadline(new WaitCommand(1))
+                .withDeadline(new WaitCommand(.5))
                 .andThen(
                     Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL)
-                        .withDeadline(new WaitCommand(1)))
+                        .withDeadline(new WaitCommand(.5)))
                 .repeatedly()));
-    joy.povLeft().onTrue(Superstructure.setClimbStateCommand(ClimbStates.L1));
+    // joy.povLeft().onTrue(Superstructure.setClimbStateCommand(ClimbStates.L1));
     // .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
     // joy.leftBumper()
     //     .whileTrue(
@@ -89,7 +88,7 @@ public class OperatorControls {
     Superstructure.intakeStateIs(IntakeStates.INTAKING)
         .and(Superstructure.swerveStateIs(Superstructure.SwerveStates.INTAKE_ASSISTANCE).negate())
         .whileTrue(new IntakeIntaking());
-
+    // Superstructure.climbStateIs(ClimbStates.L1).whileTrue(new ClimbToL1());
     Superstructure.intakeStateIs(IntakeStates.STOWED).whileTrue(new IntakeStowed());
     Superstructure.intakeStateIs(IntakeStates.INTAKENEUTRAL).whileTrue(new IntakeNeutral());
     Superstructure.intakeStateIs(IntakeStates.HOMING).whileTrue(new IntakeHome());

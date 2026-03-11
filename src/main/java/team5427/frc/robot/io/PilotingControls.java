@@ -144,7 +144,7 @@ public class PilotingControls {
                       .resetGyro(
                           DriverStation.getAlliance().isPresent()
                                   && DriverStation.getAlliance().get() == Alliance.Red
-                              ? Rotation2d.kZero
+                              ? Rotation2d.k180deg
                               : Rotation2d.kZero);
                   RobotPose.getInstance()
                       .resetHeading(SwerveSubsystem.getInstance().getGyroRotation());

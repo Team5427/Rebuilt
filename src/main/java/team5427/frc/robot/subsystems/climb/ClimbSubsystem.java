@@ -49,11 +49,11 @@ public class ClimbSubsystem extends SubsystemBase {
       case REAL:
         io = new ClimbIOTalonFX();
         break;
-      // case SIM:
-      //   io = new ClimbIOSim();
-      //   break;
-      // default:
-      //   break;
+      case SIM:
+        io = new ClimbIOTalonFX();
+        break;
+      default:
+        break;
     }
 
     climbHooksSetpoint = ClimbConstants.kStowPosition;
