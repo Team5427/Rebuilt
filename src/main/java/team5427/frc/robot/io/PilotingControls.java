@@ -15,6 +15,7 @@ import team5427.frc.robot.Superstructure.ShooterStates;
 import team5427.frc.robot.Superstructure.SwerveStates;
 import team5427.frc.robot.commands.chassis.ControlledChassisMovement;
 import team5427.frc.robot.commands.chassis.RawChassisMovement;
+import team5427.frc.robot.commands.shooting.MoveWhileFerry;
 import team5427.frc.robot.commands.shooting.MoveWhileShoot;
 import team5427.frc.robot.io.DriverProfiles.DriverState;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
@@ -66,6 +67,12 @@ public class PilotingControls {
         .whileTrue(Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING))
         .onFalse(Superstructure.setSwerveStateCommand(SwerveStates.RAW_DRIVING))
         .onFalse(Superstructure.setShooterStateCommand(ShooterStates.STOWED));
+        
+    joy.leftBumper()
+        .whileTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING))
+        .whileTrue(Superstructure.setShooterStateCommand(ShooterStates.FERRY_SHOOTING))
+        .onFalse(Superstructure.setSwerveStateCommand(SwerveStates.RAW_DRIVING))
+        .onFalse(Superstructure.setShooterStateCommand(ShooterStates.STOWED));
     // Auto mode state management
     autonTrigger
         .onTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTON))
@@ -101,8 +108,14 @@ public class PilotingControls {
     // Auto Targetting Mode
 
     Superstructure.swerveStateIs(SwerveStates.AUTO_TARGETING)
+        .and(Superstructure.shooterStateIs(ShooterStates.AUTO_ALIGN_SHOOTING))
         .and(disabledTrigger.negate())
         .whileTrue(new MoveWhileShoot(joy));
+
+    Superstructure.swerveStateIs(SwerveStates.AUTO_TARGETING)
+        .and(Superstructure.shooterStateIs(ShooterStates.FERRY_SHOOTING))
+        .and(disabledTrigger.negate())
+        .whileTrue(new MoveWhileFerry(joy));
 
     // Utility Bindings
     joy.a()
