@@ -31,6 +31,8 @@ public final class Constants {
 
   public static Mode currentMode = Mode.REAL;
 
+  public static final boolean wpiCal = false;
+
   public static enum Mode {
     /** Running on a real robot. */
     REAL,
