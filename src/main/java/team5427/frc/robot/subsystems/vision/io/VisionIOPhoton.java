@@ -92,7 +92,8 @@ public class VisionIOPhoton implements VisionIO {
                   PoseObservationType.PHOTONVISION_MULTI_TAG));
         } else {
           Optional<EstimatedRobotPose> pose =
-              photonPoseEstimator.estimatePnpDistanceTrigSolvePose(results.get(i));
+              photonPoseEstimator.estimateClosestToReferencePose(
+                  results.get(i), new Pose3d(getReferencePose.get()));
           photonPoseEstimator.addHeadingData(
               Timer.getTimestamp(), SwerveSubsystem.getInstance().getGyroRotation());
           List<PhotonTrackedTarget> targets = results.get(i).getTargets();

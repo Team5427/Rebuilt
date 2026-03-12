@@ -64,7 +64,8 @@ public class PilotingControls {
 
     // joy.b()
     //     .whileTrue(
-    //         WheelRadiusCharacterization.wheelRadiusCharacterization(SwerveSubsystem.getInstance()));
+    //
+    // WheelRadiusCharacterization.wheelRadiusCharacterization(SwerveSubsystem.getInstance()));
 
     joy.rightBumper()
         .whileTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING))
