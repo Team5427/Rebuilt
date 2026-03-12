@@ -85,9 +85,9 @@ public class IntakeSubsystem extends SubsystemBase {
     //   kIntakingSpeedOutOfBounds.set(false);
     //   io.setRollerSpeed(intakingSpeed);
     // }
-    if(isPivotAtSetpoint()){
-    io.setRollerSpeed(intakingSpeed);
-    } else{
+    if (isPivotAtSetpoint()) {
+      io.setRollerSpeed(intakingSpeed);
+    } else {
       io.setRollerSpeed(MetersPerSecond.of(0.0));
     }
     io.setPivotRotation(intakingAngle);
@@ -102,8 +102,8 @@ public class IntakeSubsystem extends SubsystemBase {
     log();
   }
 
-  public boolean isPivotAtSetpoint(){
-    return Math.abs(inputsAutoLogged.pivotMotorRotation.minus(intakingAngle).getDegrees() ) < 10.0;
+  public boolean isPivotAtSetpoint() {
+    return Math.abs(inputsAutoLogged.pivotMotorRotation.minus(intakingAngle).getDegrees()) < 10.0;
   }
 
   public void simulateIntaking(boolean isIntaking) {

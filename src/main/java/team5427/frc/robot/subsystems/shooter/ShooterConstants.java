@@ -45,7 +45,7 @@ public final class ShooterConstants {
       new ComplexGearRatio((30.0 / 36.0));
 
   public static final double kTopFlywheelRadiusMeters = Units.inchesToMeters(1.0);
-  public static final double kBottomFlywheelRadiusMeters = Units.inchesToMeters(10.0); // 2.0
+  public static final double kBottomFlywheelRadiusMeters = Units.inchesToMeters(2.0); // 2.0
 
   public static final Rotation2d kHoodHardstopPosition = Rotation2d.fromDegrees(28.01);
   public static final Rotation2d kHoodMaximumRotation = Rotation2d.fromDegrees(62.227);
@@ -126,13 +126,13 @@ public final class ShooterConstants {
     kRightFlywheelMotorConfiguration.altA = kRightFlywheelMotorConfiguration.maxAcceleration;
     kRightFlywheelMotorConfiguration.altJ = 1000.0;
 
-    kRightFlywheelMotorConfiguration.kP = 0.2;
+    kRightFlywheelMotorConfiguration.kP = 0.03;
     kRightFlywheelMotorConfiguration.kI = 0.0;
     kRightFlywheelMotorConfiguration.kD = 0.0;
 
-    kRightFlywheelMotorConfiguration.kV = 0.1;
-    kRightFlywheelMotorConfiguration.kA = 0.08;
-    kRightFlywheelMotorConfiguration.kS = 0.0;
+    kRightFlywheelMotorConfiguration.kV = 0.075;
+    kRightFlywheelMotorConfiguration.kA = 0.05;
+    kRightFlywheelMotorConfiguration.kS = 0.15;
     kRightFlywheelMotorConfiguration.kG = 0.0;
     kRightFlywheelMotorConfiguration.kFF = 0.0;
 
