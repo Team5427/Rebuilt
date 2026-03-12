@@ -8,32 +8,27 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.5524758560140475,
-        "y": 4.206207199297629
+        "x": 2.741082519964507,
+        "y": 6.646548358473824
       },
       "isLocked": false,
       "linkedName": "ShootLeft"
     },
     {
       "anchor": {
-        "x": 1.5730114135206326,
-        "y": 3.911571553994732
+        "x": 2.9181366459627327,
+        "y": 7.4432919254658385
       },
       "prevControl": {
-        "x": 2.5285864793678665,
-        "y": 4.12657594381036
+        "x": 2.7652262644188106,
+        "y": 6.638500443655723
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "LeftClimb"
+      "linkedName": "BlockyPreTrench"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.8467153284671549,
-      "rotationDegrees": 0.0
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -50,7 +45,7 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": "Smooth Paths",
+  "folder": "Blocky Paths",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 129.07908037006862

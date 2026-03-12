@@ -3,9 +3,16 @@
   "robotLength": 0.762,
   "holonomicMode": true,
   "pathFolders": [
-    "Climb"
+    "Climb",
+    "Blocky Paths",
+    "Smooth Paths",
+    "Testing"
   ],
-  "autoFolders": [],
+  "autoFolders": [
+    "Blocky Autos",
+    "Smooth Autos",
+    "Testing Autos"
+  ],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 2.5,
   "defaultMaxAngVel": 1272.0,
