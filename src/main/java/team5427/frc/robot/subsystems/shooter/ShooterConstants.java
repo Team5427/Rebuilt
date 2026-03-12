@@ -39,11 +39,12 @@ public final class ShooterConstants {
       new MotorConfiguration();
   public static final MotorConfiguration kLeftFlywheelMotorConfiguration = new MotorConfiguration();
 
-  public static final ComplexGearRatio kHoodMotorGearRatio = new ComplexGearRatio((28.0 / 324.0));
+  public static final ComplexGearRatio kHoodMotorGearRatio =
+      new ComplexGearRatio((12.0 / 30.0), (28.0 / 324.0));
   public static final ComplexGearRatio kFlywheelMotorGearRatio =
       new ComplexGearRatio((30.0 / 36.0));
 
-  public static final double kTopFlywheelRadiusMeters = Units.inchesToMeters(1.0); // 1
+  public static final double kTopFlywheelRadiusMeters = Units.inchesToMeters(1.0);
   public static final double kBottomFlywheelRadiusMeters = Units.inchesToMeters(2.0);
 
   public static final Rotation2d kHoodHardstopPosition = Rotation2d.fromDegrees(28.01);
@@ -113,12 +114,11 @@ public final class ShooterConstants {
     kRightFlywheelMotorConfiguration.idleState = IdleState.kCoast;
     kRightFlywheelMotorConfiguration.isInverted = true;
     kRightFlywheelMotorConfiguration.mode = MotorMode.kFlywheel;
-    kRightFlywheelMotorConfiguration.withFOC = false;
-    kRightFlywheelMotorConfiguration.finalDiameterMeters =
-        kTopFlywheelRadiusMeters + kBottomFlywheelRadiusMeters;
+    kRightFlywheelMotorConfiguration.withFOC = true;
+    kRightFlywheelMotorConfiguration.finalDiameterMeters = kBottomFlywheelRadiusMeters * 2.0;
 
     kRightFlywheelMotorConfiguration.maxVelocity =
-        kRightFlywheelMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM);
+        kRightFlywheelMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX44FOC_MaxRPM);
     kRightFlywheelMotorConfiguration.maxAcceleration =
         kRightFlywheelMotorConfiguration.maxVelocity * 2.0;
 
@@ -126,12 +126,12 @@ public final class ShooterConstants {
     kRightFlywheelMotorConfiguration.altA = kRightFlywheelMotorConfiguration.maxAcceleration;
     kRightFlywheelMotorConfiguration.altJ = 1000.0;
 
-    kRightFlywheelMotorConfiguration.kP = 0.08;
+    kRightFlywheelMotorConfiguration.kP = 0.2;
     kRightFlywheelMotorConfiguration.kI = 0.0;
     kRightFlywheelMotorConfiguration.kD = 0.0;
 
-    kRightFlywheelMotorConfiguration.kV = 0.37;
-    kRightFlywheelMotorConfiguration.kA = 0.33;
+    kRightFlywheelMotorConfiguration.kV = 0.1;
+    kRightFlywheelMotorConfiguration.kA = 0.08;
     kRightFlywheelMotorConfiguration.kS = 0.0;
     kRightFlywheelMotorConfiguration.kG = 0.0;
     kRightFlywheelMotorConfiguration.kFF = 0.0;
@@ -145,45 +145,28 @@ public final class ShooterConstants {
     kLeftFlywheelMotorConfiguration.idleState = IdleState.kCoast;
     kLeftFlywheelMotorConfiguration.isInverted = false;
     kLeftFlywheelMotorConfiguration.mode = MotorMode.kFlywheel;
-    kLeftFlywheelMotorConfiguration.withFOC = false;
-    kLeftFlywheelMotorConfiguration.finalDiameterMeters =
-        kTopFlywheelRadiusMeters + kBottomFlywheelRadiusMeters;
+    kLeftFlywheelMotorConfiguration.withFOC = true;
+    kLeftFlywheelMotorConfiguration.finalDiameterMeters = kBottomFlywheelRadiusMeters * 2.0;
 
     kLeftFlywheelMotorConfiguration.maxVelocity =
-        kLeftFlywheelMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM);
-    kLeftFlywheelMotorConfiguration.maxAcceleration =
-        kLeftFlywheelMotorConfiguration.maxVelocity * 2.0;
-    kLeftFlywheelMotorConfiguration.maxVelocity =
-        kLeftFlywheelMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM);
+        kLeftFlywheelMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX44FOC_MaxRPM);
     kLeftFlywheelMotorConfiguration.maxAcceleration =
         kLeftFlywheelMotorConfiguration.maxVelocity * 2.0;
 
     kLeftFlywheelMotorConfiguration.altV = kLeftFlywheelMotorConfiguration.maxVelocity / 2.0;
     kLeftFlywheelMotorConfiguration.altA = kLeftFlywheelMotorConfiguration.maxAcceleration;
     kLeftFlywheelMotorConfiguration.altJ = 1000.0;
-    kLeftFlywheelMotorConfiguration.altV = kLeftFlywheelMotorConfiguration.maxVelocity / 2.0;
-    kLeftFlywheelMotorConfiguration.altA = kLeftFlywheelMotorConfiguration.maxAcceleration;
-    kLeftFlywheelMotorConfiguration.altJ = 1000.0;
 
-    kLeftFlywheelMotorConfiguration.kP = 0.08;
-    kLeftFlywheelMotorConfiguration.kI = 0.0;
-    kLeftFlywheelMotorConfiguration.kD = 0.0;
-    kLeftFlywheelMotorConfiguration.kP = 0.08;
+    kLeftFlywheelMotorConfiguration.kP = 0.1;
     kLeftFlywheelMotorConfiguration.kI = 0.0;
     kLeftFlywheelMotorConfiguration.kD = 0.0;
 
-    kLeftFlywheelMotorConfiguration.kV = 0.37;
-    kLeftFlywheelMotorConfiguration.kA = 0.33;
-    kLeftFlywheelMotorConfiguration.kS = 0.0;
-    kLeftFlywheelMotorConfiguration.kG = 0.0;
-    kLeftFlywheelMotorConfiguration.kFF = 0.0;
-    kLeftFlywheelMotorConfiguration.kV = 0.37;
-    kLeftFlywheelMotorConfiguration.kA = 0.33;
+    kLeftFlywheelMotorConfiguration.kV = 0.085;
+    kLeftFlywheelMotorConfiguration.kA = 0.08;
     kLeftFlywheelMotorConfiguration.kS = 0.0;
     kLeftFlywheelMotorConfiguration.kG = 0.0;
     kLeftFlywheelMotorConfiguration.kFF = 0.0;
 
-    kLeftFlywheelMotorConfiguration.currentLimit = 40;
     kLeftFlywheelMotorConfiguration.currentLimit = 40;
   }
 }

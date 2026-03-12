@@ -41,9 +41,9 @@ public class RawChassisMovement extends Command {
       isRed =
           DriverStation.getAlliance().isPresent()
               && DriverStation.getAlliance().get() == Alliance.Red;
-      double vx = -translationJoystick.getRightY();
-      double vy = -translationJoystick.getRightX();
-      double omegaRadians = -rotationJoystick.getLeftX();
+      double vx = -translationJoystick.getLeftY();
+      double vy = -translationJoystick.getLeftX();
+      double omegaRadians = -rotationJoystick.getRightX();
 
       if (isRed) {
         vx *= -1;

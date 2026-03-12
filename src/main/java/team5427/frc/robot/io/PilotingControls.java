@@ -15,6 +15,7 @@ import team5427.frc.robot.Superstructure.ShooterStates;
 import team5427.frc.robot.Superstructure.SwerveStates;
 import team5427.frc.robot.commands.chassis.ControlledChassisMovement;
 import team5427.frc.robot.commands.chassis.RawChassisMovement;
+import team5427.frc.robot.commands.chassis.WheelRadiusCharacterization;
 import team5427.frc.robot.commands.shooting.MoveWhileFerry;
 import team5427.frc.robot.commands.shooting.MoveWhileShoot;
 import team5427.frc.robot.io.DriverProfiles.DriverState;
@@ -62,12 +63,16 @@ public class PilotingControls {
         .whileTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN))
         .toggleOnFalse(Superstructure.setSwerveStateCommand(SwerveStates.RAW_DRIVING));
 
+    joy.b()
+        .whileTrue(
+            WheelRadiusCharacterization.wheelRadiusCharacterization(SwerveSubsystem.getInstance()));
+
     joy.rightBumper()
         .whileTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING))
         .whileTrue(Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING))
         .onFalse(Superstructure.setSwerveStateCommand(SwerveStates.RAW_DRIVING))
         .onFalse(Superstructure.setShooterStateCommand(ShooterStates.STOWED));
-        
+
     joy.leftBumper()
         .whileTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING))
         .whileTrue(Superstructure.setShooterStateCommand(ShooterStates.FERRY_SHOOTING))

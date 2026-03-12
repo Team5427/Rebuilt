@@ -54,7 +54,6 @@ public class ShooterIOTalonFX implements ShooterIO {
         ShooterConstants.kRightHoodMotorConfiguration.currentLimit;
     leftHoodMotor.applyTalonConfig();
     leftFlywheelLeaderMotor.apply(ShooterConstants.kLeftFlywheelMotorConfiguration);
-    leftFlywheelLeaderMotor.apply(ShooterConstants.kLeftFlywheelMotorConfiguration);
     leftFlywheelFollowerMotor.apply(
         new MotorConfiguration(ShooterConstants.kLeftFlywheelMotorConfiguration));
 
@@ -73,25 +72,15 @@ public class ShooterIOTalonFX implements ShooterIO {
     rightFlywheelFollowerMotor =
         new SteelTalonFX(ShooterConstants.kRightFlywheelFollowerMotorCanId);
 
-    rightHoodMotor.apply(new MotorConfiguration(ShooterConstants.kRightHoodMotorConfiguration));
-    // rightHoodMotor.getTalonFX().setControl(new
-    // Follower(ShooterConstants.kLeftHoodMotorCanId.getDeviceNumber(),
-    // MotorAlignmentValue.Opposed));
+    rightHoodMotor.apply(ShooterConstants.kRightHoodMotorConfiguration);
     rightHoodMotor.talonConfig.CurrentLimits.SupplyCurrentLimit =
         ShooterConstants.kRightHoodMotorConfiguration.currentLimit;
     rightHoodMotor.applyTalonConfig();
 
-    rightFlywheelLeaderMotor.apply(
-        new MotorConfiguration(ShooterConstants.kRightFlywheelMotorConfiguration));
-    // rightFlywheelLeaderMotor.getTalonFX().setControl(new
-    // Follower(ShooterConstants.kLeftFlywheelLeaderMotorCanId.getDeviceNumber(),
-    // MotorAlignmentValue.Aligned));
+    rightFlywheelLeaderMotor.apply(ShooterConstants.kRightFlywheelMotorConfiguration);
 
     rightFlywheelFollowerMotor.apply(
         new MotorConfiguration(ShooterConstants.kRightFlywheelMotorConfiguration));
-    // rightFlywheelFollowerMotor.getTalonFX().setControl(new
-    // Follower(ShooterConstants.kLeftFlywheelLeaderMotorCanId.getDeviceNumber(),
-    // MotorAlignmentValue.Aligned));
 
     rightHoodMotor.setEncoderPosition(ShooterConstants.kHoodHardstopPosition);
     rightFlywheelLeaderMotor.setEncoderPosition(0.0);

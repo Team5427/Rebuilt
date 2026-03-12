@@ -23,7 +23,7 @@ import team5427.lib.motors.MotorUtil;
 import team5427.lib.systems.swerve.SwerveUtil;
 
 public final class SwerveConstants {
-  public static final double kWheelDiameterMeters = Units.inchesToMeters(3.98);
+  public static final double kWheelDiameterMeters = 0.049 * 2.0; // 3.858 inches
   public static final double kWheelRadiusMeters = kWheelDiameterMeters / 2.0;
   public static final double kTrackWidth = Units.inchesToMeters(20.75);
   public static final double kWheelBase = Units.inchesToMeters(20.75);
@@ -82,7 +82,7 @@ public final class SwerveConstants {
 
     kDriveMotorConfiguration.kP = 1.7;
     kDriveMotorConfiguration.kA = 0.05;
-    kDriveMotorConfiguration.kV = 1.0;
+    kDriveMotorConfiguration.kV = 0.9;
     kDriveMotorConfiguration.kS = 0.05;
     kDriveMotorConfiguration.altV = kDriveMotorConfiguration.maxVelocity;
     kDriveMotorConfiguration.altA = kDriveMotorConfiguration.maxAcceleration;

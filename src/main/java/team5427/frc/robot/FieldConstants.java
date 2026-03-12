@@ -7,15 +7,12 @@
 
 package team5427.frc.robot;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
+import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.wpilibj.Filesystem;
-import java.io.IOException;
-import java.nio.file.Path;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -26,7 +23,7 @@ import lombok.RequiredArgsConstructor;
  * perspective of the blue alliance station
  */
 public class FieldConstants {
-  public static final FieldType fieldType = FieldType.HQ;
+  public static final FieldType fieldType = FieldType.ANDYMARK;
 
   // AprilTag related constants
   public static final int aprilTagCount = AprilTagLayoutType.OFFICIAL.getLayout().getTags().size();
@@ -330,7 +327,6 @@ public class FieldConstants {
 
   @RequiredArgsConstructor
   public enum FieldType {
-    HQ("welded"),
     ANDYMARK("andymark"),
     WELDED("welded");
 
@@ -338,11 +334,7 @@ public class FieldConstants {
   }
 
   public enum AprilTagLayoutType {
-    OFFICIAL("2026-official"),
-    NONE("2026-none"),
-    HUB("2026-hub"),
-    OUTPOST("2026-outpost"),
-    TOWER("2026-tower");
+    OFFICIAL("2026-official");
 
     private final String name;
     private volatile AprilTagFieldLayout layout;
@@ -353,33 +345,7 @@ public class FieldConstants {
     }
 
     public AprilTagFieldLayout getLayout() {
-      if (layout == null) {
-        synchronized (this) {
-          if (layout == null) {
-            try {
-              Path p =
-                  Constants.wpiCal
-                      ? Path.of(
-                          "src",
-                          "main",
-                          "deploy",
-                          "apriltags",
-                          fieldType.getJsonFolder(),
-                          name + ".json")
-                      : Path.of(
-                          Filesystem.getDeployDirectory().getPath(),
-                          "apriltags",
-                          fieldType.getJsonFolder(),
-                          name + ".json");
-              layout = new AprilTagFieldLayout(p);
-              layoutString = new ObjectMapper().writeValueAsString(layout);
-            } catch (IOException e) {
-              throw new RuntimeException(e);
-            }
-          }
-        }
-      }
-      return layout;
+      return AprilTagFieldLayout.loadField(AprilTagFields.k2026RebuiltAndymark);
     }
 
     public String getLayoutString() {
