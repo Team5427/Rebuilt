@@ -32,7 +32,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CenterToShootLeft"
+            "pathName": "BlockyCenterToPostTrench"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "BlockyPostTrenchToPreTrench"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "BlockyPreTrenchToShootLeft"
           }
         },
         {
@@ -42,13 +54,38 @@
           }
         },
         {
+          "type": "path",
+          "data": {
+            "pathName": "BlockyShootLeftToPreTrench"
+          }
+        },
+        {
           "type": "parallel",
           "data": {
             "commands": [
               {
                 "type": "path",
                 "data": {
-                  "pathName": "ShootLeftToCenter"
+                  "pathName": "BlockyPreTrenchToCenterPostTrench"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "BlockyCenterPostTrenchToCenterLeft"
                 }
               },
               {
@@ -69,7 +106,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CenterToShootLeft"
+            "pathName": "BlockyCenterToPostTrench"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "BlockyPostTrenchToPreTrench"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "BlockyPreTrenchToShootLeft"
           }
         },
         {
@@ -82,6 +131,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "Smooth Autos",
+  "folder": "Blocky Autos",
   "choreoAuto": false
 }

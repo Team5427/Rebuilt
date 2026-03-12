@@ -3,37 +3,32 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.839148375768218,
-        "y": 5.910316066725198
+        "x": 2.9181366459627327,
+        "y": 7.4432919254658385
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.5524758560140475,
-        "y": 4.206207199297629
+        "x": 2.8778970718722268,
+        "y": 5.970523513753327
       },
       "isLocked": false,
-      "linkedName": "ShootLeft"
+      "linkedName": "BlockyPreTrench"
     },
     {
       "anchor": {
-        "x": 1.5730114135206326,
-        "y": 3.911571553994732
+        "x": 2.839148375768218,
+        "y": 5.910316066725198
       },
       "prevControl": {
-        "x": 2.5285864793678665,
-        "y": 4.12657594381036
+        "x": 2.9181366459627327,
+        "y": 7.427196095829636
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "LeftClimb"
+      "linkedName": "ShootLeft"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.8467153284671549,
-      "rotationDegrees": 0.0
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -47,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 129.07908037006862
   },
   "reversed": false,
-  "folder": "Smooth Paths",
+  "folder": "Blocky Paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 129.07908037006862
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

@@ -56,7 +56,7 @@
     "rotation": 141.1
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Smooth Paths",
   "idealStartingState": {
     "velocity": 1.0,
     "rotation": 180.0
