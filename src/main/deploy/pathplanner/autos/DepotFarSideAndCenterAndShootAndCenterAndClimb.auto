@@ -77,18 +77,6 @@
           "data": {
             "name": "AutoAlignMoveWhileShoot"
           }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "ShootLeftToClimb"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "AutoAlignClimbLeft"
-          }
         }
       ]
     }

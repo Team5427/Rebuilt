@@ -1,27 +1,23 @@
 package team5427.frc.robot.commands.chassis;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-
-import org.littletonrobotics.junction.Logger;
-
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import org.littletonrobotics.junction.Logger;
 import team5427.frc.robot.RobotPose;
-import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
 
 public class WheelRadiusCharacterization {
-    private static final double wheelRadiusMaxVelocity = 0.25; // Rad/Sec
-    private static final double wheelRadiusRampRate = 0.05; // Rad/Sec^2
+  private static final double wheelRadiusMaxVelocity = 0.25; // Rad/Sec
+  private static final double wheelRadiusRampRate = 0.05; // Rad/Sec^2
 
-    public static Command wheelRadiusCharacterization(SwerveSubsystem drive) {
+  public static Command wheelRadiusCharacterization(SwerveSubsystem drive) {
     SlewRateLimiter limiter = new SlewRateLimiter(wheelRadiusRampRate);
     WheelRadiusCharacterizationState state = new WheelRadiusCharacterizationState();
 

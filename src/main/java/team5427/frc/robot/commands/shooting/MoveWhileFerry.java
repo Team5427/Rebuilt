@@ -74,7 +74,10 @@ public class MoveWhileFerry extends Command {
     isRed =
         DriverStation.getAlliance().isPresent()
             && DriverStation.getAlliance().get() == Alliance.Red;
-    target = isRed ? new Translation3d(FieldConstants.LeftBump.oppNearLeftCorner) : new Translation3d(FieldConstants.LeftBump.nearLeftCorner);
+    target =
+        isRed
+            ? new Translation3d(FieldConstants.LeftBump.oppNearLeftCorner)
+            : new Translation3d(FieldConstants.LeftBump.nearLeftCorner);
   }
 
   @Override
