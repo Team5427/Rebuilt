@@ -83,8 +83,8 @@ public class MoveWhileFerry extends Command {
   @Override
   public void execute() {
     if (DriverStation.isTeleop()) {
-      double vx = -translationJoystick.getRightY();
-      double vy = -translationJoystick.getRightX();
+      double vx = -translationJoystick.getLeftY();
+      double vy = -translationJoystick.getLeftX();
 
       if (isRed) {
         vx *= -1;
