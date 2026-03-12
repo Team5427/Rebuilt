@@ -1,5 +1,7 @@
 package team5427.frc.robot.commands.intake;
 
+import static edu.wpi.first.units.Units.MetersPerSecond;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import team5427.frc.robot.subsystems.intake.IntakeConstants;
 import team5427.frc.robot.subsystems.intake.IntakeSubsystem;
@@ -17,7 +19,7 @@ public class IntakeStowed extends Command {
 
   @Override
   public void execute() {
-    subsystem.setIntakingRotation(IntakeConstants.kPivotStartingRotation);
+    subsystem.setIntakingRotation(IntakeConstants.kPivotStowPosition);
     subsystem.setIntakingSpeed(IntakeConstants.kRollerStowedVelocity);
     // subsystem.simulateIntaking(false);
   }
