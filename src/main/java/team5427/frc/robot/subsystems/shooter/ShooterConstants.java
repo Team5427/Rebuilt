@@ -90,7 +90,7 @@ public final class ShooterConstants {
 
     kLeftHoodMotorConfiguration.maxVelocity =
         kLeftHoodMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM);
-    kLeftHoodMotorConfiguration.maxAcceleration = kRightHoodMotorConfiguration.maxVelocity;
+    kLeftHoodMotorConfiguration.maxAcceleration = kLeftHoodMotorConfiguration.maxVelocity;
 
     kLeftHoodMotorConfiguration.altV = kRightHoodMotorConfiguration.maxVelocity / 2.0;
     kLeftHoodMotorConfiguration.altA = kRightHoodMotorConfiguration.maxAcceleration;

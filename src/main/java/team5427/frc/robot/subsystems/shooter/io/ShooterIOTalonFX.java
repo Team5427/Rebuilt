@@ -76,9 +76,7 @@ public class ShooterIOTalonFX implements ShooterIO {
     rightHoodMotor.talonConfig.CurrentLimits.SupplyCurrentLimit =
         ShooterConstants.kRightHoodMotorConfiguration.currentLimit;
     rightHoodMotor.applyTalonConfig();
-
     rightFlywheelLeaderMotor.apply(ShooterConstants.kRightFlywheelMotorConfiguration);
-
     rightFlywheelFollowerMotor.apply(
         new MotorConfiguration(ShooterConstants.kRightFlywheelMotorConfiguration));
 
