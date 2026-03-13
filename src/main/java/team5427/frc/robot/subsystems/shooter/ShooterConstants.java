@@ -56,7 +56,7 @@ public final class ShooterConstants {
     kRightHoodMotorConfiguration.gearRatio = kHoodMotorGearRatio;
     kRightHoodMotorConfiguration.isArm = true;
     kRightHoodMotorConfiguration.idleState = IdleState.kBrake;
-    kRightHoodMotorConfiguration.isInverted = false;
+    kRightHoodMotorConfiguration.isInverted = true;
     kRightHoodMotorConfiguration.mode = MotorMode.kServo;
     kRightHoodMotorConfiguration.withFOC = true;
 
@@ -130,7 +130,7 @@ public final class ShooterConstants {
     kRightFlywheelMotorConfiguration.kI = 0.0;
     kRightFlywheelMotorConfiguration.kD = 0.0;
 
-    kRightFlywheelMotorConfiguration.kV = 0.077;
+    kRightFlywheelMotorConfiguration.kV = 0.08;
     kRightFlywheelMotorConfiguration.kA = 0.05;
     kRightFlywheelMotorConfiguration.kS = 0.15;
     kRightFlywheelMotorConfiguration.kG = 0.0;
@@ -157,13 +157,13 @@ public final class ShooterConstants {
     kLeftFlywheelMotorConfiguration.altA = kLeftFlywheelMotorConfiguration.maxAcceleration;
     kLeftFlywheelMotorConfiguration.altJ = 1000.0;
 
-    kLeftFlywheelMotorConfiguration.kP = 0.1;
+    kLeftFlywheelMotorConfiguration.kP = 0.03;
     kLeftFlywheelMotorConfiguration.kI = 0.0;
     kLeftFlywheelMotorConfiguration.kD = 0.0;
 
-    kLeftFlywheelMotorConfiguration.kV = 0.085;
-    kLeftFlywheelMotorConfiguration.kA = 0.08;
-    kLeftFlywheelMotorConfiguration.kS = 0.0;
+    kLeftFlywheelMotorConfiguration.kV = 0.077;
+    kLeftFlywheelMotorConfiguration.kA = 0.05;
+    kLeftFlywheelMotorConfiguration.kS = 0.15;
     kLeftFlywheelMotorConfiguration.kG = 0.0;
     kLeftFlywheelMotorConfiguration.kFF = 0.0;
 
