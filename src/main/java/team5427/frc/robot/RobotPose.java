@@ -59,7 +59,7 @@ public class RobotPose {
               new SwerveModulePosition(0, Rotation2d.kZero),
               new SwerveModulePosition(0, Rotation2d.kZero)
             },
-            Pose2d.kZero,
+            new Pose2d(3,3,Rotation2d.kZero),
             odometryStateStdDevs,
             VecBuilder.fill(0.04, 0.04, 9));
   }

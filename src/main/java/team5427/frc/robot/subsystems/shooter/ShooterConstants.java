@@ -130,7 +130,7 @@ public final class ShooterConstants {
     kRightFlywheelMotorConfiguration.kI = 0.0;
     kRightFlywheelMotorConfiguration.kD = 0.0;
 
-    kRightFlywheelMotorConfiguration.kV = 0.075;
+    kRightFlywheelMotorConfiguration.kV = 0.077;
     kRightFlywheelMotorConfiguration.kA = 0.05;
     kRightFlywheelMotorConfiguration.kS = 0.15;
     kRightFlywheelMotorConfiguration.kG = 0.0;
