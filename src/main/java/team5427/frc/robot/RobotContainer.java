@@ -26,6 +26,7 @@ import team5427.frc.robot.Superstructure.IntakeStates;
 import team5427.frc.robot.Superstructure.ShooterStates;
 import team5427.frc.robot.Superstructure.SwerveStates;
 import team5427.frc.robot.commands.chassis.MoveChassisToPose;
+import team5427.frc.robot.commands.intake.IntakeOscillate;
 import team5427.frc.robot.io.DriverProfiles;
 import team5427.frc.robot.io.OperatorControls;
 import team5427.frc.robot.io.PilotingControls;
@@ -173,6 +174,7 @@ public class RobotContainer {
             .withTimeout(2.5));
     NamedCommands.registerCommand(
         "Intake", Superstructure.setIntakeStateCommand(IntakeStates.INTAKING));
+    NamedCommands.registerCommand("IntakeOscillate", IntakeOscillate.getIntakeOscillateCommand());
     NamedCommands.registerCommand(
         "ResetAll", Superstructure.resetAllStates()
         // Superstructure.setSwerveStateCommand(SwerveStates.AUTON)

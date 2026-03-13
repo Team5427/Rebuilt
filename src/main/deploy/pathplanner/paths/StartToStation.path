@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 0.4,
+        "x": 0.75,
         "y": 0.674995563442768
       },
       "prevControl": {
-        "x": 2.938359299731307,
-        "y": 1.0388890539576465
+        "x": 3.288360631446359,
+        "y": 1.0388797643841567
       },
       "nextControl": null,
       "isLocked": false,
@@ -56,7 +56,7 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "Smooth Paths",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

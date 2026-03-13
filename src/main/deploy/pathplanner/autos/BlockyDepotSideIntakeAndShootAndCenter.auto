@@ -48,9 +48,22 @@
           }
         },
         {
-          "type": "named",
+          "type": "deadline",
           "data": {
-            "name": "AutoAlignMoveWhileShoot"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "AutoAlignMoveWhileShoot"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "IntakeOscillate"
+                }
+              }
+            ]
           }
         },
         {
@@ -122,15 +135,28 @@
           }
         },
         {
-          "type": "named",
+          "type": "deadline",
           "data": {
-            "name": "AutoAlignMoveWhileShoot"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "AutoAlignMoveWhileShoot"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "IntakeOscillate"
+                }
+              }
+            ]
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Blocky Autos",
+  "folder": null,
   "choreoAuto": false
 }

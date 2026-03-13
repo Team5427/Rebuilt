@@ -28,9 +28,9 @@ public final class IndexerConstants {
   public static final LinearVelocity kIndexerIndexingVelocity = MetersPerSecond.of(-2.0);
 
   static {
-    kHopperMotorConfiguration.gearRatio = new ComplexGearRatio(1.0);
+    kHopperMotorConfiguration.gearRatio = new ComplexGearRatio((18.0 / 24.0));
     kHopperMotorConfiguration.mode = MotorMode.kFlywheel;
-    kHopperMotorConfiguration.idleState = IdleState.kBrake;
+    kHopperMotorConfiguration.idleState = IdleState.kCoast;
     kHopperMotorConfiguration.isArm = false;
     kHopperMotorConfiguration.isInverted = false;
     kHopperMotorConfiguration.currentLimit = 80;
@@ -39,6 +39,10 @@ public final class IndexerConstants {
     kHopperMotorConfiguration.maxVelocity =
         kHopperMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX44FOC_MaxRPM) / 5.0;
     kHopperMotorConfiguration.maxAcceleration = kHopperMotorConfiguration.maxVelocity * 3.0;
+
+    kHopperMotorConfiguration.kP = 1.0;
+    kIndexerMotorConfiguration.kV = 0.5;
+    kIndexerMotorConfiguration.kS = 0.5;
   }
 
   static {
@@ -52,7 +56,7 @@ public final class IndexerConstants {
     kIndexerMotorConfiguration.isInverted = false;
     kIndexerMotorConfiguration.currentLimit = 80;
     kIndexerMotorConfiguration.finalDiameterMeters = kIndexerFlywheelRadius.times(2.0).in(Meters);
-    kIndexerMotorConfiguration.withFOC = true;
+    kIndexerMotorConfiguration.withFOC = false;
     kIndexerMotorConfiguration.maxVelocity =
         kIndexerMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX44FOC_MaxRPM) / 5.0;
     kIndexerMotorConfiguration.maxAcceleration = kIndexerMotorConfiguration.maxVelocity * 3.0;
