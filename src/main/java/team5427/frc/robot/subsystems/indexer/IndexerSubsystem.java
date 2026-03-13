@@ -15,6 +15,7 @@ import team5427.frc.robot.subsystems.indexer.io.IndexerIOTalonFX;
 
 public class IndexerSubsystem extends SubsystemBase {
   @Getter @Setter private LinearVelocity indexerVelocitySetpoint;
+  @Getter @Setter private LinearVelocity hopperVelocitySetpoint;
 
   private IndexerIO io;
   private IndexerIOInputsAutoLogged inputsAutoLogged;
@@ -41,6 +42,7 @@ public class IndexerSubsystem extends SubsystemBase {
         break;
     }
     indexerVelocitySetpoint = MetersPerSecond.of(0.0);
+    hopperVelocitySetpoint = MetersPerSecond.of(0.0);
   }
 
   @Override
@@ -48,11 +50,12 @@ public class IndexerSubsystem extends SubsystemBase {
     io.updateInputs(inputsAutoLogged);
 
     io.setIndexerMotorVelocity(indexerVelocitySetpoint);
+    io.setHopperMotorVelocity(hopperVelocitySetpoint);
 
     Logger.recordOutput("Indexer/IndexerLinearVelocity", indexerVelocitySetpoint);
+    Logger.recordOutput("Indexer/HopperLinearVelocity", hopperVelocitySetpoint);
 
     Logger.processInputs("Indexer/Inputs", inputsAutoLogged);
-    log();
   }
 
   public LinearVelocity getLeftIndexerVelocity() {
@@ -63,14 +66,7 @@ public class IndexerSubsystem extends SubsystemBase {
     return inputsAutoLogged.rightIndexerMotorLinearVelocity;
   }
 
-  public void log() {
-    // Logger.recordOutput("Indexer/AngularVelocitySetpoint",
-    // setpointVelocity.in(RadiansPerSecond));
-    // Logger.recordOutput(
-    //     "Indexer/ActualAngularVelocity",
-    //     inputsAutoLogged.indexerMotorAngularVelocity.in(RadiansPerSecond));
-    // Logger.recordOutput("Indexer/FlywheelVelocity",
-    // inputsAutoLogged.indexerFlywheelLinearVelocity);
-    // Logger.recordOutput("Indexer/Current", inputsAutoLogged.indexerMotorCurrent);
+  public LinearVelocity getHopperVelocity() {
+    return inputsAutoLogged.hopperMotorLinearVelocity;
   }
 }

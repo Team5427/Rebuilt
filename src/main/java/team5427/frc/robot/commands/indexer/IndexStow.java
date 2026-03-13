@@ -14,6 +14,7 @@ public class IndexStow extends Command {
   @Override
   public void execute() {
     indexerSubsystem.setIndexerVelocitySetpoint(IndexerConstants.kIndexerStowedVelocity);
+    indexerSubsystem.setHopperVelocitySetpoint(IndexerConstants.kIndexerStowedVelocity);
   }
 
   @Override

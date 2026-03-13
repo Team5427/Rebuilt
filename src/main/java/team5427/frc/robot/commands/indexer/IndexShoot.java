@@ -16,6 +16,8 @@ public class IndexShoot extends Command {
   public void execute() {
     indexerSubsystem.setIndexerVelocitySetpoint(
         ShooterSubsystem.getInstance().getCurrentLeftShooterSpeed());
+    indexerSubsystem.setHopperVelocitySetpoint(
+        ShooterSubsystem.getInstance().getCurrentLeftShooterSpeed());
   }
 
   @Override
@@ -26,6 +28,6 @@ public class IndexShoot extends Command {
   @Override
   public void end(boolean interrupted) {
     indexerSubsystem.setIndexerVelocitySetpoint(IndexerConstants.kIndexerStowedVelocity);
-    indexerSubsystem.setIndexerVelocitySetpoint(IndexerConstants.kIndexerStowedVelocity);
+    indexerSubsystem.setHopperVelocitySetpoint(IndexerConstants.kIndexerStowedVelocity);
   }
 }

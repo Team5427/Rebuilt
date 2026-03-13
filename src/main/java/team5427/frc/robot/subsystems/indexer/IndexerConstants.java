@@ -16,13 +16,30 @@ import team5427.lib.motors.MotorUtil;
 public final class IndexerConstants {
   public static final CANDeviceId kIndexerLeftMotorCanId = new CANDeviceId(26);
   public static final CANDeviceId kIndexerRightMotorCanId = new CANDeviceId(27);
+  public static final CANDeviceId kHopperMotorCanId = new CANDeviceId(28);
 
   public static MotorConfiguration kIndexerMotorConfiguration = new MotorConfiguration();
   public static final Distance kIndexerFlywheelRadius = Inches.of(1.0);
+  public static MotorConfiguration kHopperMotorConfiguration = new MotorConfiguration();
+  public static final Distance kHopperFlywheelRadius = Inches.of(0.5);
 
   public static final LinearVelocity kIndexerStowedVelocity = MetersPerSecond.of(0.0);
 
   public static final LinearVelocity kIndexerIndexingVelocity = MetersPerSecond.of(-2.0);
+
+  static {
+    kHopperMotorConfiguration.gearRatio = new ComplexGearRatio(1.0);
+    kHopperMotorConfiguration.mode = MotorMode.kFlywheel;
+    kHopperMotorConfiguration.idleState = IdleState.kBrake;
+    kHopperMotorConfiguration.isArm = false;
+    kHopperMotorConfiguration.isInverted = false;
+    kHopperMotorConfiguration.currentLimit = 80;
+    kHopperMotorConfiguration.finalDiameterMeters = kHopperFlywheelRadius.times(2.0).in(Meters);
+    kHopperMotorConfiguration.withFOC = true;
+    kHopperMotorConfiguration.maxVelocity =
+        kHopperMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX44FOC_MaxRPM) / 5.0;
+    kHopperMotorConfiguration.maxAcceleration = kHopperMotorConfiguration.maxVelocity * 3.0;
+  }
 
   static {
     // kP = .9
@@ -35,9 +52,9 @@ public final class IndexerConstants {
     kIndexerMotorConfiguration.isInverted = false;
     kIndexerMotorConfiguration.currentLimit = 80;
     kIndexerMotorConfiguration.finalDiameterMeters = kIndexerFlywheelRadius.times(2.0).in(Meters);
-    kIndexerMotorConfiguration.withFOC = false;
+    kIndexerMotorConfiguration.withFOC = true;
     kIndexerMotorConfiguration.maxVelocity =
-        kIndexerMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX44_MaxRPM) / 5.0;
+        kIndexerMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX44FOC_MaxRPM) / 5.0;
     kIndexerMotorConfiguration.maxAcceleration = kIndexerMotorConfiguration.maxVelocity * 3.0;
     kIndexerMotorConfiguration.kP = .4;
     kIndexerMotorConfiguration.kV = .1;
