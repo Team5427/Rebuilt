@@ -48,7 +48,7 @@ public class IndexerSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     io.updateInputs(inputsAutoLogged);
-
+    hopperVelocitySetpoint = hopperVelocitySetpoint.div(3.0);
     io.setIndexerMotorVelocity(indexerVelocitySetpoint);
     io.setHopperMotorVelocity(hopperVelocitySetpoint);
 
