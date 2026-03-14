@@ -57,10 +57,10 @@ public class VisionConstants {
   // Standard deviation baselines, for 1 meter distance and 1 tag
   // (Adjusted automatically based on distance and # of tags)
   /** Larger stddev equals more doubt in Meters */
-  public static double kLinearStdDevBaseline = Units.inchesToMeters(5); // 5
+  public static double kLinearStdDevBaseline = Units.inchesToMeters(4); // 5
 
   /** Larger stddev equals more doubt in Radians */
-  public static double kAngularStdDevBaseline = Units.degreesToRadians(15); // 30
+  public static double kAngularStdDevBaseline = Units.degreesToRadians(16); // 30
 
   public static double[] kCameraStdDevFactors =
       new double[] {

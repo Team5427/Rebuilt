@@ -187,6 +187,13 @@ public final class Superstructure {
         .alongWith(setIndexerStateCommand(IndexerStates.STOWED));
   }
 
+  public static synchronized Command fullResetAllStates(){
+    return setSwerveStateCommand(SwerveStates.RAW_DRIVING)
+        .alongWith(setShooterStateCommand(ShooterStates.STOWED))
+        .alongWith(setIntakeStateCommand(IntakeStates.STOWED))
+        .alongWith(setIndexerStateCommand(IndexerStates.STOWED));
+  }
+
   /**
    * Builds a {@link Command} that switches the swerve subsystem to the supplied state.
    *

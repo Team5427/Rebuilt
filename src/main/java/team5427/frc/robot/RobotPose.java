@@ -61,7 +61,7 @@ public class RobotPose {
             },
             new Pose2d(15, 3, Rotation2d.kZero),
             odometryStateStdDevs,
-            VecBuilder.fill(0.04, 0.04, 9));
+            VecBuilder.fill(0.1, 0.1, .9));
   }
 
   public void addOdometryMeasurement(
@@ -150,7 +150,7 @@ public class RobotPose {
 
   public Tuple2Plus<Double, Rotation2d> getGyroHeading() {
     return new Tuple2Plus<Double, Rotation2d>(
-        Timer.getTimestamp(), SwerveSubsystem.getInstance().getGyroRotation());
+        Timer.getTimestamp(), odometry.getPoseMeters().getRotation());
   }
 
   public void log() {

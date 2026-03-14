@@ -26,7 +26,7 @@ public final class IntakeConstants {
   static {
     kPivotMotorConfiguration.gearRatio = kPivotMotorGearRatio;
     kPivotMotorConfiguration.isArm = true;
-    kPivotMotorConfiguration.idleState = IdleState.kBrake;
+    kPivotMotorConfiguration.idleState = IdleState.kCoast;
     kPivotMotorConfiguration.isInverted = false; // CCW is +, CW is -
     kPivotMotorConfiguration.mode = MotorMode.kServo;
     kPivotMotorConfiguration.withFOC = true;
@@ -86,7 +86,7 @@ public final class IntakeConstants {
   public static final double kPivotMotorSimulatedkP = 0.5;
   public static final double kRollerMotorSimulatedkP = 0.2;
 
-  public static final LinearVelocity kRollerStowedVelocity = MetersPerSecond.of(-1.0);
+  public static final LinearVelocity kRollerStowedVelocity = MetersPerSecond.of(0.0);
   public static final LinearVelocity kRollerNeutralVelocity = MetersPerSecond.of(2.5);
   public static final LinearVelocity kRollerIntakeVelocity = MetersPerSecond.of(8.0);
 

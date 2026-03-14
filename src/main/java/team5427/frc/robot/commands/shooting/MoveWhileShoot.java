@@ -65,9 +65,7 @@ public class MoveWhileShoot extends Command {
 
     addRequirements(swerveSubsystem, shooter);
   }
-
-  public MoveWhileShoot() {}
-
+  
   @Override
   public void initialize() {
     futureTrackResult = futureTrack.getFutureTrackResult();
@@ -79,16 +77,17 @@ public class MoveWhileShoot extends Command {
 
   @Override
   public void execute() {
+    double vx = 0;
+    double vy = 0;
     if (DriverStation.isTeleop()) {
-      double vx = -translationJoystick.getLeftY();
-      double vy = -translationJoystick.getLeftX();
+      vx = -translationJoystick.getLeftY();
+      vy = -translationJoystick.getLeftX();
 
       if (isRed) {
         vx *= -1;
         vy *= -1;
       }
-
-      double dampener = (joy.getRightTriggerAxis() * DrivingConstants.kDampenerDampeningAmount);
+      }
 
       // futureTrackResult = futureTrack.getFutureTrackResult();
       futureTrackResult =
@@ -143,11 +142,18 @@ public class MoveWhileShoot extends Command {
       Translation2d virtualTarget2d = virtualTarget.toTranslation2d();
       Translation2d toTarget = virtualTarget2d.minus(shooterFieldPos2d);
       Rotation2d targetHeading = toTarget.getAngle().plus(Rotation2d.k180deg);
+      ChassisSpeeds driveSpeeds = new ChassisSpeeds();
+      if(DriverStation.isTeleop()){
 
-      ChassisSpeeds driveSpeeds = swerveSubsystem.getDriveSpeeds(vx, vy, targetHeading, dampener);
+      double dampener = (joy.getRightTriggerAxis() * DrivingConstants.kDampenerDampeningAmount);
+
+      driveSpeeds = swerveSubsystem.getDriveSpeeds(vx, vy, targetHeading, dampener);
 
       if (joy.getLeftTriggerAxis() >= 0.1) {
         driveSpeeds = new ChassisSpeeds(0, 0, 0);
+      }
+      }else{
+        driveSpeeds = swerveSubsystem.getDriveSpeeds(vx, vy, targetHeading, 0);
       }
       swerveSubsystem.setInputSpeeds(driveSpeeds);
 
@@ -161,9 +167,6 @@ public class MoveWhileShoot extends Command {
       Logger.recordOutput("MoveWhileShoot/PivotAngleDeg", shooterAngle.getDegrees());
       Logger.recordOutput("MoveWhileShoot/FlywheelSpeedMps", shooterVelocity.in(MetersPerSecond));
       Logger.recordOutput("MoveWhileShoot/TargetHeadingDeg", targetHeading.getDegrees());
-    } else {
-      swerveSubsystem.setInputSpeeds(new ChassisSpeeds(0, 0, 0));
-    }
   }
 
   public boolean isFinished(Pose2d targetPose) {
@@ -173,6 +176,10 @@ public class MoveWhileShoot extends Command {
         DriverStation.isAutonomous()
             && diff.getRotation().getRadians()
                 <= DrivingConstants.kRotationAngleTolerance.getAsDouble());
+  }
+
+  public boolean isFinished(){
+    return false;
   }
 
   @Override

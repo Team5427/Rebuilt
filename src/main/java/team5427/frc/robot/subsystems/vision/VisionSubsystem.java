@@ -152,19 +152,19 @@ public class VisionSubsystem extends VirtualSubsystem {
                 || observation.pose().getX() < 0.0
                 || observation.pose().getX() > VisionConstants.kAprilTagLayout.getFieldLength()
                 || observation.pose().getY() < 0.0
-                || observation.pose().getY() > VisionConstants.kAprilTagLayout.getFieldWidth()
+                || observation.pose().getY() > VisionConstants.kAprilTagLayout.getFieldWidth();
                 // Must not be an impossible pose to acheive based on max drivetrain speeds (scaled
                 // to allow for some leeway)
-                || (Constants.currentMode.equals(Mode.REAL)
-                    && observation
-                            .pose()
-                            .toPose2d()
-                            .relativeTo(RobotPose.getInstance().getAdaptivePose())
-                            .getTranslation()
-                            .getNorm()
-                        > SwerveConstants.kDriveMotorConfiguration.maxVelocity
-                            * 4.0
-                            * (Timer.getTimestamp() - observation.timestamp()));
+                // || (Constants.currentMode.equals(Mode.REAL)
+                //     && observation
+                //             .pose()
+                //             .toPose2d()
+                //             .relativeTo(RobotPose.getInstance().getAdaptivePose())
+                //             .getTranslation()
+                //             .getNorm()
+                //         > SwerveConstants.kDriveMotorConfiguration.maxVelocity
+                //             * 4.0
+                //             * (Timer.getTimestamp() - observation.timestamp()));
 
         // Add pose to log
         Logger.recordOutput("Vision Pose " + cameraIndex, observation.pose());

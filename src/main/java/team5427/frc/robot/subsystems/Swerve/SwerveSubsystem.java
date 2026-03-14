@@ -48,9 +48,10 @@ public class SwerveSubsystem extends SubsystemBase
     implements SteelTalonsSwerve, SteelTalonsDriveSpeeds, DrivetrainSysId {
 
   public static final Lock odometryLock = new ReentrantLock();
+  
   private SwerveSetpointGenerator setpointGenerator;
   @AutoLogOutput private SwerveSetpoint setpoint;
-  @AutoLogOutput private ChassisSpeeds currentChassisSpeeds;
+  @AutoLogOutput private ChassisSpeeds currentChassisSpeeds = new ChassisSpeeds();
   @AutoLogOutput private ChassisSpeeds inputChassisSpeeds = new ChassisSpeeds(0, 0, 0);
 
   private SwerveModule[] swerveModules;
@@ -192,9 +193,11 @@ public class SwerveSubsystem extends SubsystemBase
   public void periodic() {
 
     // Creates a new setpoint based on the previous setpoint and input chassis speeds
-    setpoint =
-        setpointGenerator.generateSetpoint(setpoint, inputChassisSpeeds, Constants.kLoopSpeed);
-    targetModuleStates = setpoint.moduleStates();
+    // setpoint =
+    //     setpointGenerator.generateSetpoint(setpoint, inputChassisSpeeds, Constants.kLoopSpeed);
+    // targetModuleStates = setpoint.moduleStates();
+    setpoint = new SwerveSetpoint(currentChassisSpeeds, actualModuleStates, driveFeedforwards);
+    targetModuleStates = Constants.config.toSwerveModuleStates(inputChassisSpeeds);
 
     // Lock Odometry (To prevent loss of data and inaccurate data updates)
     odometryLock.lock();

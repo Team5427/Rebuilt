@@ -23,7 +23,7 @@ public final class IndexerConstants {
   public static MotorConfiguration kHopperMotorConfiguration = new MotorConfiguration();
   public static final Distance kHopperFlywheelRadius = Inches.of(0.5);
 
-  public static final LinearVelocity kIndexerStowedVelocity = MetersPerSecond.of(0.0);
+  public static final LinearVelocity kIndexerStowedVelocity = MetersPerSecond.of(0.1);
 
   public static final LinearVelocity kIndexerIndexingVelocity = MetersPerSecond.of(-2.0);
 
@@ -32,7 +32,7 @@ public final class IndexerConstants {
     kHopperMotorConfiguration.mode = MotorMode.kFlywheel;
     kHopperMotorConfiguration.idleState = IdleState.kCoast;
     kHopperMotorConfiguration.isArm = false;
-    kHopperMotorConfiguration.isInverted = false;
+    kHopperMotorConfiguration.isInverted = true;
     kHopperMotorConfiguration.currentLimit = 80;
     kHopperMotorConfiguration.finalDiameterMeters = kHopperFlywheelRadius.times(2.0).in(Meters);
     kHopperMotorConfiguration.withFOC = true;
@@ -40,7 +40,7 @@ public final class IndexerConstants {
         kHopperMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX44FOC_MaxRPM) / 5.0;
     kHopperMotorConfiguration.maxAcceleration = kHopperMotorConfiguration.maxVelocity * 3.0;
 
-    kHopperMotorConfiguration.kP = 1.0;
+    kHopperMotorConfiguration.kP = 0.2;
     kIndexerMotorConfiguration.kV = 0.5;
     kIndexerMotorConfiguration.kS = 0.5;
   }

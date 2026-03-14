@@ -34,10 +34,6 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public static IntakeSubsystem m_instance;
 
-  public final Alert kIntakingSpeedOutOfBounds =
-      new Alert("OutOfBounds", "Intaking Speed Requested Out of Bounds", AlertType.kWarning);
-  public final Alert kIntakingRotationOutOfBounds =
-      new Alert("OutOfBounds", "Intaking Rotation Requested Out of Bounds", AlertType.kWarning);
 
   public static IntakeSubsystem getInstance(
       Supplier<SwerveDriveSimulation> swerveDriveSimulationSupplier) {

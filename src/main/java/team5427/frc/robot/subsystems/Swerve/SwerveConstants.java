@@ -74,7 +74,7 @@ public final class SwerveConstants {
     kDriveMotorConfiguration.mode = MotorMode.kFlywheel;
     kDriveMotorConfiguration.withFOC = true;
 
-    kDriveMotorConfiguration.currentLimit = 80;
+    kDriveMotorConfiguration.currentLimit = 60;
     kDriveMotorConfiguration.finalDiameterMeters = kWheelDiameterMeters;
 
     kDriveMotorConfiguration.maxVelocity = 10.19; // mps

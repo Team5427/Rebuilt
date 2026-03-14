@@ -41,14 +41,14 @@ public class IndexerSubsystem extends SubsystemBase {
       default:
         break;
     }
-    indexerVelocitySetpoint = MetersPerSecond.of(0.0);
-    hopperVelocitySetpoint = MetersPerSecond.of(0.0);
+    indexerVelocitySetpoint = MetersPerSecond.of(0);
+    hopperVelocitySetpoint = MetersPerSecond.of(0);
   }
 
   @Override
   public void periodic() {
     io.updateInputs(inputsAutoLogged);
-    hopperVelocitySetpoint = hopperVelocitySetpoint.div(3.0);
+    hopperVelocitySetpoint = hopperVelocitySetpoint.div(6.0);
     io.setIndexerMotorVelocity(indexerVelocitySetpoint);
     io.setHopperMotorVelocity(hopperVelocitySetpoint);
 

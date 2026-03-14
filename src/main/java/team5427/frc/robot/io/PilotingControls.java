@@ -42,6 +42,8 @@ public class PilotingControls {
     disabledTrigger = new Trigger(DriverStation::isDisabled);
     autonTrigger = new Trigger(DriverStation::isAutonomous);
 
+    disabledTrigger.onTrue(Superstructure.fullResetAllStates());
+
     // Swerve State Control Bindings
 
     // Toggle controlled driving with left bumper
