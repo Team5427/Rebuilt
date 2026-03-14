@@ -61,11 +61,11 @@ public class MoveWhileShoot extends Command {
     translationJoystick.setDeadzone(DriverConstants.kDriverControllerJoystickDeadzone);
 
     futureTrack = FutureTrack.getInstance();
-    // futureTrackResult = futureTrack.getFutureTrackResult();
-    futureTrackResult =
-        new Tuple2Plus<Pose2d, ChassisSpeeds>(
-            RobotPose.getInstance().getAdaptivePose(),
-            SwerveSubsystem.getInstance().getCurrentChassisSpeeds());
+    futureTrackResult = futureTrack.getFutureTrackResult();
+    // futureTrackResult =
+    //     new Tuple2Plus<Pose2d, ChassisSpeeds>(
+    //         RobotPose.getInstance().getAdaptivePose(),
+    //         SwerveSubsystem.getInstance().getCurrentChassisSpeeds());
 
     addRequirements(swerveSubsystem, shooter);
   }
