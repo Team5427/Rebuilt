@@ -61,18 +61,28 @@ public class MoveWhileShoot extends Command {
     translationJoystick.setDeadzone(DriverConstants.kDriverControllerJoystickDeadzone);
 
     futureTrack = FutureTrack.getInstance();
-    futureTrackResult = futureTrack.getFutureTrackResult();
+    // futureTrackResult = futureTrack.getFutureTrackResult();
+    futureTrackResult =
+        new Tuple2Plus<Pose2d, ChassisSpeeds>(
+            RobotPose.getInstance().getAdaptivePose(),
+            SwerveSubsystem.getInstance().getCurrentChassisSpeeds());
 
     addRequirements(swerveSubsystem, shooter);
   }
 
   @Override
   public void initialize() {
-    futureTrackResult = futureTrack.getFutureTrackResult();
+    // futureTrackResult = futureTrack.getFutureTrackResult(); 
+        // futureTrackResult = futureTrack.getFutureTrackResult();
+    futureTrackResult =
+        new Tuple2Plus<Pose2d, ChassisSpeeds>(
+            RobotPose.getInstance().getAdaptivePose(),
+            SwerveSubsystem.getInstance().getCurrentChassisSpeeds());
     isRed =
         DriverStation.getAlliance().isPresent()
             && DriverStation.getAlliance().get() == Alliance.Red;
     target = isRed ? FieldConstants.Hub.oppTopCenterPoint : FieldConstants.Hub.topCenterPoint;
+    DrivingConstants.kRotationController.reset(futureTrackResult.r.getRotation().getRadians());
   }
 
   @Override

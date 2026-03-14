@@ -28,10 +28,10 @@ public final class AimingConstants {
     // ---------------- Flywheel Speed ----------------
     kShootingTable.addFlyWheelSpeed(2.707, 12.85);
     kShootingTable.addFlyWheelSpeed(2.982, 12.95);
-    kShootingTable.addFlyWheelSpeed(3.253, 13.55);
-    kShootingTable.addFlyWheelSpeed(3.519, 13.9);
-    kShootingTable.addFlyWheelSpeed(3.785, 14.3);
-    kShootingTable.addFlyWheelSpeed(4.048, 14.8);
+    kShootingTable.addFlyWheelSpeed(3.253, 13.65);
+    kShootingTable.addFlyWheelSpeed(3.519, 14.0);
+    kShootingTable.addFlyWheelSpeed(3.785, 14.4);
+    kShootingTable.addFlyWheelSpeed(4.048, 14.9);
     kShootingTable.addFlyWheelSpeed(4.310, 15.9);
     kShootingTable.addFlyWheelSpeed(4.571, 16.3);
     kShootingTable.addFlyWheelSpeed(4.800, 16.5);

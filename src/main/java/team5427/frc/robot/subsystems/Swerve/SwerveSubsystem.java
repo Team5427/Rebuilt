@@ -355,7 +355,6 @@ public class SwerveSubsystem extends SubsystemBase
 
     xInput *= (1 - dampenAmount);
     yInput *= (1 - dampenAmount);
-
     double calculatedOmega =
         DrivingConstants.kRotationController.calculate(
             RobotPose.getInstance().getAdaptivePose().getRotation().getRadians(),
