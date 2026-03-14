@@ -5,7 +5,6 @@ import static edu.wpi.first.units.Units.MetersPerSecond;
 import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import lombok.Getter;
-import lombok.Setter;
 import org.littletonrobotics.junction.Logger;
 import team5427.frc.robot.Constants;
 import team5427.frc.robot.subsystems.indexer.io.IndexerIO;
@@ -14,13 +13,25 @@ import team5427.frc.robot.subsystems.indexer.io.IndexerIOSim;
 import team5427.frc.robot.subsystems.indexer.io.IndexerIOTalonFX;
 
 public class IndexerSubsystem extends SubsystemBase {
-  @Getter @Setter private LinearVelocity indexerVelocitySetpoint;
-  @Getter @Setter private LinearVelocity hopperVelocitySetpoint;
+  @Getter private LinearVelocity indexerVelocitySetpoint;
+  @Getter private LinearVelocity hopperVelocitySetpoint;
 
   private IndexerIO io;
   private IndexerIOInputsAutoLogged inputsAutoLogged;
 
   private static IndexerSubsystem m_instance;
+
+  public void setIndexerVelocitySetpoint(LinearVelocity velocity) {
+    this.indexerVelocitySetpoint = velocity;
+    io.setIndexerMotorVelocity(indexerVelocitySetpoint);
+  }
+
+  public void setHopperVelocitySetpoint(LinearVelocity velocity) {
+    this.hopperVelocitySetpoint = velocity;
+    hopperVelocitySetpoint = hopperVelocitySetpoint.div(6.0);
+
+    io.setHopperMotorVelocity(hopperVelocitySetpoint);
+  }
 
   public static IndexerSubsystem getInstance() {
     if (m_instance == null) {
@@ -48,9 +59,6 @@ public class IndexerSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     io.updateInputs(inputsAutoLogged);
-    hopperVelocitySetpoint = hopperVelocitySetpoint.div(6.0);
-    io.setIndexerMotorVelocity(indexerVelocitySetpoint);
-    io.setHopperMotorVelocity(hopperVelocitySetpoint);
 
     Logger.recordOutput("Indexer/IndexerLinearVelocity", indexerVelocitySetpoint);
     Logger.recordOutput("Indexer/HopperLinearVelocity", hopperVelocitySetpoint);

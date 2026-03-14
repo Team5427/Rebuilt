@@ -42,7 +42,7 @@ public class PilotingControls {
     disabledTrigger = new Trigger(DriverStation::isDisabled);
     autonTrigger = new Trigger(DriverStation::isAutonomous);
 
-    disabledTrigger.onTrue(Superstructure.fullResetAllStates());
+    disabledTrigger.whileTrue(Superstructure.fullResetAllStates());
 
     // Swerve State Control Bindings
 

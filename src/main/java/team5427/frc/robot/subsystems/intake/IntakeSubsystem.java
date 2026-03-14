@@ -8,8 +8,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.units.measure.Voltage;
-import edu.wpi.first.wpilibj.Alert;
-import edu.wpi.first.wpilibj.Alert.AlertType;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import java.util.Optional;
@@ -33,7 +31,6 @@ public class IntakeSubsystem extends SubsystemBase {
   private Debouncer speedBouncer = new Debouncer(0.1);
 
   public static IntakeSubsystem m_instance;
-
 
   public static IntakeSubsystem getInstance(
       Supplier<SwerveDriveSimulation> swerveDriveSimulationSupplier) {

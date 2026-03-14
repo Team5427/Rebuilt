@@ -12,14 +12,10 @@ import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Timer;
 import java.util.function.Supplier;
 import lombok.Getter;
 import org.littletonrobotics.junction.Logger;
 import team5427.frc.robot.Constants;
-import team5427.frc.robot.Constants.Mode;
-import team5427.frc.robot.RobotPose;
-import team5427.frc.robot.subsystems.Swerve.SwerveConstants;
 import team5427.frc.robot.subsystems.vision.io.VisionIO;
 import team5427.frc.robot.subsystems.vision.io.VisionIO.PoseObservation;
 import team5427.frc.robot.subsystems.vision.io.VisionIO.PoseObservationType;
@@ -153,18 +149,18 @@ public class VisionSubsystem extends VirtualSubsystem {
                 || observation.pose().getX() > VisionConstants.kAprilTagLayout.getFieldLength()
                 || observation.pose().getY() < 0.0
                 || observation.pose().getY() > VisionConstants.kAprilTagLayout.getFieldWidth();
-                // Must not be an impossible pose to acheive based on max drivetrain speeds (scaled
-                // to allow for some leeway)
-                // || (Constants.currentMode.equals(Mode.REAL)
-                //     && observation
-                //             .pose()
-                //             .toPose2d()
-                //             .relativeTo(RobotPose.getInstance().getAdaptivePose())
-                //             .getTranslation()
-                //             .getNorm()
-                //         > SwerveConstants.kDriveMotorConfiguration.maxVelocity
-                //             * 4.0
-                //             * (Timer.getTimestamp() - observation.timestamp()));
+        // Must not be an impossible pose to acheive based on max drivetrain speeds (scaled
+        // to allow for some leeway)
+        // || (Constants.currentMode.equals(Mode.REAL)
+        //     && observation
+        //             .pose()
+        //             .toPose2d()
+        //             .relativeTo(RobotPose.getInstance().getAdaptivePose())
+        //             .getTranslation()
+        //             .getNorm()
+        //         > SwerveConstants.kDriveMotorConfiguration.maxVelocity
+        //             * 4.0
+        //             * (Timer.getTimestamp() - observation.timestamp()));
 
         // Add pose to log
         Logger.recordOutput("Vision Pose " + cameraIndex, observation.pose());

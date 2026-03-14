@@ -187,7 +187,7 @@ public final class Superstructure {
         .alongWith(setIndexerStateCommand(IndexerStates.STOWED));
   }
 
-  public static synchronized Command fullResetAllStates(){
+  public static synchronized Command fullResetAllStates() {
     return setSwerveStateCommand(SwerveStates.RAW_DRIVING)
         .alongWith(setShooterStateCommand(ShooterStates.STOWED))
         .alongWith(setIntakeStateCommand(IntakeStates.STOWED))

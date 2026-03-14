@@ -95,10 +95,8 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void log() {
-    Logger.recordOutput(
-        "Shooter/RightShooterSpeedSetpoint", rightShooterVelocity.in(MetersPerSecond));
-    Logger.recordOutput(
-        "Shooter/LeftShooterSpeedSetpoint", leftShooterVelocity.in(MetersPerSecond));
+    Logger.recordOutput("Shooter/RightShooterSpeedSetpoint", rightShooterVelocity);
+    Logger.recordOutput("Shooter/LeftShooterSpeedSetpoint", leftShooterVelocity);
 
     Logger.recordOutput("Shooter/RightHoodAngleSetpoint", rightShooterAngle);
     Logger.recordOutput("Shooter/LeftHoodAngleSetpoint", leftShooterAngle);

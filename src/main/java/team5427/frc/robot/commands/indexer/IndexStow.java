@@ -9,6 +9,7 @@ public class IndexStow extends Command {
 
   public IndexStow() {
     indexerSubsystem = IndexerSubsystem.getInstance();
+    addRequirements(indexerSubsystem);
   }
 
   @Override

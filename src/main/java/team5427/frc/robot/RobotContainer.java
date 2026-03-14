@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import org.ironmaple.simulation.SimulatedArena;
 import org.littletonrobotics.junction.Logger;
@@ -27,7 +26,6 @@ import team5427.frc.robot.Superstructure.IntakeStates;
 import team5427.frc.robot.Superstructure.ShooterStates;
 import team5427.frc.robot.Superstructure.SwerveStates;
 import team5427.frc.robot.commands.chassis.MoveChassisToPose;
-import team5427.frc.robot.commands.indexer.IndexShoot;
 import team5427.frc.robot.commands.intake.IntakeOscillate;
 import team5427.frc.robot.commands.shooting.MoveWhileShoot;
 import team5427.frc.robot.io.DriverProfiles;
@@ -40,7 +38,6 @@ import team5427.frc.robot.subsystems.indexer.IndexerSubsystem;
 import team5427.frc.robot.subsystems.intake.IntakeSubsystem;
 import team5427.frc.robot.subsystems.shooter.ShooterSubsystem;
 import team5427.frc.robot.subsystems.vision.VisionSubsystem;
-import team5427.frc.robot.subsystems.vision.io.QuestNav;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -87,14 +84,11 @@ public class RobotContainer {
         RobotPose.getInstance()::addVisionMeasurement,
         () -> RobotPose.getInstance().getAdaptivePose(),
         () -> RobotPose.getInstance().getGyroHeading());
-    QuestNav.getInstance().setPose(new Pose2d(10 * Math.random(), 4, Rotation2d.kZero));
-
     FutureTrack.getInstance(
         SwerveSubsystem.getInstance()::getCurrentChassisSpeeds,
         SwerveSubsystem.getInstance()::getTargetChassisSpeeds);
 
     createNamedCommands();
-
 
     AutoBuilder.configure(
         RobotPose.getInstance()::getAdaptivePose,
@@ -138,11 +132,14 @@ public class RobotContainer {
   public void createNamedCommands() {
     NamedCommands.registerCommand(
         "AutoAlignMoveWhileShoot",
-        Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING)
-            .alongWith(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING)).alongWith(Superstructure.setIndexerStateCommand(IndexerStates.INDEXING)).alongWith(new MoveWhileShoot(new CommandXboxController(Constants.DriverConstants.kDriverJoystickPort))).alongWith(new IndexShoot())
-            .withTimeout(2.5)
-            .andThen(Superstructure.setShooterStateCommand(ShooterStates.STOWED))
-            .alongWith(Superstructure.setSwerveStateCommand(SwerveStates.AUTON)).alongWith(Superstructure.setIndexerStateCommand(IndexerStates.STOWED)));
+        Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)
+            .alongWith(Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING))
+            .alongWith(
+                new MoveWhileShoot(new CommandXboxController(DriverConstants.kDriverJoystickPort))
+                    .withTimeout(2.0))
+            .andThen(Superstructure.resetAllStates()));
+    NamedCommands.registerCommand(
+        "Shoot", Superstructure.setIndexerStateCommand(IndexerStates.INDEXING));
     NamedCommands.registerCommand(
         "AutoAlignClimbLeft",
         Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)

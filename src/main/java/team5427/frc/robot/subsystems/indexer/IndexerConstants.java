@@ -23,9 +23,7 @@ public final class IndexerConstants {
   public static MotorConfiguration kHopperMotorConfiguration = new MotorConfiguration();
   public static final Distance kHopperFlywheelRadius = Inches.of(0.5);
 
-  public static final LinearVelocity kIndexerStowedVelocity = MetersPerSecond.of(0.1);
-
-  public static final LinearVelocity kIndexerIndexingVelocity = MetersPerSecond.of(-2.0);
+  public static final LinearVelocity kIndexerStowedVelocity = MetersPerSecond.of(0.0);
 
   static {
     kHopperMotorConfiguration.gearRatio = new ComplexGearRatio((18.0 / 24.0));

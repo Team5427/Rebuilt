@@ -1,7 +1,5 @@
 package team5427.frc.robot.commands.indexer;
 
-import static edu.wpi.first.units.Units.MetersPerSecond;
-
 import edu.wpi.first.wpilibj2.command.Command;
 import team5427.frc.robot.subsystems.indexer.IndexerConstants;
 import team5427.frc.robot.subsystems.indexer.IndexerSubsystem;
@@ -16,12 +14,19 @@ public class IndexShoot extends Command {
   }
 
   @Override
+  public void initialize() {
+    indexerSubsystem.periodic();
+  }
+
+  @Override
   public void execute() {
     indexerSubsystem.setIndexerVelocitySetpoint(
-        ShooterSubsystem.getInstance().getCurrentLeftShooterSpeed());
+        ShooterSubsystem.getInstance().getLeftShooterVelocity());
     indexerSubsystem.setHopperVelocitySetpoint(
-        ShooterSubsystem.getInstance().getCurrentLeftShooterSpeed());
-  
+        ShooterSubsystem.getInstance().getRightShooterVelocity());
+    // indexerSubsystem.setIndexerVelocitySetpoint(MetersPerSecond.of(-2.0));
+
+    // indexerSubsystem.setHopperVelocitySetpoint(MetersPerSecond.of(-2.0));
   }
 
   @Override

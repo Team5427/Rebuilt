@@ -48,7 +48,7 @@ public class SwerveSubsystem extends SubsystemBase
     implements SteelTalonsSwerve, SteelTalonsDriveSpeeds, DrivetrainSysId {
 
   public static final Lock odometryLock = new ReentrantLock();
-  
+
   private SwerveSetpointGenerator setpointGenerator;
   @AutoLogOutput private SwerveSetpoint setpoint;
   @AutoLogOutput private ChassisSpeeds currentChassisSpeeds = new ChassisSpeeds();
