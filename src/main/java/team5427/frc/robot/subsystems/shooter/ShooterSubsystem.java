@@ -22,8 +22,8 @@ public class ShooterSubsystem extends SubsystemBase {
   @Getter private LinearVelocity rightShooterVelocity = MetersPerSecond.of(0);
   @Getter private LinearVelocity leftShooterVelocity = MetersPerSecond.of(0);
 
-  @Getter private Rotation2d rightShooterAngle;
-  @Getter private Rotation2d leftShooterAngle;
+  @Getter private Rotation2d rightShooterAngle = Rotation2d.kZero;
+  @Getter private Rotation2d leftShooterAngle = Rotation2d.kZero;
 
   public static ShooterSubsystem getInstance() {
     if (m_instance == null) {

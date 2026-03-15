@@ -136,7 +136,7 @@ public class RobotContainer {
             .alongWith(Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING))
             .alongWith(
                 new MoveWhileShoot(new CommandXboxController(DriverConstants.kDriverJoystickPort))
-                    .withTimeout(2.0))
+                    .withTimeout(3.0))
             .andThen(Superstructure.resetAllStates()));
     NamedCommands.registerCommand(
         "Shoot", Superstructure.setIndexerStateCommand(IndexerStates.INDEXING));

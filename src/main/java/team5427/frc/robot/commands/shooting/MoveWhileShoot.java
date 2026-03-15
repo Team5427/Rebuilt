@@ -72,8 +72,8 @@ public class MoveWhileShoot extends Command {
 
   @Override
   public void initialize() {
-    // futureTrackResult = futureTrack.getFutureTrackResult(); 
-        // futureTrackResult = futureTrack.getFutureTrackResult();
+    // futureTrackResult = futureTrack.getFutureTrackResult();
+    // futureTrackResult = futureTrack.getFutureTrackResult();
     futureTrackResult =
         new Tuple2Plus<Pose2d, ChassisSpeeds>(
             RobotPose.getInstance().getAdaptivePose(),
