@@ -21,8 +21,10 @@ import org.littletonrobotics.junction.Logger;
 import org.team4206.battleaid.common.TunedJoystick;
 import org.team4206.battleaid.common.TunedJoystick.ResponseCurve;
 import team5427.frc.robot.Constants.DriverConstants;
+import team5427.frc.robot.Constants;
 import team5427.frc.robot.FieldConstants;
 import team5427.frc.robot.FutureTrack;
+import team5427.frc.robot.Robot;
 import team5427.frc.robot.RobotPose;
 import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
@@ -87,6 +89,10 @@ public class MoveWhileShoot extends Command {
 
   @Override
   public void execute() {
+    if(Constants.currentMode == Constants.Mode.SIM){
+      shooter.fireSimBall(Robot.ballSim);
+      
+    }
     double vx = 0;
     double vy = 0;
     if (DriverStation.isTeleop()) {

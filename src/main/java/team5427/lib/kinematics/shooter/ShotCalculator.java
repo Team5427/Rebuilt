@@ -1,6 +1,5 @@
 package team5427.lib.kinematics.shooter;
 
-
 /*
  * ShotCalculator.java - Newton-method SOTM fire control with drag compensation
  *
@@ -115,10 +114,8 @@ public class ShotCalculator {
   /** Tuning parameters. Set these to match your robot, or wire them to SmartDashboard/TunableNumber. */
   public static class Config {
     // Launcher geometry (measure from CAD)
-    public double rightlauncherOffsetX = 0.20; // meters forward of robot center
-    public double rightlauncherOffsetY = 0.0;  // meters left of robot center
-    public double leftlauncherOffsetX = 0.20; // meters forward of robot center               NEED TO UPDATE!!!!!
-    public double leftlauncherOffsetY = 0.0;  // meters left of robot center
+    public double launcherOffsetX = 0.20; // meters forward of robot center
+    public double launcherOffsetY = 0.0;  // meters left of robot center
 
     // How close/far you can score from (meters)
     public double minScoringDistance = 0.5;
@@ -295,26 +292,21 @@ public class ShotCalculator {
     // Transform robot center to launcher position
     double cosH = Math.cos(heading);
     double sinH = Math.sin(heading);
-    double rightlauncherX =
-        robotX + config.rightlauncherOffsetX * cosH - config.rightlauncherOffsetY * sinH;
-    double rightlauncherY =
-        robotY + config.rightlauncherOffsetX * sinH + config.rightlauncherOffsetY * cosH;
-    double leftlauncherX =
-        robotX + config.leftlauncherOffsetX * cosH - config.leftlauncherOffsetY * sinH;
-    double leftlauncherY =
-        robotY + config.leftlauncherOffsetX * sinH + config.leftlauncherOffsetY * cosH;
-
+    double launcherX =
+        robotX + config.launcherOffsetX * cosH - config.launcherOffsetY * sinH;
+    double launcherY =
+        robotY + config.launcherOffsetX * sinH + config.launcherOffsetY * cosH;
 
     // Launcher velocity includes rotational component: v_launcher = v_robot + omega x r
-    double launcherFieldOffX = config.rightlauncherOffsetX * cosH - config.rightlauncherOffsetY * sinH;
-    double launcherFieldOffY = config.rightlauncherOffsetX * sinH + config.rightlauncherOffsetY * cosH;
+    double launcherFieldOffX = config.launcherOffsetX * cosH - config.launcherOffsetY * sinH;
+    double launcherFieldOffY = config.launcherOffsetX * sinH + config.launcherOffsetY * cosH;
     double omega = fieldVel.omegaRadiansPerSecond;
     double vx = fieldVel.vxMetersPerSecond + (-launcherFieldOffY) * omega;
     double vy = fieldVel.vyMetersPerSecond + launcherFieldOffX * omega;
 
     // Displacement from launcher to hub
-    double rx = hubX - rightlauncherX;
-    double ry = hubY - rightlauncherY;
+    double rx = hubX - launcherX;
+    double ry = hubY - launcherY;
     double distance = Math.hypot(rx, ry);
 
     if (distance < config.minScoringDistance || distance > config.maxScoringDistance) {
@@ -597,4 +589,3 @@ public class ShotCalculator {
     return tofMap;
   }
 }
-

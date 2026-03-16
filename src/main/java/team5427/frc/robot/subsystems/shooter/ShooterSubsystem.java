@@ -3,22 +3,28 @@ package team5427.frc.robot.subsystems.shooter;
 import static edu.wpi.first.units.Units.MetersPerSecond;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import lombok.Getter;
+
 import org.littletonrobotics.junction.Logger;
 import team5427.frc.robot.Constants;
+import team5427.frc.robot.Robot;
 import team5427.frc.robot.subsystems.shooter.io.ShooterIO;
 import team5427.frc.robot.subsystems.shooter.io.ShooterIOInputsAutoLogged;
 import team5427.frc.robot.subsystems.shooter.io.ShooterIOSim;
 import team5427.frc.robot.subsystems.shooter.io.ShooterIOTalonFX;
+import team5427.lib.kinematics.shooter.FuelPhysicsSim;
+import team5427.lib.kinematics.shooter.ShotCalculator;
 
 public class ShooterSubsystem extends SubsystemBase {
 
   private static ShooterSubsystem m_instance;
   private ShooterIO io;
   private ShooterIOInputsAutoLogged inputsAutoLogged;
-
+  private ShotCalculator shotCalculator = new ShotCalculator();
+  
   @Getter private LinearVelocity rightShooterVelocity = MetersPerSecond.of(0);
   @Getter private LinearVelocity leftShooterVelocity = MetersPerSecond.of(0);
 
@@ -33,6 +39,10 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   private ShooterSubsystem() {
+    ShotCalculator.Config config = new ShotCalculator.Config();
+    config.launcherOffsetX = 0.0; //NEEDS TO TUNE
+    config.launcherOffsetY = 0.0; //NEEDS TO TUNE
+    shotCalculator = new ShotCalculator(config);
     inputsAutoLogged = new ShooterIOInputsAutoLogged();
     switch (Constants.currentMode) {
       case REAL:
@@ -40,6 +50,7 @@ public class ShooterSubsystem extends SubsystemBase {
         break;
       case SIM:
         io = new ShooterIOSim();
+        // m_instance.fireSimBall(Robot.ballSim);
         break;
       case REPLAY:
         break;
@@ -107,4 +118,26 @@ public class ShooterSubsystem extends SubsystemBase {
     Logger.recordOutput("Shooter/RightHoodAngle", getRightShooterAngle());
     Logger.recordOutput("Shooter/LeftHoodAngle", getLeftShooterAngle());
   }
+  public void fireSimBall(FuelPhysicsSim sim) {
+
+    Translation3d launcherPosition = new Translation3d(
+        0.5,   // forward from robot center
+        0.0,   // sideways
+        0.43   // shooter height
+    );
+
+    Translation3d launchVelocity = new Translation3d(
+        8.0,   // forward velocity
+        0.0,
+        3.0
+    );
+
+    double spinRPM = 3000;
+
+    sim.launchBall(
+        launcherPosition,
+        launchVelocity,
+        spinRPM
+    );
+}
 }

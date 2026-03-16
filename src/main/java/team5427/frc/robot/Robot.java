@@ -1,10 +1,16 @@
 package team5427.frc.robot;
 
 import com.pathplanner.lib.commands.FollowPathCommand;
+
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.BuildConstants;
+
+import java.util.function.Supplier;
+
 import org.littletonrobotics.junction.AutoLogOutputManager;
 import org.littletonrobotics.junction.LogFileUtil;
 import org.littletonrobotics.junction.LoggedRobot;
@@ -14,9 +20,11 @@ import org.littletonrobotics.junction.wpilog.WPILOGReader;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveConstants;
+import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
 import team5427.frc.robot.subsystems.intake.IntakeConstants;
 import team5427.lib.drivers.JoystickLogger;
 import team5427.lib.drivers.VirtualSubsystem;
+import team5427.lib.kinematics.shooter.FuelPhysicsSim;
 
 /**
  * The methods in this class are called automatically corresponding to each mode, as described in
@@ -25,7 +33,7 @@ import team5427.lib.drivers.VirtualSubsystem;
  */
 public class Robot extends LoggedRobot {
   private Command m_autonomousCommand;
-
+  public static FuelPhysicsSim ballSim = new FuelPhysicsSim("Sim/FuelPhysicsSim");
   private final RobotContainer m_robotContainer;
 
   /**
@@ -177,11 +185,19 @@ public class Robot extends LoggedRobot {
   @Override
   public void simulationInit() {
     m_robotContainer.resetSimulationField();
+    ballSim = new FuelPhysicsSim("Sim/FuelPhysicsSim");
+    ballSim.enable();
+    ballSim.placeFieldBalls();
+    Supplier<Pose2d> poseSupplier = () -> RobotPose.getInstance().getEstimatedPose();
+    Supplier<ChassisSpeeds> velocitySupplier = () -> SwerveSubsystem.getInstance().getCurrentChassisSpeeds();
+    ballSim.configureRobot(0.0, 0.0, 0.0, poseSupplier, velocitySupplier);
   }
 
   /** This function is called periodically whilst in simulation. */
   @Override
   public void simulationPeriodic() {
     m_robotContainer.updateSimulation();
+    ballSim.tick();
+
   }
 }
