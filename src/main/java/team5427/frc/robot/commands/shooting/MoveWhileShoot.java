@@ -20,8 +20,8 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import org.littletonrobotics.junction.Logger;
 import org.team4206.battleaid.common.TunedJoystick;
 import org.team4206.battleaid.common.TunedJoystick.ResponseCurve;
-import team5427.frc.robot.Constants.DriverConstants;
 import team5427.frc.robot.Constants;
+import team5427.frc.robot.Constants.DriverConstants;
 import team5427.frc.robot.FieldConstants;
 import team5427.frc.robot.FutureTrack;
 import team5427.frc.robot.Robot;
@@ -89,9 +89,8 @@ public class MoveWhileShoot extends Command {
 
   @Override
   public void execute() {
-    if(Constants.currentMode == Constants.Mode.SIM){
+    if (Constants.currentMode == Constants.Mode.SIM) {
       shooter.fireSimBall(Robot.ballSim);
-      
     }
     double vx = 0;
     double vy = 0;

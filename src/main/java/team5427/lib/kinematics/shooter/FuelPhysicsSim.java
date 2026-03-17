@@ -1,6 +1,5 @@
 package team5427.lib.kinematics.shooter;
 
-
 /*
  * FuelPhysicsSim.java - Full-field ball physics simulation for FRC 2026 REBUILT
  *
@@ -47,6 +46,7 @@ import java.util.function.Supplier;
  * keeps 350+ resting balls under 2ms/tick.
  *
  * <p>Usage:
+ *
  * <pre>
  *   FuelPhysicsSim ballSim = new FuelPhysicsSim("Sim/Fuel");
  *   ballSim.enable();
@@ -212,97 +212,201 @@ public class FuelPhysicsSim {
     List<AABB> aabbs = new ArrayList<>();
 
     // Trench pillars (4): 12in wide x 53in tall, steel structure
-    aabbs.add(new AABB(
-        3.96, TRENCH_WIDTH, 0,
-        3.96 + TRENCH_BLOCK_WIDTH, TRENCH_WIDTH + TRENCH_BLOCK_WIDTH, TRENCH_PILLAR_HEIGHT,
-        COR_STEEL));
-    aabbs.add(new AABB(
-        3.96, FIELD_WIDTH - 1.57 - TRENCH_BLOCK_WIDTH, 0,
-        3.96 + TRENCH_BLOCK_WIDTH, FIELD_WIDTH - 1.57, TRENCH_PILLAR_HEIGHT, COR_STEEL));
-    aabbs.add(new AABB(
-        FIELD_LENGTH - 3.96 - TRENCH_BLOCK_WIDTH, TRENCH_WIDTH, 0,
-        FIELD_LENGTH - 3.96, TRENCH_WIDTH + TRENCH_BLOCK_WIDTH, TRENCH_PILLAR_HEIGHT, COR_STEEL));
-    aabbs.add(new AABB(
-        FIELD_LENGTH - 3.96 - TRENCH_BLOCK_WIDTH, FIELD_WIDTH - 1.57 - TRENCH_BLOCK_WIDTH, 0,
-        FIELD_LENGTH - 3.96, FIELD_WIDTH - 1.57, TRENCH_PILLAR_HEIGHT, COR_STEEL));
+    aabbs.add(
+        new AABB(
+            3.96,
+            TRENCH_WIDTH,
+            0,
+            3.96 + TRENCH_BLOCK_WIDTH,
+            TRENCH_WIDTH + TRENCH_BLOCK_WIDTH,
+            TRENCH_PILLAR_HEIGHT,
+            COR_STEEL));
+    aabbs.add(
+        new AABB(
+            3.96,
+            FIELD_WIDTH - 1.57 - TRENCH_BLOCK_WIDTH,
+            0,
+            3.96 + TRENCH_BLOCK_WIDTH,
+            FIELD_WIDTH - 1.57,
+            TRENCH_PILLAR_HEIGHT,
+            COR_STEEL));
+    aabbs.add(
+        new AABB(
+            FIELD_LENGTH - 3.96 - TRENCH_BLOCK_WIDTH,
+            TRENCH_WIDTH,
+            0,
+            FIELD_LENGTH - 3.96,
+            TRENCH_WIDTH + TRENCH_BLOCK_WIDTH,
+            TRENCH_PILLAR_HEIGHT,
+            COR_STEEL));
+    aabbs.add(
+        new AABB(
+            FIELD_LENGTH - 3.96 - TRENCH_BLOCK_WIDTH,
+            FIELD_WIDTH - 1.57 - TRENCH_BLOCK_WIDTH,
+            0,
+            FIELD_LENGTH - 3.96,
+            FIELD_WIDTH - 1.57,
+            TRENCH_PILLAR_HEIGHT,
+            COR_STEEL));
 
     // Trench ceilings (4): steel/aluminum above underpass height
     double trenchXBlue1 = 3.96;
     double trenchXBlue2 = 5.18;
     double trenchXRed1 = FIELD_LENGTH - 5.18;
     double trenchXRed2 = FIELD_LENGTH - 3.96;
-    aabbs.add(new AABB(
-        trenchXBlue1, 1.57, TRENCH_HEIGHT, trenchXBlue2, 3.73, TRENCH_PILLAR_HEIGHT, COR_STEEL));
-    aabbs.add(new AABB(
-        trenchXBlue1, FIELD_WIDTH - 3.73, TRENCH_HEIGHT,
-        trenchXBlue2, FIELD_WIDTH - 1.57, TRENCH_PILLAR_HEIGHT, COR_STEEL));
-    aabbs.add(new AABB(
-        trenchXRed1, 1.57, TRENCH_HEIGHT, trenchXRed2, 3.73, TRENCH_PILLAR_HEIGHT, COR_STEEL));
-    aabbs.add(new AABB(
-        trenchXRed1, FIELD_WIDTH - 3.73, TRENCH_HEIGHT,
-        trenchXRed2, FIELD_WIDTH - 1.57, TRENCH_PILLAR_HEIGHT, COR_STEEL));
+    aabbs.add(
+        new AABB(
+            trenchXBlue1,
+            1.57,
+            TRENCH_HEIGHT,
+            trenchXBlue2,
+            3.73,
+            TRENCH_PILLAR_HEIGHT,
+            COR_STEEL));
+    aabbs.add(
+        new AABB(
+            trenchXBlue1,
+            FIELD_WIDTH - 3.73,
+            TRENCH_HEIGHT,
+            trenchXBlue2,
+            FIELD_WIDTH - 1.57,
+            TRENCH_PILLAR_HEIGHT,
+            COR_STEEL));
+    aabbs.add(
+        new AABB(
+            trenchXRed1, 1.57, TRENCH_HEIGHT, trenchXRed2, 3.73, TRENCH_PILLAR_HEIGHT, COR_STEEL));
+    aabbs.add(
+        new AABB(
+            trenchXRed1,
+            FIELD_WIDTH - 3.73,
+            TRENCH_HEIGHT,
+            trenchXRed2,
+            FIELD_WIDTH - 1.57,
+            TRENCH_PILLAR_HEIGHT,
+            COR_STEEL));
 
     // Tower poles (2): 2in wide x 47in tall
     double blueTowerX = 1.067;
     double redTowerX = 15.494;
     double blueTowerY = 4.039;
     double redTowerY = 4.318;
-    aabbs.add(new AABB(
-        blueTowerX - TOWER_POLE_WIDTH / 2, blueTowerY - TOWER_POLE_WIDTH / 2, 0,
-        blueTowerX + TOWER_POLE_WIDTH / 2, blueTowerY + TOWER_POLE_WIDTH / 2,
-        TOWER_POLE_HEIGHT, COR_STEEL));
-    aabbs.add(new AABB(
-        redTowerX - TOWER_POLE_WIDTH / 2, redTowerY - TOWER_POLE_WIDTH / 2, 0,
-        redTowerX + TOWER_POLE_WIDTH / 2, redTowerY + TOWER_POLE_WIDTH / 2,
-        TOWER_POLE_HEIGHT, COR_STEEL));
+    aabbs.add(
+        new AABB(
+            blueTowerX - TOWER_POLE_WIDTH / 2,
+            blueTowerY - TOWER_POLE_WIDTH / 2,
+            0,
+            blueTowerX + TOWER_POLE_WIDTH / 2,
+            blueTowerY + TOWER_POLE_WIDTH / 2,
+            TOWER_POLE_HEIGHT,
+            COR_STEEL));
+    aabbs.add(
+        new AABB(
+            redTowerX - TOWER_POLE_WIDTH / 2,
+            redTowerY - TOWER_POLE_WIDTH / 2,
+            0,
+            redTowerX + TOWER_POLE_WIDTH / 2,
+            redTowerY + TOWER_POLE_WIDTH / 2,
+            TOWER_POLE_HEIGHT,
+            COR_STEEL));
 
     // Tower uprights (4): 1.5in x 3.5in x 72.1in, two per tower
     double halfSpacing = TOWER_UPRIGHT_SPACING / 2.0;
-    aabbs.add(new AABB(
-        0, blueTowerY - halfSpacing - TOWER_UPRIGHT_THICK / 2, 0,
-        TOWER_UPRIGHT_DEPTH, blueTowerY - halfSpacing + TOWER_UPRIGHT_THICK / 2,
-        TOWER_UPRIGHT_HEIGHT, COR_STEEL));
-    aabbs.add(new AABB(
-        0, blueTowerY + halfSpacing - TOWER_UPRIGHT_THICK / 2, 0,
-        TOWER_UPRIGHT_DEPTH, blueTowerY + halfSpacing + TOWER_UPRIGHT_THICK / 2,
-        TOWER_UPRIGHT_HEIGHT, COR_STEEL));
-    aabbs.add(new AABB(
-        FIELD_LENGTH - TOWER_UPRIGHT_DEPTH, redTowerY - halfSpacing - TOWER_UPRIGHT_THICK / 2, 0,
-        FIELD_LENGTH, redTowerY - halfSpacing + TOWER_UPRIGHT_THICK / 2,
-        TOWER_UPRIGHT_HEIGHT, COR_STEEL));
-    aabbs.add(new AABB(
-        FIELD_LENGTH - TOWER_UPRIGHT_DEPTH, redTowerY + halfSpacing - TOWER_UPRIGHT_THICK / 2, 0,
-        FIELD_LENGTH, redTowerY + halfSpacing + TOWER_UPRIGHT_THICK / 2,
-        TOWER_UPRIGHT_HEIGHT, COR_STEEL));
+    aabbs.add(
+        new AABB(
+            0,
+            blueTowerY - halfSpacing - TOWER_UPRIGHT_THICK / 2,
+            0,
+            TOWER_UPRIGHT_DEPTH,
+            blueTowerY - halfSpacing + TOWER_UPRIGHT_THICK / 2,
+            TOWER_UPRIGHT_HEIGHT,
+            COR_STEEL));
+    aabbs.add(
+        new AABB(
+            0,
+            blueTowerY + halfSpacing - TOWER_UPRIGHT_THICK / 2,
+            0,
+            TOWER_UPRIGHT_DEPTH,
+            blueTowerY + halfSpacing + TOWER_UPRIGHT_THICK / 2,
+            TOWER_UPRIGHT_HEIGHT,
+            COR_STEEL));
+    aabbs.add(
+        new AABB(
+            FIELD_LENGTH - TOWER_UPRIGHT_DEPTH,
+            redTowerY - halfSpacing - TOWER_UPRIGHT_THICK / 2,
+            0,
+            FIELD_LENGTH,
+            redTowerY - halfSpacing + TOWER_UPRIGHT_THICK / 2,
+            TOWER_UPRIGHT_HEIGHT,
+            COR_STEEL));
+    aabbs.add(
+        new AABB(
+            FIELD_LENGTH - TOWER_UPRIGHT_DEPTH,
+            redTowerY + halfSpacing - TOWER_UPRIGHT_THICK / 2,
+            0,
+            FIELD_LENGTH,
+            redTowerY + halfSpacing + TOWER_UPRIGHT_THICK / 2,
+            TOWER_UPRIGHT_HEIGHT,
+            COR_STEEL));
 
     // Tower bracing (2): between uprights, 28.4-43.4in height
-    aabbs.add(new AABB(
-        0, blueTowerY - halfSpacing, BRACING_BOTTOM,
-        TOWER_UPRIGHT_DEPTH, blueTowerY + halfSpacing, BRACING_TOP, COR_STEEL));
-    aabbs.add(new AABB(
-        FIELD_LENGTH - TOWER_UPRIGHT_DEPTH, redTowerY - halfSpacing, BRACING_BOTTOM,
-        FIELD_LENGTH, redTowerY + halfSpacing, BRACING_TOP, COR_STEEL));
-
+    aabbs.add(
+        new AABB(
+            0,
+            blueTowerY - halfSpacing,
+            BRACING_BOTTOM,
+            TOWER_UPRIGHT_DEPTH,
+            blueTowerY + halfSpacing,
+            BRACING_TOP,
+            COR_STEEL));
+    aabbs.add(
+        new AABB(
+            FIELD_LENGTH - TOWER_UPRIGHT_DEPTH,
+            redTowerY - halfSpacing,
+            BRACING_BOTTOM,
+            FIELD_LENGTH,
+            redTowerY + halfSpacing,
+            BRACING_TOP,
+            COR_STEEL));
 
     // Hub ramp colliders (2): 47in x 217in ground-level area around each hub
-    aabbs.add(new AABB(
-        BLUE_HUB_CENTER.getX() - HUB_RAMP_WIDTH / 2, BLUE_HUB_CENTER.getY() - HUB_RAMP_LENGTH / 2,
-        0, BLUE_HUB_CENTER.getX() + HUB_RAMP_WIDTH / 2,
-        BLUE_HUB_CENTER.getY() + HUB_RAMP_LENGTH / 2, HUB_RAMP_HEIGHT, COR_STEEL));
-    aabbs.add(new AABB(
-        RED_HUB_CENTER.getX() - HUB_RAMP_WIDTH / 2, RED_HUB_CENTER.getY() - HUB_RAMP_LENGTH / 2,
-        0, RED_HUB_CENTER.getX() + HUB_RAMP_WIDTH / 2,
-        RED_HUB_CENTER.getY() + HUB_RAMP_LENGTH / 2, HUB_RAMP_HEIGHT, COR_STEEL));
+    aabbs.add(
+        new AABB(
+            BLUE_HUB_CENTER.getX() - HUB_RAMP_WIDTH / 2,
+            BLUE_HUB_CENTER.getY() - HUB_RAMP_LENGTH / 2,
+            0,
+            BLUE_HUB_CENTER.getX() + HUB_RAMP_WIDTH / 2,
+            BLUE_HUB_CENTER.getY() + HUB_RAMP_LENGTH / 2,
+            HUB_RAMP_HEIGHT,
+            COR_STEEL));
+    aabbs.add(
+        new AABB(
+            RED_HUB_CENTER.getX() - HUB_RAMP_WIDTH / 2,
+            RED_HUB_CENTER.getY() - HUB_RAMP_LENGTH / 2,
+            0,
+            RED_HUB_CENTER.getX() + HUB_RAMP_WIDTH / 2,
+            RED_HUB_CENTER.getY() + HUB_RAMP_LENGTH / 2,
+            HUB_RAMP_HEIGHT,
+            COR_STEEL));
 
     // Hub body panels deflect ground-level balls
-    aabbs.add(new AABB(
-        BLUE_HUB_CENTER.getX() - HUB_SIDE / 2, BLUE_HUB_CENTER.getY() - HUB_SIDE / 2, 0,
-        BLUE_HUB_CENTER.getX() + HUB_SIDE / 2, BLUE_HUB_CENTER.getY() + HUB_SIDE / 2,
-        HUB_BASE_HEIGHT, COR_HUB));
-    aabbs.add(new AABB(
-        RED_HUB_CENTER.getX() - HUB_SIDE / 2, RED_HUB_CENTER.getY() - HUB_SIDE / 2, 0,
-        RED_HUB_CENTER.getX() + HUB_SIDE / 2, RED_HUB_CENTER.getY() + HUB_SIDE / 2,
-        HUB_BASE_HEIGHT, COR_HUB));
+    aabbs.add(
+        new AABB(
+            BLUE_HUB_CENTER.getX() - HUB_SIDE / 2,
+            BLUE_HUB_CENTER.getY() - HUB_SIDE / 2,
+            0,
+            BLUE_HUB_CENTER.getX() + HUB_SIDE / 2,
+            BLUE_HUB_CENTER.getY() + HUB_SIDE / 2,
+            HUB_BASE_HEIGHT,
+            COR_HUB));
+    aabbs.add(
+        new AABB(
+            RED_HUB_CENTER.getX() - HUB_SIDE / 2,
+            RED_HUB_CENTER.getY() - HUB_SIDE / 2,
+            0,
+            RED_HUB_CENTER.getX() + HUB_SIDE / 2,
+            RED_HUB_CENTER.getY() + HUB_SIDE / 2,
+            HUB_BASE_HEIGHT,
+            COR_HUB));
 
     AABB_OBSTACLES = aabbs.toArray(new AABB[0]);
   }
@@ -319,24 +423,34 @@ public class FuelPhysicsSim {
 
     // Blue tower rungs (3)
     for (double h : new double[] {RUNG_LOW_HEIGHT, RUNG_MID_HEIGHT, RUNG_HIGH_HEIGHT}) {
-      cyls.add(new CylinderObstacle(
-          0, blueTowerY - halfSpacing - RUNG_OVERHANG, h,
-          0, blueTowerY + halfSpacing + RUNG_OVERHANG, h,
-          RUNG_RADIUS, COR_STEEL));
+      cyls.add(
+          new CylinderObstacle(
+              0,
+              blueTowerY - halfSpacing - RUNG_OVERHANG,
+              h,
+              0,
+              blueTowerY + halfSpacing + RUNG_OVERHANG,
+              h,
+              RUNG_RADIUS,
+              COR_STEEL));
     }
 
     // Red tower rungs (3)
     for (double h : new double[] {RUNG_LOW_HEIGHT, RUNG_MID_HEIGHT, RUNG_HIGH_HEIGHT}) {
-      cyls.add(new CylinderObstacle(
-          FIELD_LENGTH, redTowerY - halfSpacing - RUNG_OVERHANG, h,
-          FIELD_LENGTH, redTowerY + halfSpacing + RUNG_OVERHANG, h,
-          RUNG_RADIUS, COR_STEEL));
+      cyls.add(
+          new CylinderObstacle(
+              FIELD_LENGTH,
+              redTowerY - halfSpacing - RUNG_OVERHANG,
+              h,
+              FIELD_LENGTH,
+              redTowerY + halfSpacing + RUNG_OVERHANG,
+              h,
+              RUNG_RADIUS,
+              COR_STEEL));
     }
-
 
     CYLINDER_OBSTACLES = cyls.toArray(new CylinderObstacle[0]);
   }
-
 
   /** Axis-aligned bounding box with restitution coefficient. */
   private record AABB(
@@ -344,24 +458,67 @@ public class FuelPhysicsSim {
 
   /** Cylinder obstacle defined by two axis endpoints, a radius, and restitution. */
   private record CylinderObstacle(
-      double ax, double ay, double az, double bx, double by, double bz, double radius, double cor,
-      double abx, double aby, double abz, double abLenSq) {
-    CylinderObstacle(double ax, double ay, double az, double bx, double by, double bz,
-        double radius, double cor) {
-      this(ax, ay, az, bx, by, bz, radius, cor,
-          bx - ax, by - ay, bz - az,
+      double ax,
+      double ay,
+      double az,
+      double bx,
+      double by,
+      double bz,
+      double radius,
+      double cor,
+      double abx,
+      double aby,
+      double abz,
+      double abLenSq) {
+    CylinderObstacle(
+        double ax,
+        double ay,
+        double az,
+        double bx,
+        double by,
+        double bz,
+        double radius,
+        double cor) {
+      this(
+          ax,
+          ay,
+          az,
+          bx,
+          by,
+          bz,
+          radius,
+          cor,
+          bx - ax,
+          by - ay,
+          bz - az,
           (bx - ax) * (bx - ax) + (by - ay) * (by - ay) + (bz - az) * (bz - az));
     }
   }
 
   /** XZ line segment extruded along a Y range, used for bump ramp geometry. */
   private record BumpSegment(
-      double xStart, double zStart, double xEnd, double zEnd, double yStart, double yEnd,
-      double lineX, double lineZ, double lineLen, double nx, double nz) {
-    BumpSegment(double xStart, double zStart, double xEnd, double zEnd,
-        double yStart, double yEnd) {
-      this(xStart, zStart, xEnd, zEnd, yStart, yEnd,
-          xEnd - xStart, zEnd - zStart,
+      double xStart,
+      double zStart,
+      double xEnd,
+      double zEnd,
+      double yStart,
+      double yEnd,
+      double lineX,
+      double lineZ,
+      double lineLen,
+      double nx,
+      double nz) {
+    BumpSegment(
+        double xStart, double zStart, double xEnd, double zEnd, double yStart, double yEnd) {
+      this(
+          xStart,
+          zStart,
+          xEnd,
+          zEnd,
+          yStart,
+          yEnd,
+          xEnd - xStart,
+          zEnd - zStart,
           Math.hypot(xEnd - xStart, zEnd - zStart),
           // Normal perpendicular to line in XZ, flipped so nz >= 0 (points away from ground)
           (xEnd - xStart) >= 0
@@ -646,8 +803,7 @@ public class FuelPhysicsSim {
    */
   public FuelPhysicsSim(String tableKey, PhysicsConfig config) {
     this.config = config;
-    this.rng =
-        config.deterministic ? new Random(config.deterministicSeed) : new Random();
+    this.rng = config.deterministic ? new Random(config.deterministicSeed) : new Random();
 
     // Initialize spatial hash grid
     for (int i = 0; i < GRID_COLS; i++) {
@@ -662,16 +818,20 @@ public class FuelPhysicsSim {
     }
 
     // Create hubs
-    blueHub = new ScoringTarget(BLUE_HUB_CENTER, new Translation3d(5.3, FIELD_WIDTH / 2.0, 0.89), 1);
+    blueHub =
+        new ScoringTarget(BLUE_HUB_CENTER, new Translation3d(5.3, FIELD_WIDTH / 2.0, 0.89), 1);
     redHub =
         new ScoringTarget(
             RED_HUB_CENTER, new Translation3d(FIELD_LENGTH - 5.3, FIELD_WIDTH / 2.0, 0.89), -1);
 
     // NT publishers
     var nt = NetworkTableInstance.getDefault();
-    positionPublisher = nt.getStructArrayTopic(tableKey + "/Positions", Translation3d.struct).publish();
-    inFlightPublisher = nt.getStructArrayTopic(tableKey + "/InFlight", Translation3d.struct).publish();
-    lastShotArcPublisher = nt.getStructArrayTopic(tableKey + "/LastShotArc", Translation3d.struct).publish();
+    positionPublisher =
+        nt.getStructArrayTopic(tableKey + "/Positions", Translation3d.struct).publish();
+    inFlightPublisher =
+        nt.getStructArrayTopic(tableKey + "/InFlight", Translation3d.struct).publish();
+    lastShotArcPublisher =
+        nt.getStructArrayTopic(tableKey + "/LastShotArc", Translation3d.struct).publish();
     blueScorePub = nt.getIntegerTopic(tableKey + "/BlueScore").publish();
     redScorePub = nt.getIntegerTopic(tableKey + "/RedScore").publish();
     ballCountPub = nt.getIntegerTopic(tableKey + "/Stats/BallCount").publish();
@@ -692,7 +852,6 @@ public class FuelPhysicsSim {
   public FuelPhysicsSim() {
     this("Sim/FuelPositions");
   }
-
 
   /** Turn the sim on. You still need to call tick() every cycle. */
   public void enable() {
@@ -811,9 +970,7 @@ public class FuelPhysicsSim {
     balls.clear();
   }
 
-  /**
-   * Spawn all game pieces in their starting positions (neutral zone + depots).
-   */
+  /** Spawn all game pieces in their starting positions (neutral zone + depots). */
   public void placeFieldBalls() {
     // Neutral zone fuel
     double cx = FIELD_LENGTH / 2.0;
@@ -853,8 +1010,8 @@ public class FuelPhysicsSim {
   }
 
   /**
-   * Step the sim forward one period (20ms) and publish ball positions to NT.
-   * Does nothing if the sim isn't enabled.
+   * Step the sim forward one period (20ms) and publish ball positions to NT. Does nothing if the
+   * sim isn't enabled.
    */
   public void tick() {
     if (!running) return;
@@ -1000,10 +1157,14 @@ public class FuelPhysicsSim {
     // Out-of-bounds cleanup (includes NaN guard, upper Z limit, and stuck-on-obstacle removal)
     for (int i = 0; i < balls.size(); i++) {
       SimBall ball = balls.get(i);
-      if (!Double.isFinite(ball.pos.getX()) || !Double.isFinite(ball.pos.getY())
-          || !Double.isFinite(ball.pos.getZ()) || !Double.isFinite(ball.vel.getX())
-          || !Double.isFinite(ball.vel.getY()) || !Double.isFinite(ball.vel.getZ())
-          || !Double.isFinite(ball.omega.getX()) || !Double.isFinite(ball.omega.getY())
+      if (!Double.isFinite(ball.pos.getX())
+          || !Double.isFinite(ball.pos.getY())
+          || !Double.isFinite(ball.pos.getZ())
+          || !Double.isFinite(ball.vel.getX())
+          || !Double.isFinite(ball.vel.getY())
+          || !Double.isFinite(ball.vel.getZ())
+          || !Double.isFinite(ball.omega.getX())
+          || !Double.isFinite(ball.omega.getY())
           || !Double.isFinite(ball.omega.getZ())
           || ball.pos.getX() < -2.0
           || ball.pos.getX() > FIELD_LENGTH + 2.0
@@ -1029,8 +1190,6 @@ public class FuelPhysicsSim {
       computeConservationQuantities();
     }
   }
-
-
 
   /** Compute acceleration: gravity + drag + Magnus lift. Magnus only kicks in when airborne. */
   private Translation3d computeAcceleration(SimBall ball) {
@@ -1063,7 +1222,6 @@ public class FuelPhysicsSim {
 
     return new Translation3d(ax, ay, az);
   }
-
 
   /** Continuous collision detection: sweep fast balls so they don't tunnel through walls. */
   private void handleCCD(SimBall ball) {
@@ -1143,7 +1301,9 @@ public class FuelPhysicsSim {
     }
   }
 
-  /** Ray-AABB intersection with sphere expansion (Minkowski sum). Returns hit time in [0,1] or -1. */
+  /**
+   * Ray-AABB intersection with sphere expansion (Minkowski sum). Returns hit time in [0,1] or -1.
+   */
   private double sweepSphereAABB(Translation3d origin, Translation3d delta, AABB aabb) {
     // Expand AABB by ball radius (Minkowski sum with sphere)
     double minX = aabb.minX() - BALL_RADIUS;
@@ -1269,8 +1429,7 @@ public class FuelPhysicsSim {
               c.ballIndexA = i;
               c.ballIndexB = j;
               c.penetration = minDist - dist;
-              c.contactPoint =
-                  ballA.pos.plus(ballB.pos).div(2.0); // midpoint between centers
+              c.contactPoint = ballA.pos.plus(ballB.pos).div(2.0); // midpoint between centers
               c.restitution = COR_BALL_BALL;
               c.friction = config.frictionEnabled ? MU_BALL_BALL : 0;
               c.normalImpulseAccum = 0;
@@ -1303,7 +1462,6 @@ public class FuelPhysicsSim {
       for (CylinderObstacle cyl : CYLINDER_OBSTACLES) {
         generateSphereCylinderContact(i, ball, cyl);
       }
-
     }
   }
 
@@ -1399,10 +1557,9 @@ public class FuelPhysicsSim {
   }
 
   /**
-   * If a ball is inside an AABB, figure out which face it came in through by
-   * raycasting from prevPos to pos. Without this, balls pop onto the top of
-   * obstacles when they actually entered from the side. Falls back to nearest-face
-   * if the ray is degenerate (ball spawned inside).
+   * If a ball is inside an AABB, figure out which face it came in through by raycasting from
+   * prevPos to pos. Without this, balls pop onto the top of obstacles when they actually entered
+   * from the side. Falls back to nearest-face if the ray is degenerate (ball spawned inside).
    */
   private Translation3d computeEntryFaceNormal(Translation3d from, Translation3d to, AABB aabb) {
     if (from == null) return computeAABBNormal(to, aabb);
@@ -1457,8 +1614,9 @@ public class FuelPhysicsSim {
     double apx = ball.pos.getX() - cyl.ax();
     double apy = ball.pos.getY() - cyl.ay();
     double apz = ball.pos.getZ() - cyl.az();
-    double t = Math.max(0, Math.min(1,
-        (apx * cyl.abx() + apy * cyl.aby() + apz * cyl.abz()) / cyl.abLenSq()));
+    double t =
+        Math.max(
+            0, Math.min(1, (apx * cyl.abx() + apy * cyl.aby() + apz * cyl.abz()) / cyl.abLenSq()));
 
     double nearX = cyl.ax() + t * cyl.abx();
     double nearY = cyl.ay() + t * cyl.aby();
@@ -1486,7 +1644,9 @@ public class FuelPhysicsSim {
     }
   }
 
-  /** Sequential impulse solver: resolve bounces, friction, and spin transfer across all contacts. */
+  /**
+   * Sequential impulse solver: resolve bounces, friction, and spin transfer across all contacts.
+   */
   private void solveContacts() {
     if (contacts.isEmpty()) return;
 
@@ -1632,25 +1792,20 @@ public class FuelPhysicsSim {
     // X walls (alliance walls: diamond plate + polycarbonate, height-aware)
     if (ball.pos.getX() < BALL_RADIUS) {
       if (z < ALLIANCE_WALL_HEIGHT) {
-        ball.pos =
-            new Translation3d(BALL_RADIUS, ball.pos.getY(), ball.pos.getZ());
+        ball.pos = new Translation3d(BALL_RADIUS, ball.pos.getY(), ball.pos.getZ());
         if (ball.vel.getX() < 0) {
           applyWallSpinTransfer(ball, AXIS_X_POS);
           double cor = effectiveCOR(COR_WALL, Math.abs(ball.vel.getX()));
-          ball.vel =
-              new Translation3d(-ball.vel.getX() * cor, ball.vel.getY(), ball.vel.getZ());
+          ball.vel = new Translation3d(-ball.vel.getX() * cor, ball.vel.getY(), ball.vel.getZ());
         }
       }
     } else if (ball.pos.getX() > FIELD_LENGTH - BALL_RADIUS) {
       if (z < ALLIANCE_WALL_HEIGHT) {
-        ball.pos =
-            new Translation3d(
-                FIELD_LENGTH - BALL_RADIUS, ball.pos.getY(), ball.pos.getZ());
+        ball.pos = new Translation3d(FIELD_LENGTH - BALL_RADIUS, ball.pos.getY(), ball.pos.getZ());
         if (ball.vel.getX() > 0) {
           applyWallSpinTransfer(ball, AXIS_X_NEG);
           double cor = effectiveCOR(COR_WALL, Math.abs(ball.vel.getX()));
-          ball.vel =
-              new Translation3d(-ball.vel.getX() * cor, ball.vel.getY(), ball.vel.getZ());
+          ball.vel = new Translation3d(-ball.vel.getX() * cor, ball.vel.getY(), ball.vel.getZ());
         }
       }
     }
@@ -1658,25 +1813,20 @@ public class FuelPhysicsSim {
     // Y walls (guardrails: polycarbonate on aluminum extrusion, height-aware)
     if (ball.pos.getY() < BALL_RADIUS) {
       if (z < GUARDRAIL_HEIGHT) {
-        ball.pos =
-            new Translation3d(ball.pos.getX(), BALL_RADIUS, ball.pos.getZ());
+        ball.pos = new Translation3d(ball.pos.getX(), BALL_RADIUS, ball.pos.getZ());
         if (ball.vel.getY() < 0) {
           applyWallSpinTransfer(ball, AXIS_Y_POS);
           double cor = effectiveCOR(COR_WALL, Math.abs(ball.vel.getY()));
-          ball.vel =
-              new Translation3d(ball.vel.getX(), -ball.vel.getY() * cor, ball.vel.getZ());
+          ball.vel = new Translation3d(ball.vel.getX(), -ball.vel.getY() * cor, ball.vel.getZ());
         }
       }
     } else if (ball.pos.getY() > FIELD_WIDTH - BALL_RADIUS) {
       if (z < GUARDRAIL_HEIGHT) {
-        ball.pos =
-            new Translation3d(
-                ball.pos.getX(), FIELD_WIDTH - BALL_RADIUS, ball.pos.getZ());
+        ball.pos = new Translation3d(ball.pos.getX(), FIELD_WIDTH - BALL_RADIUS, ball.pos.getZ());
         if (ball.vel.getY() > 0) {
           applyWallSpinTransfer(ball, AXIS_Y_NEG);
           double cor = effectiveCOR(COR_WALL, Math.abs(ball.vel.getY()));
-          ball.vel =
-              new Translation3d(ball.vel.getX(), -ball.vel.getY() * cor, ball.vel.getZ());
+          ball.vel = new Translation3d(ball.vel.getX(), -ball.vel.getY() * cor, ball.vel.getZ());
         }
       }
     }
@@ -1693,8 +1843,7 @@ public class FuelPhysicsSim {
         if (Math.abs(ball.vel.getZ() * cor) < 0.05) {
           ball.vel = new Translation3d(ball.vel.getX(), ball.vel.getY(), 0);
         } else {
-          ball.vel =
-              new Translation3d(ball.vel.getX(), ball.vel.getY(), -ball.vel.getZ() * cor);
+          ball.vel = new Translation3d(ball.vel.getX(), ball.vel.getY(), -ball.vel.getZ() * cor);
         }
       }
 
@@ -1704,9 +1853,7 @@ public class FuelPhysicsSim {
         double surfVelY = ball.vel.getY() + ball.omega.getX() * BALL_RADIUS;
         double surfSpeed = Math.sqrt(surfVelX * surfVelX + surfVelY * surfVelY);
         double hSpeed =
-            Math.sqrt(
-                ball.vel.getX() * ball.vel.getX()
-                    + ball.vel.getY() * ball.vel.getY());
+            Math.sqrt(ball.vel.getX() * ball.vel.getX() + ball.vel.getY() * ball.vel.getY());
 
         if (surfSpeed > 0.01) {
           // friction opposes surface velocity
@@ -1738,8 +1885,7 @@ public class FuelPhysicsSim {
           double decel = MU_GROUND_ROLLING * GRAVITY * subDt;
           double scale = Math.max(0, hSpeed - decel) / hSpeed;
           ball.vel =
-              new Translation3d(
-                  ball.vel.getX() * scale, ball.vel.getY() * scale, ball.vel.getZ());
+              new Translation3d(ball.vel.getX() * scale, ball.vel.getY() * scale, ball.vel.getZ());
           if (config.spinTransferEnabled) {
             ball.omega =
                 new Translation3d(
@@ -1779,17 +1925,14 @@ public class FuelPhysicsSim {
         // Push out
         ball.pos =
             ball.pos.plus(
-                new Translation3d(
-                    nx * (BALL_RADIUS - dist), 0, nz * (BALL_RADIUS - dist)));
+                new Translation3d(nx * (BALL_RADIUS - dist), 0, nz * (BALL_RADIUS - dist)));
 
         // Velocity reflection
         double vDotN = ball.vel.getX() * nx + ball.vel.getZ() * nz;
         if (vDotN < 0) {
           double cor = effectiveCOR(COR_HDPE, Math.abs(vDotN));
           ball.vel =
-              ball.vel.minus(
-                  new Translation3d(
-                      nx * (1 + cor) * vDotN, 0, nz * (1 + cor) * vDotN));
+              ball.vel.minus(new Translation3d(nx * (1 + cor) * vDotN, 0, nz * (1 + cor) * vDotN));
         }
       }
     }
@@ -1829,12 +1972,9 @@ public class FuelPhysicsSim {
 
       // Push ball out of net
       double pushDir = distToNet >= 0 ? 1 : -1;
-      ball.pos =
-          new Translation3d(
-              netX + pushDir * BALL_RADIUS, ball.pos.getY(), ball.pos.getZ());
+      ball.pos = new Translation3d(netX + pushDir * BALL_RADIUS, ball.pos.getY(), ball.pos.getZ());
       ball.vel =
-          new Translation3d(
-              -ball.vel.getX() * COR_NET, ball.vel.getY() * COR_NET, ball.vel.getZ());
+          new Translation3d(-ball.vel.getX() * COR_NET, ball.vel.getY() * COR_NET, ball.vel.getZ());
     }
   }
 
@@ -1971,8 +2111,6 @@ public class FuelPhysicsSim {
     totalMomentum = new Translation3d(mx, my, mz);
   }
 
-
-
   /** 3D cross product. Using Translation3d directly to avoid WPILib Vector conversion. */
   private static Translation3d cross(Translation3d a, Translation3d b) {
     return new Translation3d(
@@ -2043,8 +2181,8 @@ public class FuelPhysicsSim {
   // Trajectory prediction
 
   /**
-   * Predict where a shot will go (gravity + drag only, no collisions).
-   * Returns points you can plot in AdvantageScope Field3d. Stops at the ground.
+   * Predict where a shot will go (gravity + drag only, no collisions). Returns points you can plot
+   * in AdvantageScope Field3d. Stops at the ground.
    */
   private Translation3d[] predictArc(Translation3d pos, Translation3d vel, int steps, double dt) {
     List<Translation3d> arc = new ArrayList<>();
@@ -2065,7 +2203,6 @@ public class FuelPhysicsSim {
     }
     return arc.toArray(new Translation3d[0]);
   }
-
 
   /** Push ball positions and sim stats to NetworkTables for visualization. */
   public void publishPositions() {
@@ -2104,8 +2241,6 @@ public class FuelPhysicsSim {
     computeConservationQuantities();
     totalEnergyPub.set(totalKE + totalPE);
   }
-
-
 
   public int getBallCount() {
     return balls.size();

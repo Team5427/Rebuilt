@@ -20,19 +20,19 @@ package team5427.lib.kinematics.shooter;
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Simulates a ball flying through the air with drag and Magnus lift. Uses RK4 integration
- * in the vertical plane (x, z). For each distance, binary searches RPM until the ball arrives
- * at the target height. Then generates a 91-point lookup table from 0.50m to 5.00m.
+ * Simulates a ball flying through the air with drag and Magnus lift. Uses RK4 integration in the
+ * vertical plane (x, z). For each distance, binary searches RPM until the ball arrives at the
+ * target height. Then generates a 91-point lookup table from 0.50m to 5.00m.
  *
- * <p>Basically, you plug in your robot's measurements from CAD, run generateLUT(), and it gives
- * you a complete shooter table. No more hand-tuning RPM values from match videos.
+ * <p>Basically, you plug in your robot's measurements from CAD, run generateLUT(), and it gives you
+ * a complete shooter table. No more hand-tuning RPM values from match videos.
  *
  * <p>Usage:
+ *
  * <pre>
  *   SimParameters params = new SimParameters(
  *       0.215,   // ball mass kg
@@ -112,7 +112,10 @@ public class ProjectileSimulator {
     return params.slipFactor() * rpm * Math.PI * params.wheelDiameterM() / 60.0;
   }
 
-  /** Simulate a ball launched at the given RPM and see where it is when it reaches the target distance. */
+  /**
+   * Simulate a ball launched at the given RPM and see where it is when it reaches the target
+   * distance.
+   */
   public TrajectoryResult simulate(double rpm, double targetDistanceM) {
     double v0 = exitVelocity(rpm);
     double launchRad = Math.toRadians(params.fixedLaunchAngleDeg());
@@ -194,7 +197,10 @@ public class ProjectileSimulator {
     };
   }
 
-  /** Binary search for the RPM that puts the ball at the target height. Returns reachable=false if max RPM can't reach. */
+  /**
+   * Binary search for the RPM that puts the ball at the target height. Returns reachable=false if
+   * max RPM can't reach.
+   */
   public LUTEntry findRPMForDistance(double distanceM) {
     double heightTolerance = 0.02; // 2cm
     double lo = params.rpmMin();

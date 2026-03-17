@@ -1,16 +1,13 @@
 package team5427.frc.robot;
 
 import com.pathplanner.lib.commands.FollowPathCommand;
-
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.BuildConstants;
-
 import java.util.function.Supplier;
-
 import org.littletonrobotics.junction.AutoLogOutputManager;
 import org.littletonrobotics.junction.LogFileUtil;
 import org.littletonrobotics.junction.LoggedRobot;
@@ -189,7 +186,8 @@ public class Robot extends LoggedRobot {
     ballSim.enable();
     ballSim.placeFieldBalls();
     Supplier<Pose2d> poseSupplier = () -> RobotPose.getInstance().getEstimatedPose();
-    Supplier<ChassisSpeeds> velocitySupplier = () -> SwerveSubsystem.getInstance().getCurrentChassisSpeeds();
+    Supplier<ChassisSpeeds> velocitySupplier =
+        () -> SwerveSubsystem.getInstance().getCurrentChassisSpeeds();
     ballSim.configureRobot(0.0, 0.0, 0.0, poseSupplier, velocitySupplier);
   }
 
@@ -198,6 +196,5 @@ public class Robot extends LoggedRobot {
   public void simulationPeriodic() {
     m_robotContainer.updateSimulation();
     ballSim.tick();
-
   }
 }
