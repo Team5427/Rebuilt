@@ -1,5 +1,3 @@
-package team5427.lib.kinematics.shooter;
-
 /*
  * ProjectileSimulator.java - RK4 projectile physics with drag and Magnus lift
  *
@@ -19,6 +17,8 @@ package team5427.lib.kinematics.shooter;
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
+
+package team5427.lib.kinematics.shooter;
 
 import java.util.ArrayList;
 import java.util.List;

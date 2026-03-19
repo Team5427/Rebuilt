@@ -4,6 +4,7 @@ import static edu.wpi.first.units.Units.MetersPerSecond;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import lombok.Getter;
@@ -61,30 +62,36 @@ public class ShooterSubsystem extends SubsystemBase {
   public void periodic() {
     io.updateInputs(inputsAutoLogged);
 
-    io.setRightFlywheelSpeed(rightShooterVelocity);
-    io.setLeftFlywheelSpeed(leftShooterVelocity);
-
-    io.setRightHoodAngle(rightShooterAngle);
-    io.setLeftHoodAngle(leftShooterAngle);
-
     Logger.processInputs("Shooter/Inputs", inputsAutoLogged);
     log();
   }
 
   public void setRightShooterAngle(Rotation2d angle) {
     rightShooterAngle = angle;
+    io.setRightHoodAngle(rightShooterAngle);
   }
 
   public void setLeftShooterAngle(Rotation2d angle) {
     leftShooterAngle = angle;
+    io.setLeftHoodAngle(leftShooterAngle);
   }
 
   public void setRightShooterSpeed(LinearVelocity velocity) {
     rightShooterVelocity = velocity;
+    io.setRightFlywheelSpeed(rightShooterVelocity);
   }
 
   public void setLeftShooterSpeed(LinearVelocity velocity) {
     leftShooterVelocity = velocity;
+    io.setLeftFlywheelSpeed(leftShooterVelocity);
+  }
+
+  public void setRightShooterSpeed(AngularVelocity velocity) {
+    io.setRightFlywheelSpeed(velocity);
+  }
+
+  public void setLeftShooterSpeed(AngularVelocity velocity) {
+    io.setLeftFlywheelSpeed(velocity);
   }
 
   public LinearVelocity getCurrentLeftShooterSpeed() {

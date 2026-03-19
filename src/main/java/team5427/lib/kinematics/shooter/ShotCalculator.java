@@ -1,5 +1,3 @@
-package team5427.lib.kinematics.shooter;
-
 /*
  * ShotCalculator.java - Newton-method SOTM fire control with drag compensation
  *
@@ -19,6 +17,8 @@ package team5427.lib.kinematics.shooter;
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
+
+package team5427.lib.kinematics.shooter;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Pose2d;

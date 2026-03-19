@@ -1,5 +1,3 @@
-package team5427.lib.kinematics.shooter;
-
 /*
  * FuelPhysicsSim.java - Full-field ball physics simulation for FRC 2026 REBUILT
  *
@@ -19,6 +17,8 @@ package team5427.lib.kinematics.shooter;
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
+
+package team5427.lib.kinematics.shooter;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;

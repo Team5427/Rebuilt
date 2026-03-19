@@ -12,6 +12,7 @@ import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Twist2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
@@ -405,6 +406,14 @@ public class SwerveSubsystem extends SubsystemBase
     return Constants.config.toChassisSpeeds(actualModuleStates);
   }
 
+  /**
+   * @return Field relative speeds based on the blue alliance origin
+   */
+  public ChassisSpeeds getCurrentFieldChassisSpeeds() {
+    return ChassisSpeeds.fromRobotRelativeSpeeds(
+        getCurrentChassisSpeeds(), RobotPose.getInstance().getAdaptivePose().getRotation());
+  }
+
   public ChassisSpeeds getTargetChassisSpeeds() {
     return Constants.config.toChassisSpeeds(targetModuleStates);
   }
@@ -417,5 +426,9 @@ public class SwerveSubsystem extends SubsystemBase
   @Override
   public SwerveModulePosition[] getCurrentSwerveModulePositions() {
     return modulePositions;
+  }
+
+  public Rotation3d getGyroRotation3d() {
+    return gyroInputs.gyroPostion;
   }
 }
