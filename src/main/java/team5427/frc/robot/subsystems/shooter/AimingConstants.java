@@ -14,7 +14,7 @@ public final class AimingConstants {
           0.47, // drag coeff (smooth sphere)
           0.2, // Magnus coeff
           1.225, // air density
-          0.43, // exit height (m), floor to where the ball leaves the shooter
+          ShooterConstants.kRobotToShooterTransform.getZ(), // exit height (m), floor to where the ball leaves the shooter
           ShooterConstants
               .kBottomFlywheelRadiusMeters, // flywheel diameter (m), measure with calipers
           FieldConstants.Hub.topCenterPoint.getZ(), // target height (m), from game manual
@@ -34,7 +34,7 @@ public final class AimingConstants {
   public static ShotCalculator.Config config = new ShotCalculator.Config();
 
   static {
-    config.launcherOffsetX = 0.23; // how far forward the
+    config.launcherOffsetX = ShooterConstants.kRobotToShooterTransform.getX(); // how far forward the
     // launcher is from robot
     // center (m)
     config.launcherOffsetY = 0.0; // how far left, 0 if centered
