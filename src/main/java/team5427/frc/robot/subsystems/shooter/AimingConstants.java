@@ -52,6 +52,7 @@ public final class AimingConstants {
     // load the LUT you generated
     for (var entry : lut.entries()) {
       if (entry.reachable()) {
+        System.out.println(entry);
         shotCalc.loadLUTEntry(entry.distanceM(), entry.rpm(), entry.tof());
       }
     }
