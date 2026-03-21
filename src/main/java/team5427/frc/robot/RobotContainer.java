@@ -36,6 +36,7 @@ import team5427.frc.robot.subsystems.Swerve.SwerveConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
 import team5427.frc.robot.subsystems.indexer.IndexerSubsystem;
 import team5427.frc.robot.subsystems.intake.IntakeSubsystem;
+import team5427.frc.robot.subsystems.shooter.AimingConstants;
 import team5427.frc.robot.subsystems.shooter.ShooterSubsystem;
 import team5427.frc.robot.subsystems.vision.VisionSubsystem;
 
@@ -50,6 +51,13 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+
+    for (var entry : AimingConstants.lut.entries()) {
+      if (entry.reachable()) {
+        System.out.println(entry);
+        AimingConstants.shotCalc.loadLUTEntry(entry.distanceM(), entry.rpm(), entry.tof());
+      }
+    }
 
     try {
       Constants.config = RobotConfig.fromGUISettings();

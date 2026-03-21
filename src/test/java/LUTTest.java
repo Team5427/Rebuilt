@@ -2,7 +2,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
 import team5427.frc.robot.subsystems.shooter.AimingConstants;
 
 public class LUTTest {
@@ -18,9 +17,16 @@ public class LUTTest {
 
   @Test
   public void lutShouldContainReachableEntry() {
+    for (var entry : AimingConstants.lut.entries()) {
+      if (entry.reachable()) {
+        System.out.println(entry);
+        AimingConstants.shotCalc.loadLUTEntry(entry.distanceM(), entry.rpm(), entry.tof());
+      }
+    }
+    System.out.println(AimingConstants.sim.findRPMForDistance(3.0));
     boolean hasReachable = AimingConstants.lut.entries().stream().anyMatch(e -> e.reachable());
-    for (var e : AimingConstants.lut.entries()){
-        System.out.println(e);
+    for (var e : AimingConstants.lut.entries()) {
+      System.out.println(e);
     }
     assertTrue(hasReachable, "Generated LUT should contain at least one reachable entry");
   }

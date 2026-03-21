@@ -15,14 +15,15 @@ public final class AimingConstants {
           0.47, // drag coeff (smooth sphere)
           0.2, // Magnus coeff
           1.225, // air density
-          ShooterConstants.kRobotToShooterTransform.getZ(), // exit height (m), floor to where the ball leaves the shooter
+          ShooterConstants.kRobotToShooterTransform
+              .getZ(), // exit height (m), floor to where the ball leaves the shooter
           ShooterConstants
               .kBottomFlywheelRadiusMeters, // flywheel diameter (m), measure with calipers
           FieldConstants.Hub.topCenterPoint.getZ(), // target height (m), from game manual
           0.6, // slip factor (0=no grip, 1=perfect), tune this on the real robot
           29.0, // launch angle from horizontal, measure from CAD
           0.001, // sim timestep
-          1500,
+          1000,
           6000,
           20,
           5.0 // RPM search range, iterations, max sim time
@@ -35,7 +36,8 @@ public final class AimingConstants {
   public static ShotCalculator.Config config = new ShotCalculator.Config();
 
   static {
-    config.launcherOffsetX = ShooterConstants.kRobotToShooterTransform.getX(); // how far forward the
+    config.launcherOffsetX =
+        ShooterConstants.kRobotToShooterTransform.getX(); // how far forward the
     // launcher is from robot
     // center (m)
     config.launcherOffsetY = 0.0; // how far left, 0 if centered
@@ -49,11 +51,10 @@ public final class AimingConstants {
   public static ShotCalculator shotCalc = new ShotCalculator(config);
 
   static {
-    // load the LUT you generated
-    for (var entry : lut.entries()) {
+    for (var entry : AimingConstants.lut.entries()) {
       if (entry.reachable()) {
         System.out.println(entry);
-        shotCalc.loadLUTEntry(entry.distanceM(), entry.rpm(), entry.tof());
+        AimingConstants.shotCalc.loadLUTEntry(entry.distanceM(), entry.rpm(), entry.tof());
       }
     }
   }
