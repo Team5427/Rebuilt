@@ -126,7 +126,13 @@ public class SteelTalonFX implements IMotorController {
     talonConfig.CurrentLimits.StatorCurrentLimitEnable = true;
     talonConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
     talonConfig.CurrentLimits.StatorCurrentLimit = configuration.currentLimit;
-    talonConfig.CurrentLimits.SupplyCurrentLimit = configuration.currentLimit * 0.5;
+    if (configuration.currentLimit * 0.5 > MotorUtil.kMaxMotorSupplyCurrentLimit) {
+      talonConfig.CurrentLimits.SupplyCurrentLowerLimit = MotorUtil.kMaxMotorSupplyCurrentLimit;
+      talonConfig.CurrentLimits.SupplyCurrentLowerTime = MotorUtil.kMaxExcessCurrentDrawTime;
+      talonConfig.CurrentLimits.SupplyCurrentLimit = configuration.currentLimit * 0.5;
+    } else {
+      talonConfig.CurrentLimits.SupplyCurrentLimit = configuration.currentLimit * 0.5;
+    }
 
     talonConfig.TorqueCurrent.PeakForwardTorqueCurrent = configuration.currentLimit;
     talonConfig.TorqueCurrent.PeakReverseTorqueCurrent = -configuration.currentLimit;

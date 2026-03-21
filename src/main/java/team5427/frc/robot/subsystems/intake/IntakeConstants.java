@@ -70,17 +70,17 @@ public final class IntakeConstants {
         kRollerMotorConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM / 1.5);
     kRollerMotorConfiguration.maxAcceleration = kRollerMotorConfiguration.maxVelocity * 2.0;
 
-    kRollerMotorConfiguration.kP = 1.0;
+    kRollerMotorConfiguration.kP = 1.15;
     kRollerMotorConfiguration.kI = 0.0;
     kRollerMotorConfiguration.kD = 0.0;
 
-    kRollerMotorConfiguration.kV = 0.0;
+    kRollerMotorConfiguration.kV = 0.5;
     kRollerMotorConfiguration.kA = 0.0;
-    kRollerMotorConfiguration.kS = 0.0;
+    kRollerMotorConfiguration.kS = 0.05;
     kRollerMotorConfiguration.kG = 0.0;
     kRollerMotorConfiguration.kFF = 0.0;
 
-    kRollerMotorConfiguration.currentLimit = 60;
+    kRollerMotorConfiguration.currentLimit = 100;
   }
 
   public static final double kPivotMotorSimulatedkP = 0.5;
@@ -88,7 +88,7 @@ public final class IntakeConstants {
 
   public static final LinearVelocity kRollerStowedVelocity = MetersPerSecond.of(0.0);
   public static final LinearVelocity kRollerNeutralVelocity = MetersPerSecond.of(2.5);
-  public static final LinearVelocity kRollerIntakeVelocity = MetersPerSecond.of(8.0);
+  public static final LinearVelocity kRollerMinimumIntakeVelocity = MetersPerSecond.of(6.0);
 
   public static final Rotation2d kPivotMaximumRotation = Rotation2d.fromDegrees(200);
   public static final Rotation2d kPivotMinimumRotation = Rotation2d.fromDegrees(5);

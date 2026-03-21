@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public final class Constants {
   public static final String kCanivoreBusName = "nplusone";
   public static final double kOdometryFrequency =
-      new CANBus(Constants.kCanivoreBusName).isNetworkFD() ? 250.0 : 100.0;
+      new CANBus(Constants.kCanivoreBusName).isNetworkFD() ? 100.0 : 100.0;
 
   public static final Frequency kHighPriorityUpdateFrequency = Hertz.of(100.0);
   public static final Frequency kMediumPriorityUpdateFrequency = Hertz.of(50.0);

@@ -50,8 +50,6 @@ public class ShooterIOTalonFX implements ShooterIO {
     leftFlywheelFollowerMotor = new SteelTalonFX(ShooterConstants.kLeftFlywheelFollowerMotorCanId);
 
     leftHoodMotor.apply(ShooterConstants.kLeftHoodMotorConfiguration);
-    leftHoodMotor.talonConfig.CurrentLimits.SupplyCurrentLimit =
-        ShooterConstants.kRightHoodMotorConfiguration.currentLimit;
     leftHoodMotor.applyTalonConfig();
     leftFlywheelLeaderMotor.apply(ShooterConstants.kLeftFlywheelMotorConfiguration);
     leftFlywheelFollowerMotor.apply(
@@ -76,8 +74,6 @@ public class ShooterIOTalonFX implements ShooterIO {
     // rightHoodMotor.getTalonFX().setControl(new
     // Follower(ShooterConstants.kLeftHoodMotorCanId.getDeviceNumber(),
     // MotorAlignmentValue.Opposed));
-    rightHoodMotor.talonConfig.CurrentLimits.SupplyCurrentLimit =
-        ShooterConstants.kRightHoodMotorConfiguration.currentLimit;
     rightHoodMotor.applyTalonConfig();
 
     rightFlywheelLeaderMotor.apply(
