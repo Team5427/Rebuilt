@@ -28,6 +28,7 @@ import team5427.frc.robot.Superstructure.SwerveStates;
 import team5427.frc.robot.commands.chassis.MoveChassisToPose;
 import team5427.frc.robot.commands.intake.IntakeOscillate;
 import team5427.frc.robot.commands.shooting.MoveWhileShoot;
+import team5427.frc.robot.commands.shooting.WindupShooter;
 import team5427.frc.robot.io.DriverProfiles;
 import team5427.frc.robot.io.OperatorControls;
 import team5427.frc.robot.io.PilotingControls;
@@ -180,6 +181,11 @@ public class RobotContainer {
         "ResetAll", Superstructure.resetAllStates()
         // Superstructure.setSwerveStateCommand(SwerveStates.AUTON)
         );
+    NamedCommands.registerCommand(
+        "WindupShooter",
+        Superstructure.setShooterStateCommand(ShooterStates.WINDUP)
+            .alongWith(Superstructure.setSwerveStateCommand(SwerveStates.AUTON))
+            .alongWith(new WindupShooter()));
   }
 
   /**

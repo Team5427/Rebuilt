@@ -13,7 +13,7 @@
     "Smooth Autos",
     "Testing Autos"
   ],
-  "defaultMaxVel": 2.8,
+  "defaultMaxVel": 2.6,
   "defaultMaxAccel": 2.4,
   "defaultMaxAngVel": 1272.0,
   "defaultMaxAngAccel": 720.0,

@@ -20,9 +20,10 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import org.littletonrobotics.junction.Logger;
 import org.team4206.battleaid.common.TunedJoystick;
 import org.team4206.battleaid.common.TunedJoystick.ResponseCurve;
+import team5427.frc.robot.Constants;
 import team5427.frc.robot.Constants.DriverConstants;
-import team5427.frc.robot.FieldConstants;
 import team5427.frc.robot.FutureTrack;
+import team5427.frc.robot.Robot;
 import team5427.frc.robot.RobotPose;
 import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
@@ -62,111 +63,133 @@ public class MoveWhileFerry extends Command {
 
     futureTrack = FutureTrack.getInstance();
     futureTrackResult = futureTrack.getFutureTrackResult();
+    // futureTrackResult =
+    //     new Tuple2Plus<Pose2d, ChassisSpeeds>(
+    //         RobotPose.getInstance().getAdaptivePose(),
+    //         SwerveSubsystem.getInstance().getCurrentChassisSpeeds());
 
     addRequirements(swerveSubsystem, shooter);
   }
 
-  public MoveWhileFerry() {}
-
   @Override
   public void initialize() {
-    futureTrackResult = futureTrack.getFutureTrackResult();
+    // futureTrackResult = futureTrack.getFutureTrackResult();
+    // futureTrackResult = futureTrack.getFutureTrackResult();
+    futureTrackResult =
+        new Tuple2Plus<Pose2d, ChassisSpeeds>(
+            RobotPose.getInstance().getAdaptivePose(),
+            SwerveSubsystem.getInstance().getCurrentChassisSpeeds());
     isRed =
         DriverStation.getAlliance().isPresent()
             && DriverStation.getAlliance().get() == Alliance.Red;
-    target =
-        isRed
-            ? new Translation3d(FieldConstants.LeftBump.oppNearLeftCorner)
-            : new Translation3d(FieldConstants.LeftBump.nearLeftCorner);
   }
 
   @Override
   public void execute() {
+    if (Constants.currentMode == Constants.Mode.SIM) {
+      shooter.fireSimBall(Robot.ballSim);
+    }
+    double vx = 0;
+    double vy = 0;
     if (DriverStation.isTeleop()) {
-      double vx = -translationJoystick.getLeftY();
-      double vy = -translationJoystick.getLeftX();
+      vx = -translationJoystick.getLeftY();
+      vy = -translationJoystick.getLeftX();
 
       if (isRed) {
         vx *= -1;
         vy *= -1;
       }
+    }
+
+    // futureTrackResult = futureTrack.getFutureTrackResult();
+    futureTrackResult =
+        new Tuple2Plus<Pose2d, ChassisSpeeds>(
+            RobotPose.getInstance().getAdaptivePose(),
+            SwerveSubsystem.getInstance().getCurrentChassisSpeeds());
+
+    Pose2d futurePose = futureTrackResult.r;
+    ChassisSpeeds currentSpeeds =
+        ChassisSpeeds.fromRobotRelativeSpeeds(
+            swerveSubsystem.getCurrentChassisSpeeds(), futurePose.getRotation());
+
+    Translation3d shooterFieldPos =
+        ShooterConstants.kRobotToShooterTransform
+            .getTranslation()
+            .plus(new Translation3d(futurePose.getTranslation()));
+
+    target =
+        isRed
+            ? new Translation3d(
+                RobotPose.getInstance()
+                    .getAdaptivePose()
+                    .getTranslation()
+                    .plus(new Translation2d(6, 0)))
+            : new Translation3d(
+                RobotPose.getInstance()
+                    .getAdaptivePose()
+                    .getTranslation()
+                    .minus(new Translation2d(6, 0)));
+    Translation3d virtualTarget = target;
+    double tof = 0.0;
+    double prevTof = Double.MAX_VALUE;
+    Translation2d distance2d = virtualTarget.minus(shooterFieldPos).toTranslation2d();
+
+    for (int i = 0; i < kMaxConvergenceIterations; i++) {
+      double distance = virtualTarget.minus(shooterFieldPos).getNorm();
+
+      tof = AimingConstants.kShootingTable.getTimeOfFlight(distance2d.getNorm());
+
+      if (Math.abs(tof - prevTof) < kTofConvergenceThreshold) {
+        break;
+      }
+      prevTof = tof;
+
+      double driftX = currentSpeeds.vxMetersPerSecond * tof;
+      double driftY = currentSpeeds.vyMetersPerSecond * tof;
+
+      virtualTarget =
+          new Translation3d(target.getX() - driftX, target.getY() - driftY, target.getZ());
+    }
+
+    double finalDistance = virtualTarget.minus(shooterFieldPos).getNorm();
+    Rotation2d shooterAngle =
+        Rotation2d.fromDegrees(AimingConstants.kShootingTable.getPivotAngle(finalDistance));
+    LinearVelocity shooterVelocity =
+        MetersPerSecond.of(AimingConstants.kShootingTable.getFlyWheelSpeed(finalDistance));
+
+    shooter.setLeftShooterAngle(shooterAngle);
+    shooter.setLeftShooterSpeed(shooterVelocity);
+    shooter.setRightShooterAngle(shooterAngle);
+    shooter.setRightShooterSpeed(shooterVelocity);
+
+    Translation2d shooterFieldPos2d = shooterFieldPos.toTranslation2d();
+    Translation2d virtualTarget2d = virtualTarget.toTranslation2d();
+    Translation2d toTarget = virtualTarget2d.minus(shooterFieldPos2d);
+    Rotation2d targetHeading = toTarget.getAngle().plus(Rotation2d.k180deg);
+    ChassisSpeeds driveSpeeds = new ChassisSpeeds();
+    if (DriverStation.isTeleop()) {
 
       double dampener = (joy.getRightTriggerAxis() * DrivingConstants.kDampenerDampeningAmount);
 
-      // futureTrackResult = futureTrack.getFutureTrackResult();
-      futureTrackResult =
-          new Tuple2Plus<Pose2d, ChassisSpeeds>(
-              RobotPose.getInstance().getAdaptivePose(),
-              SwerveSubsystem.getInstance().getCurrentChassisSpeeds());
-
-      Pose2d futurePose = futureTrackResult.r;
-      ChassisSpeeds currentSpeeds =
-          ChassisSpeeds.fromRobotRelativeSpeeds(
-              swerveSubsystem.getCurrentChassisSpeeds(), futurePose.getRotation());
-
-      Translation3d shooterFieldPos =
-          ShooterConstants.kRobotToShooterTransform
-              .getTranslation()
-              .plus(new Translation3d(futurePose.getTranslation()));
-
-      Translation3d virtualTarget = target;
-      double tof = 0.0;
-      double prevTof = Double.MAX_VALUE;
-      Translation2d distance2d = virtualTarget.minus(shooterFieldPos).toTranslation2d();
-
-      for (int i = 0; i < kMaxConvergenceIterations; i++) {
-        double distance = virtualTarget.minus(shooterFieldPos).getNorm();
-
-        tof = AimingConstants.kShootingTable.getTimeOfFlight(distance2d.getNorm());
-
-        if (Math.abs(tof - prevTof) < kTofConvergenceThreshold) {
-          break;
-        }
-        prevTof = tof;
-
-        double driftX = currentSpeeds.vxMetersPerSecond * tof;
-        double driftY = currentSpeeds.vyMetersPerSecond * tof;
-
-        virtualTarget =
-            new Translation3d(target.getX() - driftX, target.getY() - driftY, target.getZ());
-      }
-
-      double finalDistance = virtualTarget.minus(shooterFieldPos).getNorm();
-      Rotation2d shooterAngle =
-          Rotation2d.fromDegrees(AimingConstants.kShootingTable.getPivotAngle(finalDistance));
-      LinearVelocity shooterVelocity =
-          MetersPerSecond.of(AimingConstants.kShootingTable.getFlyWheelSpeed(finalDistance));
-
-      shooter.setLeftShooterAngle(shooterAngle);
-      shooter.setLeftShooterSpeed(shooterVelocity);
-      shooter.setRightShooterAngle(shooterAngle);
-      shooter.setRightShooterSpeed(shooterVelocity);
-
-      Translation2d shooterFieldPos2d = shooterFieldPos.toTranslation2d();
-      Translation2d virtualTarget2d = virtualTarget.toTranslation2d();
-      Translation2d toTarget = virtualTarget2d.minus(shooterFieldPos2d);
-      Rotation2d targetHeading = toTarget.getAngle().plus(Rotation2d.k180deg);
-
-      ChassisSpeeds driveSpeeds = swerveSubsystem.getDriveSpeeds(vx, vy, targetHeading, dampener);
+      driveSpeeds = swerveSubsystem.getDriveSpeeds(vx, vy, targetHeading, dampener);
 
       if (joy.getLeftTriggerAxis() >= 0.1) {
         driveSpeeds = new ChassisSpeeds(0, 0, 0);
       }
-      swerveSubsystem.setInputSpeeds(driveSpeeds);
-
-      Logger.recordOutput(
-          "MoveWhileShoot/VirtualTarget", new Pose2d(virtualTarget2d, targetHeading));
-      Logger.recordOutput(
-          "MoveWhileShoot/ShooterFieldPos", new Pose2d(shooterFieldPos2d, targetHeading));
-      Logger.recordOutput("MoveWhileShoot/Distance", finalDistance);
-      Logger.recordOutput("MoveWhileShoot/Distance2d", distance2d);
-      Logger.recordOutput("MoveWhileShoot/TOF", tof);
-      Logger.recordOutput("MoveWhileShoot/PivotAngleDeg", shooterAngle.getDegrees());
-      Logger.recordOutput("MoveWhileShoot/FlywheelSpeedMps", shooterVelocity.in(MetersPerSecond));
-      Logger.recordOutput("MoveWhileShoot/TargetHeadingDeg", targetHeading.getDegrees());
     } else {
-      swerveSubsystem.setInputSpeeds(new ChassisSpeeds(0, 0, 0));
+      driveSpeeds = swerveSubsystem.getDriveSpeeds(vx, vy, targetHeading, 0);
     }
+    swerveSubsystem.setInputSpeeds(driveSpeeds);
+
+    Logger.recordOutput("MoveWhileFerry/VirtualTarget", new Pose2d(virtualTarget2d, targetHeading));
+    Logger.recordOutput(
+        "MoveWhileFerry/ShooterFieldPos", new Pose2d(shooterFieldPos2d, targetHeading));
+    Logger.recordOutput("MoveWhileFerry/Distance", finalDistance);
+    Logger.recordOutput("MoveWhileFerry/Distance2d", distance2d);
+    Logger.recordOutput("MoveWhileFerry/TOF", tof);
+    Logger.recordOutput("MoveWhileFerry/PivotAngleDeg", shooterAngle.getDegrees());
+    Logger.recordOutput("MoveWhileFerry/FlywheelSpeedMps", shooterVelocity.in(MetersPerSecond));
+    Logger.recordOutput("MoveWhileFerry/TargetHeadingDeg", targetHeading.getDegrees());
   }
 
   public boolean isFinished(Pose2d targetPose) {
@@ -176,6 +199,10 @@ public class MoveWhileFerry extends Command {
         DriverStation.isAutonomous()
             && diff.getRotation().getRadians()
                 <= DrivingConstants.kRotationAngleTolerance.getAsDouble());
+  }
+
+  public boolean isFinished() {
+    return false;
   }
 
   @Override

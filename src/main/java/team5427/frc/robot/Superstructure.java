@@ -55,6 +55,7 @@ public final class Superstructure {
     RAW_SHOOTING,
     FERRY_SHOOTING,
     AUTO_ALIGN_SHOOTING,
+    WINDUP,
     STOWED,
     DISABLED
   }
@@ -472,6 +473,7 @@ public final class Superstructure {
     public static final Trigger kFerryShooting = shooterStateIs(ShooterStates.FERRY_SHOOTING);
     public static final Trigger kAutoAlignShooting =
         shooterStateIs(ShooterStates.AUTO_ALIGN_SHOOTING);
+    public static final Trigger kWindup = shooterStateIs(ShooterStates.WINDUP);
     public static final Trigger kStowShooter = shooterStateIs(ShooterStates.STOWED);
     public static final Trigger kDisabled = shooterStateIs(ShooterStates.DISABLED);
   }

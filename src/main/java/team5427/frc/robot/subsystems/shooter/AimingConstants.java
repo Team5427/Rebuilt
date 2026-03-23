@@ -39,12 +39,12 @@ public final class AimingConstants {
     // ---------------- Time Of Flight ----------------
     kShootingTable.addTimeOfFlight(2.707, 0.5);
     kShootingTable.addTimeOfFlight(2.982, 0.7);
-    kShootingTable.addTimeOfFlight(3.253, 0.95);
-    kShootingTable.addTimeOfFlight(3.519, 1.1);
-    kShootingTable.addTimeOfFlight(3.785, 1.05);
-    kShootingTable.addTimeOfFlight(4.048, 1.1);
-    kShootingTable.addTimeOfFlight(4.310, 1.15);
-    kShootingTable.addTimeOfFlight(4.571, 1.2);
+    kShootingTable.addTimeOfFlight(3.253, 0.8);
+    kShootingTable.addTimeOfFlight(3.519, .85);
+    kShootingTable.addTimeOfFlight(3.785, .95);
+    kShootingTable.addTimeOfFlight(4.048, 1.0);
+    kShootingTable.addTimeOfFlight(4.310, 1.1);
+    kShootingTable.addTimeOfFlight(4.571, 1.1);
     kShootingTable.addTimeOfFlight(4.830, 1.225);
   }
 }

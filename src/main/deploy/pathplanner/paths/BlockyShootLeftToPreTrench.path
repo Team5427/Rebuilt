@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.839148375768218,
-        "y": 5.910316066725198
+        "x": 3.0790949423247556,
+        "y": 6.751171251109139
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.741082519964507,
-        "y": 6.646548358473824
+        "x": 2.9810290865210445,
+        "y": 7.487403542857765
       },
       "isLocked": false,
       "linkedName": "ShootLeft"
@@ -33,7 +33,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 2.8,
+    "maxVelocity": 2.6,
     "maxAcceleration": 2.4,
     "maxAngularVelocity": 1272.0,
     "maxAngularAcceleration": 720.0,
@@ -48,7 +48,7 @@
   "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 129.07908037006862
+    "rotation": 123.27488798483486
   },
   "useDefaultConstraints": true
 }

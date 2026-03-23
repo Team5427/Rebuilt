@@ -56,7 +56,7 @@ public final class ShooterConstants {
     kRightHoodMotorConfiguration.gearRatio = kHoodMotorGearRatio;
     kRightHoodMotorConfiguration.isArm = true;
     kRightHoodMotorConfiguration.idleState = IdleState.kBrake;
-    kRightHoodMotorConfiguration.isInverted = false;
+    kRightHoodMotorConfiguration.isInverted = true;
     kRightHoodMotorConfiguration.mode = MotorMode.kServo;
     kRightHoodMotorConfiguration.withFOC = true;
 
@@ -157,11 +157,11 @@ public final class ShooterConstants {
     kLeftFlywheelMotorConfiguration.altA = kLeftFlywheelMotorConfiguration.maxAcceleration;
     kLeftFlywheelMotorConfiguration.altJ = 1000.0;
 
-    kLeftFlywheelMotorConfiguration.kP = 0.22; // .031
+    kLeftFlywheelMotorConfiguration.kP = 0.23; // .031
     kLeftFlywheelMotorConfiguration.kI = 0.0;
     kLeftFlywheelMotorConfiguration.kD = 0.0;
 
-    kLeftFlywheelMotorConfiguration.kV = 0.017; // 0.077
+    kLeftFlywheelMotorConfiguration.kV = 0.018; // 0.077
     kLeftFlywheelMotorConfiguration.kA = 0.05; // 0.05
     kLeftFlywheelMotorConfiguration.kS = 0.1; // 0.15
     kLeftFlywheelMotorConfiguration.kG = 0.0;
