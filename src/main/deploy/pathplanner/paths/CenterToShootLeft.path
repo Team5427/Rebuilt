@@ -70,7 +70,7 @@
       "rotationDegrees": 180.0
     },
     {
-      "waypointRelativePos": 1.9257294429708212,
+      "waypointRelativePos": 1.909814323607426,
       "rotationDegrees": 180.0
     }
   ],
@@ -88,6 +88,18 @@
     }
   ],
   "eventMarkers": [
+    {
+      "name": "Intake",
+      "waypointRelativePos": 0.0,
+      "endWaypointRelativePos": 0.75,
+      "command": null
+    },
+    {
+      "name": "ResetAll",
+      "waypointRelativePos": 0.8657718120805384,
+      "endWaypointRelativePos": null,
+      "command": null
+    },
     {
       "name": "WindupShooter",
       "waypointRelativePos": 1.0167785234899342,

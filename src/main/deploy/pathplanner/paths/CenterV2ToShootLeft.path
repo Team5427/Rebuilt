@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.638960582482335,
-        "y": 4.203598636963248
+        "x": 7.6350611727601185,
+        "y": 4.18567577416375
       },
       "isLocked": false,
       "linkedName": "CenterLeftV2"
@@ -20,12 +20,12 @@
         "y": 3.701011535048802
       },
       "prevControl": {
-        "x": 7.791992403642355,
-        "y": 4.815441139723282
+        "x": 7.82910385605086,
+        "y": 4.812913665344146
       },
       "nextControl": {
-        "x": 7.608972885922226,
-        "y": 3.4532378641420673
+        "x": 7.600834107373881,
+        "y": 3.454468077748812
       },
       "isLocked": false,
       "linkedName": null
@@ -36,12 +36,12 @@
         "y": 3.3469032830523506
       },
       "prevControl": {
-        "x": 7.090571434836357,
-        "y": 3.214082152003817
+        "x": 7.041720769295571,
+        "y": 3.2254661179466497
       },
       "nextControl": {
-        "x": 5.493820480787465,
-        "y": 3.820594244445187
+        "x": 5.457119383967214,
+        "y": 3.865139568261524
       },
       "isLocked": false,
       "linkedName": null
@@ -52,12 +52,12 @@
         "y": 7.193806566104703
       },
       "prevControl": {
-        "x": 7.357588112793714,
-        "y": 6.609103691312376
+        "x": 7.343907166752309,
+        "y": 6.620701320670859
       },
       "nextControl": {
-        "x": 6.062057921847952,
-        "y": 7.4448121374443526
+        "x": 6.116703872325368,
+        "y": 7.408522929419591
       },
       "isLocked": false,
       "linkedName": null
@@ -68,12 +68,12 @@
         "y": 7.370860692102928
       },
       "prevControl": {
-        "x": 4.656907728881636,
-        "y": 7.346220499032062
+        "x": 4.8323854031127915,
+        "y": 7.418597857126225
       },
       "nextControl": {
-        "x": 3.6069800873737576,
-        "y": 7.4434767396550034
+        "x": 4.01508849404792,
+        "y": 7.330223736229875
       },
       "isLocked": false,
       "linkedName": null
@@ -84,8 +84,8 @@
         "y": 6.751171251109139
       },
       "prevControl": {
-        "x": 3.143478260869565,
-        "y": 7.073087843833186
+        "x": 3.1339108396205653,
+        "y": 6.995087665898417
       },
       "nextControl": null,
       "isLocked": false,
@@ -114,8 +114,20 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
+      "name": "Intake",
+      "waypointRelativePos": 0,
+      "endWaypointRelativePos": 2.9781879194630783,
+      "command": null
+    },
+    {
+      "name": "ResetAll",
+      "waypointRelativePos": 3.1963087248322135,
+      "endWaypointRelativePos": null,
+      "command": null
+    },
+    {
       "name": "WindupShooter",
-      "waypointRelativePos": 3.397651006711413,
+      "waypointRelativePos": 3.724832214765103,
       "endWaypointRelativePos": 5.0,
       "command": null
     }
