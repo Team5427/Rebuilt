@@ -118,18 +118,6 @@
       "waypointRelativePos": 0,
       "endWaypointRelativePos": 2.9781879194630783,
       "command": null
-    },
-    {
-      "name": "ResetAll",
-      "waypointRelativePos": 3.1963087248322135,
-      "endWaypointRelativePos": null,
-      "command": null
-    },
-    {
-      "name": "WindupShooter",
-      "waypointRelativePos": 3.724832214765103,
-      "endWaypointRelativePos": 5.0,
-      "command": null
     }
   ],
   "globalConstraints": {

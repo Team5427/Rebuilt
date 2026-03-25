@@ -10,6 +10,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularAcceleration;
 import edu.wpi.first.units.measure.AngularVelocity;
+import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.units.measure.Voltage;
 import team5427.frc.robot.subsystems.shooter.ShooterConstants;
@@ -35,6 +36,8 @@ public class ShooterIOTalonFX implements ShooterIO {
 
   private StatusSignal<Voltage> leftFlywheelLeaderMotorVoltage;
   private StatusSignal<Voltage> leftFlywheelFollowerMotorVoltage;
+  private StatusSignal<Current> leftFlywheelLeaderMotorCurrent;
+  private StatusSignal<Current> leftFlywheelFollowerMotorCurrent;
 
   private StatusSignal<Angle> rightHoodMotorPosition;
   private StatusSignal<AngularVelocity> rightHoodMotorAngularVelocity;
@@ -43,6 +46,8 @@ public class ShooterIOTalonFX implements ShooterIO {
 
   private StatusSignal<Voltage> rightFlywheelLeaderMotorVoltage;
   private StatusSignal<Voltage> rightFlywheelFollowerMotorVoltage;
+  private StatusSignal<Current> rightFlywheelLeaderMotorCurrent;
+  private StatusSignal<Current> rightFlywheelFollowerMotorCurrent;
 
   public ShooterIOTalonFX() {
     leftHoodMotor = new SteelTalonFX(ShooterConstants.kLeftHoodMotorCanId);
@@ -106,6 +111,9 @@ public class ShooterIOTalonFX implements ShooterIO {
     leftFlywheelLeaderMotorVoltage = leftFlywheelLeaderMotor.getTalonFX().getMotorVoltage();
     leftFlywheelFollowerMotorVoltage = leftFlywheelFollowerMotor.getTalonFX().getMotorVoltage();
 
+    leftFlywheelFollowerMotorCurrent = leftFlywheelFollowerMotor.getTalonFX().getSupplyCurrent();
+    leftFlywheelLeaderMotorCurrent = leftFlywheelLeaderMotor.getTalonFX().getSupplyCurrent();
+
     rightHoodMotorPosition = rightHoodMotor.getTalonFX().getPosition();
     rightHoodMotorAngularVelocity = rightHoodMotor.getTalonFX().getVelocity();
     rightFlywheelMotorAngularVelocity = rightFlywheelLeaderMotor.getTalonFX().getVelocity();
@@ -113,6 +121,9 @@ public class ShooterIOTalonFX implements ShooterIO {
 
     rightFlywheelLeaderMotorVoltage = rightFlywheelLeaderMotor.getTalonFX().getMotorVoltage();
     rightFlywheelFollowerMotorVoltage = rightFlywheelFollowerMotor.getTalonFX().getMotorVoltage();
+
+    rightFlywheelFollowerMotorCurrent = rightFlywheelFollowerMotor.getTalonFX().getSupplyCurrent();
+    rightFlywheelLeaderMotorCurrent = rightFlywheelLeaderMotor.getTalonFX().getSupplyCurrent();
   }
 
   @Override
@@ -129,7 +140,11 @@ public class ShooterIOTalonFX implements ShooterIO {
         leftFlywheelFollowerMotorVoltage,
         leftFlywheelLeaderMotorVoltage,
         rightFlywheelFollowerMotorVoltage,
-        rightFlywheelLeaderMotorVoltage);
+        rightFlywheelLeaderMotorVoltage,
+        rightFlywheelFollowerMotorCurrent,
+        rightFlywheelLeaderMotorCurrent,
+        leftFlywheelFollowerMotorCurrent,
+        leftFlywheelLeaderMotorCurrent);
 
     inputs.leftHoodMotorPositionRadians = leftHoodMotorPosition.getValue().in(Radians);
     inputs.leftHoodMotorAngularVelocityRadiansPerSecond =
@@ -156,6 +171,10 @@ public class ShooterIOTalonFX implements ShooterIO {
                 * rightFlywheelMotorAngularVelocity.getValue().in(RadiansPerSecond));
     inputs.rightFlywheelLeaderMotorVoltage = rightFlywheelLeaderMotorVoltage.getValue();
     inputs.rightFlywheelFollowerMotorVoltage = rightFlywheelFollowerMotorVoltage.getValue();
+    inputs.leftFlywheelLeaderMotorCurrent = leftFlywheelLeaderMotorCurrent.getValue();
+    inputs.leftFlywheelFollowerMotorCurrent = leftFlywheelFollowerMotorCurrent.getValue();
+    inputs.rightFlywheelLeaderMotorCurrent = rightFlywheelLeaderMotorCurrent.getValue();
+    inputs.rightFlywheelFollowerMotorCurrent = rightFlywheelFollowerMotorCurrent.getValue();
   }
 
   @Override

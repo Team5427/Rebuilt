@@ -6,6 +6,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularAcceleration;
 import edu.wpi.first.units.measure.AngularVelocity;
+import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.units.measure.Voltage;
 import org.littletonrobotics.junction.AutoLog;
@@ -24,6 +25,9 @@ public interface ShooterIO {
     public Voltage leftFlywheelLeaderMotorVoltage = Volts.of(0);
     public Voltage leftFlywheelFollowerMotorVoltage = Volts.of(0);
 
+    public Current leftFlywheelLeaderMotorCurrent = Amp.of(0.0);
+    public Current leftFlywheelFollowerMotorCurrent = Amp.of(0.0);
+
     // Shooter Right
     public double rightHoodMotorPositionRadians = 0.0;
     public double rightHoodMotorAngularVelocityRadiansPerSecond = 0.0;
@@ -34,6 +38,9 @@ public interface ShooterIO {
 
     public Voltage rightFlywheelLeaderMotorVoltage = Volts.of(0);
     public Voltage rightFlywheelFollowerMotorVoltage = Volts.of(0);
+
+    public Current rightFlywheelLeaderMotorCurrent = Amp.of(0.0);
+    public Current rightFlywheelFollowerMotorCurrent = Amp.of(0.0);
   }
 
   public void updateInputs(ShooterIOInputs inputs);

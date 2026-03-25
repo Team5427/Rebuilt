@@ -9,6 +9,7 @@ import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
+import com.pathplanner.lib.events.EventTrigger;
 import com.pathplanner.lib.util.PathPlannerLogging;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -28,7 +29,6 @@ import team5427.frc.robot.Superstructure.SwerveStates;
 import team5427.frc.robot.commands.chassis.MoveChassisToPose;
 import team5427.frc.robot.commands.intake.IntakeOscillate;
 import team5427.frc.robot.commands.shooting.MoveWhileShoot;
-import team5427.frc.robot.commands.shooting.WindupShooter;
 import team5427.frc.robot.io.DriverProfiles;
 import team5427.frc.robot.io.OperatorControls;
 import team5427.frc.robot.io.PilotingControls;
@@ -88,7 +88,7 @@ public class RobotContainer {
     FutureTrack.getInstance(
         SwerveSubsystem.getInstance()::getCurrentChassisSpeeds,
         SwerveSubsystem.getInstance()::getTargetChassisSpeeds);
-
+    createEventTriggers();
     createNamedCommands();
 
     AutoBuilder.configure(
@@ -130,6 +130,18 @@ public class RobotContainer {
             : new CommandXboxController(DriverConstants.kOperatorJoystickPort));
   }
 
+  public void createEventTriggers() {
+    new EventTrigger("AutoAlignMoveWhileShoot")
+        .onTrue(
+            Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)
+                .alongWith(Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING))
+                .andThen(Superstructure.resetAllStates()));
+    new EventTrigger("Shoot").onTrue(Superstructure.setIndexerStateCommand(IndexerStates.INDEXING));
+    new EventTrigger("Intake").onTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKING));
+    new EventTrigger("IntakeOscillate").onTrue(IntakeOscillate.getIntakeOscillateCommand());
+    new EventTrigger("ResetAll").onTrue(Superstructure.resetAllStates());
+  }
+
   public void createNamedCommands() {
     NamedCommands.registerCommand(
         "AutoAlignMoveWhileShoot",
@@ -141,6 +153,17 @@ public class RobotContainer {
             .andThen(Superstructure.resetAllStates()));
     NamedCommands.registerCommand(
         "Shoot", Superstructure.setIndexerStateCommand(IndexerStates.INDEXING));
+
+    NamedCommands.registerCommand(
+        "Intake", Superstructure.setIntakeStateCommand(IntakeStates.INTAKING));
+    NamedCommands.registerCommand("IntakeOscillate", IntakeOscillate.getIntakeOscillateCommand());
+    NamedCommands.registerCommand(
+        "ResetAll", Superstructure.resetAllStates()
+        // Superstructure.setSwerveStateCommand(SwerveStates.AUTON)
+        );
+    NamedCommands.registerCommand(
+        "WindupShooter", Superstructure.setShooterStateCommand(ShooterStates.WINDUP));
+
     NamedCommands.registerCommand(
         "AutoAlignClimbLeft",
         Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)
@@ -174,18 +197,6 @@ public class RobotContainer {
                         : new CommandXboxController(DriverConstants.kDriverJoystickPort),
                     SwerveConstants.kRightClimbPose))
             .withTimeout(2.5));
-    NamedCommands.registerCommand(
-        "Intake", Superstructure.setIntakeStateCommand(IntakeStates.INTAKING));
-    NamedCommands.registerCommand("IntakeOscillate", IntakeOscillate.getIntakeOscillateCommand());
-    NamedCommands.registerCommand(
-        "ResetAll", Superstructure.resetAllStates()
-        // Superstructure.setSwerveStateCommand(SwerveStates.AUTON)
-        );
-    NamedCommands.registerCommand(
-        "WindupShooter",
-        Superstructure.setShooterStateCommand(ShooterStates.WINDUP)
-            .alongWith(Superstructure.setSwerveStateCommand(SwerveStates.AUTON))
-            .alongWith(new WindupShooter()));
   }
 
   /**

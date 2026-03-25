@@ -20,7 +20,7 @@ public class WindupShooter extends Command {
   public WindupShooter(Translation3d target) {
     shooter = ShooterSubsystem.getInstance();
     this.target = target;
-    addRequirements(shooter);
+    // addRequirements(shooter);
   }
 
   public WindupShooter() {
@@ -29,7 +29,8 @@ public class WindupShooter extends Command {
         DriverStation.getAlliance().isPresent()
             && DriverStation.getAlliance().get() == Alliance.Red;
     target = isRed ? FieldConstants.Hub.oppTopCenterPoint : FieldConstants.Hub.topCenterPoint;
-    addRequirements(shooter);
+    System.out.println("Called");
+    // addRequirements(shooter);
   }
 
   @Override
@@ -44,5 +45,10 @@ public class WindupShooter extends Command {
                     .getNorm()));
     shooter.setLeftShooterSpeed(vel);
     shooter.setRightShooterSpeed(vel);
+  }
+
+  @Override
+  public boolean isFinished() {
+    return false;
   }
 }

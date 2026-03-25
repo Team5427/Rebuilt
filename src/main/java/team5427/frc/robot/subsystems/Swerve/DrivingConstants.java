@@ -8,13 +8,13 @@ import team5427.lib.tunableControls.TunableControls.TunableProfiledController;
 
 public final class DrivingConstants {
   public static final double kDampenerDampeningAmount = 0.95;
-  public static LoggedTunableNumber kRotationKp = new LoggedTunableNumber("Rotation P", 3.3);
+  public static LoggedTunableNumber kRotationKp = new LoggedTunableNumber("Rotation P", 3.7);
   public static LoggedTunableNumber kRotationKd = new LoggedTunableNumber("Rotation D", 0.1);
 
   public static LoggedTunableNumber kRotationMaxAcceleration =
-      new LoggedTunableNumber("Rotation Max Acc.", 2 * Math.PI);
+      new LoggedTunableNumber("Rotation Max Acc.", 4 * Math.PI);
   public static LoggedTunableNumber kRotationMaxVelocity =
-      new LoggedTunableNumber("Rotation Max Vel.", 4 * Math.PI);
+      new LoggedTunableNumber("Rotation Max Vel.", 6 * Math.PI);
 
   public static LoggedTunableNumber kRotationAngleTolerance =
       new LoggedTunableNumber("Rotation Angle Tol.", Units.degreesToRadians(1));

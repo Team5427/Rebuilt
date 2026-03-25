@@ -126,9 +126,7 @@ public class PilotingControls {
         .and(disabledTrigger.negate())
         .whileTrue(new MoveWhileFerry(joy));
 
-    Superstructure.swerveStateIs(SwerveStates.AUTO_TARGETING)
-        .negate()
-        .and(Superstructure.shooterStateIs(ShooterStates.WINDUP))
+    Superstructure.shooterStateIs(ShooterStates.WINDUP)
         .and(disabledTrigger.negate())
         .whileTrue(new WindupShooter());
 
