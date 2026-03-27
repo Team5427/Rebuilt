@@ -197,7 +197,7 @@ public class SwerveSubsystem extends SubsystemBase
     //     setpointGenerator.generateSetpoint(setpoint, inputChassisSpeeds, Constants.kLoopSpeed);
     // targetModuleStates = setpoint.moduleStates();
     setpoint = new SwerveSetpoint(currentChassisSpeeds, actualModuleStates, driveFeedforwards);
-    inputChassisSpeeds = ChassisSpeeds.discretize(currentChassisSpeeds, Constants.kLoopSpeed);
+    // inputChassisSpeeds = ChassisSpeeds.discretize(currentChassisSpeeds, Constants.kLoopSpeed);
     targetModuleStates = Constants.config.toSwerveModuleStates(inputChassisSpeeds);
 
     // Lock Odometry (To prevent loss of data and inaccurate data updates)

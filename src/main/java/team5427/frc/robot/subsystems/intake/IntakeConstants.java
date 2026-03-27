@@ -80,7 +80,7 @@ public final class IntakeConstants {
     kRollerMotorConfiguration.kG = 0.0;
     kRollerMotorConfiguration.kFF = 0.0;
 
-    kRollerMotorConfiguration.currentLimit = 60;
+    kRollerMotorConfiguration.currentLimit = 50;
   }
 
   public static final double kPivotMotorSimulatedkP = 0.5;
