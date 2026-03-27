@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.015180113550249,
-        "y": 7.364579918710554
+        "x": 5.2338735674245065,
+        "y": 7.394518154161886
       },
       "isLocked": false,
       "linkedName": "DepotFarSideStart"
@@ -20,44 +20,44 @@
         "y": 7.389002976190476
       },
       "prevControl": {
-        "x": 6.511784294281412,
-        "y": 7.521948715548115
+        "x": 6.402653180907679,
+        "y": 7.399324551808468
       },
       "nextControl": {
-        "x": 6.956287433210053,
-        "y": 7.242831244357444
+        "x": 7.5376397515527955,
+        "y": 7.362812777284827
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.9078438331854475,
-        "y": 6.397062999112689
+        "x": 7.682502218278616,
+        "y": 7.081135758651286
       },
       "prevControl": {
-        "x": 7.822921057362073,
-        "y": 6.632197263196963
+        "x": 7.680672885712987,
+        "y": 7.361258557706899
       },
       "nextControl": {
-        "x": 7.992766609008821,
-        "y": 6.161928735028415
+        "x": 7.698596539232896,
+        "y": 4.616637876024922
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.9078438331854475,
-        "y": 5.624463176574977
+        "x": 7.682502218278616,
+        "y": 5.656654835847382
       },
       "prevControl": {
-        "x": 7.919506302253027,
-        "y": 5.972088768297005
+        "x": 7.661503107158407,
+        "y": 5.909753430552242
       },
       "nextControl": {
-        "x": 7.899461315007806,
-        "y": 5.374603749318367
+        "x": 7.751222097352152,
+        "y": 4.82838621427408
       },
       "isLocked": false,
       "linkedName": null
@@ -68,16 +68,35 @@
         "y": 4.763336291038154
       },
       "prevControl": {
-        "x": 7.709340621670321,
-        "y": 5.011891516497979
+        "x": 7.899795918367348,
+        "y": 5.302546583850931
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "CenterLeft"
     }
   ],
-  "rotationTargets": [],
-  "constraintZones": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.85145888594165,
+      "rotationDegrees": -90.0
+    }
+  ],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 1.604026845637585,
+      "maxWaypointRelativePos": 4.0,
+      "constraints": {
+        "maxVelocity": 1.1,
+        "maxAcceleration": 2.4,
+        "maxAngularVelocity": 1272.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.6,
+        "unlimited": false
+      }
+    }
+  ],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {

@@ -14,6 +14,7 @@ import team5427.frc.robot.commands.intake.IntakeIntaking;
 import team5427.frc.robot.commands.intake.IntakeNeutral;
 import team5427.frc.robot.commands.intake.IntakeOscillate;
 import team5427.frc.robot.commands.intake.IntakeStowed;
+import team5427.frc.robot.subsystems.intake.IntakeSubsystem;
 import team5427.frc.robot.subsystems.shooter.ShooterConstants;
 import team5427.frc.robot.subsystems.shooter.ShooterSubsystem;
 
@@ -55,6 +56,13 @@ public class OperatorControls {
     joy.rightTrigger()
         .whileTrue(Superstructure.setIndexerStateCommand(IndexerStates.INDEXING))
         .onFalse(Superstructure.setIndexerStateCommand(IndexerStates.STOWED));
+
+    joy.povDown()
+        .onTrue(
+            new InstantCommand(
+                () -> {
+                  IntakeSubsystem.getInstance().reverseIntakeHome();
+                }));
 
     joy.a()
         .onTrue(

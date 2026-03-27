@@ -167,6 +167,6 @@ public final class ShooterConstants {
     kLeftFlywheelMotorConfiguration.kG = 0.0;
     kLeftFlywheelMotorConfiguration.kFF = 0.0;
 
-    kLeftFlywheelMotorConfiguration.currentLimit = 100;
+    kLeftFlywheelMotorConfiguration.currentLimit = 60;
   }
 }

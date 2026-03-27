@@ -80,7 +80,7 @@ public final class IntakeConstants {
     kRollerMotorConfiguration.kG = 0.0;
     kRollerMotorConfiguration.kFF = 0.0;
 
-    kRollerMotorConfiguration.currentLimit = 100;
+    kRollerMotorConfiguration.currentLimit = 60;
   }
 
   public static final double kPivotMotorSimulatedkP = 0.5;
@@ -90,7 +90,7 @@ public final class IntakeConstants {
   public static final LinearVelocity kRollerNeutralVelocity = MetersPerSecond.of(2.5);
   public static final LinearVelocity kRollerMinimumIntakeVelocity = MetersPerSecond.of(5.0);
 
-  public static final Rotation2d kPivotMaximumRotation = Rotation2d.fromDegrees(200);
+  public static final Rotation2d kPivotMaximumRotation = Rotation2d.fromDegrees(113);
   public static final Rotation2d kPivotMinimumRotation = Rotation2d.fromDegrees(5);
 
   public static final Rotation2d kPivotStartingRotation = Rotation2d.fromDegrees(0);

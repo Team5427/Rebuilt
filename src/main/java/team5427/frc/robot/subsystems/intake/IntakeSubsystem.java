@@ -151,6 +151,15 @@ public class IntakeSubsystem extends SubsystemBase {
     return intakingAngle;
   }
 
+  /**
+   * Since this is only called when the intake is fully extended, we can assume that the new home
+   * needs to be equal to the intake's max rotation, effectively offsetting the home to the fully
+   * extended position.
+   */
+  public void reverseIntakeHome() {
+    io.resetPivotMotorPosition(IntakeConstants.kPivotMaximumRotation);
+  }
+
   public void log() {
     Logger.recordOutput("Intake/IntakingSpeed", intakingSpeed.in(MetersPerSecond));
     Logger.recordOutput("Intake/IntakingAngle", intakingAngle);
