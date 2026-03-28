@@ -73,6 +73,7 @@ public class MoveWhileFerry extends Command {
 
   @Override
   public void initialize() {
+    AimingConstants.updateLookupTables();
     // futureTrackResult = futureTrack.getFutureTrackResult();
     // futureTrackResult = futureTrack.getFutureTrackResult();
     futureTrackResult =

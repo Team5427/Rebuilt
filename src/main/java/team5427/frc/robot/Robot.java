@@ -19,6 +19,7 @@ import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
 import team5427.frc.robot.subsystems.intake.IntakeConstants;
+import team5427.frc.robot.subsystems.shooter.AimingConstants;
 import team5427.lib.drivers.JoystickLogger;
 import team5427.lib.drivers.VirtualSubsystem;
 import team5427.lib.kinematics.shooter.FuelPhysicsSim;
@@ -86,8 +87,10 @@ public class Robot extends LoggedRobot {
     System.out.println(SwerveConstants.class);
     System.out.println(IntakeConstants.class);
     System.out.println(DrivingConstants.class);
+    System.out.println(AimingConstants.class);
     // loading a random LoggedTunableNumber
     System.out.println(DrivingConstants.kRotationKp);
+    System.out.println(AimingConstants.kShootingSpeeds);
     System.out.println(Superstructure.class);
   }
 
