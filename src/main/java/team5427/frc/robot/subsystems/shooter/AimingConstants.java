@@ -30,14 +30,25 @@ public final class AimingConstants {
   };
 
   public static LoggedTunableNumber[] kShootingAngles = {
-    new LoggedTunableNumber("Aiming/Angles/Angles1", 29.0),
-    new LoggedTunableNumber("Aiming/Angles/Angles2", 29.0),
-    new LoggedTunableNumber("Aiming/Angles/Angles3", 29.0),
-    new LoggedTunableNumber("Aiming/Angles/Angles4", 29.5),
-    new LoggedTunableNumber("Aiming/Angles/Angles5", 31.0),
-    new LoggedTunableNumber("Aiming/Angles/Angles6", 32.0),
-    new LoggedTunableNumber("Aiming/Angles/Angles7", 34.0),
-    new LoggedTunableNumber("Aiming/Angles/Angles8", 35.0)
+    new LoggedTunableNumber("Aiming/Angles/Angle1", 29.0),
+    new LoggedTunableNumber("Aiming/Angles/Angle2", 29.0),
+    new LoggedTunableNumber("Aiming/Angles/Angle3", 29.0),
+    new LoggedTunableNumber("Aiming/Angles/Angle4", 29.5),
+    new LoggedTunableNumber("Aiming/Angles/Angle5", 31.0),
+    new LoggedTunableNumber("Aiming/Angles/Angle6", 32.0),
+    new LoggedTunableNumber("Aiming/Angles/Angle7", 34.0),
+    new LoggedTunableNumber("Aiming/Angles/Angle8", 35.0)
+  };
+
+  public static LoggedTunableNumber[] kTimeOfFlights = {
+    new LoggedTunableNumber("Aiming/TimeOfFlights/TimeOfFlight1", 0.7),
+    new LoggedTunableNumber("Aiming/TimeOfFlights/TimeOfFlight2", 0.8),
+    new LoggedTunableNumber("Aiming/TimeOfFlights/TimeOfFlight3", .85),
+    new LoggedTunableNumber("Aiming/TimeOfFlights/TimeOfFlight4", .95),
+    new LoggedTunableNumber("Aiming/TimeOfFlights/TimeOfFlight5", 1.0),
+    new LoggedTunableNumber("Aiming/TimeOfFlights/TimeOfFlight6", 1.1),
+    new LoggedTunableNumber("Aiming/TimeOfFlights/TimeOfFlight7", 1.1),
+    new LoggedTunableNumber("Aiming/TimeOfFlights/TimeOfFlight8", 1.225)
   };
 
   static {
@@ -72,23 +83,23 @@ public final class AimingConstants {
     // kShootingTable.addFlyWheelSpeed(4.800, 17.0);
 
     // ---------------- Time Of Flight ----------------
-    kShootingTable.addTimeOfFlight(2.707, 0.5);
-    kShootingTable.addTimeOfFlight(2.982, 0.7);
-    kShootingTable.addTimeOfFlight(3.253, 0.8);
-    kShootingTable.addTimeOfFlight(3.519, .85);
-    kShootingTable.addTimeOfFlight(3.785, .95);
-    kShootingTable.addTimeOfFlight(4.048, 1.0);
-    kShootingTable.addTimeOfFlight(4.310, 1.1);
-    kShootingTable.addTimeOfFlight(4.571, 1.1);
-    kShootingTable.addTimeOfFlight(4.830, 1.225);
+    // kShootingTable.addTimeOfFlight(2.707, 0.5);
+    // kShootingTable.addTimeOfFlight(2.982, 0.7);
+    // kShootingTable.addTimeOfFlight(3.253, 0.8);
+    // kShootingTable.addTimeOfFlight(3.519, .85);
+    // kShootingTable.addTimeOfFlight(3.785, .95);
+    // kShootingTable.addTimeOfFlight(4.048, 1.0);
+    // kShootingTable.addTimeOfFlight(4.310, 1.1);
+    // kShootingTable.addTimeOfFlight(4.571, 1.1);
+    // kShootingTable.addTimeOfFlight(4.830, 1.225);
   }
 
   public static void updateLookupTables() {
-    kShootingTable.resetFlywheelSpeed();
-    kShootingTable.resetPivotAngle();
+    kShootingTable.reset();
     for (int i = 0; i < kShootingDistances.length; i++) {
       kShootingTable.addPivotAngle(kShootingDistances[i].get(), kShootingAngles[i].get());
       kShootingTable.addFlyWheelSpeed(kShootingDistances[i].get(), kShootingSpeeds[i].get());
+      kShootingTable.addTimeOfFlight(kShootingDistances[i].get(), kTimeOfFlights[i].get());
     }
   }
 }
