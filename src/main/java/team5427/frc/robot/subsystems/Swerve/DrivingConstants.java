@@ -8,7 +8,7 @@ import team5427.lib.tunableControls.TunableControls.TunableProfiledController;
 
 public final class DrivingConstants {
   public static final double kDampenerDampeningAmount = 0.95;
-  public static LoggedTunableNumber kRotationKp = new LoggedTunableNumber("Rotation P", 4.0);
+  public static LoggedTunableNumber kRotationKp = new LoggedTunableNumber("Rotation P", 4.7);
   public static LoggedTunableNumber kRotationKd = new LoggedTunableNumber("Rotation D", 0.1);
 
   public static LoggedTunableNumber kRotationMaxAcceleration =
@@ -32,7 +32,7 @@ public final class DrivingConstants {
                   .withContinuous(-Math.PI, Math.PI)));
 
   public static LoggedTunableNumber kTranslationalKp =
-      new LoggedTunableNumber("Translational P", 0.8);
+      new LoggedTunableNumber("Translational P", 1.7);
   public static LoggedTunableNumber kTranslationalKd =
       new LoggedTunableNumber("Translational D", 0.1);
   public static LoggedTunableNumber kTranslationalMaxVelocity =

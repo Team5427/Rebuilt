@@ -68,7 +68,7 @@ public final class ShooterConstants {
     kRightHoodMotorConfiguration.altA = kRightHoodMotorConfiguration.maxAcceleration;
     kRightHoodMotorConfiguration.altJ = 1000.0;
 
-    kRightHoodMotorConfiguration.kP = 800.02000045776367;
+    kRightHoodMotorConfiguration.kP = 850.02000045776367;
     kRightHoodMotorConfiguration.kD = 0;
     kRightHoodMotorConfiguration.kI = 0;
 
@@ -96,7 +96,7 @@ public final class ShooterConstants {
     kLeftHoodMotorConfiguration.altA = kRightHoodMotorConfiguration.maxAcceleration;
     kLeftHoodMotorConfiguration.altJ = 1000.0;
 
-    kLeftHoodMotorConfiguration.kP = 800.02000045776367;
+    kLeftHoodMotorConfiguration.kP = 850.02000045776367;
     kLeftHoodMotorConfiguration.kD = 0;
     kLeftHoodMotorConfiguration.kI = 0;
 
@@ -126,7 +126,7 @@ public final class ShooterConstants {
     kRightFlywheelMotorConfiguration.altA = kRightFlywheelMotorConfiguration.maxAcceleration;
     kRightFlywheelMotorConfiguration.altJ = 1000.0;
 
-    kRightFlywheelMotorConfiguration.kP = 0.07; // .03
+    kRightFlywheelMotorConfiguration.kP = 0.075; // .03
     kRightFlywheelMotorConfiguration.kI = 0.0;
     kRightFlywheelMotorConfiguration.kD = 0.0;
 
@@ -167,6 +167,6 @@ public final class ShooterConstants {
     kLeftFlywheelMotorConfiguration.kG = 0.0;
     kLeftFlywheelMotorConfiguration.kFF = 0.0;
 
-    kLeftFlywheelMotorConfiguration.currentLimit = 60;
+    kLeftFlywheelMotorConfiguration.currentLimit = 100;
   }
 }

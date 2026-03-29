@@ -55,7 +55,6 @@ public class ShooterIOTalonFX implements ShooterIO {
     leftFlywheelFollowerMotor = new SteelTalonFX(ShooterConstants.kLeftFlywheelFollowerMotorCanId);
 
     leftHoodMotor.apply(ShooterConstants.kLeftHoodMotorConfiguration);
-    leftHoodMotor.applyTalonConfig();
     leftFlywheelLeaderMotor.apply(ShooterConstants.kLeftFlywheelMotorConfiguration);
     leftFlywheelFollowerMotor.apply(
         new MotorConfiguration(ShooterConstants.kLeftFlywheelMotorConfiguration));
@@ -75,11 +74,11 @@ public class ShooterIOTalonFX implements ShooterIO {
     rightFlywheelFollowerMotor =
         new SteelTalonFX(ShooterConstants.kRightFlywheelFollowerMotorCanId);
 
-    rightHoodMotor.apply(new MotorConfiguration(ShooterConstants.kRightHoodMotorConfiguration));
+    rightHoodMotor.apply(ShooterConstants.kRightHoodMotorConfiguration);
     // rightHoodMotor.getTalonFX().setControl(new
     // Follower(ShooterConstants.kLeftHoodMotorCanId.getDeviceNumber(),
     // MotorAlignmentValue.Opposed));
-    rightHoodMotor.applyTalonConfig();
+    rightHoodMotor.setEncoderPosition(ShooterConstants.kHoodHardstopPosition);
 
     rightFlywheelLeaderMotor.apply(
         new MotorConfiguration(ShooterConstants.kRightFlywheelMotorConfiguration));
