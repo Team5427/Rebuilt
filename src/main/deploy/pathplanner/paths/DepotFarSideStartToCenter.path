@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.2338735674245065,
-        "y": 7.394518154161886
+        "x": 5.33661181700892,
+        "y": 7.433495757727557
       },
       "isLocked": false,
       "linkedName": "DepotFarSideStart"
@@ -20,12 +20,12 @@
         "y": 7.389002976190476
       },
       "prevControl": {
-        "x": 6.402653180907679,
-        "y": 7.399324551808468
+        "x": 6.474884813047577,
+        "y": 7.415237857898365
       },
       "nextControl": {
-        "x": 7.5376397515527955,
-        "y": 7.362812777284827
+        "x": 7.411286290965477,
+        "y": 7.3164267547457085
       },
       "isLocked": false,
       "linkedName": null
@@ -36,12 +36,12 @@
         "y": 7.081135758651286
       },
       "prevControl": {
-        "x": 7.680672885712987,
-        "y": 7.361258557706899
+        "x": 7.691801485980941,
+        "y": 7.33096274602495
       },
       "nextControl": {
-        "x": 7.698596539232896,
-        "y": 4.616637876024922
+        "x": 7.591159388709938,
+        "y": 4.627189420099935
       },
       "isLocked": false,
       "linkedName": null
@@ -52,12 +52,12 @@
         "y": 5.656654835847382
       },
       "prevControl": {
-        "x": 7.661503107158407,
-        "y": 5.909753430552242
+        "x": 7.694130043633334,
+        "y": 5.975795161631863
       },
       "nextControl": {
-        "x": 7.751222097352152,
-        "y": 4.82838621427408
+        "x": 7.65565097424191,
+        "y": 4.919688592532005
       },
       "isLocked": false,
       "linkedName": null
@@ -68,8 +68,8 @@
         "y": 4.763336291038154
       },
       "prevControl": {
-        "x": 7.899795918367348,
-        "y": 5.302546583850931
+        "x": 7.672640794957865,
+        "y": 5.250941683264616
       },
       "nextControl": null,
       "isLocked": false,
@@ -88,7 +88,7 @@
       "minWaypointRelativePos": 1.604026845637585,
       "maxWaypointRelativePos": 4.0,
       "constraints": {
-        "maxVelocity": 1.1,
+        "maxVelocity": 1.25,
         "maxAcceleration": 2.4,
         "maxAngularVelocity": 1272.0,
         "maxAngularAcceleration": 720.0,
@@ -100,7 +100,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 2.6,
+    "maxVelocity": 2.8,
     "maxAcceleration": 2.4,
     "maxAngularVelocity": 1272.0,
     "maxAngularAcceleration": 720.0,

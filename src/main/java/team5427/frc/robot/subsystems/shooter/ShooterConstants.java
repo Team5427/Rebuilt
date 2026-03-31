@@ -42,7 +42,7 @@ public final class ShooterConstants {
   public static final ComplexGearRatio kHoodMotorGearRatio =
       new ComplexGearRatio((12.0 / 30.0), (28.0 / 324.0));
   public static final ComplexGearRatio kFlywheelMotorGearRatio =
-      new ComplexGearRatio((30.0 / 36.0));
+      new ComplexGearRatio((28.0 / 36.0), (30.0 / 36.0));
 
   public static final double kTopFlywheelRadiusMeters = Units.inchesToMeters(1.0);
   public static final double kBottomFlywheelRadiusMeters = Units.inchesToMeters(2.0); // 2.0
@@ -126,17 +126,17 @@ public final class ShooterConstants {
     kRightFlywheelMotorConfiguration.altA = kRightFlywheelMotorConfiguration.maxAcceleration;
     kRightFlywheelMotorConfiguration.altJ = 1000.0;
 
-    kRightFlywheelMotorConfiguration.kP = 0.075; // .03
+    kRightFlywheelMotorConfiguration.kP = 0.082; // .03
     kRightFlywheelMotorConfiguration.kI = 0.0;
     kRightFlywheelMotorConfiguration.kD = 0.0;
 
-    kRightFlywheelMotorConfiguration.kV = 0.062; // .07
+    kRightFlywheelMotorConfiguration.kV = 0.076; // .07
     kRightFlywheelMotorConfiguration.kA = 0.05;
     kRightFlywheelMotorConfiguration.kS = 0.1;
     kRightFlywheelMotorConfiguration.kG = 0.0;
     kRightFlywheelMotorConfiguration.kFF = 0.0;
 
-    kRightFlywheelMotorConfiguration.currentLimit = 100;
+    kRightFlywheelMotorConfiguration.currentLimit = 90;
   }
 
   static {
@@ -157,7 +157,7 @@ public final class ShooterConstants {
     kLeftFlywheelMotorConfiguration.altA = kLeftFlywheelMotorConfiguration.maxAcceleration;
     kLeftFlywheelMotorConfiguration.altJ = 1000.0;
 
-    kLeftFlywheelMotorConfiguration.kP = 0.23; // .031
+    kLeftFlywheelMotorConfiguration.kP = 0.29; // .031
     kLeftFlywheelMotorConfiguration.kI = 0.0;
     kLeftFlywheelMotorConfiguration.kD = 0.0;
 
@@ -167,6 +167,6 @@ public final class ShooterConstants {
     kLeftFlywheelMotorConfiguration.kG = 0.0;
     kLeftFlywheelMotorConfiguration.kFF = 0.0;
 
-    kLeftFlywheelMotorConfiguration.currentLimit = 100;
+    kLeftFlywheelMotorConfiguration.currentLimit = 90;
   }
 }
