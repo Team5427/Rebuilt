@@ -80,7 +80,7 @@
       "minWaypointRelativePos": 2.1,
       "maxWaypointRelativePos": 3.0,
       "constraints": {
-        "maxVelocity": 1.25,
+        "maxVelocity": 2.25,
         "maxAcceleration": 2.2,
         "maxAngularVelocity": 1272.0,
         "maxAngularAcceleration": 360.0,
@@ -92,15 +92,15 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 2.8,
-    "maxAcceleration": 2.4,
+    "maxVelocity": 5.0,
+    "maxAcceleration": 2.5,
     "maxAngularVelocity": 1272.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.6,
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 1.5,
+    "velocity": 0.0,
     "rotation": -90.0
   },
   "reversed": false,
