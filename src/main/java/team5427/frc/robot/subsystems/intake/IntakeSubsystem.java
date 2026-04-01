@@ -78,11 +78,7 @@ public class IntakeSubsystem extends SubsystemBase {
     //   kIntakingSpeedOutOfBounds.set(false);
     //   io.setRollerSpeed(intakingSpeed);
     // }
-    if (isPivotAtSetpoint()) {
-      io.setRollerSpeed(intakingSpeed);
-    } else {
-      io.setRollerSpeed(MetersPerSecond.of(0.0));
-    }
+    io.setRollerSpeed(intakingSpeed);
     io.setPivotRotation(intakingAngle);
     // if (intakingAngle.getDegrees() > IntakeConstants.kPivotMaximumRotation.getDegrees()
     //     || intakingAngle.getDegrees() < IntakeConstants.kPivotMinimumRotation.getDegrees()) {

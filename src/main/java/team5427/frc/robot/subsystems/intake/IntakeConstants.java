@@ -86,7 +86,7 @@ public final class IntakeConstants {
   public static final double kPivotMotorSimulatedkP = 0.5;
   public static final double kRollerMotorSimulatedkP = 0.2;
 
-  public static final LinearVelocity kRollerStowedVelocity = MetersPerSecond.of(1.25);
+  public static final LinearVelocity kRollerStowedVelocity = MetersPerSecond.of(0.75);
   public static final LinearVelocity kRollerNeutralVelocity = MetersPerSecond.of(2.5);
   public static final LinearVelocity kRollerMinimumIntakeVelocity = MetersPerSecond.of(5.0);
 
