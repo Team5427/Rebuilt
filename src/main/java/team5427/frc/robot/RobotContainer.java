@@ -6,10 +6,12 @@ package team5427.frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 import com.pathplanner.lib.events.EventTrigger;
+import com.pathplanner.lib.pathfinding.Pathfinding;
 import com.pathplanner.lib.util.PathPlannerLogging;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -39,6 +41,7 @@ import team5427.frc.robot.subsystems.indexer.IndexerSubsystem;
 import team5427.frc.robot.subsystems.intake.IntakeSubsystem;
 import team5427.frc.robot.subsystems.shooter.ShooterSubsystem;
 import team5427.frc.robot.subsystems.vision.VisionSubsystem;
+import team5427.lib.auton.LocalADStarAK;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -110,12 +113,15 @@ public class RobotContainer {
         },
         SwerveSubsystem.getInstance());
 
-    autoChooser = AutoBuilder.buildAutoChooser();
+    autoChooser();
+    
+    SmartDashboard.putData("Auto Chooser", autoChooser);
+        
     PathPlannerLogging.setLogTargetPoseCallback(
         (targetPose) -> {
           Logger.recordOutput("PathPlanner/Current Path", targetPose);
         });
-    SmartDashboard.putData(autoChooser);
+    
     buttonBindings();
   }
 
@@ -228,5 +234,45 @@ public class RobotContainer {
         SwerveSubsystem.getInstance().getKDriveSimulation().getSimulatedDriveTrainPose());
     Logger.recordOutput(
         "FieldSimulation/Coral", SimulatedArena.getInstance().getGamePiecesArrayByType("Fuel"));
+  }
+
+  public void autoChooser() {
+    Pathfinding.setPathfinder(new LocalADStarAK());
+    PathPlannerLogging.setLogActivePathCallback(
+        (activePath) -> {
+          Logger.recordOutput(
+              "Odometry/Trajectory", activePath.toArray(new Pose2d[activePath.size()]));
+        });
+    PathPlannerLogging.setLogTargetPoseCallback(
+        (targetPose) -> {
+          Logger.recordOutput("Odometry/TrajectorySetpoint", targetPose);
+        });
+
+    SendableChooser<Boolean> chooser = new SendableChooser<>();
+    chooser.setDefaultOption("Not Flipped", false);
+    chooser.addOption("Flipped", true);
+
+    SmartDashboard.putData(chooser);
+    chooser.onChange(
+        (Boolean flip) -> {
+          autoChooser =
+              AutoBuilder.buildAutoChooserWithOptionsModifier(
+                  autoStream ->
+                      autoStream.map(
+                          auto -> {
+                            auto = new PathPlannerAuto(auto.getName(), flip);
+                            return auto;
+                          }));
+          SmartDashboard.putData("Auto Chooser", autoChooser);
+        });
+
+    autoChooser =
+        AutoBuilder.buildAutoChooserWithOptionsModifier(
+            autoStream ->
+                autoStream.map(
+                    auto -> {
+                      auto = new PathPlannerAuto(auto.getName(), chooser.getSelected());
+                      return auto;
+                    }));
   }
 }
