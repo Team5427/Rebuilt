@@ -11,7 +11,6 @@ import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 import com.pathplanner.lib.events.EventTrigger;
-import com.pathplanner.lib.pathfinding.Pathfinding;
 import com.pathplanner.lib.util.PathPlannerLogging;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -41,7 +40,6 @@ import team5427.frc.robot.subsystems.indexer.IndexerSubsystem;
 import team5427.frc.robot.subsystems.intake.IntakeSubsystem;
 import team5427.frc.robot.subsystems.shooter.ShooterSubsystem;
 import team5427.frc.robot.subsystems.vision.VisionSubsystem;
-import team5427.lib.auton.LocalADStarAK;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
