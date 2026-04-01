@@ -114,14 +114,14 @@ public class RobotContainer {
         SwerveSubsystem.getInstance());
 
     autoChooser();
-    
+
     SmartDashboard.putData("Auto Chooser", autoChooser);
-        
+
     PathPlannerLogging.setLogTargetPoseCallback(
         (targetPose) -> {
           Logger.recordOutput("PathPlanner/Current Path", targetPose);
         });
-    
+
     buttonBindings();
   }
 
@@ -237,7 +237,7 @@ public class RobotContainer {
   }
 
   public void autoChooser() {
-    Pathfinding.setPathfinder(new LocalADStarAK());
+    // Pathfinding.setPathfinder(new LocalADStarAK());
     PathPlannerLogging.setLogActivePathCallback(
         (activePath) -> {
           Logger.recordOutput(
@@ -253,6 +253,7 @@ public class RobotContainer {
     chooser.addOption("Flipped", true);
 
     SmartDashboard.putData(chooser);
+    chooser.setDefaultOption("Not Flipped", false);
     chooser.onChange(
         (Boolean flip) -> {
           autoChooser =
