@@ -1,7 +1,5 @@
 package team5427.frc.robot.commands.shooting;
 
-import static edu.wpi.first.units.Units.MetersPerSecond;
-
 import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -17,6 +15,9 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+
+import static edu.wpi.first.units.Units.*;
+
 import org.littletonrobotics.junction.Logger;
 import org.team4206.battleaid.common.TunedJoystick;
 import org.team4206.battleaid.common.TunedJoystick.ResponseCurve;
@@ -42,7 +43,7 @@ public class MoveWhileFerry extends Command {
 
   private FutureTrack futureTrack;
 
-  private Translation3d target = Translation3d.kZero;
+  private Translation2d target = Translation2d.kZero;
 
   private Tuple2Plus<Pose2d, ChassisSpeeds> futureTrackResult;
 
@@ -119,17 +120,9 @@ public class MoveWhileFerry extends Command {
 
     target =
         isRed
-            ? new Translation3d(
-                RobotPose.getInstance()
-                    .getAdaptivePose()
-                    .getTranslation()
-                    .plus(new Translation2d(6, 0)))
-            : new Translation3d(
-                RobotPose.getInstance()
-                    .getAdaptivePose()
-                    .getTranslation()
-                    .minus(new Translation2d(6, 0)));
-    Translation3d virtualTarget = target;
+            ? new Translation2d(2.8, RobotPose.getInstance().getAdaptivePose().getY())
+            : new Translation2d(13.7, RobotPose.getInstance().getAdaptivePose().getY());
+    Translation3d virtualTarget = new Translation3d(target);
     double tof = 0.0;
     double prevTof = Double.MAX_VALUE;
     Translation2d distance2d = virtualTarget.minus(shooterFieldPos).toTranslation2d();
@@ -148,7 +141,7 @@ public class MoveWhileFerry extends Command {
       double driftY = currentSpeeds.vyMetersPerSecond * tof;
 
       virtualTarget =
-          new Translation3d(target.getX() - driftX, target.getY() - driftY, target.getZ());
+          new Translation3d(target.getX() - driftX, target.getY() - driftY, 0);
     }
 
     double finalDistance = virtualTarget.minus(shooterFieldPos).getNorm();
@@ -157,9 +150,9 @@ public class MoveWhileFerry extends Command {
     LinearVelocity shooterVelocity =
         MetersPerSecond.of(AimingConstants.kShootingTable.getFlyWheelSpeed(finalDistance));
 
-    shooter.setLeftShooterAngle(shooterAngle);
+    shooter.setLeftShooterAngle(new Rotation2d(Degrees.of(40)));
     shooter.setLeftShooterSpeed(shooterVelocity);
-    shooter.setRightShooterAngle(shooterAngle);
+    shooter.setRightShooterAngle(new Rotation2d(Degrees.of(40)));
     shooter.setRightShooterSpeed(shooterVelocity);
 
     Translation2d shooterFieldPos2d = shooterFieldPos.toTranslation2d();
