@@ -254,10 +254,14 @@ public class MagicSteelTalonFX implements IMotorController {
 
   @Override
   public void setSetpoint(Distance distance) {
+    double previousSetpoint = this.setpoint;
     this.setpoint = distance.in(Meter);
     switch (configuration.mode) {
       case kLinear:
         this.setpoint *= getConversionFactorToRotations();
+        if (this.setpoint == previousSetpoint) {
+          return;
+        }
         talonFX.setControl(
             isUsingTorqueCurrentFOC()
                 ? positionTorqueCurrentFOCRequest.withPosition(this.setpoint)
@@ -277,10 +281,14 @@ public class MagicSteelTalonFX implements IMotorController {
 
   @Override
   public void setSetpoint(LinearVelocity velocity) {
+    double previousSetpoint = this.setpoint;
     this.setpoint = velocity.in(MetersPerSecond);
     switch (configuration.mode) {
       case kFlywheel:
         this.setpoint *= getConversionFactorToRotations();
+        if (this.setpoint == previousSetpoint) {
+          return;
+        }
         talonFX.setControl(
             isUsingTorqueCurrentFOC()
                 ? velocityTorqueCurrentFOCRequest.withVelocity(this.setpoint)
@@ -300,9 +308,13 @@ public class MagicSteelTalonFX implements IMotorController {
 
   @Override
   public void setSetpoint(AngularVelocity velocity) {
+    double previousSetpoint = this.setpoint;
     this.setpoint = velocity.in(RotationsPerSecond);
     switch (configuration.mode) {
       case kFlywheel:
+        if (this.setpoint == previousSetpoint) {
+          return;
+        }
         talonFX.setControl(
             isUsingTorqueCurrentFOC()
                 ? velocityTorqueCurrentFOCRequest.withVelocity(this.setpoint)
@@ -322,10 +334,14 @@ public class MagicSteelTalonFX implements IMotorController {
 
   @Override
   public void setSetpoint(Angle angle) {
+    double previousSetpoint = this.setpoint;
     this.setpoint = angle.in(Rotation);
     switch (configuration.mode) {
       case kServo:
         this.setpoint *= getConversionFactorToRotations();
+        if (this.setpoint == previousSetpoint) {
+          return;
+        }
         talonFX.setControl(
             isUsingTorqueCurrentFOC()
                 ? positionTorqueCurrentFOCRequest.withPosition(this.setpoint)
@@ -345,10 +361,14 @@ public class MagicSteelTalonFX implements IMotorController {
 
   @Override
   public void setSetpoint(Rotation2d angle) {
+    double previousSetpoint = this.setpoint;
     this.setpoint = angle.getRotations();
     switch (configuration.mode) {
       case kServo:
         this.setpoint *= getConversionFactorToRotations();
+        if (this.setpoint == previousSetpoint) {
+          return;
+        }
         talonFX.setControl(
             isUsingTorqueCurrentFOC()
                 ? positionTorqueCurrentFOCRequest.withPosition(this.setpoint)
