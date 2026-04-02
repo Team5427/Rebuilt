@@ -50,7 +50,7 @@ public final class IntakeConstants {
     // kPivotMotorConfiguration.kG = 6.77;
     kPivotMotorConfiguration.kFF = 0.0;
 
-    kPivotMotorConfiguration.currentLimit = 60;
+    kPivotMotorConfiguration.currentLimit = 50;
   }
 
   // lt changes roller velocity to intaking brings out intake
@@ -87,7 +87,7 @@ public final class IntakeConstants {
   public static final double kRollerMotorSimulatedkP = 0.2;
 
   public static final LinearVelocity kRollerStowedVelocity = MetersPerSecond.of(0.75);
-  public static final LinearVelocity kRollerNeutralVelocity = MetersPerSecond.of(2.5);
+  public static final LinearVelocity kRollerNeutralVelocity = MetersPerSecond.of(2.0);
   public static final LinearVelocity kRollerMinimumIntakeVelocity = MetersPerSecond.of(5.0);
 
   public static final Rotation2d kPivotMaximumRotation = Rotation2d.fromDegrees(113);

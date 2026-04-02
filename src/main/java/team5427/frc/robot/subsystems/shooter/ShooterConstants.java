@@ -50,7 +50,7 @@ public final class ShooterConstants {
   public static final Rotation2d kHoodHardstopPosition = Rotation2d.fromDegrees(28.01);
   public static final Rotation2d kHoodMaximumRotation = Rotation2d.fromDegrees(62.227);
 
-  public static final LinearVelocity kShooterStowVelocity = MetersPerSecond.of(1.0);
+  public static final LinearVelocity kShooterStowVelocity = MetersPerSecond.of(0.0);
 
   static {
     kRightHoodMotorConfiguration.gearRatio = kHoodMotorGearRatio;
@@ -136,7 +136,7 @@ public final class ShooterConstants {
     kRightFlywheelMotorConfiguration.kG = 0.0;
     kRightFlywheelMotorConfiguration.kFF = 0.0;
 
-    kRightFlywheelMotorConfiguration.currentLimit = 90;
+    kRightFlywheelMotorConfiguration.currentLimit = 100;
   }
 
   static {
@@ -167,6 +167,6 @@ public final class ShooterConstants {
     kLeftFlywheelMotorConfiguration.kG = 0.0;
     kLeftFlywheelMotorConfiguration.kFF = 0.0;
 
-    kLeftFlywheelMotorConfiguration.currentLimit = 90;
+    kLeftFlywheelMotorConfiguration.currentLimit = 100;
   }
 }

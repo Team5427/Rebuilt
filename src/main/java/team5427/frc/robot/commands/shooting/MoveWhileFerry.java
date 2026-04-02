@@ -1,5 +1,7 @@
 package team5427.frc.robot.commands.shooting;
 
+import static edu.wpi.first.units.Units.*;
+
 import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -15,9 +17,6 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-
-import static edu.wpi.first.units.Units.*;
-
 import org.littletonrobotics.junction.Logger;
 import org.team4206.battleaid.common.TunedJoystick;
 import org.team4206.battleaid.common.TunedJoystick.ResponseCurve;
@@ -140,8 +139,7 @@ public class MoveWhileFerry extends Command {
       double driftX = currentSpeeds.vxMetersPerSecond * tof;
       double driftY = currentSpeeds.vyMetersPerSecond * tof;
 
-      virtualTarget =
-          new Translation3d(target.getX() - driftX, target.getY() - driftY, 0);
+      virtualTarget = new Translation3d(target.getX() - driftX, target.getY() - driftY, 0);
     }
 
     double finalDistance = virtualTarget.minus(shooterFieldPos).getNorm();
