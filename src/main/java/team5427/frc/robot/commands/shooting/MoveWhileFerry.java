@@ -148,9 +148,9 @@ public class MoveWhileFerry extends Command {
     LinearVelocity shooterVelocity =
         MetersPerSecond.of(AimingConstants.kShootingTable.getFlyWheelSpeed(finalDistance));
 
-    shooter.setLeftShooterAngle(new Rotation2d(Degrees.of(40)));
+    shooter.setLeftShooterAngle(shooterAngle);
     shooter.setLeftShooterSpeed(shooterVelocity);
-    shooter.setRightShooterAngle(new Rotation2d(Degrees.of(40)));
+    shooter.setRightShooterAngle(shooterAngle);
     shooter.setRightShooterSpeed(shooterVelocity);
 
     Translation2d shooterFieldPos2d = shooterFieldPos.toTranslation2d();
