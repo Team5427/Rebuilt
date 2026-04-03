@@ -7,7 +7,7 @@
         {
           "type": "named",
           "data": {
-            "name": "ResetAll"
+            "name": "Intake"
           }
         },
         {
@@ -17,7 +17,7 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "deadline",
           "data": {
             "commands": [
               {
@@ -36,7 +36,7 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "deadline",
           "data": {
             "commands": [
               {
@@ -80,13 +80,7 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "ResetAll"
-          }
-        },
-        {
-          "type": "parallel",
+          "type": "deadline",
           "data": {
             "commands": [
               {
@@ -111,7 +105,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "CenterV2LeftToBumpShoot"
+                  "pathName": "CenterV2ToShootLeft"
                 }
               },
               {

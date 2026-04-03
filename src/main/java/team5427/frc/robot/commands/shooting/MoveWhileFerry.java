@@ -119,8 +119,8 @@ public class MoveWhileFerry extends Command {
 
     target =
         isRed
-            ? new Translation2d(2.8, RobotPose.getInstance().getAdaptivePose().getY())
-            : new Translation2d(13.7, RobotPose.getInstance().getAdaptivePose().getY());
+            ? new Translation2d(13.7, RobotPose.getInstance().getAdaptivePose().getY())
+            : new Translation2d(2.8, RobotPose.getInstance().getAdaptivePose().getY());
     Translation3d virtualTarget = new Translation3d(target);
     double tof = 0.0;
     double prevTof = Double.MAX_VALUE;

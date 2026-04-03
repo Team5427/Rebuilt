@@ -40,7 +40,7 @@ public class Robot extends LoggedRobot {
   @SuppressWarnings("resource")
   public Robot() {
 
-    Logger.recordMetadata("Reefscape", "Steel Talons 5427 Robot Code for the Game Reefscape, 2025");
+    Logger.recordMetadata("Rebuilt", "Steel Talons 5427 Robot Code for the Game Rebuilt, 2026");
     Logger.recordMetadata("GitSHA", BuildConstants.GIT_SHA);
 
     if (RobotBase.isReal()) {
@@ -53,7 +53,7 @@ public class Robot extends LoggedRobot {
     switch (Constants.currentMode) {
       case REAL:
         // Running on a real robot, log to a USB stick ("/U/logs")
-        Logger.addDataReceiver(new WPILOGWriter());
+        // Logger.addDataReceiver(new WPILOGWriter("/U/logs"));
         Logger.addDataReceiver(new NT4Publisher());
         // Logger.registerURCL(URCL.startExternal());
         break;
