@@ -106,6 +106,9 @@ public class Robot extends LoggedRobot {
     Superstructure.logStates();
     FutureTrack.getInstance().update();
     FutureTrack.getInstance().log();
+
+    Logger.recordOutput("HubShift/Official", HubShiftUtil.getOfficialShiftInfo());
+    Logger.recordOutput("HubShift/Shifter", HubShiftUtil.getShiftedShiftInfo());
     // QuestNav.getInstance().processHeartbeat();
     // QuestNav.getInstance().cleanupResponses();
 
