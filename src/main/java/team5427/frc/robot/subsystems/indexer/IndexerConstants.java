@@ -52,7 +52,7 @@ public final class IndexerConstants {
     kIndexerMotorConfiguration.idleState = IdleState.kBrake;
     kIndexerMotorConfiguration.isArm = false;
     kIndexerMotorConfiguration.isInverted = false;
-    kIndexerMotorConfiguration.currentLimit = 60;
+    kIndexerMotorConfiguration.currentLimit = 55;
     kIndexerMotorConfiguration.finalDiameterMeters = kIndexerFlywheelRadius.times(2.0).in(Meters);
     kIndexerMotorConfiguration.withFOC = false;
     kIndexerMotorConfiguration.maxVelocity =

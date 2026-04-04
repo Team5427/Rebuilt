@@ -22,7 +22,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
-
 import org.ironmaple.simulation.SimulatedArena;
 import org.littletonrobotics.junction.Logger;
 import team5427.frc.robot.Constants.DriverConstants;
@@ -160,7 +159,7 @@ public class RobotContainer {
             .alongWith(Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING))
             .alongWith(
                 new MoveWhileShoot(new CommandXboxController(DriverConstants.kDriverJoystickPort))
-                    .withTimeout(3.0))
+                    .withTimeout(4.5))
             .andThen(Superstructure.resetAllStates()));
     NamedCommands.registerCommand(
         "Shoot", Superstructure.setIndexerStateCommand(IndexerStates.INDEXING));

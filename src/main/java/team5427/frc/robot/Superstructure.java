@@ -47,7 +47,7 @@ public final class Superstructure {
     DISABLED,
     STOWED,
     OUTAKING,
-    INTAKENEUTRAL
+    INTAKENEUTRAL,
   }
 
   // Shooter States Enum
@@ -62,6 +62,7 @@ public final class Superstructure {
 
   public static enum IndexerStates {
     INDEXING,
+    OUTTAKE,
     STOWED,
     DISABLED
   }
@@ -480,6 +481,7 @@ public final class Superstructure {
 
   public static final class IndexerTriggers {
     public static final Trigger kIndexing = indexerStateIs(IndexerStates.INDEXING);
+    public static final Trigger kOuttake = indexerStateIs(IndexerStates.OUTTAKE);
     public static final Trigger kStowed = indexerStateIs(IndexerStates.STOWED);
     public static final Trigger kDisabled = indexerStateIs(IndexerStates.DISABLED);
   }
