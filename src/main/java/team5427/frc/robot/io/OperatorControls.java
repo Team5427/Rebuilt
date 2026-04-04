@@ -1,14 +1,11 @@
 package team5427.frc.robot.io;
 
-import org.ironmaple.simulation.IntakeSimulation.IntakeSide;
-
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import team5427.frc.robot.Constants.DriverConstants;
 import team5427.frc.robot.Superstructure;
 import team5427.frc.robot.Superstructure.IndexerStates;
 import team5427.frc.robot.Superstructure.IntakeStates;
-import team5427.frc.robot.Superstructure.IntakeTriggers;
 import team5427.frc.robot.Superstructure.ShooterStates;
 import team5427.frc.robot.commands.indexer.IndexShoot;
 import team5427.frc.robot.commands.indexer.IndexStow;
@@ -19,7 +16,6 @@ import team5427.frc.robot.commands.intake.IntakeIntaking;
 import team5427.frc.robot.commands.intake.IntakeNeutral;
 import team5427.frc.robot.commands.intake.IntakeOscillate;
 import team5427.frc.robot.commands.intake.IntakeStowed;
-import team5427.frc.robot.subsystems.intake.IntakeConstants;
 import team5427.frc.robot.subsystems.intake.IntakeSubsystem;
 import team5427.frc.robot.subsystems.shooter.ShooterConstants;
 import team5427.frc.robot.subsystems.shooter.ShooterSubsystem;
@@ -48,7 +44,12 @@ public class OperatorControls {
         .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKING))
         .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
     joy.leftBumper().whileTrue(IntakeOscillate.getIntakeOscillateCommand());
-    joy.povUp().whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.OUTAKING)).whileTrue(Superstructure.setIndexerStateCommand(IndexerStates.OUTTAKE)).onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL).alongWith(Superstructure.setIndexerStateCommand(IndexerStates.STOWED)));
+    joy.povUp()
+        .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.OUTAKING))
+        .whileTrue(Superstructure.setIndexerStateCommand(IndexerStates.OUTTAKE))
+        .onFalse(
+            Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL)
+                .alongWith(Superstructure.setIndexerStateCommand(IndexerStates.STOWED)));
     Superstructure.intakeStateIs(IntakeStates.OUTAKING).whileTrue(new IntakeEject());
     Superstructure.indexerStateIs(IndexerStates.OUTTAKE).whileTrue(new IndexerEject());
     // joy.povLeft().onTrue(Superstructure.setClimbStateCommand(ClimbStates.L1));
