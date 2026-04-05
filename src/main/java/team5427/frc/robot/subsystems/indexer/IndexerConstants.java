@@ -39,8 +39,8 @@ public final class IndexerConstants {
     kHopperMotorConfiguration.maxAcceleration = kHopperMotorConfiguration.maxVelocity * 3.0;
 
     kHopperMotorConfiguration.kP = 0.2;
-    kIndexerMotorConfiguration.kV = 0.5;
-    kIndexerMotorConfiguration.kS = 0.5;
+    kHopperMotorConfiguration.kV = 0.5;
+    kHopperMotorConfiguration.kS = 0.5;
   }
 
   static {
