@@ -1,0 +1,128 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 4.039058487874465,
+        "y": 7.389002976190476
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 4.488412728572165,
+        "y": 7.261303481340485
+      },
+      "isLocked": false,
+      "linkedName": "DepotFarSideStart"
+    },
+    {
+      "anchor": {
+        "x": 7.715349702380951,
+        "y": 7.389002976190476
+      },
+      "prevControl": {
+        "x": 7.092150249048293,
+        "y": 7.76392395646477
+      },
+      "nextControl": {
+        "x": 8.534020859651546,
+        "y": 6.896484904865496
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.715349702380951,
+        "y": 4.824561011904762
+      },
+      "prevControl": {
+        "x": 8.19520789346127,
+        "y": 5.160186669227168
+      },
+      "nextControl": {
+        "x": 7.50406801746745,
+        "y": 4.676784948689848
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 6.840959821428571,
+        "y": 4.824561011904762
+      },
+      "prevControl": {
+        "x": 7.20659233121773,
+        "y": 4.6516035320176785
+      },
+      "nextControl": {
+        "x": 6.289043897068976,
+        "y": 5.085637324407257
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 5.96656994047794,
+        "y": 5.731577380949618
+      },
+      "prevControl": {
+        "x": 6.090406096709149,
+        "y": 5.514403242503349
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "FerryShoot"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.1126126126126124,
+      "rotationDegrees": -90.0
+    },
+    {
+      "waypointRelativePos": 1.6576576576576565,
+      "rotationDegrees": -90.0
+    },
+    {
+      "waypointRelativePos": 1.9650900900900894,
+      "rotationDegrees": -90.0
+    }
+  ],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "Intake",
+      "waypointRelativePos": 0.9972602739726019,
+      "endWaypointRelativePos": 3.0904109589041004,
+      "command": null
+    },
+    {
+      "name": "WindupShooter",
+      "waypointRelativePos": 2.6849315068493183,
+      "endWaypointRelativePos": 4.0,
+      "command": null
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 1272.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "reversed": false,
+  "folder": null,
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "useDefaultConstraints": false
+}

@@ -31,6 +31,7 @@ import team5427.frc.robot.Superstructure.ShooterStates;
 import team5427.frc.robot.Superstructure.SwerveStates;
 import team5427.frc.robot.commands.chassis.MoveChassisToPose;
 import team5427.frc.robot.commands.intake.IntakeOscillate;
+import team5427.frc.robot.commands.shooting.MoveWhileFerry;
 import team5427.frc.robot.commands.shooting.MoveWhileShoot;
 import team5427.frc.robot.io.DriverProfiles;
 import team5427.frc.robot.io.OperatorControls;
@@ -150,6 +151,7 @@ public class RobotContainer {
     new EventTrigger("Intake").onTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKING));
     new EventTrigger("IntakeOscillate").onTrue(IntakeOscillate.getIntakeOscillateCommand());
     new EventTrigger("ResetAll").onTrue(Superstructure.resetAllStates());
+    new EventTrigger("WindupShooter").onTrue(Superstructure.setShooterStateCommand(ShooterStates.WINDUP));
   }
 
   public void createNamedCommands() {
@@ -161,6 +163,18 @@ public class RobotContainer {
                 new MoveWhileShoot(new CommandXboxController(DriverConstants.kDriverJoystickPort))
                     .withTimeout(4.5))
             .andThen(Superstructure.resetAllStates()));
+    NamedCommands.registerCommand(
+        "BetterAutoAlignMoveWhileShoot",
+        Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)
+            .alongWith(Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING))
+            .alongWith(
+                new MoveWhileShoot(new CommandXboxController(DriverConstants.kDriverJoystickPort))));
+        NamedCommands.registerCommand(
+        "BetterAutoAlignFerryWhileShoot",
+        Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)
+            .alongWith(Superstructure.setShooterStateCommand(ShooterStates.FERRY_SHOOTING))
+            .alongWith(
+                new MoveWhileFerry(new CommandXboxController(DriverConstants.kDriverJoystickPort))));
     NamedCommands.registerCommand(
         "Shoot", Superstructure.setIndexerStateCommand(IndexerStates.INDEXING));
 
@@ -237,7 +251,7 @@ public class RobotContainer {
         "FieldSimulation/RobotPosition",
         SwerveSubsystem.getInstance().getKDriveSimulation().getSimulatedDriveTrainPose());
     Logger.recordOutput(
-        "FieldSimulation/Coral", SimulatedArena.getInstance().getGamePiecesArrayByType("Fuel"));
+        "FieldSimulation/Fuel", SimulatedArena.getInstance().getGamePiecesArrayByType("Fuel"));
   }
 
   public void autoChooser() {
