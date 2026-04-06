@@ -1,0 +1,131 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 2.5511126961483592,
+        "y": 2.320627674750357
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 3.38691443980363,
+        "y": 2.454510308981857
+      },
+      "isLocked": false,
+      "linkedName": "FarSideShoot"
+    },
+    {
+      "anchor": {
+        "x": 4.596344444444444,
+        "y": 2.320627674750357
+      },
+      "prevControl": {
+        "x": 4.370065743817861,
+        "y": 2.4269194883709035
+      },
+      "nextControl": {
+        "x": 4.822623145071027,
+        "y": 2.2143358611298103
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 5.872866666666668,
+        "y": 2.5928222222222224
+      },
+      "prevControl": {
+        "x": 5.652833386648802,
+        "y": 2.3456780914467448
+      },
+      "nextControl": {
+        "x": 6.36592062125718,
+        "y": 3.1466265877381545
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 5.872866666666668,
+        "y": 4.112955555555555
+      },
+      "prevControl": {
+        "x": 5.486060306722618,
+        "y": 3.527386054077213
+      },
+      "nextControl": {
+        "x": 6.277057691764168,
+        "y": 4.72484295343236
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.470955555555555,
+        "y": 3.9278111111111107
+      },
+      "prevControl": {
+        "x": 7.38887270459388,
+        "y": 4.602505368618201
+      },
+      "nextControl": {
+        "x": 7.591620310379302,
+        "y": 2.9359861902016933
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 6.710888888888889,
+        "y": 1.8717333333333328
+      },
+      "prevControl": {
+        "x": 6.706185693923944,
+        "y": 3.0299993186935237
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "FarSideFerry"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.2141732283464495,
+      "rotationDegrees": 180.0
+    },
+    {
+      "waypointRelativePos": 2.2661417322834474,
+      "rotationDegrees": 97.49164983722574
+    },
+    {
+      "waypointRelativePos": 4.092913385826753,
+      "rotationDegrees": -78.54725782751434
+    }
+  ],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 5.0,
+    "maxAcceleration": 2.5,
+    "maxAngularVelocity": 1272.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.6,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "reversed": false,
+  "folder": null,
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -135.0
+  },
+  "useDefaultConstraints": true
+}

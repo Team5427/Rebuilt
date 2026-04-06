@@ -1,0 +1,91 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 6.710888888888889,
+        "y": 1.8717333333333328
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 7.762274986058782,
+        "y": 2.0377339628502535
+      },
+      "isLocked": false,
+      "linkedName": "FarSideFerry"
+    },
+    {
+      "anchor": {
+        "x": 8.026388888888889,
+        "y": 2.924133333333332
+      },
+      "prevControl": {
+        "x": 7.974188671964567,
+        "y": 2.4860894177261836
+      },
+      "nextControl": {
+        "x": 8.142427414297707,
+        "y": 3.8978835019399316
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.9192,
+        "y": 5.0191888888888885
+      },
+      "prevControl": {
+        "x": 8.231022222222222,
+        "y": 4.424777777777778
+      },
+      "nextControl": {
+        "x": 7.39334557881252,
+        "y": 6.021598879277523
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 3.232122222222222,
+        "y": 5.467433333333333
+      },
+      "prevControl": {
+        "x": 5.684426235100803,
+        "y": 5.725073356498828
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.15,
+      "rotationDegrees": 90.0
+    }
+  ],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 5.0,
+    "maxAcceleration": 2.5,
+    "maxAngularVelocity": 1272.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.6,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 90.0
+  },
+  "reversed": false,
+  "folder": null,
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "useDefaultConstraints": true
+}
