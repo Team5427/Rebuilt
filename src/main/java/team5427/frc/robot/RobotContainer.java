@@ -151,7 +151,8 @@ public class RobotContainer {
     new EventTrigger("Intake").onTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKING));
     new EventTrigger("IntakeOscillate").onTrue(IntakeOscillate.getIntakeOscillateCommand());
     new EventTrigger("ResetAll").onTrue(Superstructure.resetAllStates());
-    new EventTrigger("WindupShooter").onTrue(Superstructure.setShooterStateCommand(ShooterStates.WINDUP));
+    new EventTrigger("WindupShooter")
+        .onTrue(Superstructure.setShooterStateCommand(ShooterStates.WINDUP));
   }
 
   public void createNamedCommands() {
@@ -168,13 +169,15 @@ public class RobotContainer {
         Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)
             .alongWith(Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING))
             .alongWith(
-                new MoveWhileShoot(new CommandXboxController(DriverConstants.kDriverJoystickPort))));
-        NamedCommands.registerCommand(
+                new MoveWhileShoot(
+                    new CommandXboxController(DriverConstants.kDriverJoystickPort))));
+    NamedCommands.registerCommand(
         "BetterAutoAlignFerryWhileShoot",
         Superstructure.setSwerveStateCommand(SwerveStates.AUTO_ALIGN)
             .alongWith(Superstructure.setShooterStateCommand(ShooterStates.FERRY_SHOOTING))
             .alongWith(
-                new MoveWhileFerry(new CommandXboxController(DriverConstants.kDriverJoystickPort))));
+                new MoveWhileFerry(
+                    new CommandXboxController(DriverConstants.kDriverJoystickPort))));
     NamedCommands.registerCommand(
         "Shoot", Superstructure.setIndexerStateCommand(IndexerStates.INDEXING));
 
