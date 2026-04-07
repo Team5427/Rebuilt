@@ -75,6 +75,7 @@ public final class SwerveConstants {
     kDriveMotorConfiguration.withFOC = true;
 
     kDriveMotorConfiguration.currentLimit = 60;
+    kDriveMotorConfiguration.supplyCurrentLimit = 40;
     kDriveMotorConfiguration.finalDiameterMeters = kWheelDiameterMeters;
 
     kDriveMotorConfiguration.maxVelocity = 10.19; // mps
@@ -95,6 +96,7 @@ public final class SwerveConstants {
     kSteerMotorConfiguration.idleState = IdleState.kBrake;
     kSteerMotorConfiguration.mode = MotorMode.kServo;
     kSteerMotorConfiguration.currentLimit = 40;
+    kSteerMotorConfiguration.supplyCurrentLimit = 20;
     kSteerMotorConfiguration.withFOC = true;
 
     kSteerMotorConfiguration.maxVelocity =

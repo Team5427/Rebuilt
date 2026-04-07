@@ -126,14 +126,27 @@ public class SteelTalonFX implements IMotorController {
     talonConfig.CurrentLimits.StatorCurrentLimitEnable = true;
     talonConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
     talonConfig.CurrentLimits.StatorCurrentLimit = configuration.currentLimit;
-    if (configuration.currentLimit * 0.5 > MotorUtil.kMaxMotorSupplyCurrentLimit) {
-      talonConfig.CurrentLimits.SupplyCurrentLowerLimit = MotorUtil.kMaxMotorSupplyCurrentLimit;
-      talonConfig.CurrentLimits.SupplyCurrentLowerTime = MotorUtil.kMaxExcessCurrentDrawTime;
-      talonConfig.CurrentLimits.SupplyCurrentLimit = configuration.currentLimit * 0.5;
+    if (configuration.supplyCurrentLimit > 0) {
+      if (configuration.supplyCurrentLimit > MotorUtil.kMaxMotorSupplyCurrentLimit) {
+        talonConfig.CurrentLimits.SupplyCurrentLimit = configuration.supplyCurrentLimit;
+        talonConfig.CurrentLimits.SupplyCurrentLowerTime = MotorUtil.kMaxExcessCurrentDrawTime;
+        DriverStation.reportWarning(
+            "SteelTalonFX: id "
+                + id.getDeviceNumber()
+                + " in bus "
+                + id.getBus()
+                + " supply current limit of "
+                + configuration.supplyCurrentLimit
+                + " exceeds max of "
+                + MotorUtil.kMaxMotorSupplyCurrentLimit
+                + ", capping at max",
+            false);
+      } else {
+        talonConfig.CurrentLimits.SupplyCurrentLimit = configuration.supplyCurrentLimit;
+      }
     } else {
-      talonConfig.CurrentLimits.SupplyCurrentLimit = configuration.currentLimit * 0.5;
+      talonConfig.CurrentLimits.SupplyCurrentLimitEnable = false;
     }
-
     talonConfig.TorqueCurrent.PeakForwardTorqueCurrent = configuration.currentLimit;
     talonConfig.TorqueCurrent.PeakReverseTorqueCurrent = -configuration.currentLimit;
     talonFX.getConfigurator().apply(talonConfig);

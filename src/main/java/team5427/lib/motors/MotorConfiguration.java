@@ -29,7 +29,11 @@ public class MotorConfiguration {
   /** Alternative velocity, acceleration, and jerk values for additional specific motor control */
   public double altA, altV, altJ;
 
+  /** Stator Current Limit on Talon devices, general current limit on REV devices */
   public int currentLimit;
+
+  /** Supply Current Limit on Talon Devices only */
+  public int supplyCurrentLimit;
 
   public boolean withFOC;
 
@@ -58,6 +62,7 @@ public class MotorConfiguration {
     altA = altV = altJ = 0.0;
 
     currentLimit = 30;
+    supplyCurrentLimit = 0;
 
     gearRatio = new ComplexGearRatio();
     finalDiameterMeters = 1.0;

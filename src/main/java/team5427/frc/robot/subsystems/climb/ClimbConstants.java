@@ -21,6 +21,7 @@ public class ClimbConstants {
     kServoConfiguration.withFOC = false;
 
     kServoConfiguration.currentLimit = 50;
+    kServoConfiguration.supplyCurrentLimit = 40;
 
     kServoConfiguration.maxVelocity =
         kServoConfiguration.getStandardMaxVelocity(MotorUtil.kKrakenX60FOC_MaxRPM);

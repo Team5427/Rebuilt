@@ -31,7 +31,8 @@ public final class IndexerConstants {
     kHopperMotorConfiguration.idleState = IdleState.kCoast;
     kHopperMotorConfiguration.isArm = false;
     kHopperMotorConfiguration.isInverted = true;
-    kHopperMotorConfiguration.currentLimit = 30;
+    kHopperMotorConfiguration.currentLimit = 40;
+    kHopperMotorConfiguration.supplyCurrentLimit = 20;
     kHopperMotorConfiguration.finalDiameterMeters = kHopperFlywheelRadius.times(2.0).in(Meters);
     kHopperMotorConfiguration.withFOC = true;
     kHopperMotorConfiguration.maxVelocity =
@@ -53,6 +54,7 @@ public final class IndexerConstants {
     kIndexerMotorConfiguration.isArm = false;
     kIndexerMotorConfiguration.isInverted = false;
     kIndexerMotorConfiguration.currentLimit = 55;
+    kIndexerMotorConfiguration.supplyCurrentLimit = 40;
     kIndexerMotorConfiguration.finalDiameterMeters = kIndexerFlywheelRadius.times(2.0).in(Meters);
     kIndexerMotorConfiguration.withFOC = false;
     kIndexerMotorConfiguration.maxVelocity =

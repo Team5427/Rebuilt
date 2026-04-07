@@ -51,6 +51,7 @@ public final class IntakeConstants {
     kPivotMotorConfiguration.kFF = 0.0;
 
     kPivotMotorConfiguration.currentLimit = 50;
+    kPivotMotorConfiguration.supplyCurrentLimit = 25;
   }
 
   // lt changes roller velocity to intaking brings out intake
@@ -81,6 +82,7 @@ public final class IntakeConstants {
     kRollerMotorConfiguration.kFF = 0.0;
 
     kRollerMotorConfiguration.currentLimit = 50;
+    kRollerMotorConfiguration.supplyCurrentLimit = 30;
   }
 
   public static final double kPivotMotorSimulatedkP = 0.5;
