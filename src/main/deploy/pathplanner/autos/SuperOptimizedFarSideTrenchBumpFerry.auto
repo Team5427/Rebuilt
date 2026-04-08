@@ -5,18 +5,6 @@
     "data": {
       "commands": [
         {
-          "type": "named",
-          "data": {
-            "name": "ResetAll"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.7
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "SuperOptimizedDepotFarSideStartToBumpShoot"
