@@ -132,7 +132,7 @@ public final class ShooterConstants {
     kRightFlywheelMotorConfiguration.kI = 0.0;
     kRightFlywheelMotorConfiguration.kD = 0.0;
 
-    kRightFlywheelMotorConfiguration.kV = 0.08; // .07
+    kRightFlywheelMotorConfiguration.kV = 0.075; // .07
     kRightFlywheelMotorConfiguration.kA = 0.05;
     kRightFlywheelMotorConfiguration.kS = 0.1;
     kRightFlywheelMotorConfiguration.kG = 0.0;
@@ -160,7 +160,7 @@ public final class ShooterConstants {
     kLeftFlywheelMotorConfiguration.altA = kLeftFlywheelMotorConfiguration.maxAcceleration;
     kLeftFlywheelMotorConfiguration.altJ = 1000.0;
 
-    kLeftFlywheelMotorConfiguration.kP = 0.24; // .031
+    kLeftFlywheelMotorConfiguration.kP = 0.26; // .031
     kLeftFlywheelMotorConfiguration.kI = 0.0;
     kLeftFlywheelMotorConfiguration.kD = 0.0;
 
