@@ -138,7 +138,7 @@ public final class ShooterConstants {
     kRightFlywheelMotorConfiguration.kG = 0.0;
     kRightFlywheelMotorConfiguration.kFF = 0.0;
 
-    kRightFlywheelMotorConfiguration.currentLimit = 80;
+    kRightFlywheelMotorConfiguration.currentLimit = 90;
     kRightFlywheelMotorConfiguration.supplyCurrentLimit = 40;
   }
 
@@ -160,7 +160,7 @@ public final class ShooterConstants {
     kLeftFlywheelMotorConfiguration.altA = kLeftFlywheelMotorConfiguration.maxAcceleration;
     kLeftFlywheelMotorConfiguration.altJ = 1000.0;
 
-    kLeftFlywheelMotorConfiguration.kP = 0.26; // .031
+    kLeftFlywheelMotorConfiguration.kP = 0.27; // .031
     kLeftFlywheelMotorConfiguration.kI = 0.0;
     kLeftFlywheelMotorConfiguration.kD = 0.0;
 
@@ -170,7 +170,7 @@ public final class ShooterConstants {
     kLeftFlywheelMotorConfiguration.kG = 0.0;
     kLeftFlywheelMotorConfiguration.kFF = 0.0;
 
-    kLeftFlywheelMotorConfiguration.currentLimit = 80;
+    kLeftFlywheelMotorConfiguration.currentLimit = 90;
     kLeftFlywheelMotorConfiguration.supplyCurrentLimit = 40;
   }
 }
