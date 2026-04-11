@@ -51,4 +51,22 @@ public class LookUpTable {
   public Double getTimeOfFlight(Double distance) {
     return timeOfFlightLookup.get(distance);
   }
+
+  public void reset() {
+    flywheelLookup.clear();
+    pivotAngleLookup.clear();
+    timeOfFlightLookup.clear();
+  }
+
+  public void resetFlywheelSpeed() {
+    flywheelLookup.clear();
+  }
+
+  public void resetPivotAngle() {
+    pivotAngleLookup.clear();
+  }
+
+  public void resetTimeOfFlight() {
+    timeOfFlightLookup.clear();
+  }
 }

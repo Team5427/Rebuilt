@@ -75,6 +75,7 @@ public class MoveWhileFerry extends Command {
   public void initialize() {
     // futureTrackResult = futureTrack.getFutureTrackResult();
     // futureTrackResult = futureTrack.getFutureTrackResult();
+    AimingConstants.updateLookupTables();
     futureTrackResult =
         new Tuple2Plus<Pose2d, ChassisSpeeds>(
             RobotPose.getInstance().getAdaptivePose(),
