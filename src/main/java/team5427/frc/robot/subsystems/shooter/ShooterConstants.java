@@ -47,7 +47,7 @@ public final class ShooterConstants {
   public static final double kTopFlywheelRadiusMeters = Units.inchesToMeters(1.0);
   public static final double kBottomFlywheelRadiusMeters = Units.inchesToMeters(2.0); // 2.0
 
-  public static final Rotation2d kHoodHardstopPosition = Rotation2d.fromDegrees(28.01);
+  public static final Rotation2d kHoodHardstopPosition = Rotation2d.fromDegrees(17.64);
   public static final Rotation2d kHoodMaximumRotation = Rotation2d.fromDegrees(62.227);
 
   public static final LinearVelocity kShooterStowVelocity = MetersPerSecond.of(0.0);
