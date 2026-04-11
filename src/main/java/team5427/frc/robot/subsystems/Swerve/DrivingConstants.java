@@ -7,7 +7,7 @@ import team5427.lib.tunableControls.TunableControls.TunableControlConstants;
 import team5427.lib.tunableControls.TunableControls.TunableProfiledController;
 
 public final class DrivingConstants {
-  public static final double kDampenerDampeningAmount = 0.8;
+  public static final double kDampenerDampeningAmount = 0.85;
   public static LoggedTunableNumber kRotationKp = new LoggedTunableNumber("Rotation P", 5.527);
   public static LoggedTunableNumber kRotationKd = new LoggedTunableNumber("Rotation D", 0.1);
 
@@ -50,7 +50,7 @@ public final class DrivingConstants {
           new TunableControlConstants(
               "Swerve/Translation",
               new ControlConstants()
-                  .withPID(kRotationKp.get(), 0, kRotationKd.get())
+                  .withPID(kTranslationalKp.get(), 0, kTranslationalKd.get())
                   .withProfile(kTranslationalMaxVelocity.get(), kTranslationalMaxAcceleration.get())
                   .withTolerance(
                       kTranslationalPositionTolerance.get(),
