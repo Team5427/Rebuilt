@@ -40,7 +40,7 @@ public final class ShooterConstants {
   public static final MotorConfiguration kLeftFlywheelMotorConfiguration = new MotorConfiguration();
 
   public static final ComplexGearRatio kHoodMotorGearRatio =
-      new ComplexGearRatio((12.0 / 30.0), (28.0 / 324.0));
+      new ComplexGearRatio((14.0 / 34.0), (34.0 / 350.0));
   public static final ComplexGearRatio kFlywheelMotorGearRatio =
       new ComplexGearRatio((28.0 / 36.0), (30.0 / 36.0));
 
