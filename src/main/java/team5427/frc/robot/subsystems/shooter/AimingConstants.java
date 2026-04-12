@@ -36,7 +36,6 @@ public final class AimingConstants {
     new LoggedTunableNumber("Aiming/Speeds/Speed8", 17.5),
     new LoggedTunableNumber("Aiming/Speeds/Speed9", 17.6),
     new LoggedTunableNumber("Aiming/Speeds/Speed10", 19.0)
-
   };
 
   public static LoggedTunableNumber[] kShootingDistances = {
