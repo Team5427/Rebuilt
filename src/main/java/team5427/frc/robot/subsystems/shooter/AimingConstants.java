@@ -7,14 +7,31 @@ public final class AimingConstants {
 
   public static final LookUpTable kShootingTable = new LookUpTable();
 
+  // Original
+  // public static LoggedTunableNumber[] kShootingSpeeds = {
+  //   new LoggedTunableNumber("Aiming/Speeds/Speed0", 12.85),
+  //   new LoggedTunableNumber("Aiming/Speeds/Speed1", 13.0),
+  //   new LoggedTunableNumber("Aiming/Speeds/Speed2", 13.6),
+  //   new LoggedTunableNumber("Aiming/Speeds/Speed3", 13.85),
+  //   new LoggedTunableNumber("Aiming/Speeds/Speed4", 14.55),
+  //   new LoggedTunableNumber("Aiming/Speeds/Speed5", 15.1),
+  //   new LoggedTunableNumber("Aiming/Speeds/Speed6", 15.9),
+  //   new LoggedTunableNumber("Aiming/Speeds/Speed7", 17.15),
+  //   new LoggedTunableNumber("Aiming/Speeds/Speed8", 17.5),
+  //   new LoggedTunableNumber("Aiming/Speeds/Speed9", 17.6),
+  //   new LoggedTunableNumber("Aiming/Speeds/Speed10", 19.0)
+
+  // };
+
+  // Eric's For Testing
   public static LoggedTunableNumber[] kShootingSpeeds = {
     new LoggedTunableNumber("Aiming/Speeds/Speed0", 12.85),
-    new LoggedTunableNumber("Aiming/Speeds/Speed1", 13.0),
-    new LoggedTunableNumber("Aiming/Speeds/Speed2", 13.6),
-    new LoggedTunableNumber("Aiming/Speeds/Speed3", 13.85),
-    new LoggedTunableNumber("Aiming/Speeds/Speed4", 14.55),
-    new LoggedTunableNumber("Aiming/Speeds/Speed5", 15.1),
-    new LoggedTunableNumber("Aiming/Speeds/Speed6", 15.9),
+    new LoggedTunableNumber("Aiming/Speeds/Speed1", 13.5),
+    new LoggedTunableNumber("Aiming/Speeds/Speed2", 14.9),
+    new LoggedTunableNumber("Aiming/Speeds/Speed3", 15.1),
+    new LoggedTunableNumber("Aiming/Speeds/Speed4", 15.8),
+    new LoggedTunableNumber("Aiming/Speeds/Speed5", 16.8),
+    new LoggedTunableNumber("Aiming/Speeds/Speed6", 17.0),
     new LoggedTunableNumber("Aiming/Speeds/Speed7", 17.15),
     new LoggedTunableNumber("Aiming/Speeds/Speed8", 17.5),
     new LoggedTunableNumber("Aiming/Speeds/Speed9", 17.6),
@@ -38,20 +55,20 @@ public final class AimingConstants {
 
   public static LoggedTunableNumber[] kShootingAngles = {
     new LoggedTunableNumber("Aiming/Angles/Angle0", 19.0),
-    new LoggedTunableNumber("Aiming/Angles/Angle1", 26.0),
-    new LoggedTunableNumber("Aiming/Angles/Angle2", 26.0),
-    new LoggedTunableNumber("Aiming/Angles/Angle3", 29.0),
-    new LoggedTunableNumber("Aiming/Angles/Angle4", 29.0),
-    new LoggedTunableNumber("Aiming/Angles/Angle5", 29.0),
-    new LoggedTunableNumber("Aiming/Angles/Angle6", 29.0),
-    new LoggedTunableNumber("Aiming/Angles/Angle7", 29.0),
-    new LoggedTunableNumber("Aiming/Angles/Angle8", 29.0),
-    new LoggedTunableNumber("Aiming/Angles/Angle9", 29.0),
-    new LoggedTunableNumber("Aiming/Angles/Angle10", 29.0)
+    new LoggedTunableNumber("Aiming/Angles/Angle1", 31.0),
+    new LoggedTunableNumber("Aiming/Angles/Angle2", 38.0),
+    new LoggedTunableNumber("Aiming/Angles/Angle3", 39.0),
+    new LoggedTunableNumber("Aiming/Angles/Angle4", 40.0),
+    new LoggedTunableNumber("Aiming/Angles/Angle5", 41.0),
+    new LoggedTunableNumber("Aiming/Angles/Angle6", 42.0),
+    new LoggedTunableNumber("Aiming/Angles/Angle7", 39.0),
+    new LoggedTunableNumber("Aiming/Angles/Angle8", 40.0),
+    new LoggedTunableNumber("Aiming/Angles/Angle9", 41.0),
+    new LoggedTunableNumber("Aiming/Angles/Angle10", 42.0)
   };
 
   public static LoggedTunableNumber[] kTimeOfFlights = {
-      new LoggedTunableNumber("Aiming/TimeOfFlights/TimeOfFlight0", 0.5),
+    new LoggedTunableNumber("Aiming/TimeOfFlights/TimeOfFlight0", 0.5),
     new LoggedTunableNumber("Aiming/TimeOfFlights/TimeOfFlight1", 0.5),
     new LoggedTunableNumber("Aiming/TimeOfFlights/TimeOfFlight2", 0.7),
     new LoggedTunableNumber("Aiming/TimeOfFlights/TimeOfFlight3", 0.8),
