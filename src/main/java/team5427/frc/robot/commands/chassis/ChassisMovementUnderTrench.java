@@ -48,8 +48,8 @@ public class ChassisMovementUnderTrench extends Command {
       double vy = -translationJoystick.getLeftX();
       Rotation2d nearestLockedRotation =
           RobotPose.getInstance().getAdaptivePose().getRotation().getRadians() > 0
-              ? Rotation2d.fromRadians(Math.PI/2.0)
-              : Rotation2d.fromRadians(-Math.PI/2.0);
+              ? Rotation2d.fromRadians(Math.PI / 2.0)
+              : Rotation2d.fromRadians(-Math.PI / 2.0);
       if (isRed) {
         vx *= -1;
         vy *= -1;
