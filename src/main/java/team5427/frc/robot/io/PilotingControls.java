@@ -1,5 +1,7 @@
 package team5427.frc.robot.io;
 
+import org.littletonrobotics.junction.Logger;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -78,30 +80,7 @@ public class PilotingControls {
         .whileTrue(Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING))
         .onFalse(Superstructure.setSwerveStateCommand(SwerveStates.RAW_DRIVING))
         .onFalse(Superstructure.setShooterStateCommand(ShooterStates.STOWED));
-    double distanceToTrench =
-        Math.min(
-            Math.min(
-                FieldConstants.LeftTrench.openingTopLeft
-                    .toTranslation2d()
-                    .getDistance(RobotPose.getInstance().getEstimatedPose().getTranslation()),
-                FieldConstants.RightTrench.openingTopRight
-                    .toTranslation2d()
-                    .getDistance(RobotPose.getInstance().getEstimatedPose().getTranslation())),
-            Math.min(
-                FieldConstants.LeftTrench.oppOpeningTopLeft
-                    .toTranslation2d()
-                    .getDistance(RobotPose.getInstance().getEstimatedPose().getTranslation()),
-                FieldConstants.RightTrench.oppOpeningTopRight
-                    .toTranslation2d()
-                    .getDistance(RobotPose.getInstance().getEstimatedPose().getTranslation())));
-    System.out.println(distanceToTrench);
-    double distanceToTower =
-        Math.min(
-            FieldConstants.Tower.centerPoint.getDistance(
-                RobotPose.getInstance().getEstimatedPose().getTranslation()),
-            FieldConstants.Tower.oppCenterPoint.getDistance(
-                RobotPose.getInstance().getEstimatedPose().getTranslation()));
-    System.out.println(distanceToTower);
+
     joy.leftBumper()
         .whileTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING))
         .onFalse(Superstructure.setSwerveStateCommand(SwerveStates.RAW_DRIVING))
@@ -168,7 +147,32 @@ public class PilotingControls {
         .and(
             new Trigger(
                 () -> {
-                  return distanceToTower >= distanceToTrench;
+                double distanceToTrench =
+                Math.min(
+                    Math.min(
+                        FieldConstants.LeftTrench.openingTopLeft
+                            .toTranslation2d()
+                            .getDistance(RobotPose.getInstance().getAdaptivePose().getTranslation()),
+                        FieldConstants.RightTrench.openingTopRight
+                            .toTranslation2d()
+                            .getDistance(RobotPose.getInstance().getAdaptivePose().getTranslation())),
+                    Math.min(
+                        FieldConstants.LeftTrench.oppOpeningTopLeft
+                            .toTranslation2d()
+                            .getDistance(RobotPose.getInstance().getAdaptivePose().getTranslation()),
+                        FieldConstants.RightTrench.oppOpeningTopRight
+                            .toTranslation2d()
+                            .getDistance(RobotPose.getInstance().getAdaptivePose().getTranslation())
+                    )
+                );
+
+                double distanceToTower =
+                Math.min(
+                    FieldConstants.Tower.centerPoint.getDistance(
+                        RobotPose.getInstance().getAdaptivePose().getTranslation()),
+                    FieldConstants.Tower.oppCenterPoint.getDistance(
+                        RobotPose.getInstance().getAdaptivePose().getTranslation()));
+                  return distanceToTrench >= distanceToTower;
                 }))
         .and(disabledTrigger.negate())
         .whileTrue(new ChassisMovementUnderTrench(joy));
@@ -179,7 +183,35 @@ public class PilotingControls {
         .and(
             new Trigger(
                 () -> {
-                  return distanceToTower < distanceToTrench;
+                  double distanceToTrench =
+                Math.min(
+                    Math.min(
+                        FieldConstants.LeftTrench.openingTopLeft
+                            .toTranslation2d()
+                            .getDistance(RobotPose.getInstance().getAdaptivePose().getTranslation()),
+                        FieldConstants.RightTrench.openingTopRight
+                            .toTranslation2d()
+                            .getDistance(RobotPose.getInstance().getAdaptivePose().getTranslation())),
+                    Math.min(
+                        FieldConstants.LeftTrench.oppOpeningTopLeft
+                            .toTranslation2d()
+                            .getDistance(RobotPose.getInstance().getAdaptivePose().getTranslation()),
+                        FieldConstants.RightTrench.oppOpeningTopRight
+                            .toTranslation2d()
+                            .getDistance(RobotPose.getInstance().getAdaptivePose().getTranslation())
+                    )
+                );
+
+                double distanceToTower =
+                Math.min(
+                    FieldConstants.Tower.centerPoint.getDistance(
+                        RobotPose.getInstance().getAdaptivePose().getTranslation()),
+                    FieldConstants.Tower.oppCenterPoint.getDistance(
+                        RobotPose.getInstance().getAdaptivePose().getTranslation()));
+
+                Logger.recordOutput("Local/Trench", distanceToTrench);
+                Logger.recordOutput("Local/Tower", distanceToTower);
+                return distanceToTrench < distanceToTower;
                 }))
         .and(disabledTrigger.negate())
         .whileTrue(new ChassisMovementUnderTower(joy));

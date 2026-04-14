@@ -47,9 +47,9 @@ public class ChassisMovementUnderTower extends Command {
       double vx = -translationJoystick.getRightY();
       double vy = -translationJoystick.getRightX();
       Rotation2d nearestLockedRotation =
-          Math.abs(RobotPose.getInstance().getAdaptivePose().getRotation().getRadians()) > 0
-              ? Rotation2d.fromRadians(Math.PI)
-              : Rotation2d.fromRadians(-Math.PI);
+        Math.abs(RobotPose.getInstance().getAdaptivePose().getRotation().getRadians()) > Math.PI/2.0
+              ? Rotation2d.k180deg
+              : Rotation2d.kZero;
       if (isRed) {
         vx *= -1;
         vy *= -1;
