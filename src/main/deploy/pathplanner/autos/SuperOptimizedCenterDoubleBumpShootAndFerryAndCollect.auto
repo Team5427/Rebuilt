@@ -13,12 +13,6 @@
                 "data": {
                   "pathName": "CenterBumpToBumpShootFarSide"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Intake"
-                }
               }
             ]
           }
@@ -63,12 +57,6 @@
                 "data": {
                   "pathName": "FarSideShootToCenterFerry"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Intake"
-                }
               }
             ]
           }
@@ -106,12 +94,6 @@
                 "type": "path",
                 "data": {
                   "pathName": "FarSideFerryToCollectCenter"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Intake"
                 }
               }
             ]

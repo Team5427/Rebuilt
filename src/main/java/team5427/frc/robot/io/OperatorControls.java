@@ -40,6 +40,7 @@ public class OperatorControls {
   /** Made private to prevent multiple calls to this method */
   private void initalizeTriggers() {
     // Use command factories instead of inline InstantCommands
+
     joy.leftTrigger()
         .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKING))
         .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));

@@ -28,7 +28,7 @@ public class IndexerSubsystem extends SubsystemBase {
 
   public void setHopperVelocitySetpoint(LinearVelocity velocity) {
     this.hopperVelocitySetpoint = velocity;
-    hopperVelocitySetpoint = hopperVelocitySetpoint.div(6.0);
+    hopperVelocitySetpoint = hopperVelocitySetpoint.div(3.0);
 
     io.setHopperMotorVelocity(hopperVelocitySetpoint);
   }

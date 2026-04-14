@@ -13,7 +13,7 @@ import team5427.frc.robot.RobotPose;
 import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
 
-public class ChassisMovementUnderTower extends Command {
+public class ChassisMovementUnderTrench extends Command {
 
   private SwerveSubsystem swerveSubsystem;
   private CommandXboxController joy;
@@ -23,7 +23,7 @@ public class ChassisMovementUnderTower extends Command {
 
   private boolean isRed;
 
-  public ChassisMovementUnderTower(CommandXboxController driverJoystick) {
+  public ChassisMovementUnderTrench(CommandXboxController driverJoystick) {
 
     swerveSubsystem = SwerveSubsystem.getInstance();
     joy = driverJoystick;
@@ -44,12 +44,12 @@ public class ChassisMovementUnderTower extends Command {
       isRed =
           DriverStation.getAlliance().isPresent()
               && DriverStation.getAlliance().get() == Alliance.Red;
-      double vx = -translationJoystick.getRightY();
-      double vy = -translationJoystick.getRightX();
+      double vx = -translationJoystick.getLeftY();
+      double vy = -translationJoystick.getLeftX();
       Rotation2d nearestLockedRotation =
-          Math.abs(RobotPose.getInstance().getAdaptivePose().getRotation().getRadians()) > 0
-              ? Rotation2d.fromRadians(Math.PI)
-              : Rotation2d.fromRadians(-Math.PI);
+          Math.abs(RobotPose.getInstance().getAdaptivePose().getRotation().getRadians()) > Math.PI
+              ? Rotation2d.k180deg
+              : Rotation2d.kZero;
       if (isRed) {
         vx *= -1;
         vy *= -1;
@@ -64,7 +64,7 @@ public class ChassisMovementUnderTower extends Command {
         driverSpeeds = new ChassisSpeeds(0, 0, 0);
       }
       swerveSubsystem.setInputSpeeds(driverSpeeds);
-      System.out.println("Tower");
+      System.out.println("Trech");
     } else {
       swerveSubsystem.setInputSpeeds(new ChassisSpeeds(0, 0, 0));
     }

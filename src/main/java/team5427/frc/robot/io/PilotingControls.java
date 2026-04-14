@@ -9,10 +9,13 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import team5427.frc.robot.Constants;
 import team5427.frc.robot.Constants.DriverConstants;
+import team5427.frc.robot.FieldConstants;
 import team5427.frc.robot.RobotPose;
 import team5427.frc.robot.Superstructure;
 import team5427.frc.robot.Superstructure.ShooterStates;
 import team5427.frc.robot.Superstructure.SwerveStates;
+import team5427.frc.robot.commands.chassis.ChassisMovementUnderTower;
+import team5427.frc.robot.commands.chassis.ChassisMovementUnderTrench;
 import team5427.frc.robot.commands.chassis.ControlledChassisMovement;
 import team5427.frc.robot.commands.chassis.RawChassisMovement;
 import team5427.frc.robot.commands.shooting.MoveWhileFerry;
@@ -43,7 +46,7 @@ public class PilotingControls {
     disabledTrigger = new Trigger(DriverStation::isDisabled);
     autonTrigger = new Trigger(DriverStation::isAutonomous);
 
-    disabledTrigger.whileTrue(Superstructure.fullResetAllStates());
+    disabledTrigger.onTrue(Superstructure.fullResetAllStates().ignoringDisable(true));
 
     // Swerve State Control Bindings
 
@@ -75,10 +78,32 @@ public class PilotingControls {
         .whileTrue(Superstructure.setShooterStateCommand(ShooterStates.AUTO_ALIGN_SHOOTING))
         .onFalse(Superstructure.setSwerveStateCommand(SwerveStates.RAW_DRIVING))
         .onFalse(Superstructure.setShooterStateCommand(ShooterStates.STOWED));
-
+    double distanceToTrench =
+        Math.min(
+            Math.min(
+                FieldConstants.LeftTrench.openingTopLeft
+                    .toTranslation2d()
+                    .getDistance(RobotPose.getInstance().getEstimatedPose().getTranslation()),
+                FieldConstants.RightTrench.openingTopRight
+                    .toTranslation2d()
+                    .getDistance(RobotPose.getInstance().getEstimatedPose().getTranslation())),
+            Math.min(
+                FieldConstants.LeftTrench.oppOpeningTopLeft
+                    .toTranslation2d()
+                    .getDistance(RobotPose.getInstance().getEstimatedPose().getTranslation()),
+                FieldConstants.RightTrench.oppOpeningTopRight
+                    .toTranslation2d()
+                    .getDistance(RobotPose.getInstance().getEstimatedPose().getTranslation())));
+    System.out.println(distanceToTrench);
+    double distanceToTower =
+        Math.min(
+            FieldConstants.Tower.centerPoint.getDistance(
+                RobotPose.getInstance().getEstimatedPose().getTranslation()),
+            FieldConstants.Tower.oppCenterPoint.getDistance(
+                RobotPose.getInstance().getEstimatedPose().getTranslation()));
+    System.out.println(distanceToTower);
     joy.leftBumper()
         .whileTrue(Superstructure.setSwerveStateCommand(SwerveStates.AUTO_TARGETING))
-        .whileTrue(Superstructure.setShooterStateCommand(ShooterStates.FERRY_SHOOTING))
         .onFalse(Superstructure.setSwerveStateCommand(SwerveStates.RAW_DRIVING))
         .onFalse(Superstructure.setShooterStateCommand(ShooterStates.STOWED));
 
@@ -122,9 +147,42 @@ public class PilotingControls {
         .whileTrue(new MoveWhileShoot(joy));
 
     Superstructure.swerveStateIs(SwerveStates.AUTO_TARGETING)
+        .and(Superstructure.shooterStateIs(ShooterStates.AUTO_ALIGN_SHOOTING).negate())
+        .and(
+            new Trigger(
+                () -> {
+                  return RobotPose.getInstance().getAdaptivePose().getX() >= 5.15
+                      && RobotPose.getInstance().getAdaptivePose().getX() <= 11.32;
+                }))
+        .and(disabledTrigger.negate())
+        .whileTrue(Superstructure.setShooterStateCommand(ShooterStates.FERRY_SHOOTING));
+
+    Superstructure.swerveStateIs(SwerveStates.AUTO_TARGETING)
         .and(Superstructure.shooterStateIs(ShooterStates.FERRY_SHOOTING))
         .and(disabledTrigger.negate())
         .whileTrue(new MoveWhileFerry(joy));
+
+    Superstructure.swerveStateIs(SwerveStates.AUTO_TARGETING)
+        .and(Superstructure.shooterStateIs(ShooterStates.FERRY_SHOOTING).negate())
+        .and(Superstructure.shooterStateIs(ShooterStates.AUTO_ALIGN_SHOOTING).negate())
+        .and(
+            new Trigger(
+                () -> {
+                  return distanceToTower >= distanceToTrench;
+                }))
+        .and(disabledTrigger.negate())
+        .whileTrue(new ChassisMovementUnderTrench(joy));
+
+    Superstructure.swerveStateIs(SwerveStates.AUTO_TARGETING)
+        .and(Superstructure.shooterStateIs(ShooterStates.FERRY_SHOOTING).negate())
+        .and(Superstructure.shooterStateIs(ShooterStates.AUTO_ALIGN_SHOOTING).negate())
+        .and(
+            new Trigger(
+                () -> {
+                  return distanceToTower < distanceToTrench;
+                }))
+        .and(disabledTrigger.negate())
+        .whileTrue(new ChassisMovementUnderTower(joy));
 
     Superstructure.shooterStateIs(ShooterStates.WINDUP)
         .and(disabledTrigger.negate())

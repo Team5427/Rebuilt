@@ -40,14 +40,14 @@ public final class ShooterConstants {
   public static final MotorConfiguration kLeftFlywheelMotorConfiguration = new MotorConfiguration();
 
   public static final ComplexGearRatio kHoodMotorGearRatio =
-      new ComplexGearRatio((14.0 / 34.0), (34.0 / 350.0));
+      new ComplexGearRatio((12.0 / 30.0), (28.0 / 324.0));
   public static final ComplexGearRatio kFlywheelMotorGearRatio =
       new ComplexGearRatio((28.0 / 36.0), (30.0 / 36.0));
 
   public static final double kTopFlywheelRadiusMeters = Units.inchesToMeters(1.0);
   public static final double kBottomFlywheelRadiusMeters = Units.inchesToMeters(2.0); // 2.0
 
-  public static final Rotation2d kHoodHardstopPosition = Rotation2d.fromDegrees(17.64);
+  public static final Rotation2d kHoodHardstopPosition = Rotation2d.fromDegrees(28.01);
   public static final Rotation2d kHoodMaximumRotation = Rotation2d.fromDegrees(62.227);
 
   public static final LinearVelocity kShooterStowVelocity = MetersPerSecond.of(0.0);
@@ -56,7 +56,7 @@ public final class ShooterConstants {
     kRightHoodMotorConfiguration.gearRatio = kHoodMotorGearRatio;
     kRightHoodMotorConfiguration.isArm = true;
     kRightHoodMotorConfiguration.idleState = IdleState.kBrake;
-    kRightHoodMotorConfiguration.isInverted = false;
+    kRightHoodMotorConfiguration.isInverted = true;
     kRightHoodMotorConfiguration.mode = MotorMode.kServo;
     kRightHoodMotorConfiguration.withFOC = true;
 
@@ -68,7 +68,7 @@ public final class ShooterConstants {
     kRightHoodMotorConfiguration.altA = kRightHoodMotorConfiguration.maxAcceleration;
     kRightHoodMotorConfiguration.altJ = 1000.0;
 
-    kRightHoodMotorConfiguration.kP = 20;
+    kRightHoodMotorConfiguration.kP = 800.02000045776367;
     kRightHoodMotorConfiguration.kD = 0;
     kRightHoodMotorConfiguration.kI = 0;
 
@@ -85,7 +85,7 @@ public final class ShooterConstants {
     kLeftHoodMotorConfiguration.gearRatio = kHoodMotorGearRatio;
     kLeftHoodMotorConfiguration.isArm = true;
     kLeftHoodMotorConfiguration.idleState = IdleState.kBrake;
-    kLeftHoodMotorConfiguration.isInverted = true;
+    kLeftHoodMotorConfiguration.isInverted = false;
     kLeftHoodMotorConfiguration.mode = MotorMode.kServo;
     kLeftHoodMotorConfiguration.withFOC = true;
 
@@ -97,7 +97,7 @@ public final class ShooterConstants {
     kLeftHoodMotorConfiguration.altA = kRightHoodMotorConfiguration.maxAcceleration;
     kLeftHoodMotorConfiguration.altJ = 1000.0;
 
-    kLeftHoodMotorConfiguration.kP = 20;
+    kLeftHoodMotorConfiguration.kP = 800.02000045776367;
     kLeftHoodMotorConfiguration.kD = 0;
     kLeftHoodMotorConfiguration.kI = 0;
 
