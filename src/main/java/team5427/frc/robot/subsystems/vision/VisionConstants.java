@@ -11,7 +11,8 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.units.measure.Distance;
 
 public class VisionConstants {
-  public static final String kRightCamName = "rightCamA";
+  public static final String kRightCamName =
+      "rightCamA"; // questionable camera name don't know if it is A or smth
   public static final String kLeftCamName = "leftCamC";
 
   public static final int kCameraCount = 2;

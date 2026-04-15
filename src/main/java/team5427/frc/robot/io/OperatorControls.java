@@ -45,7 +45,7 @@ public class OperatorControls {
         .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKING))
         .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
     joy.leftBumper().whileTrue(IntakeOscillate.getIntakeOscillateCommand());
-    joy.povUp()
+    joy.rightBumper()
         .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.OUTAKING))
         .whileTrue(Superstructure.setIndexerStateCommand(IndexerStates.OUTTAKE))
         .onFalse(

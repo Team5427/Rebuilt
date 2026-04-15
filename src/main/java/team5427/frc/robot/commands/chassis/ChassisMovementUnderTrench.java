@@ -48,8 +48,8 @@ public class ChassisMovementUnderTrench extends Command {
       double vy = -translationJoystick.getLeftX();
       Rotation2d nearestLockedRotation =
           RobotPose.getInstance().getAdaptivePose().getRotation().getRadians() > 0
-              ? Rotation2d.fromRadians(Math.PI / 2.0)
-              : Rotation2d.fromRadians(-Math.PI / 2.0);
+              ? Rotation2d.kCW_90deg
+              : Rotation2d.kCCW_90deg;
       if (isRed) {
         vx *= -1;
         vy *= -1;
@@ -64,7 +64,6 @@ public class ChassisMovementUnderTrench extends Command {
         driverSpeeds = new ChassisSpeeds(0, 0, 0);
       }
       swerveSubsystem.setInputSpeeds(driverSpeeds);
-      System.out.println("Trech");
     } else {
       swerveSubsystem.setInputSpeeds(new ChassisSpeeds(0, 0, 0));
     }

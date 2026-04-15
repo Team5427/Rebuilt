@@ -44,11 +44,10 @@ public class ChassisMovementUnderTower extends Command {
       isRed =
           DriverStation.getAlliance().isPresent()
               && DriverStation.getAlliance().get() == Alliance.Red;
-      double vx = -translationJoystick.getRightY();
-      double vy = -translationJoystick.getRightX();
+      double vx = -translationJoystick.getLeftY();
+      double vy = -translationJoystick.getLeftX();
       Rotation2d nearestLockedRotation =
-          Math.abs(RobotPose.getInstance().getAdaptivePose().getRotation().getRadians())
-                  > Math.PI / 2.0
+          Math.abs(RobotPose.getInstance().getAdaptivePose().getRotation().getRadians()) > Math.PI
               ? Rotation2d.k180deg
               : Rotation2d.kZero;
       if (isRed) {
@@ -65,7 +64,6 @@ public class ChassisMovementUnderTower extends Command {
         driverSpeeds = new ChassisSpeeds(0, 0, 0);
       }
       swerveSubsystem.setInputSpeeds(driverSpeeds);
-      System.out.println("Tower");
     } else {
       swerveSubsystem.setInputSpeeds(new ChassisSpeeds(0, 0, 0));
     }
