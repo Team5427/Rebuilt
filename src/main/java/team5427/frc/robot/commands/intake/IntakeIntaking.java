@@ -23,15 +23,15 @@ public class IntakeIntaking extends Command {
     subsystem.setIntakingRotation(IntakeConstants.kPivotIntakeRotation);
     LinearVelocity intakingSpeed = IntakeConstants.kRollerMinimumIntakeVelocity;
     double mult =
-        Math.sqrt(
+        Math.sqrt((Math.sqrt(
                 Math.pow(
                         SwerveSubsystem.getInstance().getCurrentChassisSpeeds().vxMetersPerSecond,
                         2)
                     + Math.pow(
                         SwerveSubsystem.getInstance().getCurrentChassisSpeeds().vyMetersPerSecond,
                         2))
-            / (SwerveConstants.kDriveMotorConfiguration.maxVelocity);
-    subsystem.setIntakingSpeed(intakingSpeed.times(mult).plus(intakingSpeed));
+            / (SwerveConstants.kDriveMotorConfiguration.maxVelocity)));
+    subsystem.setIntakingSpeed(intakingSpeed.copy().times(mult).plus(intakingSpeed));
 
     // subsystem.simulateIntaking(true);
   }

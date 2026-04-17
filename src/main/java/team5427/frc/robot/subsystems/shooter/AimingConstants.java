@@ -14,7 +14,7 @@ public final class AimingConstants {
     new LoggedTunableNumber("Aiming/Speeds/Speed4", 14.55),
     new LoggedTunableNumber("Aiming/Speeds/Speed5", 15.1),
     new LoggedTunableNumber("Aiming/Speeds/Speed6", 15.9),
-    new LoggedTunableNumber("Aiming/Speeds/Speed7", 17.15),
+    new LoggedTunableNumber("Aiming/Speeds/Speed7", 17.0),
     new LoggedTunableNumber("Aiming/Speeds/Speed8", 17.5),
     new LoggedTunableNumber("Aiming/Speeds/Speed9", 17.6),
     new LoggedTunableNumber("Aiming/Speeds/Speed10", 19.0)
