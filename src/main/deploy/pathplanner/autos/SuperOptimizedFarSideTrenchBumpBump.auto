@@ -5,6 +5,18 @@
     "data": {
       "commands": [
         {
+          "type": "named",
+          "data": {
+            "name": "Intake"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.7
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "SuperOptimizedDepotFarSideStartToBumpShoot"
@@ -17,7 +29,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 3.5
+                  "waitTime": 4.0
                 }
               },
               {

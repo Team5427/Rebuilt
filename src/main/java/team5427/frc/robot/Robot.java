@@ -115,8 +115,10 @@ public class Robot extends LoggedRobot {
     Logger.recordOutput("HubShift/Shifter", HubShiftUtil.getShiftedShiftInfo());
 
     SmartDashboard.putBoolean("Hub Active", HubShiftUtil.getOfficialShiftInfo().active());
-    SmartDashboard.putNumber("Shift Time Remaining", HubShiftUtil.getOfficialShiftInfo().remainingTime());
-    SmartDashboard.putNumber("Shift Time Elapsed", HubShiftUtil.getOfficialShiftInfo().elapsedTime());
+    SmartDashboard.putNumber(
+        "Shift Time Remaining", HubShiftUtil.getOfficialShiftInfo().remainingTime());
+    SmartDashboard.putNumber(
+        "Shift Time Elapsed", HubShiftUtil.getOfficialShiftInfo().elapsedTime());
     // QuestNav.getInstance().processHeartbeat();
     // QuestNav.getInstance().cleanupResponses();
 
