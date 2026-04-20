@@ -16,6 +16,8 @@ import team5427.lib.motors.MotorUtil;
 
 public final class ShooterConstants {
 
+  public static final LinearVelocity kDemoShootingVelocity = MetersPerSecond.of(12.0);
+
   public static final Transform3d kRobotToShooterTransform =
       new Transform3d(
               Units.inchesToMeters(5.547244),
