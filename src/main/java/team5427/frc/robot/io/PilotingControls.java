@@ -19,8 +19,7 @@ import team5427.frc.robot.commands.chassis.ChassisMovementUnderTower;
 import team5427.frc.robot.commands.chassis.ChassisMovementUnderTrench;
 import team5427.frc.robot.commands.chassis.ControlledChassisMovement;
 import team5427.frc.robot.commands.chassis.RawChassisMovement;
-import team5427.frc.robot.commands.shooting.MoveWhileFerry;
-import team5427.frc.robot.commands.shooting.MoveWhileShoot;
+import team5427.frc.robot.commands.shooting.DemoShoot;
 import team5427.frc.robot.commands.shooting.WindupShooter;
 import team5427.frc.robot.io.DriverProfiles.DriverState;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
@@ -122,7 +121,7 @@ public class PilotingControls {
     Superstructure.swerveStateIs(SwerveStates.AUTO_TARGETING)
         .and(Superstructure.shooterStateIs(ShooterStates.AUTO_ALIGN_SHOOTING))
         .and(disabledTrigger.negate())
-        .whileTrue(new MoveWhileShoot(joy));
+        .whileTrue(new DemoShoot());
 
     Superstructure.swerveStateIs(SwerveStates.AUTO_TARGETING)
         .and(Superstructure.shooterStateIs(ShooterStates.AUTO_ALIGN_SHOOTING).negate())
@@ -138,7 +137,7 @@ public class PilotingControls {
     Superstructure.swerveStateIs(SwerveStates.AUTO_TARGETING)
         .and(Superstructure.shooterStateIs(ShooterStates.FERRY_SHOOTING))
         .and(disabledTrigger.negate())
-        .whileTrue(new MoveWhileFerry(joy));
+        .whileTrue(new DemoShoot());
 
     Superstructure.swerveStateIs(SwerveStates.AUTO_TARGETING)
         .and(Superstructure.shooterStateIs(ShooterStates.FERRY_SHOOTING).negate())
