@@ -39,14 +39,17 @@ public class IndexerIOTalonFX implements IndexerIO {
     hopperMotor = new SteelTalonFX(IndexerConstants.kHopperMotorCanId);
 
     rightIndexerMotor.apply(IndexerConstants.kIndexerMotorConfiguration);
-    leftIndexerMotor.apply(new MotorConfiguration(IndexerConstants.kIndexerMotorConfiguration));
+    MotorConfiguration leftIndexerMotorConfiguration = new MotorConfiguration(IndexerConstants.kIndexerMotorConfiguration);
+    leftIndexerMotorConfiguration.isInverted = false;
+    leftIndexerMotor.apply(leftIndexerMotorConfiguration);
+
     hopperMotor.apply(IndexerConstants.kHopperMotorConfiguration);
-    leftIndexerMotor
-        .getTalonFX()
-        .setControl(
-            new Follower(
-                IndexerConstants.kIndexerRightMotorCanId.getDeviceNumber(),
-                MotorAlignmentValue.Opposed));
+    // leftIndexerMotor
+    //     .getTalonFX()
+    //     .setControl(
+    //         new Follower(
+    //             IndexerConstants.kIndexerRightMotorCanId.getDeviceNumber(),
+    //             MotorAlignmentValue.Opposed));
 
     rightIndexerMotor.setEncoderPosition(0);
     leftIndexerMotor.setEncoderPosition(0);
@@ -118,6 +121,17 @@ public class IndexerIOTalonFX implements IndexerIO {
 
   @Override
   public void setIndexerMotorVelocity(LinearVelocity velocity) {
+    rightIndexerMotor.setSetpoint(velocity);
+    leftIndexerMotor.setSetpoint(velocity);
+  }
+
+  @Override
+  public void setLeftIndexerMotorVelocity(LinearVelocity velocity) {
+    leftIndexerMotor.setSetpoint(velocity);
+  }
+
+  @Override
+  public void setRightIndexerMotorVelocity(LinearVelocity velocity) {
     rightIndexerMotor.setSetpoint(velocity);
   }
 

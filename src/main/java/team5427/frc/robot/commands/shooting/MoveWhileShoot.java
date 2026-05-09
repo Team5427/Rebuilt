@@ -28,6 +28,7 @@ import team5427.frc.robot.Robot;
 import team5427.frc.robot.RobotPose;
 import team5427.frc.robot.subsystems.Swerve.DrivingConstants;
 import team5427.frc.robot.subsystems.Swerve.SwerveSubsystem;
+import team5427.frc.robot.subsystems.indexer.IndexerSubsystem;
 import team5427.frc.robot.subsystems.shooter.AimingConstants;
 import team5427.frc.robot.subsystems.shooter.ShooterConstants;
 import team5427.frc.robot.subsystems.shooter.ShooterSubsystem;
@@ -172,6 +173,9 @@ public class MoveWhileShoot extends Command {
       driveSpeeds = swerveSubsystem.getDriveSpeeds(vx, vy, targetHeading, 0);
     }
     swerveSubsystem.setInputSpeeds(driveSpeeds);
+
+    IndexerSubsystem.getInstance().setTargetHeading(targetHeading);
+    IndexerSubsystem.getInstance().setTargetDistance(finalDistance);
 
     Logger.recordOutput("MoveWhileShoot/VirtualTarget", new Pose2d(virtualTarget2d, targetHeading));
     Logger.recordOutput(
