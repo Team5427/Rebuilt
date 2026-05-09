@@ -37,6 +37,8 @@ public final class ShooterConstants {
   public static final MotorConfiguration kRightHoodMotorConfiguration = new MotorConfiguration();
   public static final MotorConfiguration kLeftHoodMotorConfiguration = new MotorConfiguration();
 
+  public static final double kShooterHorizontalOffsetMeters = 0.224;
+
   public static final MotorConfiguration kRightFlywheelMotorConfiguration =
       new MotorConfiguration();
   public static final MotorConfiguration kLeftFlywheelMotorConfiguration = new MotorConfiguration();

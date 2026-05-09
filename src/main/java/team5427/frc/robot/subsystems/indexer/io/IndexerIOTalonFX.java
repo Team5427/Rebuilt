@@ -5,8 +5,6 @@ import static edu.wpi.first.units.Units.RotationsPerSecond;
 
 import com.ctre.phoenix6.BaseStatusSignal;
 import com.ctre.phoenix6.StatusSignal;
-import com.ctre.phoenix6.controls.Follower;
-import com.ctre.phoenix6.signals.MotorAlignmentValue;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.LinearVelocity;
@@ -39,7 +37,8 @@ public class IndexerIOTalonFX implements IndexerIO {
     hopperMotor = new SteelTalonFX(IndexerConstants.kHopperMotorCanId);
 
     rightIndexerMotor.apply(IndexerConstants.kIndexerMotorConfiguration);
-    MotorConfiguration leftIndexerMotorConfiguration = new MotorConfiguration(IndexerConstants.kIndexerMotorConfiguration);
+    MotorConfiguration leftIndexerMotorConfiguration =
+        new MotorConfiguration(IndexerConstants.kIndexerMotorConfiguration);
     leftIndexerMotorConfiguration.isInverted = false;
     leftIndexerMotor.apply(leftIndexerMotorConfiguration);
 
