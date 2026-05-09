@@ -2,6 +2,7 @@ package team5427.frc.robot.subsystems.Swerve;
 
 import static edu.wpi.first.units.Units.Kilogram;
 import static edu.wpi.first.units.Units.Meters;
+import static edu.wpi.first.units.Units.MetersPerSecond;
 import static edu.wpi.first.units.Units.Volts;
 
 import com.pathplanner.lib.util.DriveFeedforwards;
@@ -17,8 +18,10 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.system.plant.DCMotor;
+import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import java.util.concurrent.locks.Lock;
@@ -39,6 +42,7 @@ import team5427.frc.robot.subsystems.Swerve.gyro.GyroIOInputsAutoLogged;
 import team5427.frc.robot.subsystems.Swerve.gyro.GyroIOPigeon;
 import team5427.frc.robot.subsystems.Swerve.gyro.GyroIOSim;
 import team5427.frc.robot.subsystems.Swerve.io.talon.PhoenixOdometryThread;
+import team5427.lib.kinematics.shooter.projectiles.Linear;
 import team5427.lib.systems.swerve.SteelTalonsDriveSpeeds;
 import team5427.lib.systems.swerve.SteelTalonsSwerve;
 import team5427.lib.systems.swerve.SwerveUtil;
@@ -178,15 +182,73 @@ public class SwerveSubsystem extends SubsystemBase
     PhoenixOdometryThread.getInstance().start();
     // SparkOdometryThread.getInstance().start();
 
-    sysId =
-        new SysIdRoutine(
-            new SysIdRoutine.Config(
-                null,
-                null,
-                null,
-                (state) -> Logger.recordOutput("SysId/SwerveSysIdState", state.toString())),
-            new SysIdRoutine.Mechanism(
-                (voltage) -> runDriveCharacterization(voltage.in(Volts)), null, this));
+   sysId =
+    new SysIdRoutine(
+        new SysIdRoutine.Config(),
+
+        new SysIdRoutine.Mechanism(
+
+            volts -> sysIdDrive(
+                volts.in(Volts)
+            ),
+
+            log -> {
+
+                log.motor("frontLeft")
+                    .voltage(Volts.of(
+                        swerveModules[0].getAppliedVoltage()
+                    ))
+                    .linearPosition(Meters.of(
+                        swerveModules[0].getModulePosition().distanceMeters
+                    ))
+                    .linearVelocity(
+                        MetersPerSecond.of(
+                            swerveModules[0].getDriveVelocity()
+                        )
+                      );
+
+                log.motor("frontRight")
+                    .voltage(Volts.of(
+                        swerveModules[1].getAppliedVoltage()
+                    ))
+                    .linearPosition(Meters.of(
+                        swerveModules[1].getModulePosition().distanceMeters
+                    ))
+                    .linearVelocity(
+                        MetersPerSecond.of(
+                            swerveModules[1].getDriveVelocity()
+                        ));
+
+                log.motor("rearLeft")
+                    .voltage(Volts.of(
+                        swerveModules[2].getAppliedVoltage()
+                    ))
+                    .linearPosition(Meters.of(
+                        swerveModules[2].getModulePosition().distanceMeters
+                    ))
+                    .linearVelocity(
+                        MetersPerSecond.of(
+                            swerveModules[2].getDriveVelocity()
+                        )
+                      );
+
+                log.motor("rearRight")
+                    .voltage(Volts.of(
+                        swerveModules[3].getAppliedVoltage()
+                    ))
+                    .linearPosition(Meters.of(
+                        swerveModules[3].getModulePosition().distanceMeters
+                    ))
+                    .linearVelocity(
+                        MetersPerSecond.of(
+                            swerveModules[3].getDriveVelocity()
+                        ));
+            },
+
+            this
+        )
+    );
+  
   }
 
   @Override
@@ -419,4 +481,32 @@ public class SwerveSubsystem extends SubsystemBase
   public SwerveModulePosition[] getCurrentSwerveModulePositions() {
     return modulePositions;
   }
+  public void sysIdDrive(double voltage) {
+    for(SwerveModule module : swerveModules) {
+      module.runDriveCharacterization(voltage);
+    }
+  }
+  public Command quasistaticForward() {
+    return sysId.quasistatic(
+        SysIdRoutine.Direction.kForward
+    );
+}
+
+public Command quasistaticReverse() {
+    return sysId.quasistatic(
+        SysIdRoutine.Direction.kReverse
+    );
+}
+
+public Command dynamicForward() {
+    return sysId.dynamic(
+        SysIdRoutine.Direction.kForward
+    );
+}
+
+public Command dynamicReverse() {
+    return sysId.dynamic(
+        SysIdRoutine.Direction.kReverse
+    );
+}
 }

@@ -71,6 +71,7 @@ public final class Constants {
   public static class DriverConstants {
     public static final int kDriverJoystickPort = 0;
     public static final int kOperatorJoystickPort = 1;
+    public static final int kSysIDJoystickPort = 2;
     public static final double kDriverControllerJoystickDeadzone = 0.0;
     public static final double kDriverControllerRotationalControlJoystickDeadzone = 0.05;
   }

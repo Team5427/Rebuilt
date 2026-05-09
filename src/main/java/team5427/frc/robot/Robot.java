@@ -3,6 +3,8 @@ package team5427.frc.robot;
 import com.pathplanner.lib.commands.FollowPathCommand;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.DataLogManager;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -41,7 +43,10 @@ public class Robot extends LoggedRobot {
    */
   @SuppressWarnings("resource")
   public Robot() {
-
+    DataLogManager.start();
+    DriverStation.startDataLog(
+      DataLogManager.getLog()
+    );
     Logger.recordMetadata("Rebuilt", "Steel Talons 5427 Robot Code for the Game Rebuilt, 2026");
     Logger.recordMetadata("GitSHA", BuildConstants.GIT_SHA);
 
@@ -110,7 +115,7 @@ public class Robot extends LoggedRobot {
     Superstructure.logStates();
     FutureTrack.getInstance().update();
     FutureTrack.getInstance().log();
-
+    
     Logger.recordOutput("HubShift/Official", HubShiftUtil.getOfficialShiftInfo());
     Logger.recordOutput("HubShift/Shifter", HubShiftUtil.getShiftedShiftInfo());
 

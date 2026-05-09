@@ -136,6 +136,10 @@ public class SwerveModule {
     return inputs.currentModuleState;
   }
 
+  public double getAppliedVoltage() {
+    return inputs.driveMotorVoltage.magnitude();
+  }
+
   public Rotation2d getCancoderRotation() {
     return inputs.absolutePosition;
   }
@@ -188,5 +192,8 @@ public class SwerveModule {
   /** Returns the module velocity in rotations/sec (Phoenix native units). */
   public double getFFCharacterizationVelocity() {
     return inputs.driveMotorRotationsPerSecond;
+  }
+  public double getDriveVelocity() {
+    return inputs.currentModuleState.speedMetersPerSecond;
   }
 }
