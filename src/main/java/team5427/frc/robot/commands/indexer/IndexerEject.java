@@ -23,7 +23,7 @@ public class IndexerEject extends Command {
   public void execute() {
     indexerSubsystem.setIndexerVelocitySetpoint(
         IndexerConstants.kIndexerStowedVelocity.plus(MetersPerSecond.of(-2.0)));
-    indexerSubsystem.setHopperVelocitySetpoint(MetersPerSecond.of(-0.5));
+    indexerSubsystem.setHopperVelocitySetpoint(MetersPerSecond.of(-2.0));
     // indexerSubsystem.setIndexerVelocitySetpoint(MetersPerSecond.of(-2.0));
 
     // indexerSubsystem.setHopperVelocitySetpoint(MetersPerSecond.of(-2.0));

@@ -19,6 +19,7 @@ import team5427.frc.robot.commands.chassis.ChassisMovementUnderTower;
 import team5427.frc.robot.commands.chassis.ChassisMovementUnderTrench;
 import team5427.frc.robot.commands.chassis.ControlledChassisMovement;
 import team5427.frc.robot.commands.chassis.RawChassisMovement;
+import team5427.frc.robot.commands.chassis.ResetChassisPose;
 import team5427.frc.robot.commands.shooting.MoveWhileFerry;
 import team5427.frc.robot.commands.shooting.MoveWhileShoot;
 import team5427.frc.robot.commands.shooting.WindupShooter;
@@ -268,5 +269,6 @@ public class PilotingControls {
                   RobotPose.getInstance()
                       .resetHeading(SwerveSubsystem.getInstance().getGyroRotation());
                 }));
+    
   }
 }

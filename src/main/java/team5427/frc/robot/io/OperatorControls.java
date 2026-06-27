@@ -7,6 +7,7 @@ import team5427.frc.robot.Superstructure;
 import team5427.frc.robot.Superstructure.IndexerStates;
 import team5427.frc.robot.Superstructure.IntakeStates;
 import team5427.frc.robot.Superstructure.ShooterStates;
+import team5427.frc.robot.commands.chassis.ResetChassisPose;
 import team5427.frc.robot.commands.indexer.IndexShoot;
 import team5427.frc.robot.commands.indexer.IndexStow;
 import team5427.frc.robot.commands.indexer.IndexerEject;
@@ -43,7 +44,7 @@ public class OperatorControls {
 
     joy.leftTrigger()
         .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.INTAKING))
-        .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
+                .onFalse(Superstructure.setIntakeStateCommand(IntakeStates.INTAKENEUTRAL));
     joy.leftBumper().whileTrue(IntakeOscillate.getIntakeOscillateCommand());
     joy.rightBumper()
         .whileTrue(Superstructure.setIntakeStateCommand(IntakeStates.OUTAKING))
@@ -80,6 +81,11 @@ public class OperatorControls {
             Superstructure.setIntakeStateCommand(IntakeStates.STOWED)
                 .alongWith(Superstructure.setIndexerStateCommand(IndexerStates.STOWED)));
     // to-do add disable climb
+
+    joy.povUp()
+        .onTrue(
+            new ResetChassisPose()
+        );
 
     Superstructure.shooterStateIs(ShooterStates.STOWED)
         .whileTrue(

@@ -23,7 +23,7 @@ public class IndexShoot extends Command {
     indexerSubsystem.setIndexerVelocitySetpoint(
         ShooterSubsystem.getInstance().getLeftShooterVelocity());
     indexerSubsystem.setHopperVelocitySetpoint(
-        ShooterSubsystem.getInstance().getRightShooterVelocity());
+        ShooterSubsystem.getInstance().getRightShooterVelocity().times(2.5));
     // indexerSubsystem.setIndexerVelocitySetpoint(MetersPerSecond.of(-2.0));
 
     // indexerSubsystem.setHopperVelocitySetpoint(MetersPerSecond.of(-2.0));
